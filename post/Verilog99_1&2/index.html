@@ -1,0 +1,114 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>verilog99题——1、2题 | 1/2顶点</title>
+<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico">
+<link rel="stylesheet" href="https://halftop.github.io/styles/main.css">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://halftop.github.io">
+  <img class="avatar" src="https://halftop.github.io/images/avatar.png" alt="" width="80px" height="80px">
+  </a>
+  <h1 class="site-title">
+    1/2顶点
+  </h1>
+  <p class="site-description">
+    有输入有输出，才是正确的学习方式。
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+</div>
+
+      
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              verilog99题——1、2题
+            </h2>
+            <div class="post-info">
+              <time class="post-time">
+                · 2019-03-05 ·
+              </time>
+              
+                <a href="https://halftop.github.io/tag/ADa051R6R" class="post-tags">
+                  # Verilog HDL
+                </a>
+              
+                <a href="https://halftop.github.io/tag/bwS6E4Jqc" class="post-tags">
+                  # 学习笔记
+                </a>
+              
+            </div>
+            <div class="post-content">
+              <h2 id="题目">题目</h2><p><strong>001.画出CMOS反相器的电路原理图。</strong></p>
+<p><strong>002.反向器的速度与哪些因素有关？什么是转换时间（transition time）和传播延迟（propagation delay）？</strong></p>
+<!-- more --> 
+<h3 id="第一题">第一题</h3><p>NMOS——电子导电，高电平通，低电平断，传递低电平$\to$连接地</p>
+<p>PMOS——空穴导电，低电平通，高电平断，传递高电平$\to$连接电源</p>
+<p><img src="https://halftop.github.io/post-images/1551757456136.jpg" alt="CMOS反相器"></p>
+<h3 id="第二题">第二题</h3><p>影响因素：（这个小问只是简单看了一下把答案总结了一下，部分原理没搞懂）</p>
+<ol>
+<li>电容——门本身的扩散电容，互连线电容（通过版图优化）和扇出电容（尽量减少漏区面积）。</li>
+<li>增加晶体管的W/L：增加晶体管的尺寸也增加扩散电容。这个有限值，到一定程度，再增加门尺寸就不能对减少延时有帮助了。</li>
+<li>提高$V_{DD}$:以能量损耗来换取性能，但电压超过一定程度后改善就会非常有限。</li>
+</ol>
+<p>传播延迟（propagation delay）：由于PN结上储存电荷的积累和消散都需要时间，因此MOS管由导通到截至或由截止到导通也需要时间。电路中寄生电容和负载电容的影响，也使得输出波形总是滞后于输入波形，这个延迟时间成为传播延迟（propagation delay），或者传输延迟时间。她反映了门电路的开关速度和信号传递时间。<br>通常，输出信号由低电平变为高电平时，输出相对输入的延迟时间记为$t_{\mathrm { PLH }}$：而输出信号由高电平变为低电平时，输出相对输入的延迟时间记为$t _ { \mathrm { PHL } }$。</p>
+<p><img src="https://halftop.github.io/post-images/1551756636071.png" alt="传播延迟"></p>
+<p>转换时间（transition time）：用来描述逻辑电路的输出从一种状态变为另一种状态所需的时间。其中输出从低态到高态的转换时间称为上升时间（$\mathrm{t}_{\mathrm{r}}$,rise time）；从高态到低态的转换时间称为下降时间（$\mathrm{t}_{\mathrm{f}}$,rise time）。</p>
+<p><img src="https://halftop.github.io/post-images/1551755647543.png" alt="上升时间和下降时间"></p>
+
+            </div>
+          </article>
+        </div>
+    
+        
+
+        
+    
+        <div class="site-footer">
+  Powered by Hve Notes
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+      </div>
+    </div>
+  </body>
+</html>
