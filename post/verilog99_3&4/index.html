@@ -1,0 +1,118 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>verilog99题——3、4题 | 1/2顶点</title>
+<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico">
+<link rel="stylesheet" href="https://halftop.github.io/styles/main.css">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://halftop.github.io">
+  <img class="avatar" src="https://halftop.github.io/images/avatar.png" alt="" width="80px" height="80px">
+  </a>
+  <h1 class="site-title">
+    1/2顶点
+  </h1>
+  <p class="site-description">
+    有输入有输出，才是正确的学习方式。
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+</div>
+
+      
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              verilog99题——3、4题
+            </h2>
+            <div class="post-info">
+              <time class="post-time">
+                · 2019-03-06 ·
+              </time>
+              
+                <a href="https://halftop.github.io/tag/ADa051R6R" class="post-tags">
+                  # Verilog HDL
+                </a>
+              
+                <a href="https://halftop.github.io/tag/bwS6E4Jqc" class="post-tags">
+                  # 学习笔记
+                </a>
+              
+            </div>
+            <div class="post-content">
+              <h2 id="题目">题目</h2><p><strong>003.解释一下Vih，Vil，Vol，Voh，Vt。</strong></p>
+<p><strong>004.什么是原码，反码，补码，符号-数值码。以4bit为例，给出各自表示的数值范围。</strong></p>
+<!-- more --> 
+<h3 id="第三题">第三题</h3><p>ViH:输入高电平，保证逻辑门的输入为高电平时所允许的最小输入高电平，当输入电平高于Vih时，则认为输入电平为高电平。</p>
+<p>Vil:输入低电平，保证逻辑门的输入为低电平时所允许的最大输入低电平，当输入电平低于Vil时，则认为输入电平为低电平。</p>
+<p>Voh:输出高电平，保证逻辑门的输出为高电平时的输出电平的最小值，逻辑门的输出为高电平时的电平值都必须大于Voh。</p>
+<p>Vol:输出低电平，保证逻辑门的输出为低电平时的输出电平的最大值，逻辑门的输出为高电平时的电平值都必须小于Vol。</p>
+<p>Vt:阀值电平，数字电路芯片都存在一个阈值电平，就是电路能勉强翻转动作时的电平。它是一个界于ViL、ViH之间的电压值，CMOS电路的阈值电平，是二分之一的电源电压值。如果要保证输出稳定，则必须要求输入高电平&gt;ViH，输入低电平&lt;ViL；如果输入电平在阈值上下，也就是ViL-ViH这个区域，电路的输出会处于不稳定状态。<br>对于一般的逻辑电平，以上参数的关系：VoH&gt;ViH&gt;Vt&gt;ViL&gt;VoL</p>
+<h3 id="第四题">第四题</h3><p><strong>原码</strong>：带符号数的符号数值码表示，又称作原码，用二进制数位串的最高有效位（MSB）作为符号位，0表示正号（Plus），1表示负号（Minus），其余较低位表示数的绝对值（数值）（Magnitude）。以4bit为例，最大——0111；最小——1111，范围-7~+7。</p>
+<p><strong>反码</strong>：正数的反码是它本身，负数的反码是保留符号位，其它位按位取反。范围与原码相同，以4bit为例是-7~+7。</p>
+<p><strong>补码</strong>：正数的补码是它本身，负数的补码是保留符号位，其它位按位取反再加1。以4bit为例，表示范围为-8~+7。</p>
+
+            </div>
+          </article>
+        </div>
+    
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://halftop.github.io/post/Verilog99_1&amp;2">
+              <h3 class="post-title">
+                verilog99题——1、2题
+              </h3>
+            </a>
+          </div>  
+        
+
+        
+    
+        <div class="site-footer">
+  Powered by Hve Notes
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+      </div>
+    </div>
+  </body>
+</html>
