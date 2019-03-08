@@ -1,15 +1,12 @@
-
 <!DOCTYPE html>
 <html>
   <head>
-    
-<meta charset="utf-8" >
+    <meta charset="utf-8" >
 
 <title>verilog99题——5、6、7题 | 1/2顶点</title>
 <meta name="description" content="有输入有输出，才是正确的学习方式。">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="shortcut icon" href="https://halftop.github.io/favicon.ico">
 <link rel="stylesheet" href="https://halftop.github.io/styles/main.css">
@@ -19,87 +16,74 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
 
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
 
   </head>
   <body>
     <div id="app" class="main">
-      <div class="site-header-container">
-  <div class="site-header">
-    <div class="left">
-      <a href="https://halftop.github.io">
-        <img class="avatar" src="https://halftop.github.io/images/avatar.png" alt="" width="32px" height="32px">
-      </a>
-      <a href="https://halftop.github.io">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://halftop.github.io">
+        <img src="https://halftop.github.io/images/avatar.png" class="site-logo">
         <h1 class="site-title">1/2顶点</h1>
       </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
     </div>
-    <div class="right">
-      <transition name="fade">
-        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
-      </transition>
-    </div>
-  </div>
-</div>
-
-<transition name="fade">
-  <div class="menu-container" style="display: none;" v-show="menuVisible">
-    <div class="menu-list">
+    <div>
       
         
-          <a href="/" class="menu purple-link">
+          <a href="/" class="site-nav">
             首页
           </a>
         
       
         
-          <a href="/archives" class="menu purple-link">
+          <a href="/archives" class="site-nav">
             归档
           </a>
         
       
         
-          <a href="/tags" class="menu purple-link">
+          <a href="/tags" class="site-nav">
             标签
           </a>
         
       
         
-          <a href="/post/about" class="menu purple-link">
+          <a href="/post/about" class="site-nav">
             关于
           </a>
         
       
     </div>
   </div>
-</transition>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="site-description">
+      有输入有输出，才是正确的学习方式。
+    </div>
+    <div class="site-footer">
+      Powered by Hve Notes
+    </div>
+  </div>
+</div>
 
 
-      <div class="content-container">
-        <div class="post-detail">
-          <h2 class="post-title">verilog99题——5、6、7题</h2>
-          <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2019-03-07</span>
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">verilog99题——5、6、7题</h2>
+            <div class="post-date">2019-03-07</div>
             
-              <span>
-                <i class="icon-pricetags-outline"></i>
-                
-                  <a href="https://halftop.github.io/tag/ADa051R6R">
-                    Verilog HDL
-                    
-                      ，
-                    
-                  </a>
-                
-                  <a href="https://halftop.github.io/tag/bwS6E4Jqc">
-                    学习笔记
-                    
-                  </a>
-                
-              </span>
+              <div class="feature-container" style="background-image: url('https://halftop.github.io/post-images/verilog99_5&amp;6&amp;7.png')">
+              </div>
             
-          </div>
-          <div class="post-content">
-            <h2 id="题目">题目</h2><p><strong>005.十进制转换为二进制编码：127，-127，127.375，-127.375</strong></p>
+            <div class="post-content">
+              <h2 id="题目">题目</h2><p><strong>005.十进制转换为二进制编码：127，-127，127.375，-127.375</strong></p>
 <p><strong>006.画出CMOS三态缓冲器的电路原理图，解释一下高阻态。</strong></p>
 <p><strong>007.什么是open-drain output？</strong></p>
 <!-- more --> 
@@ -131,30 +115,44 @@
 <p>可以看出，OD门就是将反相器的上面的PMOS管拿掉了而已。</p>
 <p>当两个与非门的输出全为1时，输出为1；只要其中一个输出为0，则输出为0，所以该电路符合与逻辑功能，即L=(AB)&#39;(CD)&#39;。</p>
 
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://halftop.github.io/tag/ADa051R6R" class="tag">
+                    Verilog HDL
+                  </a>
+                
+                  <a href="https://halftop.github.io/tag/bwS6E4Jqc" class="tag">
+                    学习笔记
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://halftop.github.io/post/verilog99_3&amp;4">
+                  <h3 class="post-title">
+                    verilog99题——3、4题
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
           </div>
+
         </div>
-
-        
-          <div class="next-post">
-            <a class="purple-link" href="https://halftop.github.io/post/verilog99_3&amp;4">
-              <h3 class="post-title">
-                下一篇：verilog99题——3、4题
-              </h3>
-            </a>
-          </div>
-          
       </div>
-
-      
-
-      <div class="site-footer">
-  <div class="slogan">有输入有输出，才是正确的学习方式。</div>
-  Powered by Hve Notes
-</div>
-
-
     </div>
-    <script type="application/javascript">
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
 
 hljs.initHighlightingOnLoad()
 
