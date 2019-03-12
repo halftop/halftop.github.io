@@ -106,7 +106,9 @@
             
           </div>
           <div class="post-content">
-            <h2 id="题目">题目</h2><p><strong>011.什么是竞争和冒险？</strong><br>注：以下都是知识的搬运和总结，参考文献在最后。<br> <!-- more --> </p>
+            <h2 id="题目">题目</h2><p><strong>011.什么是竞争和冒险？</strong></p>
+<p>注：以下都是知识的搬运和总结，参考文献在最后。</p>
+ <!-- more --> 
 <h3 id="冒险现象">冒险现象</h3><p>在信号传输与状态变换时会发生的延迟（Delay）。事实上，由于这些延迟，当输入信号发生变化时，其输出信号不能立即跟随输入信号的变化而变化，而是经过一段过渡时间后才能达到原先所期望的状态，从而可能产生瞬间的错误输出，造成逻辑功能的瞬时紊乱。这种现象被称为逻辑电路的“<strong><em>冒险现象</em></strong>”（Hazard），简称“险象”。</p>
 <h3 id="产生冒险的原因——竞争">产生冒险的原因——竞争</h3><p>在组合逻辑电路中，输入信号的变化传输到电路各级门时，在时间上有先有后，这种先后所形成的时间差称为竞争（Competition）。</p>
 <ul>
@@ -154,7 +156,8 @@
 <li>接入高频滤波电容：因为竞争-冒险所产生的干扰脉冲一般很窄，所以可以采用在输出端连接一个小电容到地的方法，消除干扰脉冲。干扰脉冲的持续时间与门电路的传输延迟属同一数量级，在TTL电路中，只需要几百皮法的电容，就足以把干扰脉冲削弱到开门电平以下。</li>
 <li>改变逻辑设计并增加冗余项：当冒险是由单个变量改变状态而引起时，可以通过在“切点”增加冗余项的方法予以消除。</li>
 </ol>
-<h3 id="fpga器件的竞争与冒险的消除方法">FPGA器件的竞争与冒险的消除方法</h3><ol>
+<h3 id="fpga器件的竞争与冒险的消除方法">FPGA器件的竞争与冒险的消除方法</h3><p>注：只做总结，详见后两篇参考文献。</p>
+<ol>
 <li>在系统中尽可能采用同步电路：D触发器的D输入端对毛刺不敏感。</li>
 <li>在输出信号的保持时间内对其进行“采样”。<ul>
 <li>采样信号</li>
@@ -165,8 +168,8 @@
 </ol>
 <h3 id="参考文献">参考文献</h3><ol>
 <li>姜书艳. 数字逻辑设计及应用[M]. 清华大学出版社, 2014.</li>
-<li>宣丽萍. FPGA 器件的竞争与冒险现象及消除方法[D]. , 2005.</li>
-<li>张晴. FPGA 设计中竞争冒险问题的研究[J]. 实验室研究与探索, 2003, 1: 47249.</li>
+<li>宣丽萍. FPGA 器件的竞争与冒险现象及消除方法[D]. , 2005.<a href="http://www.cnki.com.cn/Article/CJFDTotal-XDDJ200510055.htm">知网链接</a></li>
+<li>张晴. FPGA 设计中竞争冒险问题的研究[J]. 实验室研究与探索, 2003, 1: 47249.<a href="http://www.cnki.net/kcms/detail/detail.aspx?dbcode=CJFD&amp;dbname=cjfd2003&amp;filename=sysy200301018&amp;uid=WEEvREcwSlJHSldRa1FhdXNXaEd1OFFsell1dzJiakM3a0JKMGZhamsxTT0=$9A4hF_YAuvQ5obgVAqNKPCYcEjKensW4IQMovwHtwkF4VYPoHbKxJw!!&amp;v=MzAzMzNYM21yR05IRnJDVVJMT2ZaT2R0Rnk3bFVydkFGaFQ0VjdHNEh0TE1ybzlFYklRTEJIazV6aFJsNGpkNVM=">知网链接</a></li>
 </ol>
 
           </div>
