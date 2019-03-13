@@ -15,6 +15,12 @@
 <link rel="stylesheet" href="https://halftop.github.io/styles/main.css">
 
 
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
@@ -91,6 +97,12 @@
       </div>
 
       
+        
+          <div id="gitalk-container"></div>
+        
+
+        
+      
 
       <div class="site-footer">
   <div class="slogan">有输入有输出，才是正确的学习方式。</div>
@@ -111,6 +123,29 @@ var app = new Vue({
 })
 
 </script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '42b8247150af6c920554',
+        clientSecret: 'ea9863ece62308a1854e39455221fa1ace6f8cd6',
+        repo: 'halftop.github.io',
+        owner: 'halftop',
+        admin: ['halftop'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
 
 
 
