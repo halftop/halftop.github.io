@@ -1,17 +1,16 @@
-
 <!DOCTYPE html>
 <html>
   <head>
-    
-<meta charset="utf-8" >
+    <meta charset="utf-8" >
 
 <title>通过做verilog99题的第11题学习竞争与冒险 | 1/2顶点</title>
 <meta name="description" content="有输入有输出，才是正确的学习方式。">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico?v=1555327895126">
 
-<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
 <link rel="stylesheet" href="https://halftop.github.io/styles/main.css">
 
 
@@ -21,202 +20,313 @@
 
   
 
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
 
   </head>
   <body>
-    <div id="app" class="main">
-      <div class="site-header-container">
-  <div class="site-header">
-    <div class="left">
-      <a href="https://halftop.github.io">
-        <img class="avatar" src="https://halftop.github.io/images/avatar.png" alt="" width="32px" height="32px">
-      </a>
-      <a href="https://halftop.github.io">
-        <h1 class="site-title">1/2顶点</h1>
-      </a>
-    </div>
-    <div class="right">
-      <transition name="fade">
-        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
-      </transition>
+  
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://halftop.github.io">1/2顶点</a></h3>
+  </div>
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
+        
+          <li>
+            
+              <a href="/" class="menu">
+                首页
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/post/about" class="menu">
+                关于
+              </a>
+            
+          </li>
+        
+      </ul>
     </div>
   </div>
-</div>
+</nav>
 
-<transition name="fade">
-  <div class="menu-container" style="display: none;" v-show="menuVisible">
-    <div class="menu-list">
-      
-        
-          <a href="/" class="menu purple-link">
-            首页
-          </a>
-        
-      
-        
-          <a href="/archives" class="menu purple-link">
-            归档
-          </a>
-        
-      
-        
-          <a href="/tags" class="menu purple-link">
-            标签
-          </a>
-        
-      
-        
-          <a href="/post/about" class="menu purple-link">
-            关于
-          </a>
-        
-      
-    </div>
-  </div>
-</transition>
-
-
-      <div class="content-container">
-        <div class="post-detail">
-          <h2 class="post-title">通过做verilog99题的第11题学习竞争与冒险</h2>
-          <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2019-03-11</span>
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <article class="article">
+            <h1>通过做verilog99题的第11题学习竞争与冒险</h1>
+            <p class="article-meta">
+              2019-03-11
+              
+                <a href="https://halftop.github.io/tag/9rG5j0Nww" class="badge ">
+                  FPGA
+                </a>
+              
+                <a href="https://halftop.github.io/tag/ADa051R6R" class="badge warning">
+                  Verilog HDL
+                </a>
+              
+                <a href="https://halftop.github.io/tag/bwS6E4Jqc" class="badge secondary">
+                  学习笔记
+                </a>
+              
+            </p>
             
-              <span>
-                <i class="icon-pricetags-outline"></i>
-                
-                  <a href="https://halftop.github.io/tag/9rG5j0Nww">
-                    FPGA
-                    
-                      ，
-                    
-                  </a>
-                
-                  <a href="https://halftop.github.io/tag/ADa051R6R">
-                    Verilog HDL
-                    
-                      ，
-                    
-                  </a>
-                
-                  <a href="https://halftop.github.io/tag/bwS6E4Jqc">
-                    学习笔记
-                    
-                  </a>
-                
-              </span>
+              <img src="https://halftop.github.io/post-images/verilog99_11.png" alt="通过做verilog99题的第11题学习竞争与冒险">
             
-          </div>
-          <div class="post-content">
-            <h2 id="题目">题目</h2><p><strong>011.什么是竞争和冒险？</strong></p>
+            <div class="post-content">
+              <h2 id="题目">题目</h2>
+<p><strong>011.什么是竞争和冒险？</strong></p>
 <p>注：以下都是知识的搬运和总结，参考文献在最后。</p>
  <!-- more --> 
-<h3 id="冒险现象">冒险现象</h3><p>在信号传输与状态变换时会发生的延迟（Delay）。事实上，由于这些延迟，当输入信号发生变化时，其输出信号不能立即跟随输入信号的变化而变化，而是经过一段过渡时间后才能达到原先所期望的状态，从而可能产生瞬间的错误输出，造成逻辑功能的瞬时紊乱。这种现象被称为逻辑电路的“<strong><em>冒险现象</em></strong>”（Hazard），简称“险象”。</p>
-<h3 id="产生冒险的原因——竞争">产生冒险的原因——竞争</h3><p>在组合逻辑电路中，输入信号的变化传输到电路各级门时，在时间上有先有后，这种先后所形成的时间差称为竞争（Competition）。</p>
+<h3 id="冒险现象">冒险现象</h3>
+<p>在信号传输与状态变换时会发生的延迟（Delay）。事实上，由于这些延迟，当输入信号发生变化时，其输出信号不能立即跟随输入信号的变化而变化，而是经过一段过渡时间后才能达到原先所期望的状态，从而可能产生瞬间的错误输出，造成逻辑功能的瞬时紊乱。这种现象被称为逻辑电路的“<em><strong>冒险现象</strong></em>”（Hazard），简称“险象”。</p>
+<h3 id="产生冒险的原因竞争">产生冒险的原因——竞争</h3>
+<p>在组合逻辑电路中，输入信号的变化传输到电路各级门时，在时间上有先有后，这种先后所形成的时间差称为竞争（Competition）。</p>
 <ul>
-<li><p>分类一：逻辑竞争和功能竞争</p>
+<li>
+<p>分类一：逻辑竞争和功能竞争</p>
 <ul>
-<li><p><strong>逻辑竞争</strong>：某一个输入端到达某个输出端存在多条不同延迟的信号途径，导致的竞争为逻辑竞争（Logic competition）。</p>
+<li>
+<p><strong>逻辑竞争</strong>：某一个输入端到达某个输出端存在多条不同延迟的信号途径，导致的竞争为逻辑竞争（Logic competition）。</p>
 </li>
-<li><p><strong>功能竞争</strong>：如果多个输入端同时存在到达某个输出端的不同延迟的信号途径，则称为功能竞争（Function competition）。</p>
+<li>
+<p><strong>功能竞争</strong>：如果多个输入端同时存在到达某个输出端的不同延迟的信号途径，则称为功能竞争（Function competition）。</p>
 </li>
 </ul>
 </li>
-<li><p>分类二：非临界竞争和临界竞争——竞争不一定带来错误的输出。</p>
+<li>
+<p>分类二：非临界竞争和临界竞争——竞争不一定带来错误的输出。</p>
 <ul>
-<li><p><strong>非临界竞争</strong>：把不会使电路产生错误输出的竞争称为非临界竞争（Non-critical competition）。</p>
+<li>
+<p><strong>非临界竞争</strong>：把不会使电路产生错误输出的竞争称为非临界竞争（Non-critical competition）。</p>
 </li>
-<li><p><strong>临界竞争</strong>：而把产生错误输出的竞争称为临界竞争（Critical competition）。临界竞争产生的错误输出是在输出波形上出现不需要的尖峰脉冲（毛刺）（Glitch），暂时地破坏正常的逻辑关系。一旦瞬态过程结束，即可恢复正常的逻辑关系。</p>
+<li>
+<p><strong>临界竞争</strong>：而把产生错误输出的竞争称为临界竞争（Critical competition）。临界竞争产生的错误输出是在输出波形上出现不需要的尖峰脉冲（毛刺）（Glitch），暂时地破坏正常的逻辑关系。一旦瞬态过程结束，即可恢复正常的逻辑关系。</p>
+</li>
+</ul>
 <p>如下图中，因为F=AB，当AB取值为01或10时，F的值应该恒等于0，然而如中间图所示在AB由01变为10的过程中，由于A先于B变化而产生了正向干扰脉冲，这种由于输入信号的到达时间不同而产生的干扰属于功能竞争，这种竞争属于临界竞争。若右图所示，B先于A变化为低电平，即使A信号再变为高电平，在输出端也不会产生干扰脉冲。这种竞争称为非临界竞争。</p>
+</li>
+</ul>
 <figure class="third">
-<img src="https://wx2.sinaimg.cn/large/7f79daaely1g0z7wji7twj205j02oq2v.jpg" alt="与门电路" title="与门电路">
-<img src="https://wx1.sinaimg.cn/large/7f79daaely1g0z80vlcycj20at04hglz.jpg" alt="产生险象的波形图" title="产生险象的波形图">
-<img src="https://wx3.sinaimg.cn/large/7f79daaely1g0z80vhkqhj20at04haa2.jpg" alt="无险象的波形图" title="无险象的波形图">
+    <img src="https://wx2.sinaimg.cn/large/7f79daaely1g0z7wji7twj205j02oq2v.jpg" alt="与门电路" title="与门电路">
+    <img src="https://wx1.sinaimg.cn/large/7f79daaely1g0z80vlcycj20at04hglz.jpg" alt="产生险象的波形图" title="产生险象的波形图">
+    <img src="https://wx3.sinaimg.cn/large/7f79daaely1g0z80vhkqhj20at04haa2.jpg" alt="无险象的波形图" title="无险象的波形图">
 </figure>
-下图是由与非门构成的组合逻辑电路，该电路的输出逻辑表达式是：F=AB+A'C
+    下图是由与非门构成的组合逻辑电路，该电路的输出逻辑表达式是：F=AB+A'C
 <figure class="half">
-<img src="https://wx1.sinaimg.cn/large/7f79daaely1g100ojqjrmj206i04gwek.jpg" alt="与非门构成的组合逻辑电路" title="与非门构成的组合逻辑电路">
-<img src="https://wx4.sinaimg.cn/large/7f79daaely1g1014tvorej208p050jru.jpg" alt="产生险象的组合逻辑电路波形图" title="产生险象的组合逻辑电路波形图">
+	<img src="https://wx1.sinaimg.cn/large/7f79daaely1g100ojqjrmj206i04gwek.jpg" alt="与非门构成的组合逻辑电路" title="与非门构成的组合逻辑电路">
+	<img src="https://wx4.sinaimg.cn/large/7f79daaely1g1014tvorej208p050jru.jpg" alt="产生险象的组合逻辑电路波形图" title="产生险象的组合逻辑电路波形图">
 </figure>
-当B=C=1时，F应该恒等于1，这是在理想条件下得出得结论。实际上，门电路都存在延迟时间，假设每个门电路的延迟时间都为t。
+	当B=C=1时，F应该恒等于1，这是在理想条件下得出得结论。实际上，门电路都存在延迟时间，假设每个门电路的延迟时间都为t。
+<pre><code>当A由低电平变为高电平，经过门延迟t后，反相器G1的输出d由高电平变为低电平，同时与非门G2的输出e也由高电平变为低电平，在G1的输出d变为低电平之前，d仍然维持高电平不变，因此G3的输出g不变；再经过门延迟t后，与非门G3的输出g由低变为高电平。由于之前e已经为低电平，所以输出F恒定为高电平不变。没有出现尖脉冲，即没有出现险象，所以该竞争是逻辑竞争、非临界竞争。
 
-<p>当A由低电平变为高电平，经过门延迟t后，反相器G1的输出d由高电平变为低电平，同时与非门G2的输出e也由高电平变为低电平，在G1的输出d变为低电平之前，d仍然维持高电平不变，因此G3的输出g不变；再经过门延迟t后，与非门G3的输出g由低变为高电平。由于之前e已经为低电平，所以输出F恒定为高电平不变。没有出现尖脉冲，即没有出现险象，所以该竞争是逻辑竞争、非临界竞争。</p>
-<p>而A由高电平变为低电平时，经过门延迟t后，反相器G1的输出d由低电平变为高电平，同时与非门G2的输出e也由低电平变为高电平；再经过门延迟t后，与非门G3的输出g才由高电平变为低电平。由图可以看出，在t的持续时间内，与非门Ga的输入都为高电平，再经过t后，输出持续时间为t的低电平尖脉冲，也就是说，这次竞争产生了险象，是逻辑临界竞争。</p>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="冒险的判断方法">冒险的判断方法</h3><ul>
+而A由高电平变为低电平时，经过门延迟t后，反相器G1的输出d由低电平变为高电平，同时与非门G2的输出e也由低电平变为高电平；再经过门延迟t后，与非门G3的输出g才由高电平变为低电平。由图可以看出，在t的持续时间内，与非门Ga的输入都为高电平，再经过t后，输出持续时间为t的低电平尖脉冲，也就是说，这次竞争产生了险象，是逻辑临界竞争。
+</code></pre>
+<h3 id="冒险的判断方法">冒险的判断方法</h3>
+<ul>
 <li>代数法</li>
 <li>卡诺图法</li>
 </ul>
-<p>当某个变量A同时以原变量和反变量的形式出现在逻辑函数表达式中，且在一定条件下该逻辑函数表达式可以简化为A+A&#39;或AA&#39;的形式时，则该逻辑函数表达式对应的电路在变量A发生变化时，可能由于竞争而产生险象。</p>
-<p>在代数法的判断中，首先检查函数表达式中是否存在具备竞争条件的变量，即是否同时存在某个变量的原变量和反变量。若存在，则将其他变量的所有取值组合依次代入逻辑函数表达式中，看逻辑函数是否能成为A+A&#39;或A·A&#39;的形式，若能，则在此条件下，逻辑电路可能产生险象；否则，在该种变量的取值组合情况，逻辑电路不会产生险象。</p>
+<p>当某个变量A同时以原变量和反变量的形式出现在逻辑函数表达式中，且在一定条件下该逻辑函数表达式可以简化为A+A'或AA'的形式时，则该逻辑函数表达式对应的电路在变量A发生变化时，可能由于竞争而产生险象。</p>
+<p>在代数法的判断中，首先检查函数表达式中是否存在具备竞争条件的变量，即是否同时存在某个变量的原变量和反变量。若存在，则将其他变量的所有取值组合依次代入逻辑函数表达式中，看逻辑函数是否能成为A+A'或A·A'的形式，若能，则在此条件下，逻辑电路可能产生险象；否则，在该种变量的取值组合情况，逻辑电路不会产生险象。</p>
 <p>在卡诺图判断方法中，首先做出逻辑函数的卡诺图，并画出与逻辑函数表达式中各“与”项（“或”项）完全对应的圈。然后观察卡诺图，若有圈“相切”，即两圈之间存在不被同一圈包含的相邻最小项，则该电路可能产生险象。“切点”的变量取值即为可能发生险象的固定变量取值。</p>
-<h3 id="冒险的消除方法">冒险的消除方法</h3><ol>
+<h3 id="冒险的消除方法">冒险的消除方法</h3>
+<ol>
 <li>通过增加选通电路：增加选通电路一方面需要增加电路成本，另一方面需要预测险象出现的时刻以便消除，实现比较困难。</li>
 <li>接入高频滤波电容：因为竞争-冒险所产生的干扰脉冲一般很窄，所以可以采用在输出端连接一个小电容到地的方法，消除干扰脉冲。干扰脉冲的持续时间与门电路的传输延迟属同一数量级，在TTL电路中，只需要几百皮法的电容，就足以把干扰脉冲削弱到开门电平以下。</li>
 <li>改变逻辑设计并增加冗余项：当冒险是由单个变量改变状态而引起时，可以通过在“切点”增加冗余项的方法予以消除。</li>
 </ol>
-<h3 id="fpga器件的竞争与冒险的消除方法">FPGA器件的竞争与冒险的消除方法</h3><p>注：只做总结，详见后两篇参考文献。</p>
+<h3 id="fpga器件的竞争与冒险的消除方法">FPGA器件的竞争与冒险的消除方法</h3>
+<p>注：只做总结，详见后两篇参考文献。</p>
 <ol>
 <li>在系统中尽可能采用同步电路：D触发器的D输入端对毛刺不敏感。</li>
-<li>在输出信号的保持时间内对其进行“采样”。<ul>
+<li>在输出信号的保持时间内对其进行“采样”。
+<ul>
 <li>采样信号</li>
 <li>将组合电路和时序电路结合起来变成同步时序电路。</li>
 </ul>
 </li>
 <li>使用格雷码。格雷码在转化时只有一个输出信号改变，从而不会引起竞争冒险现象。</li>
 </ol>
-<h3 id="参考文献">参考文献</h3><ol>
+<h3 id="参考文献">参考文献</h3>
+<ol>
 <li>姜书艳. 数字逻辑设计及应用[M]. 清华大学出版社, 2014.</li>
 <li>宣丽萍. FPGA 器件的竞争与冒险现象及消除方法[D]. , 2005.<a href="http://www.cnki.com.cn/Article/CJFDTotal-XDDJ200510055.htm">知网链接</a></li>
 <li>张晴. FPGA 设计中竞争冒险问题的研究[J]. 实验室研究与探索, 2003, 1: 47249.<a href="http://www.cnki.net/kcms/detail/detail.aspx?dbcode=CJFD&amp;dbname=cjfd2003&amp;filename=sysy200301018&amp;uid=WEEvREcwSlJHSldRa1FhdXNXaEd1OFFsell1dzJiakM3a0JKMGZhamsxTT0=$9A4hF_YAuvQ5obgVAqNKPCYcEjKensW4IQMovwHtwkF4VYPoHbKxJw!!&amp;v=MzAzMzNYM21yR05IRnJDVVJMT2ZaT2R0Rnk3bFVydkFGaFQ0VjdHNEh0TE1ybzlFYklRTEJIazV6aFJsNGpkNVM=">知网链接</a></li>
 </ol>
 
-          </div>
+            </div>
+          </article>
         </div>
-
-        
-          <div class="next-post">
-            <a class="purple-link" href="https://halftop.github.io/post/verilog99_8">
-              <h3 class="post-title">
-                下一篇：verilog99题——8题
-              </h3>
-            </a>
-          </div>
+        <div class="paper" data-aos="fade-in">
           
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://halftop.github.io/post/verilog99_8">
+                <h3 class="post-title">
+                  verilog99题——8题
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+        
+          
+            <div class="paper" data-aos="fade-in">
+              <div id="gitalk-container"></div>
+            </div>
+          
+
+          
+        
       </div>
 
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://halftop.github.io/images/avatar.png?v=1555327895126" class="no-responsive avatar">
+    <div class="text-muted">有输入有输出，才是正确的学习方式。</div>
+    <div class="social-container">
       
         
-          <div id="gitalk-container"></div>
-        
-
+      
         
       
-
-      <div class="site-footer">
-  <div class="slogan">有输入有输出，才是正确的学习方式。</div>
-  Powered by Hve Notes
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://halftop.github.io/post/verilog99_12to21">Verilog99题——12-21题</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://halftop.github.io/post/verilog99_10">verilog99题——10题</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://halftop.github.io/post/verilog99_11">通过做verilog99题的第11题学习竞争与冒险</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://halftop.github.io/post/verilog99_8">verilog99题——8题</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://halftop.github.io/post/verilog99_5&amp;6&amp;7">verilog99题——5、6、7题</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://halftop.github.io/post/verilog99_3&amp;4">verilog99题——3、4题</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://halftop.github.io/post/Verilog99_1&amp;2">verilog99题——1、2题</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://halftop.github.io/post/about">关于</a>
+            </li>
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+        <a href="https://halftop.github.io/tag/9rG5j0Nww" class="badge secondary">
+          FPGA
+        </a>
+      
+        <a href="https://halftop.github.io/tag/ADa051R6R" class="badge success">
+          Verilog HDL
+        </a>
+      
+        <a href="https://halftop.github.io/tag/bwS6E4Jqc" class="badge ">
+          学习笔记
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by Hve Notes
+  </div>
 </div>
 
 
     </div>
-    <script type="application/javascript">
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
 
 hljs.initHighlightingOnLoad()
-
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
 
 </script>
 

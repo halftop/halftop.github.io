@@ -1,17 +1,16 @@
-
 <!DOCTYPE html>
 <html>
   <head>
-    
-<meta charset="utf-8" >
+    <meta charset="utf-8" >
 
 <title>verilog99题——1、2题 | 1/2顶点</title>
 <meta name="description" content="有输入有输出，才是正确的学习方式。">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico?v=1555327895126">
 
-<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
 <link rel="stylesheet" href="https://halftop.github.io/styles/main.css">
 
 
@@ -21,139 +20,239 @@
 
   
 
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
 
   </head>
   <body>
-    <div id="app" class="main">
-      <div class="site-header-container">
-  <div class="site-header">
-    <div class="left">
-      <a href="https://halftop.github.io">
-        <img class="avatar" src="https://halftop.github.io/images/avatar.png" alt="" width="32px" height="32px">
-      </a>
-      <a href="https://halftop.github.io">
-        <h1 class="site-title">1/2顶点</h1>
-      </a>
-    </div>
-    <div class="right">
-      <transition name="fade">
-        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
-      </transition>
+  
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://halftop.github.io">1/2顶点</a></h3>
+  </div>
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
+        
+          <li>
+            
+              <a href="/" class="menu">
+                首页
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/post/about" class="menu">
+                关于
+              </a>
+            
+          </li>
+        
+      </ul>
     </div>
   </div>
-</div>
+</nav>
 
-<transition name="fade">
-  <div class="menu-container" style="display: none;" v-show="menuVisible">
-    <div class="menu-list">
-      
-        
-          <a href="/" class="menu purple-link">
-            首页
-          </a>
-        
-      
-        
-          <a href="/archives" class="menu purple-link">
-            归档
-          </a>
-        
-      
-        
-          <a href="/tags" class="menu purple-link">
-            标签
-          </a>
-        
-      
-        
-          <a href="/post/about" class="menu purple-link">
-            关于
-          </a>
-        
-      
-    </div>
-  </div>
-</transition>
-
-
-      <div class="content-container">
-        <div class="post-detail">
-          <h2 class="post-title">verilog99题——1、2题</h2>
-          <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2019-03-05</span>
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <article class="article">
+            <h1>verilog99题——1、2题</h1>
+            <p class="article-meta">
+              2019-03-05
+              
+                <a href="https://halftop.github.io/tag/ADa051R6R" class="badge secondary">
+                  Verilog HDL
+                </a>
+              
+                <a href="https://halftop.github.io/tag/bwS6E4Jqc" class="badge secondary">
+                  学习笔记
+                </a>
+              
+            </p>
             
-              <span>
-                <i class="icon-pricetags-outline"></i>
-                
-                  <a href="https://halftop.github.io/tag/ADa051R6R">
-                    Verilog HDL
-                    
-                      ，
-                    
-                  </a>
-                
-                  <a href="https://halftop.github.io/tag/bwS6E4Jqc">
-                    学习笔记
-                    
-                  </a>
-                
-              </span>
+              <img src="https://halftop.github.io/post-images/verilog99_12to21.png" alt="verilog99题——1、2题">
             
-          </div>
-          <div class="post-content">
-            <h2 id="题目">题目</h2><p><strong>001.画出CMOS反相器的电路原理图。</strong></p>
+            <div class="post-content">
+              <h2 id="题目">题目</h2>
+<p><strong>001.画出CMOS反相器的电路原理图。</strong></p>
 <p><strong>002.反向器的速度与哪些因素有关？什么是转换时间（transition time）和传播延迟（propagation delay）？</strong></p>
 <!-- more --> 
-<h3 id="第一题">第一题</h3><p>NMOS——电子导电，高电平通，低电平断，传递低电平$\to$连接地</p>
-<p>PMOS——空穴导电，低电平通，高电平断，传递高电平$\to$连接电源</p>
+<h3 id="第一题">第一题</h3>
+<p>NMOS——电子导电，高电平通，低电平断，传递低电平<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\to</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.36687em;"></span><span class="strut bottom" style="height:0.36687em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mrel">→</span></span></span></span>连接地</p>
+<p>PMOS——空穴导电，低电平通，高电平断，传递高电平<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\to</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.36687em;"></span><span class="strut bottom" style="height:0.36687em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mrel">→</span></span></span></span>连接电源</p>
 <p><img src="https://halftop.github.io/post-images/1551757456136.jpg" alt="CMOS反相器"></p>
-<h3 id="第二题">第二题</h3><p>影响因素：（这个小问只是简单看了一下把答案总结了一下，部分原理没搞懂）</p>
+<h3 id="第二题">第二题</h3>
+<p>影响因素：（这个小问只是简单看了一下把答案总结了一下，部分原理没搞懂）</p>
 <ol>
 <li>电容——门本身的扩散电容，互连线电容（通过版图优化）和扇出电容（尽量减少漏区面积）。</li>
 <li>增加晶体管的W/L：增加晶体管的尺寸也增加扩散电容。这个有限值，到一定程度，再增加门尺寸就不能对减少延时有帮助了。</li>
-<li>提高$V_{DD}$:以能量损耗来换取性能，但电压超过一定程度后改善就会非常有限。</li>
+<li>提高<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>V</mi><mrow><mi>D</mi><mi>D</mi></mrow></msub></mrow><annotation encoding="application/x-tex">V_{DD}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit" style="margin-right:0.22222em;">V</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.22222em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit" style="margin-right:0.02778em;">D</span><span class="mord mathit" style="margin-right:0.02778em;">D</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span>:以能量损耗来换取性能，但电压超过一定程度后改善就会非常有限。</li>
 </ol>
-<p>传播延迟（propagation delay）：由于PN结上储存电荷的积累和消散都需要时间，因此MOS管由导通到截至或由截止到导通也需要时间。电路中寄生电容和负载电容的影响，也使得输出波形总是滞后于输入波形，这个延迟时间成为传播延迟（propagation delay），或者传输延迟时间。她反映了门电路的开关速度和信号传递时间。<br>通常，输出信号由低电平变为高电平时，输出相对输入的延迟时间记为$t_{\mathrm { PLH }}$：而输出信号由高电平变为低电平时，输出相对输入的延迟时间记为$t _ { \mathrm { PHL } }$。</p>
+<p>传播延迟（propagation delay）：由于PN结上储存电荷的积累和消散都需要时间，因此MOS管由导通到截至或由截止到导通也需要时间。电路中寄生电容和负载电容的影响，也使得输出波形总是滞后于输入波形，这个延迟时间成为传播延迟（propagation delay），或者传输延迟时间。她反映了门电路的开关速度和信号传递时间。
+通常，输出信号由低电平变为高电平时，输出相对输入的延迟时间记为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>t</mi><mrow><mrow><mi mathvariant="normal">P</mi><mi mathvariant="normal">L</mi><mi mathvariant="normal">H</mi></mrow></mrow></msub></mrow><annotation encoding="application/x-tex">t_{\mathrm { PLH }}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.61508em;"></span><span class="strut bottom" style="height:0.76508em;vertical-align:-0.15em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit">t</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathrm">P</span><span class="mord mathrm">L</span><span class="mord mathrm">H</span></span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span>：而输出信号由高电平变为低电平时，输出相对输入的延迟时间记为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>t</mi><mrow><mrow><mi mathvariant="normal">P</mi><mi mathvariant="normal">H</mi><mi mathvariant="normal">L</mi></mrow></mrow></msub></mrow><annotation encoding="application/x-tex">t _ { \mathrm { PHL } }</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.61508em;"></span><span class="strut bottom" style="height:0.76508em;vertical-align:-0.15em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit">t</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathrm">P</span><span class="mord mathrm">H</span><span class="mord mathrm">L</span></span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span>。</p>
 <p><img src="https://halftop.github.io/post-images/1551756636071.png" alt="传播延迟"></p>
-<p>转换时间（transition time）：用来描述逻辑电路的输出从一种状态变为另一种状态所需的时间。其中输出从低态到高态的转换时间称为上升时间（$\mathrm{t}_{\mathrm{r}}$,rise time）；从高态到低态的转换时间称为下降时间（$\mathrm{t}_{\mathrm{f}}$,rise time）。</p>
+<p>转换时间（transition time）：用来描述逻辑电路的输出从一种状态变为另一种状态所需的时间。其中输出从低态到高态的转换时间称为上升时间（<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mrow><mi mathvariant="normal">t</mi></mrow><mrow><mrow><mi mathvariant="normal">r</mi></mrow></mrow></msub></mrow><annotation encoding="application/x-tex">\mathrm{t}_{\mathrm{r}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.61508em;"></span><span class="strut bottom" style="height:0.76508em;vertical-align:-0.15em;"></span><span class="base textstyle uncramped"><span class=""><span class="mord textstyle uncramped"><span class="mord mathrm">t</span></span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathrm">r</span></span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span>,rise time）；从高态到低态的转换时间称为下降时间（<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mrow><mi mathvariant="normal">t</mi></mrow><mrow><mrow><mi mathvariant="normal">f</mi></mrow></mrow></msub></mrow><annotation encoding="application/x-tex">\mathrm{t}_{\mathrm{f}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.61508em;"></span><span class="strut bottom" style="height:0.76508em;vertical-align:-0.15em;"></span><span class="base textstyle uncramped"><span class=""><span class="mord textstyle uncramped"><span class="mord mathrm">t</span></span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathrm" style="margin-right:0.07778em;">f</span></span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span>,rise time）。</p>
 <p><img src="https://halftop.github.io/post-images/1551755647543.png" alt="上升时间和下降时间"></p>
 <p>参考文献：姜书艳. 数字逻辑设计及应用[M]. 清华大学出版社, 2014.</p>
 
-          </div>
+            </div>
+          </article>
         </div>
+        <div class="paper" data-aos="fade-in">
+          
+        </div>
+        
+          
+            <div class="paper" data-aos="fade-in">
+              <div id="gitalk-container"></div>
+            </div>
+          
 
+          
         
       </div>
 
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://halftop.github.io/images/avatar.png?v=1555327895126" class="no-responsive avatar">
+    <div class="text-muted">有输入有输出，才是正确的学习方式。</div>
+    <div class="social-container">
       
         
-          <div id="gitalk-container"></div>
-        
-
+      
         
       
-
-      <div class="site-footer">
-  <div class="slogan">有输入有输出，才是正确的学习方式。</div>
-  Powered by Hve Notes
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://halftop.github.io/post/verilog99_12to21">Verilog99题——12-21题</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://halftop.github.io/post/verilog99_10">verilog99题——10题</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://halftop.github.io/post/verilog99_11">通过做verilog99题的第11题学习竞争与冒险</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://halftop.github.io/post/verilog99_8">verilog99题——8题</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://halftop.github.io/post/verilog99_5&amp;6&amp;7">verilog99题——5、6、7题</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://halftop.github.io/post/verilog99_3&amp;4">verilog99题——3、4题</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://halftop.github.io/post/Verilog99_1&amp;2">verilog99题——1、2题</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://halftop.github.io/post/about">关于</a>
+            </li>
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+        <a href="https://halftop.github.io/tag/9rG5j0Nww" class="badge secondary">
+          FPGA
+        </a>
+      
+        <a href="https://halftop.github.io/tag/ADa051R6R" class="badge ">
+          Verilog HDL
+        </a>
+      
+        <a href="https://halftop.github.io/tag/bwS6E4Jqc" class="badge secondary">
+          学习笔记
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by Hve Notes
+  </div>
 </div>
 
 
     </div>
-    <script type="application/javascript">
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
 
 hljs.initHighlightingOnLoad()
-
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
 
 </script>
 

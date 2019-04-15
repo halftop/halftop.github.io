@@ -1,17 +1,16 @@
-
 <!DOCTYPE html>
 <html>
   <head>
-    
-<meta charset="utf-8" >
+    <meta charset="utf-8" >
 
 <title>Verilog99题——12-21题 | 1/2顶点</title>
 <meta name="description" content="有输入有输出，才是正确的学习方式。">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico?v=1555327895126">
 
-<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
 <link rel="stylesheet" href="https://halftop.github.io/styles/main.css">
 
 
@@ -21,102 +20,104 @@
 
   
 
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
 
   </head>
   <body>
-    <div id="app" class="main">
-      <div class="site-header-container">
-  <div class="site-header">
-    <div class="left">
-      <a href="https://halftop.github.io">
-        <img class="avatar" src="https://halftop.github.io/images/avatar.png" alt="" width="32px" height="32px">
-      </a>
-      <a href="https://halftop.github.io">
-        <h1 class="site-title">1/2顶点</h1>
-      </a>
-    </div>
-    <div class="right">
-      <transition name="fade">
-        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
-      </transition>
+  
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://halftop.github.io">1/2顶点</a></h3>
+  </div>
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
+        
+          <li>
+            
+              <a href="/" class="menu">
+                首页
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/post/about" class="menu">
+                关于
+              </a>
+            
+          </li>
+        
+      </ul>
     </div>
   </div>
-</div>
+</nav>
 
-<transition name="fade">
-  <div class="menu-container" style="display: none;" v-show="menuVisible">
-    <div class="menu-list">
-      
-        
-          <a href="/" class="menu purple-link">
-            首页
-          </a>
-        
-      
-        
-          <a href="/archives" class="menu purple-link">
-            归档
-          </a>
-        
-      
-        
-          <a href="/tags" class="menu purple-link">
-            标签
-          </a>
-        
-      
-        
-          <a href="/post/about" class="menu purple-link">
-            关于
-          </a>
-        
-      
-    </div>
-  </div>
-</transition>
-
-
-      <div class="content-container">
-        <div class="post-detail">
-          <h2 class="post-title">Verilog99题——12-21题</h2>
-          <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2019-04-02</span>
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <article class="article">
+            <h1>Verilog99题——12-21题</h1>
+            <p class="article-meta">
+              2019-04-02
+              
+                <a href="https://halftop.github.io/tag/9rG5j0Nww" class="badge ">
+                  FPGA
+                </a>
+              
+                <a href="https://halftop.github.io/tag/ADa051R6R" class="badge secondary">
+                  Verilog HDL
+                </a>
+              
+                <a href="https://halftop.github.io/tag/bwS6E4Jqc" class="badge secondary">
+                  学习笔记
+                </a>
+              
+            </p>
             
-              <span>
-                <i class="icon-pricetags-outline"></i>
-                
-                  <a href="https://halftop.github.io/tag/9rG5j0Nww">
-                    FPGA
-                    
-                      ，
-                    
-                  </a>
-                
-                  <a href="https://halftop.github.io/tag/ADa051R6R">
-                    Verilog HDL
-                    
-                      ，
-                    
-                  </a>
-                
-                  <a href="https://halftop.github.io/tag/bwS6E4Jqc">
-                    学习笔记
-                    
-                  </a>
-                
-              </span>
+              <img src="https://halftop.github.io/post-images/verilog99_12to21.png" alt="Verilog99题——12-21题">
             
-          </div>
-          <div class="post-content">
-            <h2 id="前言">前言</h2><p>1-7题是数字电路基础；<br>8-21题是组合逻辑相关；<br>这篇把剩下的组合逻辑相关的题目全部写完。<br> <!-- more --> </p>
-<h3 id="题目012">题目012</h3><p><strong>012.设计1bit全加器，采用verilog描述并画出门级电路图。</strong></p>
-<h4 id="verilog描述">verilog描述</h4><pre><code class="language-v">module full_adder(
-    input    a,b,cin,
-    output    out,cout
+            <div class="post-content">
+              <h2 id="前言">前言</h2>
+<p>1-7题是数字电路基础；
+8-21题是组合逻辑相关；
+这篇把剩下的组合逻辑相关的题目全部写完。</p>
+ <!-- more --> 
+<h3 id="题目012">题目012</h3>
+<p><strong>012.设计1bit全加器，采用verilog描述并画出门级电路图。</strong></p>
+<h4 id="verilog描述">verilog描述</h4>
+<pre><code class="language-v">module full_adder(
+	input	a,b,cin,
+	output	out,cout
 );
 
 assign {cout,out} = a + b + cin;
@@ -124,53 +125,59 @@ assign {cout,out} = a + b + cin;
 //assign out = a^b^cin;
 //assign cout = a&amp;b|b&amp;cin|a&amp;cin;
 
-endmodule</code></pre>
-<h4 id="思路及电路图">思路及电路图</h4><center>
+endmodule
+</code></pre>
+<h4 id="思路及电路图">思路及电路图</h4>
+<center>
     <img src="https://wx4.sinaimg.cn/large/7f79daaely1g1oeamk6c8j20f00h9t9f.jpg" alt="思路及电路图" title="思路及电路图" width="500
     ">
 </center>
-
-<h3 id="题目013">题目013</h3><p><strong>013.设计2-4译码器。采用verilog描述并画出门级电路图。</strong></p>
-<h4 id="verilog描述">verilog描述</h4><pre><code class="language-v">module decoder2_4(
-    input        [1:0]    a,
-    output    reg    [3:0]    b
+<h3 id="题目013">题目013</h3>
+<p><strong>013.设计2-4译码器。采用verilog描述并画出门级电路图。</strong></p>
+<h4 id="verilog描述-2">verilog描述</h4>
+<pre><code class="language-v">module decoder2_4(
+	input		[1:0]	a,
+	output	reg	[3:0]	b
 );
 always @ (*)
-    case(a)
-        2&#39;b00:b=4&#39;b1110;
-        2&#39;b01:b=4&#39;b1101;
-        2&#39;b10:b=4&#39;b1011;
-        2&#39;b11:b=4&#39;b0111;
-        default:b=4&#39;b1111;
-    endcase
-endmodule</code></pre>
-<h4 id="门级电路图">门级电路图</h4><p>电路图在下面，因为反相器、与非门和或非门是cmos集成电路的基本单元，所以选择了这样的实现形式。</p>
+	case(a)
+		2'b00:b=4'b1110;
+		2'b01:b=4'b1101;
+		2'b10:b=4'b1011;
+		2'b11:b=4'b0111;
+		default:b=4'b1111;
+	endcase
+endmodule
+</code></pre>
+<h4 id="门级电路图">门级电路图</h4>
+<p>电路图在下面，因为反相器、与非门和或非门是cmos集成电路的基本单元，所以选择了这样的实现形式。</p>
 <figure class="half">
-    <img src="https://ws1.sinaimg.cn/large/7f79daaely1g1oepelcemj21341d0djp.jpg" alt="卡诺图化简" title="卡诺图化简" width="220">
-    <img src="https://ws3.sinaimg.cn/large/7f79daaely1g1oeqjjlauj20640570sn.jpg" alt="2-4译码器门级电路图" title="2-4译码器门级电路图">
+	<img src="https://ws1.sinaimg.cn/large/7f79daaely1g1oepelcemj21341d0djp.jpg" alt="卡诺图化简" title="卡诺图化简" width="220">
+	<img src="https://ws3.sinaimg.cn/large/7f79daaely1g1oeqjjlauj20640570sn.jpg" alt="2-4译码器门级电路图" title="2-4译码器门级电路图">
 </figure>
-
-<h3 id="题目014">题目014</h3><p><strong>014.设计BCD译码器，输入0~9。采用verilog描述并画出门级电路图。</strong></p>
-<h4 id="verilog描述">verilog描述</h4><pre><code class="language-v">module BCD_Decoder(
-    input        [3:0]    A,
-    //output    reg    [9:0]    Y_L
-    output        [9:0]    Y_L
+<h3 id="题目014">题目014</h3>
+<p><strong>014.设计BCD译码器，输入0~9。采用verilog描述并画出门级电路图。</strong></p>
+<h4 id="verilog描述-3">verilog描述</h4>
+<pre><code class="language-v">module BCD_Decoder(
+	input		[3:0]	A,
+	//output	reg	[9:0]	Y_L
+	output		[9:0]	Y_L
 );
 
 always @ (*)
-    case(A)
-        4&#39;d0:Y_L=10&#39;b11_1111_1110;
-        4&#39;d1:Y_L=10&#39;b11_1111_1101;
-        4&#39;d2:Y_L=10&#39;b11_1111_1011;
-        4&#39;d3:Y_L=10&#39;b11_1111_0111;
-        4&#39;d4:Y_L=10&#39;b11_1110_1111;
-        4&#39;d5:Y_L=10&#39;b11_1101_1111;
-        4&#39;d6:Y_L=10&#39;b11_1011_1111;
-        4&#39;d7:Y_L=10&#39;b11_0111_1111;
-        4&#39;d8:Y_L=10&#39;b10_1111_1111;
-        4&#39;d9:Y_L=10&#39;b01_1111_1111;
-        default:Y_L=10&#39;b11_1111_1111;
-    endcase
+	case(A)
+		4'd0:Y_L=10'b11_1111_1110;
+		4'd1:Y_L=10'b11_1111_1101;
+		4'd2:Y_L=10'b11_1111_1011;
+		4'd3:Y_L=10'b11_1111_0111;
+		4'd4:Y_L=10'b11_1110_1111;
+		4'd5:Y_L=10'b11_1101_1111;
+		4'd6:Y_L=10'b11_1011_1111;
+		4'd7:Y_L=10'b11_0111_1111;
+		4'd8:Y_L=10'b10_1111_1111;
+		4'd9:Y_L=10'b01_1111_1111;
+		default:Y_L=10'b11_1111_1111;
+	endcase
 /*
 assign Y_L[0] = ~(~A[3] &amp; ~A[2] &amp; ~A[1] &amp; ~A[0]);
 assign Y_L[1] = ~(~A[3] &amp; ~A[2] &amp; ~A[1] &amp; A[0]);
@@ -183,55 +190,70 @@ assign Y_L[7] = ~(~A[3] &amp; A[2]  &amp; A[1]  &amp; A[0]);
 assign Y_L[8] = ~(A[3]  &amp; ~A[2] &amp; ~A[1] &amp; ~A[0]);
 assign Y_L[9] = ~(A[3]  &amp; ~A[2] &amp; ~A[1] &amp; A[0]);
 */
-endmodule</code></pre>
-<h4 id="思路及电路图">思路及电路图</h4><figure class="third">
+endmodule
+</code></pre>
+<h4 id="思路及电路图-2">思路及电路图</h4>
+<figure class="third">
     <img src="https://wx1.sinaimg.cn/large/7f79daaely1g1ojcupxhlj208w06qt8x.jpg" alt="BCD译码器功能表" title="BCD译码器功能表">
     <img src="https://wx3.sinaimg.cn/large/7f79daaely1g1ojh5y4ypj208w0b23yp.jpg" alt="门级电路图" title="门级电路图">
     <img src="https://wx3.sinaimg.cn/large/7f79daaely1g1ojia0g7vj208w05qaa0.jpg" alt="Vivado综合的门级电路图" title="Vivado综合的门级电路图">
 </figure>
-
-<h3 id="题目015">题目015</h3><p><strong>用verilog设计8bit奇偶校验电路。</strong></p>
-<h4 id="思路">思路</h4><p>这道题照抄答案：</p>
+<h3 id="题目015">题目015</h3>
+<p><strong>用verilog设计8bit奇偶校验电路。</strong></p>
+<h4 id="思路">思路</h4>
+<p>这道题照抄答案：</p>
 <ol>
 <li>奇校验的含义：原数和校验位中共有奇数个1</li>
 <li>偶校验的含义：原数和校验位中共有偶数个1</li>
 <li>logic[7:0] data；则data自异或的结果为：若data中有奇数个1，则^data = 1；若data中有偶数个1，则^data = 0。对于这一点，可以这么理解：若有奇数个1，则有奇数个0，所以<code>^data = （奇数个1逐位异或的结果） ^ （奇数个0逐位异或的结果） = 1 ^ 0 = 1</code>；若有偶数个1，则有偶数个0，所以<code>^data = （偶数个1逐位异或的结果） ^ （偶数个0逐位异或的结果） = 0 ^ 0 =0</code>。</li>
 </ol>
-<h4 id="verilog描述">verilog描述</h4><pre><code class="language-v">module odd_even_check(
-    input [7:0] din;
-    output         dout_even;
-    output         dout_odd;
+<h4 id="verilog描述-4">verilog描述</h4>
+<pre><code class="language-v">module odd_even_check(
+	input [7:0] din;
+	output 		dout_even;
+	output 		dout_odd;
 );
 
 assign dout_odd = ^din;        //奇校验位
 assign dout_even = ~dout_odd;    //偶校验位
 
-endmodule</code></pre>
-<h3 id="题目016">题目016</h3><p><strong>用verilog描述一个多路复用器，输入的通道数目N，每一路的位宽为M。</strong></p>
-<h4 id="注意">注意</h4><p>Verilog不允许在端口定义二维数组。</p>
-<h4 id="verilog描述">verilog描述</h4><p>思路大概就是这样，但是这个仿真没做通，还不确定是否正确。</p>
+endmodule
+</code></pre>
+<h3 id="题目016">题目016</h3>
+<p><strong>用verilog描述一个多路复用器，输入的通道数目N，每一路的位宽为M。</strong></p>
+<h4 id="注意">注意</h4>
+<p>Verilog不允许在端口定义二维数组。</p>
+<h4 id="verilog描述-5">verilog描述</h4>
+<p>思路大概就是这样，但是这个仿真没做通，还不确定是否正确。</p>
 <pre><code class="language-v">module test
 #(
-    parameter N    = 8,
-    parameter M    = 8
+	parameter N	= 8,
+	parameter M	= 8
 )
 (
-    input    [N*M-1:0]    i_data,
-    input    [clogb2(N):0]    i_sel,
-    output    [M-1:0]    o_data
+	input	[N*M-1:0]	i_data,
+	input	[clogb2(N):0]	i_sel,
+	output	[M-1:0]	o_data
 );
 
 assign o_data = i_data[(M*i_sel)+:M];
 
 function integer clogb2 (input integer depth);
-    begin
-        for(clogb2=0; depth&gt;0; clogb2=clogb2+1)
-        depth = depth &gt;&gt; 1;
-    end
+	begin
+		for(clogb2=0; depth&gt;0; clogb2=clogb2+1)
+		depth = depth &gt;&gt; 1;
+	end
 endfunction
-endmodule</code></pre>
-<h3 id="题目017">题目017</h3><p>第十七题.用Verilog实现 <code>z = abs(x - y)</code><br>1) x和y是8bit无符号数<br>2) x和y是8bit有符号数(2补码)</p>
-<h4 id="verilog描述">verilog描述</h4><p>无符号数：</p>
+endmodule
+</code></pre>
+<h3 id="题目017">题目017</h3>
+<p>第十七题.用Verilog实现 <code>z = abs(x - y)</code></p>
+<ol>
+<li>x和y是8bit无符号数</li>
+<li>x和y是8bit有符号数(2补码)</li>
+</ol>
+<h4 id="verilog描述-6">verilog描述</h4>
+<p>无符号数：</p>
 <pre><code class="language-v">module abs(
     input   [7:0]   i_x,
     input   [7:0]   i_y,
@@ -240,10 +262,11 @@ endmodule</code></pre>
 
 assign  o_z= (i_x &gt; i_y) ? (i_x - i_y) : (i_y - i_x);
 
-endmodule</code></pre>
+endmodule
+</code></pre>
 <p>有符号数：这里有大神提了问题——两个减法器的mux，和一个减法一个abs，哪个逻辑面积更小？可以用工具跑跑看。（待解决）</p>
 <ol>
-<li>两个减法器的mux:  </li>
+<li>两个减法器的mux:</li>
 </ol>
 <pre><code class="language-v">module abs(
     input  signed [7:0]   i_x,
@@ -256,9 +279,10 @@ assign  z_r = (i_x &gt; i_y) ? (i_x - i_y) : (i_y - i_x);
 
 assign  o_z = z_r;
 
-endmodule</code></pre>
+endmodule
+</code></pre>
 <ol start="2">
-<li>一个减法器、一个abs：若有符号数为负数则有<code>|A|=~A+1</code>  </li>
+<li>一个减法器、一个abs：若有符号数为负数则有<code>|A|=~A+1</code></li>
 </ol>
 <pre><code class="language-v">module abs(
     input  signed [7:0]   i_x,
@@ -269,38 +293,53 @@ endmodule</code></pre>
 wire   signed [8:0]   dout_r;
 assign  dout_r = i_x - i_y;
 
-assign  o_z = (dout_r[8] == 1&#39;b1)? (~dout_r + 1&#39;b1):dout_r;
+assign  o_z = (dout_r[8] == 1'b1)? (~dout_r + 1'b1):dout_r;
 
-endmodule</code></pre>
-<h3 id="题目018">题目018</h3><p><strong>018.用Verilog实现取整函数（ceil、floor、round）。以5bit为例，小数部分1位，取整后保留4bit。</strong></p>
+endmodule
+</code></pre>
+<h3 id="题目018">题目018</h3>
+<p><strong>018.用Verilog实现取整函数（ceil、floor、round）。以5bit为例，小数部分1位，取整后保留4bit。</strong></p>
 <blockquote>
-<p>wire [4:0] data;<br>wire [3:0] data_ceil;<br>wire [3:0] data_floor;<br>wire [3:0] data_round;</p>
+<p>wire [4:0] data;<br>
+wire [3:0] data_ceil;<br>
+wire [3:0] data_floor;<br>
+wire [3:0] data_round;</p>
 </blockquote>
-<h4 id="基础知识">基础知识</h4><p>floor(x)，表示不超过x的整数中最大的一个。朝负无穷方向取整。<br>ceil(x)，表示不小于x的整数中最小的一个。朝正无穷方向取整。<br>round(x)四舍五入到最近的整数。  </p>
-<h4 id="思路">思路</h4><p>data为有符号数（2补码），只有1bit的小数位，精度有限，所以假设data都是小数，例如整数部分是7，则data只能表示大于7.5或小于7.5的小数，不表示整数7。<br>floor——非负取整即可，负数取整减一；<br>ceil——正数，取整+1，非正数取整即可；<br>round——小数位为1，取整+1；小数位为0，取整即可。  </p>
-<h4 id="verilog描述">verilog描述</h4><pre><code class="language-v">module test18(
+<h4 id="基础知识">基础知识</h4>
+<p>floor(x)，表示不超过x的整数中最大的一个。朝负无穷方向取整。<br>
+ceil(x)，表示不小于x的整数中最小的一个。朝正无穷方向取整。<br>
+round(x)四舍五入到最近的整数。</p>
+<h4 id="思路-2">思路</h4>
+<p>data为有符号数（2补码），只有1bit的小数位，精度有限，所以假设data都是小数，例如整数部分是7，则data只能表示大于7.5或小于7.5的小数，不表示整数7。<br>
+floor——非负取整即可，负数取整减一；<br>
+ceil——正数，取整+1，非正数取整即可；<br>
+round——小数位为1，取整+1；小数位为0，取整即可。</p>
+<h4 id="verilog描述-7">verilog描述</h4>
+<pre><code class="language-v">module test18(
     input   [4:0] data      ,
     output  [3:0] data_ceil ,
     output  [3:0] data_floor,
     output  [3:0] data_round
     );
-    assign data_ceil = data[4] == 1&#39;b0 ? {1&#39;b0,data[3:1]+1&#39;b1} : data[4:1];
-    assign data_floor = data[4] == 1&#39;b0 ? data[4:1] : data[4:1]-1&#39;b1;
-    assign data_round = data[0] == 1&#39;b0 ? data[4:1] : data[4:1]+1&#39;b1;
-endmodule</code></pre>
-<h4 id="testbench">testbench</h4><pre><code class="language-v">module tb18(    );
+    assign data_ceil = data[4] == 1'b0 ? {1'b0,data[3:1]+1'b1} : data[4:1];
+    assign data_floor = data[4] == 1'b0 ? data[4:1] : data[4:1]-1'b1;
+    assign data_round = data[0] == 1'b0 ? data[4:1] : data[4:1]+1'b1;
+endmodule
+</code></pre>
+<h4 id="testbench">testbench</h4>
+<pre><code class="language-v">module tb18(    );
 
 reg             [4:0] data      ;
 wire            [3:0] data_ceil ;
 wire            [3:0] data_floor;
 wire            [3:0] data_round;
 
-reg signed [3:0] data_int = -4&#39;sd8;
-reg              data_dec = 1&#39;b1;
+reg signed [3:0] data_int = -4'sd8;
+reg              data_dec = 1'b1;
 
 initial
 fork
-  repeat(15) #20 data_int = data_int + 2&#39;sd1;
+  repeat(15) #20 data_int = data_int + 2'sd1;
   repeat(30) #10 data_dec = ~ data_dec;
 join
 
@@ -313,14 +352,23 @@ test18 int_get(
   .data_round  ( data_round)
 );
 
-endmodule</code></pre>
-<h4 id="仿真结果">仿真结果</h4><p>仿真结果见图，其中有两处溢出，分别在data_floor最左和data_ceil最右。本题限定条件下无法解决（增加位宽即可）。</p>
+endmodule
+</code></pre>
+<h4 id="仿真结果">仿真结果</h4>
+<p>仿真结果见图，其中有两处溢出，分别在data_floor最左和data_ceil最右。本题限定条件下无法解决（增加位宽即可）。</p>
 <center>
     <img src="https://wx3.sinaimg.cn/large/7f79daaely1g1e1asv4jwj20rk05wmxg.jpg" alt="仿真结果" title="仿真结果">
 </center>
-
-<h3 id="题目019">题目019</h3><p>第十九题.用verilog实现乘法<code>y = a * b</code><br>a和b都是8bit，考虑三种情况：<br>1) 都是无符号数<br>2) 都是有符号数<br>3) a是有符号数，b是无符号数  </p>
-<h4 id="verilog描述">verilog描述</h4><pre><code class="language-v">//1)
+<h3 id="题目019">题目019</h3>
+<p>第十九题.用verilog实现乘法<code>y = a * b</code><br>
+a和b都是8bit，考虑三种情况：</p>
+<ol>
+<li>都是无符号数</li>
+<li>都是有符号数</li>
+<li>a是有符号数，b是无符号数</li>
+</ol>
+<h4 id="verilog描述-8">verilog描述</h4>
+<pre><code class="language-v">//1)
 module test19(
     input       [ 7:0]  i_a     ,
     input       [ 7:0]  i_b     ,
@@ -328,7 +376,8 @@ module test19(
     );
 
     assign o_y = i_a * i_b;
-endmodule</code></pre>
+endmodule
+</code></pre>
 <pre><code class="language-v">//2)
 module test19(
     input    signed   [ 7:0]  i_a     ,
@@ -337,7 +386,8 @@ module test19(
     );
 
     assign o_y = i_a * i_b;
-endmodule</code></pre>
+endmodule
+</code></pre>
 <pre><code class="language-v">//3)
 module test19(
     input    signed   [ 7:0]  i_a     ,
@@ -345,37 +395,46 @@ module test19(
     output   signed   [15:0]  o_y
     );
     wire    signed  [8:0]   b_r;
-    assign b_r = {1&#39;b0,i_b};
+    assign b_r = {1'b0,i_b};
 
     assign o_y = i_a * b_r;
-endmodule</code></pre>
-<h4 id="注意">注意</h4><p>第3小问若直接用<code>$signed()</code>机制（即<code>assign o_y = i_a * $signed(i_b);</code>）的话，计算结果并不同，比如：a为127，b为255，y=127<em>255=32385；使用<code>$signed()</code>的话，`y=127</em>$signed(255)=127*(-1=-127`。要注意两者的区别。可以按照如下方法：</p>
+endmodule
+</code></pre>
+<h4 id="注意-2">注意</h4>
+<p>第3小问若直接用<code>$signed()</code>机制（即<code>assign o_y = i_a * $signed(i_b);</code>）的话，计算结果并不同，比如：a为127，b为255，y=127*255=32385；使用<code>$signed()</code>的话，<code>y=127*$signed(255)=127*(-1)=-127</code>。要注意两者的区别。可以按照如下方法：</p>
 <pre><code class="language-v"> module test19(
     input    signed   [ 7:0]  i_a     ,
     input             [ 7:0]  i_b     ,
     output   signed   [15:0]  o_y
     );
-    assign o_y = i_a * $signed({1&#39;b0,i_b});
-endmodule</code></pre>
-<h3 id="题目020">题目020</h3><p><strong>020.输入一个8bit数，统计其中1的个数。</strong></p>
-<h4 id="verilog描述">verilog描述</h4><pre><code class="language-v">module test_20(
-    input     [7:0]    i_data,
-    output    [2:0]    o_count
+    assign o_y = i_a * $signed({1'b0,i_b});
+endmodule
+</code></pre>
+<h3 id="题目020">题目020</h3>
+<p><strong>020.输入一个8bit数，统计其中1的个数。</strong></p>
+<h4 id="verilog描述-9">verilog描述</h4>
+<pre><code class="language-v">module test_20(
+	input 	[7:0]	i_data,
+	output	[2:0]	o_count
 );
 assign o_count = ( ( (i_data[0] + i_data[1]) + (i_data[2] + i_data[3]) ) + ( (i_data[4] +  i_data[5]) + (i_data[6] + i_data[7]) ) );
 
-endmodule</code></pre>
-<h4 id="附加题">附加题</h4><p><strong>本题至少使用多少个1bit全加器</strong></p>
+endmodule
+</code></pre>
+<h4 id="附加题">附加题</h4>
+<p><strong>本题至少使用多少个1bit全加器</strong></p>
 <p>下图使用八个1来说明。若不是最少请指正。</p>
 <center>
     <img src="https://ws1.sinaimg.cn/large/7f79daaely1g1ol572qzdj20ss0ssact.jpg" alt="全加器计数" title="全加器计数" width="300">
 </center>
-
-<h3 id="题目021">题目021</h3><p><strong>021.求三个数的最大值：</strong></p>
+<h3 id="题目021">题目021</h3>
+<p><strong>021.求三个数的最大值：</strong></p>
 <blockquote>
-<p>y = max(a,b,c)<br>wire [3:0] a,b,c;</p>
+<p>y = max(a,b,c)<br>
+wire [3:0] a,b,c;</p>
 </blockquote>
-<h4 id="verilog描述">verilog描述</h4><pre><code class="language-v">module test21(
+<h4 id="verilog描述-10">verilog描述</h4>
+<pre><code class="language-v">module test21(
     input   signed [3:0] a,b,c,
     output  reg [3:0] max
     );
@@ -389,47 +448,148 @@ endmodule</code></pre>
         else
             max = max;
     end
-endmodule</code></pre>
+endmodule
+</code></pre>
 
-          </div>
+            </div>
+          </article>
         </div>
-
-        
-          <div class="next-post">
-            <a class="purple-link" href="https://halftop.github.io/post/verilog99_10">
-              <h3 class="post-title">
-                下一篇：verilog99题——10题
-              </h3>
-            </a>
-          </div>
+        <div class="paper" data-aos="fade-in">
           
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://halftop.github.io/post/verilog99_10">
+                <h3 class="post-title">
+                  verilog99题——10题
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+        
+          
+            <div class="paper" data-aos="fade-in">
+              <div id="gitalk-container"></div>
+            </div>
+          
+
+          
+        
       </div>
 
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://halftop.github.io/images/avatar.png?v=1555327895126" class="no-responsive avatar">
+    <div class="text-muted">有输入有输出，才是正确的学习方式。</div>
+    <div class="social-container">
       
         
-          <div id="gitalk-container"></div>
-        
-
+      
         
       
-
-      <div class="site-footer">
-  <div class="slogan">有输入有输出，才是正确的学习方式。</div>
-  Powered by Hve Notes
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://halftop.github.io/post/verilog99_12to21">Verilog99题——12-21题</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://halftop.github.io/post/verilog99_10">verilog99题——10题</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://halftop.github.io/post/verilog99_11">通过做verilog99题的第11题学习竞争与冒险</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://halftop.github.io/post/verilog99_8">verilog99题——8题</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://halftop.github.io/post/verilog99_5&amp;6&amp;7">verilog99题——5、6、7题</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://halftop.github.io/post/verilog99_3&amp;4">verilog99题——3、4题</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://halftop.github.io/post/Verilog99_1&amp;2">verilog99题——1、2题</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://halftop.github.io/post/about">关于</a>
+            </li>
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+        <a href="https://halftop.github.io/tag/9rG5j0Nww" class="badge secondary">
+          FPGA
+        </a>
+      
+        <a href="https://halftop.github.io/tag/ADa051R6R" class="badge success">
+          Verilog HDL
+        </a>
+      
+        <a href="https://halftop.github.io/tag/bwS6E4Jqc" class="badge secondary">
+          学习笔记
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by Hve Notes
+  </div>
 </div>
 
 
     </div>
-    <script type="application/javascript">
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
 
 hljs.initHighlightingOnLoad()
-
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
 
 </script>
 

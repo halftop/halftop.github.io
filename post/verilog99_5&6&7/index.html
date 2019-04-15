@@ -1,17 +1,16 @@
-
 <!DOCTYPE html>
 <html>
   <head>
-    
-<meta charset="utf-8" >
+    <meta charset="utf-8" >
 
 <title>verilog99题——5、6、7题 | 1/2顶点</title>
 <meta name="description" content="有输入有输出，才是正确的学习方式。">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico?v=1555327895126">
 
-<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
 <link rel="stylesheet" href="https://halftop.github.io/styles/main.css">
 
 
@@ -21,161 +20,266 @@
 
   
 
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
 
   </head>
   <body>
-    <div id="app" class="main">
-      <div class="site-header-container">
-  <div class="site-header">
-    <div class="left">
-      <a href="https://halftop.github.io">
-        <img class="avatar" src="https://halftop.github.io/images/avatar.png" alt="" width="32px" height="32px">
-      </a>
-      <a href="https://halftop.github.io">
-        <h1 class="site-title">1/2顶点</h1>
-      </a>
-    </div>
-    <div class="right">
-      <transition name="fade">
-        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
-      </transition>
+  
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://halftop.github.io">1/2顶点</a></h3>
+  </div>
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
+        
+          <li>
+            
+              <a href="/" class="menu">
+                首页
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/post/about" class="menu">
+                关于
+              </a>
+            
+          </li>
+        
+      </ul>
     </div>
   </div>
-</div>
+</nav>
 
-<transition name="fade">
-  <div class="menu-container" style="display: none;" v-show="menuVisible">
-    <div class="menu-list">
-      
-        
-          <a href="/" class="menu purple-link">
-            首页
-          </a>
-        
-      
-        
-          <a href="/archives" class="menu purple-link">
-            归档
-          </a>
-        
-      
-        
-          <a href="/tags" class="menu purple-link">
-            标签
-          </a>
-        
-      
-        
-          <a href="/post/about" class="menu purple-link">
-            关于
-          </a>
-        
-      
-    </div>
-  </div>
-</transition>
-
-
-      <div class="content-container">
-        <div class="post-detail">
-          <h2 class="post-title">verilog99题——5、6、7题</h2>
-          <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2019-03-07</span>
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <article class="article">
+            <h1>verilog99题——5、6、7题</h1>
+            <p class="article-meta">
+              2019-03-07
+              
+                <a href="https://halftop.github.io/tag/ADa051R6R" class="badge secondary">
+                  Verilog HDL
+                </a>
+              
+                <a href="https://halftop.github.io/tag/bwS6E4Jqc" class="badge secondary">
+                  学习笔记
+                </a>
+              
+            </p>
             
-              <span>
-                <i class="icon-pricetags-outline"></i>
-                
-                  <a href="https://halftop.github.io/tag/ADa051R6R">
-                    Verilog HDL
-                    
-                      ，
-                    
-                  </a>
-                
-                  <a href="https://halftop.github.io/tag/bwS6E4Jqc">
-                    学习笔记
-                    
-                  </a>
-                
-              </span>
+              <img src="https://halftop.github.io/post-images/verilog99_5&amp;6&amp;7.png" alt="verilog99题——5、6、7题">
             
-          </div>
-          <div class="post-content">
-            <h2 id="题目">题目</h2><p><strong>005.十进制转换为二进制编码：127，-127，127.375，-127.375</strong></p>
+            <div class="post-content">
+              <h2 id="题目">题目</h2>
+<p><strong>005.十进制转换为二进制编码：127，-127，127.375，-127.375</strong></p>
 <p><strong>006.画出CMOS三态缓冲器的电路原理图，解释一下高阻态。</strong></p>
 <p><strong>007.什么是open-drain output？</strong></p>
 <!-- more --> 
-
-<h3 id="第五题">第五题</h3><p>整数部分最基础的就是“除2取余法”，小数部分是&quot;乘2取整法&quot;。</p>
-<p>整数部分比较快捷的方法：127=64+32+16+8+4+2+1=$2^6+2^5+2^4+2^3+2^2+2^1+2^0$=$(1111111)_b$。</p>
-<p>小数部分没有什么比较快的，就是基础法：$0.375\times2=0.75$取0；$0.75\times2=1.5$取1；$0.5\times2=1$取1。</p>
+<h3 id="第五题">第五题</h3>
+<p>整数部分最基础的就是“除2取余法”，小数部分是&quot;乘2取整法&quot;。</p>
+<p>整数部分比较快捷的方法：127=64+32+16+8+4+2+1=<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mn>2</mn><mn>6</mn></msup><mo>+</mo><msup><mn>2</mn><mn>5</mn></msup><mo>+</mo><msup><mn>2</mn><mn>4</mn></msup><mo>+</mo><msup><mn>2</mn><mn>3</mn></msup><mo>+</mo><msup><mn>2</mn><mn>2</mn></msup><mo>+</mo><msup><mn>2</mn><mn>1</mn></msup><mo>+</mo><msup><mn>2</mn><mn>0</mn></msup></mrow><annotation encoding="application/x-tex">2^6+2^5+2^4+2^3+2^2+2^1+2^0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8141079999999999em;"></span><span class="strut bottom" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathrm">2</span><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathrm">6</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mbin">+</span><span class="mord"><span class="mord mathrm">2</span><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathrm">5</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mbin">+</span><span class="mord"><span class="mord mathrm">2</span><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathrm">4</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mbin">+</span><span class="mord"><span class="mord mathrm">2</span><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathrm">3</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mbin">+</span><span class="mord"><span class="mord mathrm">2</span><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathrm">2</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mbin">+</span><span class="mord"><span class="mord mathrm">2</span><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathrm">1</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mbin">+</span><span class="mord"><span class="mord mathrm">2</span><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathrm">0</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span>=<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mn>1</mn><mn>1</mn><mn>1</mn><mn>1</mn><mn>1</mn><mn>1</mn><mn>1</mn><msub><mo>)</mo><mi>b</mi></msub></mrow><annotation encoding="application/x-tex">(1111111)_b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mopen">(</span><span class="mord mathrm">1</span><span class="mord mathrm">1</span><span class="mord mathrm">1</span><span class="mord mathrm">1</span><span class="mord mathrm">1</span><span class="mord mathrm">1</span><span class="mord mathrm">1</span><span class="mclose"><span class="mclose">)</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">b</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span>。</p>
+<p>小数部分没有什么比较快的，就是基础法：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn><mi mathvariant="normal">.</mi><mn>3</mn><mn>7</mn><mn>5</mn><mo>×</mo><mn>2</mn><mo>=</mo><mn>0</mn><mi mathvariant="normal">.</mi><mn>7</mn><mn>5</mn></mrow><annotation encoding="application/x-tex">0.375\times2=0.75</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.64444em;"></span><span class="strut bottom" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="base textstyle uncramped"><span class="mord mathrm">0</span><span class="mord mathrm">.</span><span class="mord mathrm">3</span><span class="mord mathrm">7</span><span class="mord mathrm">5</span><span class="mbin">×</span><span class="mord mathrm">2</span><span class="mrel">=</span><span class="mord mathrm">0</span><span class="mord mathrm">.</span><span class="mord mathrm">7</span><span class="mord mathrm">5</span></span></span></span>取0；<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn><mi mathvariant="normal">.</mi><mn>7</mn><mn>5</mn><mo>×</mo><mn>2</mn><mo>=</mo><mn>1</mn><mi mathvariant="normal">.</mi><mn>5</mn></mrow><annotation encoding="application/x-tex">0.75\times2=1.5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.64444em;"></span><span class="strut bottom" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="base textstyle uncramped"><span class="mord mathrm">0</span><span class="mord mathrm">.</span><span class="mord mathrm">7</span><span class="mord mathrm">5</span><span class="mbin">×</span><span class="mord mathrm">2</span><span class="mrel">=</span><span class="mord mathrm">1</span><span class="mord mathrm">.</span><span class="mord mathrm">5</span></span></span></span>取1；<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn><mi mathvariant="normal">.</mi><mn>5</mn><mo>×</mo><mn>2</mn><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">0.5\times2=1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.64444em;"></span><span class="strut bottom" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="base textstyle uncramped"><span class="mord mathrm">0</span><span class="mord mathrm">.</span><span class="mord mathrm">5</span><span class="mbin">×</span><span class="mord mathrm">2</span><span class="mrel">=</span><span class="mord mathrm">1</span></span></span></span>取1。</p>
 <p>所以可得</p>
-<p>127$\to$0111_1111</p>
-<p>-127$\to$1111_1111</p>
-<p>127.375$\to$0111_1111.011</p>
-<p>-127.375$\to$1111_1111.011</p>
-<h3 id="第六题">第六题</h3><p>计算机系统的各部件模块（Module）及芯片（Chip）通常挂接在系统总线（System bus）上，在某一时刻只能有一个发送端。为了使各模块芯片能够分时传送信号，需要具有三态输出的门电路，简称三态门（Three-state gate），又称为三态缓冲器（Three-state buffer）三态门的输出端状态不仅有高电平和低电平，而且具有第三种状态--高阻状态（High-Impedance，Hi-Z）.</p>
+<p>127 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\to</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.36687em;"></span><span class="strut bottom" style="height:0.36687em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mrel">→</span></span></span></span> 0111_1111</p>
+<p>-127 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\to</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.36687em;"></span><span class="strut bottom" style="height:0.36687em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mrel">→</span></span></span></span> 1111_1111</p>
+<p>127.375 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\to</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.36687em;"></span><span class="strut bottom" style="height:0.36687em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mrel">→</span></span></span></span> 0111_1111.011</p>
+<p>-127.375 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\to</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.36687em;"></span><span class="strut bottom" style="height:0.36687em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mrel">→</span></span></span></span> 1111_1111.011</p>
+<h3 id="第六题">第六题</h3>
+<p>计算机系统的各部件模块（Module）及芯片（Chip）通常挂接在系统总线（System bus）上，在某一时刻只能有一个发送端。为了使各模块芯片能够分时传送信号，需要具有三态输出的门电路，简称三态门（Three-state gate），又称为三态缓冲器（Three-state buffer）三态门的输出端状态不仅有高电平和低电平，而且具有第三种状态--高阻状态（High-Impedance，Hi-Z）.</p>
 <p>CMOS三态门是在普通门的基础上增加了控制端和控制电路。CMOS三态门的电路结构有很多种，大体可以分为以下3类：</p>
 <ol>
-<li><p>控制上下P/N沟道的截止或导通，实现三态输出功能。如下图（a）、(b)。</p>
+<li>
+<p>控制上下P/N沟道的截止或导通，实现三态输出功能。如下图（a）、(b)。</p>
 </li>
-<li><p>在输出端串联传输门开关的三态线路。如下图（c）。</p>
+<li>
+<p>在输出端串联传输门开关的三态线路。如下图（c）。</p>
 </li>
-<li><p>利用或非门或者与非门实现三态功能。如下图（d）（e）。</p>
+<li>
+<p>利用或非门或者与非门实现三态功能。如下图（d）（e）。</p>
 </li>
 </ol>
 <p><img src="https://halftop.github.io/post-images/1551967373611.png" alt="三态门"></p>
-<h3 id="第七题">第七题</h3><p>CMOS漏极开路门（Open-Drain Gate），又称漏极开路输出（open-drain output），简称OD门。</p>
+<h3 id="第七题">第七题</h3>
+<p>CMOS漏极开路门（Open-Drain Gate），又称漏极开路输出（open-drain output），简称OD门。</p>
 <p>各种CMOS门电路都可构成漏极开路门，下图为CMOS与非OD门的电路结构。</p>
 <p><img src="https://halftop.github.io/post-images/1551967419613.png" alt="OD门"></p>
 <p>漏极开路OD门电路内的输出MOS管漏极是开路的，应用时，需要通过外接电阻（Extension resistance）接电源。与TTL集成的OC门类似，CMOS集成的OD门也可实现线与（Wired and）连接。</p>
 <p><img src="https://halftop.github.io/post-images/1552009586157.png" alt="OD门实现线与逻辑"></p>
 <p>可以看出，OD门就是将反相器的上面的PMOS管拿掉了而已。</p>
-<p>当两个与非门的输出全为1时，输出为1；只要其中一个输出为0，则输出为0，所以该电路符合与逻辑功能，即L=(AB)&#39;(CD)&#39;。</p>
+<p>当两个与非门的输出全为1时，输出为1；只要其中一个输出为0，则输出为0，所以该电路符合与逻辑功能，即L=(AB)'(CD)'。</p>
 
-          </div>
+            </div>
+          </article>
         </div>
-
-        
-          <div class="next-post">
-            <a class="purple-link" href="https://halftop.github.io/post/verilog99_3&amp;4">
-              <h3 class="post-title">
-                下一篇：verilog99题——3、4题
-              </h3>
-            </a>
-          </div>
+        <div class="paper" data-aos="fade-in">
           
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://halftop.github.io/post/verilog99_3&amp;4">
+                <h3 class="post-title">
+                  verilog99题——3、4题
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+        
+          
+            <div class="paper" data-aos="fade-in">
+              <div id="gitalk-container"></div>
+            </div>
+          
+
+          
+        
       </div>
 
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://halftop.github.io/images/avatar.png?v=1555327895126" class="no-responsive avatar">
+    <div class="text-muted">有输入有输出，才是正确的学习方式。</div>
+    <div class="social-container">
       
         
-          <div id="gitalk-container"></div>
-        
-
+      
         
       
-
-      <div class="site-footer">
-  <div class="slogan">有输入有输出，才是正确的学习方式。</div>
-  Powered by Hve Notes
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://halftop.github.io/post/verilog99_12to21">Verilog99题——12-21题</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://halftop.github.io/post/verilog99_10">verilog99题——10题</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://halftop.github.io/post/verilog99_11">通过做verilog99题的第11题学习竞争与冒险</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://halftop.github.io/post/verilog99_8">verilog99题——8题</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://halftop.github.io/post/verilog99_5&amp;6&amp;7">verilog99题——5、6、7题</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://halftop.github.io/post/verilog99_3&amp;4">verilog99题——3、4题</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://halftop.github.io/post/Verilog99_1&amp;2">verilog99题——1、2题</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://halftop.github.io/post/about">关于</a>
+            </li>
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+        <a href="https://halftop.github.io/tag/9rG5j0Nww" class="badge secondary">
+          FPGA
+        </a>
+      
+        <a href="https://halftop.github.io/tag/ADa051R6R" class="badge success">
+          Verilog HDL
+        </a>
+      
+        <a href="https://halftop.github.io/tag/bwS6E4Jqc" class="badge success">
+          学习笔记
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by Hve Notes
+  </div>
 </div>
 
 
     </div>
-    <script type="application/javascript">
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
 
 hljs.initHighlightingOnLoad()
-
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
 
 </script>
 
