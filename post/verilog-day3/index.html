@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Verilog没有葵花宝典——day3（标准单元库） | 1/2顶点</title>
+<meta name="description" content="有输入有输出，才是正确的学习方式。">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico?v=1556118810147">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
+<link rel="stylesheet" href="https://halftop.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+  </head>
+  <body>
+  
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://halftop.github.io">1/2顶点</a></h3>
+  </div>
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
+        
+          <li>
+            
+              <a href="/" class="menu">
+                首页
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/post/about" class="menu">
+                关于
+              </a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <article class="article">
+            <h1>Verilog没有葵花宝典——day3（标准单元库）</h1>
+            <p class="article-meta">
+              2019-04-24
+              
+                <a href="https://halftop.github.io/tag/f0tARmjal" class="badge warning">
+                  IC
+                </a>
+              
+                <a href="https://halftop.github.io/tag/bwS6E4Jqc" class="badge secondary">
+                  学习笔记
+                </a>
+              
+            </p>
+            
+              <img src="https://ws1.sinaimg.cn/large/7f79daaely1g2e4oh2235j20ji0kn3zi.jpg" alt="Verilog没有葵花宝典——day3（标准单元库）">
+            
+            <div class="post-content">
+              <h3 id="题目">题目</h3>
+<blockquote>
+<ol>
+<li>了解目录结构：与前端相关的比如文档(doc)，仿真模型(verilog/vhdl)，标准单元库(synopsys/symbols)。</li>
+<li>阅读文档transition time, propagation delay等参数的定义。</li>
+<li>阅读文档Power Dissipation/Calculation的描述。</li>
+<li>阅读文档Delay calculation的描述。</li>
+<li>提供了哪些类型的cell？</li>
+<li>Verilog文件中包含了哪些信息？</li>
+</ol>
+</blockquote>
+<!-- more -->
+<p>今天的答案基本靠抄（流下了没有知识的眼泪）。</p>
+<h4 id="2-阅读文档transition-time-propagation-delay等参数的定义">2. 阅读文档transition time, propagation delay等参数的定义。</h4>
+<p>transition time（转化时间）：信号从10% Vdd变化到90% Vdd的时间，包括上升时间和下降时间。</p>
+<center>
+    <img src="https://ws1.sinaimg.cn/large/7f79daaely1g2e282eee0j20ez04zglq.jpg" alt="transition time" title="transition time" >
+</center>
+<p>propagation delay（传播延时）：输入信号变化到超过50%Vdd与输出信号变化到超过50%Vdd的时间间隔。</p>
+<center>
+    <img src="https://ws1.sinaimg.cn/large/7f79daaely1g2e2rqoyx3j20e905a74c.jpg" alt="propagation delay" title="propagation delay" >
+</center>
+<h4 id="3-阅读文档power-dissipationcalculation的描述">3. 阅读文档Power Dissipation/Calculation的描述。</h4>
+<p>Power Dissipation(功耗，功率损耗)取决于电源电压、工作频率、内部电容和输出负载，并提供计算公式：</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>P</mi><mrow><mrow><mi mathvariant="normal">a</mi><mi mathvariant="normal">v</mi><mi mathvariant="normal">g</mi></mrow></mrow></msub><mo>=</mo><msubsup><mo>∑</mo><mrow><mi>n</mi><mo>=</mo><mn>1</mn></mrow><mrow><mi>x</mi></mrow></msubsup><mrow><mo fence="true">(</mo><msub><mi>E</mi><mrow><mi>i</mi><mi>n</mi></mrow></msub><mo>∙</mo><msub><mi>f</mi><mrow><mi>i</mi><mi>n</mi></mrow></msub><mo fence="true">)</mo></mrow><mo>+</mo><msubsup><mo>∑</mo><mrow><mi>n</mi><mo>=</mo><mn>1</mn></mrow><mrow><mi>y</mi></mrow></msubsup><mrow><mo fence="true">(</mo><msub><mi>C</mi><mrow><mi>o</mi><mi>n</mi></mrow></msub><mo>∙</mo><mi>V</mi><mi>d</mi><msup><mi>d</mi><mrow><mn>2</mn></mrow></msup><mo>∙</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><msub><mi>f</mi><mrow><mi>o</mi><mi>n</mi></mrow></msub><mo fence="true">)</mo></mrow><mo>+</mo><msub><mi>E</mi><mrow><mi>o</mi><mi>s</mi></mrow></msub><mo>∙</mo><msub><mi>f</mi><mrow><mi>o</mi><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">P_{\mathrm{avg}}=\sum_{n=1}^{x}\left(E_{i n} \bullet f_{i n}\right)+\sum_{n=1}^{y}\left(C_{o n} \bullet V d d^{2} \bullet \frac{1}{2} f_{o n}\right)+E_{o s} \bullet f_{o 1}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:1.6985050000000004em;"></span><span class="strut bottom" style="height:2.965618em;vertical-align:-1.267113em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord"><span class="mord mathit" style="margin-right:0.13889em;">P</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.13889em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathrm">a</span><span class="mord mathrm" style="margin-right:0.01389em;">v</span><span class="mord mathrm" style="margin-right:0.01389em;">g</span></span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mrel">=</span><span class="mop op-limits"><span class="vlist"><span style="top:1.1671129999999998em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit">n</span><span class="mrel">=</span><span class="mord mathrm">1</span></span></span></span><span style="top:-0.000005000000000143778em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span><span class="op-symbol large-op mop">∑</span></span></span><span style="top:-1.2500050000000003em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord scriptstyle uncramped"><span class="mord mathit">x</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="minner displaystyle textstyle uncramped"><span class="style-wrap reset-textstyle textstyle uncramped" style="top:0em;">(</span><span class="mord"><span class="mord mathit" style="margin-right:0.05764em;">E</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.05764em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit">i</span><span class="mord mathit">n</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mbin">∙</span><span class="mord"><span class="mord mathit" style="margin-right:0.10764em;">f</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.10764em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit">i</span><span class="mord mathit">n</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="style-wrap reset-textstyle textstyle uncramped" style="top:0em;">)</span></span><span class="mbin">+</span><span class="mop op-limits"><span class="vlist"><span style="top:1.1671129999999998em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit">n</span><span class="mrel">=</span><span class="mord mathrm">1</span></span></span></span><span style="top:-0.000005000000000143778em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span><span class="op-symbol large-op mop">∑</span></span></span><span style="top:-1.2971130000000002em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord scriptstyle uncramped"><span class="mord mathit" style="margin-right:0.03588em;">y</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="minner displaystyle textstyle uncramped"><span class="style-wrap reset-textstyle textstyle uncramped" style="top:0em;"><span class="delimsizing size3">(</span></span><span class="mord"><span class="mord mathit" style="margin-right:0.07153em;">C</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.07153em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit">o</span><span class="mord mathit">n</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mbin">∙</span><span class="mord mathit" style="margin-right:0.22222em;">V</span><span class="mord mathit">d</span><span class="mord"><span class="mord mathit">d</span><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord scriptstyle uncramped"><span class="mord mathrm">2</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mbin">∙</span><span class="mord reset-textstyle displaystyle textstyle uncramped"><span class="sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span><span class="mfrac"><span class="vlist"><span style="top:0.686em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle cramped"><span class="mord textstyle cramped"><span class="mord mathrm">2</span></span></span></span><span style="top:-0.22999999999999998em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle uncramped frac-line"></span></span><span style="top:-0.677em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle uncramped"><span class="mord textstyle uncramped"><span class="mord mathrm">1</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span></span><span class="mord"><span class="mord mathit" style="margin-right:0.10764em;">f</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.10764em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit">o</span><span class="mord mathit">n</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="style-wrap reset-textstyle textstyle uncramped" style="top:0em;"><span class="delimsizing size3">)</span></span></span><span class="mbin">+</span><span class="mord"><span class="mord mathit" style="margin-right:0.05764em;">E</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.05764em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit">o</span><span class="mord mathit">s</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mbin">∙</span><span class="mord"><span class="mord mathit" style="margin-right:0.10764em;">f</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.10764em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit">o</span><span class="mord mathrm">1</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span></span></p>
+<p>参数定义见其文档<strong>Power Calculation</strong>一节。</p>
+<h4 id="4-阅读文档delay-calculation的描述">4. 阅读文档Delay calculation的描述。</h4>
+<p>总传播延时的估算公式</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>t</mi><mrow><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">P</mi><mi mathvariant="normal">D</mi></mrow></mrow></msub><mo>=</mo><mspace width="1em"></mspace><mrow><mo fence="true">(</mo><msub><mrow><mi mathvariant="normal">K</mi></mrow><mrow><mrow><mi mathvariant="normal">P</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">c</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">s</mi><mi mathvariant="normal">s</mi></mrow></mrow></msub><mo fence="true">)</mo></mrow><mo>⋅</mo><mrow><mo fence="true">[</mo><mn>1</mn><mo>+</mo><mrow><mo fence="true">(</mo><msub><mrow><mi mathvariant="normal">K</mi></mrow><mrow><mrow><mi mathvariant="normal">V</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">t</mi></mrow></mrow></msub><mo>⋅</mo><mi mathvariant="normal">Δ</mi><mrow><mi mathvariant="normal">V</mi><mi mathvariant="normal">d</mi><mi mathvariant="normal">d</mi></mrow><mo fence="true">)</mo></mrow><mo fence="true">]</mo></mrow><mo>⋅</mo><mrow><mo fence="true">[</mo><mn>1</mn><mo>+</mo><mrow><mo fence="true">(</mo><msub><mrow><mi mathvariant="normal">K</mi></mrow><mrow><mrow><mi mathvariant="normal">T</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">m</mi><mi mathvariant="normal">p</mi></mrow></mrow></msub><mo>⋅</mo><mi mathvariant="normal">Δ</mi><mrow><mi mathvariant="normal">T</mi></mrow><mo fence="true">)</mo></mrow><mo fence="true">]</mo></mrow><mo>⋅</mo><msub><mrow><mi mathvariant="normal">t</mi></mrow><mrow><mrow><mi mathvariant="normal">t</mi><mi mathvariant="normal">y</mi><mi mathvariant="normal">p</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">c</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">l</mi></mrow></mrow></msub></mrow><annotation encoding="application/x-tex">t_{\mathrm{TPD}}=\quad\left(\mathrm{K}_{\mathrm{Process}}\right) \cdot\left[1+\left(\mathrm{K}_{\mathrm{Volt}} \cdot \Delta \mathrm{Vdd}\right)\right] \cdot\left[1+\left(\mathrm{K}_{\mathrm{Temp}} \cdot \Delta \mathrm{T}\right)\right] \cdot \mathrm{t}_{\mathrm{typical}}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord"><span class="mord mathit">t</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathrm">T</span><span class="mord mathrm">P</span><span class="mord mathrm">D</span></span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mrel">=</span><span class="mord mspace quad"></span><span class="minner displaystyle textstyle uncramped"><span class="style-wrap reset-textstyle textstyle uncramped" style="top:0em;">(</span><span class=""><span class="mord displaystyle textstyle uncramped"><span class="mord mathrm">K</span></span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathrm">P</span><span class="mord mathrm">r</span><span class="mord mathrm">o</span><span class="mord mathrm">c</span><span class="mord mathrm">e</span><span class="mord mathrm">s</span><span class="mord mathrm">s</span></span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="style-wrap reset-textstyle textstyle uncramped" style="top:0em;">)</span></span><span class="mbin">⋅</span><span class="minner displaystyle textstyle uncramped"><span class="style-wrap reset-textstyle textstyle uncramped" style="top:0em;">[</span><span class="mord mathrm">1</span><span class="mbin">+</span><span class="minner displaystyle textstyle uncramped"><span class="style-wrap reset-textstyle textstyle uncramped" style="top:0em;">(</span><span class=""><span class="mord displaystyle textstyle uncramped"><span class="mord mathrm">K</span></span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathrm" style="margin-right:0.01389em;">V</span><span class="mord mathrm">o</span><span class="mord mathrm">l</span><span class="mord mathrm">t</span></span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mbin">⋅</span><span class="mord mathrm">Δ</span><span class="mord displaystyle textstyle uncramped"><span class="mord mathrm" style="margin-right:0.01389em;">V</span><span class="mord mathrm">d</span><span class="mord mathrm">d</span></span><span class="style-wrap reset-textstyle textstyle uncramped" style="top:0em;">)</span></span><span class="style-wrap reset-textstyle textstyle uncramped" style="top:0em;">]</span></span><span class="mbin">⋅</span><span class="minner displaystyle textstyle uncramped"><span class="style-wrap reset-textstyle textstyle uncramped" style="top:0em;">[</span><span class="mord mathrm">1</span><span class="mbin">+</span><span class="minner displaystyle textstyle uncramped"><span class="style-wrap reset-textstyle textstyle uncramped" style="top:0em;">(</span><span class=""><span class="mord displaystyle textstyle uncramped"><span class="mord mathrm">K</span></span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathrm">T</span><span class="mord mathrm">e</span><span class="mord mathrm">m</span><span class="mord mathrm">p</span></span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mbin">⋅</span><span class="mord mathrm">Δ</span><span class="mord displaystyle textstyle uncramped"><span class="mord mathrm">T</span></span><span class="style-wrap reset-textstyle textstyle uncramped" style="top:0em;">)</span></span><span class="style-wrap reset-textstyle textstyle uncramped" style="top:0em;">]</span></span><span class="mbin">⋅</span><span class=""><span class="mord displaystyle textstyle uncramped"><span class="mord mathrm">t</span></span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathrm">t</span><span class="mord mathrm" style="margin-right:0.01389em;">y</span><span class="mord mathrm">p</span><span class="mord mathrm">i</span><span class="mord mathrm">c</span><span class="mord mathrm">a</span><span class="mord mathrm">l</span></span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span></span></p>
+<p>参数定义见其文档<strong>Delay Calculation</strong>一节。</p>
+<h4 id="5-提供了哪些类型的cell">5. 提供了哪些类型的cell？</h4>
+<p>Special Cells：Antenna-Fix Cell、NWELL and Substrate Tie Cell、Fill Cells、Low-Power (XL) Cells、TIEHI/LO Cells、Delay Cells。</p>
+<p>Base Cells：全加器、与门、与或门、BUF、D触发器、延迟、反相器、选择器、与非门、或非门、三态门、异或门、同或门等等。</p>
+<h4 id="6-verilog文件中包含了哪些信息">6. Verilog文件中包含了哪些信息？</h4>
+<p>粗略地看了一下
+有cell的输入、输出端口定义，延迟参数和路径延迟信息以及时序参数（比如说建立时间、保持时间）信息。这些应该都能和文档里的参数对应上。</p>
+
+            </div>
+          </article>
+        </div>
+        <div class="paper" data-aos="fade-in">
+          
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://halftop.github.io/post/verilog-day2">
+                <h3 class="post-title">
+                  Verilog没有葵花宝典——day2（门电路）
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+        
+          
+            <div class="paper" data-aos="fade-in">
+              <div id="gitalk-container"></div>
+            </div>
+          
+
+          
+        
+      </div>
+
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://halftop.github.io/images/avatar.png?v=1556118810147" class="no-responsive avatar">
+    <div class="text-muted">有输入有输出，才是正确的学习方式。</div>
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://halftop.github.io/post/verilog-day3">Verilog没有葵花宝典——day3（标准单元库）</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://halftop.github.io/post/verilog-day2">Verilog没有葵花宝典——day2（门电路）</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://halftop.github.io/post/verilog-day1">Verilog没有葵花宝典——day1（进制与编码）</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://halftop.github.io/post/verilog99_12to21">Verilog99题——12-21题</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://halftop.github.io/post/verilog99_10">verilog99题——10题</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://halftop.github.io/post/verilog99_11">通过做verilog99题的第11题学习竞争与冒险</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://halftop.github.io/post/verilog99_8">verilog99题——8题</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://halftop.github.io/post/verilog99_5&amp;6&amp;7">verilog99题——5、6、7题</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://halftop.github.io/post/verilog99_3&amp;4">verilog99题——3、4题</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://halftop.github.io/post/Verilog99_1&amp;2">verilog99题——1、2题</a>
+            </li>
+          
+        
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+        <a href="https://halftop.github.io/tag/f0tARmjal" class="badge ">
+          IC
+        </a>
+      
+        <a href="https://halftop.github.io/tag/bwS6E4Jqc" class="badge secondary">
+          学习笔记
+        </a>
+      
+        <a href="https://halftop.github.io/tag/ADa051R6R" class="badge secondary">
+          Verilog HDL
+        </a>
+      
+        <a href="https://halftop.github.io/tag/9rG5j0Nww" class="badge secondary">
+          FPGA
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Stop learning,do it!
+  </div>
+</div>
+
+
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+</script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '42b8247150af6c920554',
+        clientSecret: 'ea9863ece62308a1854e39455221fa1ace6f8cd6',
+        repo: 'halftop.github.io',
+        owner: 'halftop',
+        admin: ['halftop'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>
