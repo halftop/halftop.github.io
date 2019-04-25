@@ -1,81 +1,116 @@
 <html>
   <head>
-  <meta charset="utf-8" />
-<meta name="description" content="" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+<meta charset="utf-8" >
+
 <title>1/2顶点</title>
+<meta name="description" content="有输入有输出，才是正确的学习方式。">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
 <link rel="shortcut icon" href="https://halftop.github.io/favicon.ico">
 <link rel="stylesheet" href="https://halftop.github.io/styles/main.css">
 
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
   </head>
   <body>
-    <div class="main">
-      <div class="main-content">
-        <div class="site-header">
-  <a href="https://halftop.github.io">
-  <img class="avatar" src="https://halftop.github.io/images/avatar.png" alt="" width="80px" height="80px">
-  </a>
-  <h1 class="site-title">
-    1/2顶点
-  </h1>
-  <p class="site-description">
-    有输入有输出，才是正确的学习方式。
-  </p>
-  <div class="menu-container">
-    
-      
-        <a href="/" class="menu">
-          首页
-        </a>
-      
-    
-      
-        <a href="/archives" class="menu">
-          归档
-        </a>
-      
-    
-      
-        <a href="/tags" class="menu">
-          标签
-        </a>
-      
-    
-      
-        <a href="/post/about" class="menu">
-          关于
-        </a>
-      
-    
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://halftop.github.io">
+        <img class="avatar" src="https://halftop.github.io/images/avatar.png" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://halftop.github.io">
+        <h1 class="site-title">1/2顶点</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
   </div>
 </div>
 
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
 
-        <div class="tags-container">
+
+        <div class="content-container">
           
-            <a class="tag" href="https://halftop.github.io/tag/f0tARmjal">IC</a>
-          
-            <a class="tag" href="https://halftop.github.io/tag/ADa051R6R">Verilog HDL</a>
-          
-            <a class="tag" href="https://halftop.github.io/tag/bwS6E4Jqc">学习笔记</a>
-          
-            <a class="tag" href="https://halftop.github.io/tag/9rG5j0Nww">FPGA</a>
-          
+          <div class="tags-container">
+            
+              <a class="tag" href="https://halftop.github.io/tag/f0tARmjal">IC</a>
+            
+              <a class="tag" href="https://halftop.github.io/tag/ADa051R6R">Verilog HDL</a>
+            
+              <a class="tag" href="https://halftop.github.io/tag/bwS6E4Jqc">学习笔记</a>
+            
+              <a class="tag" href="https://halftop.github.io/tag/9rG5j0Nww">FPGA</a>
+            
+          </div>
+
         </div>
 
         <div class="site-footer">
+  <div class="slogan">有输入有输出，才是正确的学习方式。</div>
   Stop learning,do it!
 </div>
 
-<script>
-  hljs.initHighlightingOnLoad()
-</script>
 
       </div>
+      <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
     </div>
   </body>
 </html>
