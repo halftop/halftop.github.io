@@ -1,12 +1,15 @@
+
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" >
+    
+<meta charset="utf-8" >
 
 <title>Verilog没有葵花宝典——day3（标准单元库） | 1/2顶点</title>
 <meta name="description" content="有输入有输出，才是正确的学习方式。">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="shortcut icon" href="https://halftop.github.io/favicon.ico">
 <link rel="stylesheet" href="https://halftop.github.io/styles/main.css">
@@ -22,74 +25,87 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
 
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-
 
   </head>
   <body>
     <div id="app" class="main">
-
-      <div class="sidebar" :class="{ 'full-height': menuVisible }">
-  <div class="top-container" data-aos="fade-right">
-    <div class="top-header-container">
-      <a class="site-title-container" href="https://halftop.github.io">
-        <img src="https://halftop.github.io/images/avatar.png" class="site-logo">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://halftop.github.io">
+        <img class="avatar" src="https://halftop.github.io/images/avatar.png" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://halftop.github.io">
         <h1 class="site-title">1/2顶点</h1>
       </a>
-      <div class="menu-btn" @click="menuVisible = !menuVisible">
-        <div class="line"></div>
-      </div>
     </div>
-    <div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
       
         
-          <a href="/" class="site-nav">
+          <a href="/" class="menu purple-link">
             首页
           </a>
         
       
         
-          <a href="/archives" class="site-nav">
+          <a href="/archives" class="menu purple-link">
             归档
           </a>
         
       
         
-          <a href="/tags" class="site-nav">
+          <a href="/tags" class="menu purple-link">
             标签
           </a>
         
       
         
-          <a href="/post/about" class="site-nav">
+          <a href="/post/about" class="menu purple-link">
             关于
           </a>
         
       
     </div>
   </div>
-  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
-    <div class="site-description">
-      有输入有输出，才是正确的学习方式。
-    </div>
-    <div class="site-footer">
-      Stop learning,do it!
-    </div>
-  </div>
-</div>
+</transition>
 
 
-      <div class="main-container">
-        <div class="content-container" data-aos="fade-up">
-          <div class="post-detail">
-            <h2 class="post-title">Verilog没有葵花宝典——day3（标准单元库）</h2>
-            <div class="post-date">2019-04-24</div>
+      <div class="content-container">
+        <div class="post-detail">
+          <h2 class="post-title">Verilog没有葵花宝典——day3（标准单元库）</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2019-04-24</span>
             
-              <div class="feature-container" style="background-image: url('https://ws1.sinaimg.cn/mw690/7f79daaely1g2e4oh2235j20ji0kn3zi.jpg')">
-              </div>
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://halftop.github.io/tag/f0tARmjal">
+                    IC
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://halftop.github.io/tag/bwS6E4Jqc">
+                    学习笔记
+                    
+                  </a>
+                
+              </span>
             
-            <div class="post-content">
-              <h3 id="题目">题目</h3>
+          </div>
+          <div class="post-content">
+            <h3 id="题目">题目</h3>
 <blockquote>
 <ol>
 <li>了解目录结构：与前端相关的比如文档(doc)，仿真模型(verilog/vhdl)，标准单元库(synopsys/symbols)。</li>
@@ -128,50 +144,36 @@
 <p>粗略地看了一下
 有cell的输入、输出端口定义，延迟参数和路径延迟信息以及时序参数（比如说建立时间、保持时间）信息。这些应该都能和文档里的参数对应上。</p>
 
-            </div>
-            
-              <div class="tag-container">
-                
-                  <a href="https://halftop.github.io/tag/f0tARmjal" class="tag">
-                    IC
-                  </a>
-                
-                  <a href="https://halftop.github.io/tag/bwS6E4Jqc" class="tag">
-                    学习笔记
-                  </a>
-                
-              </div>
-            
-            
-              <div class="next-post">
-                <div class="next">下一篇</div>
-                <a href="https://halftop.github.io/post/verilog-day2">
-                  <h3 class="post-title">
-                    Verilog没有葵花宝典——day2（门电路）
-                  </h3>
-                </a>
-              </div>
-            
-
-            
-              
-                <div id="gitalk-container" data-aos="fade-in"></div>
-              
-
-              
-            
-
           </div>
-
         </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://halftop.github.io/post/verilog-day2">
+              <h3 class="post-title">
+                下一篇：Verilog没有葵花宝典——day2（门电路）
+              </h3>
+            </a>
+          </div>
+          
       </div>
+
+      
+        
+          <div id="gitalk-container"></div>
+        
+
+        
+      
+
+      <div class="site-footer">
+  <div class="slogan">有输入有输出，才是正确的学习方式。</div>
+  Stop learning,do it!
+</div>
+
+
     </div>
-
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-
-<script type="application/javascript">
-
-AOS.init();
+    <script type="application/javascript">
 
 hljs.initHighlightingOnLoad()
 

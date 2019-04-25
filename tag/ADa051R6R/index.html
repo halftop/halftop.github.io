@@ -1,12 +1,15 @@
+
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" >
+    
+<meta charset="utf-8" >
 
 <title>Verilog HDL | 1/2顶点</title>
 <meta name="description" content="有输入有输出，才是正确的学习方式。">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="shortcut icon" href="https://halftop.github.io/favicon.ico">
 <link rel="stylesheet" href="https://halftop.github.io/styles/main.css">
@@ -16,77 +19,77 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
 
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-
 
   </head>
   <body>
     <div id="app" class="main">
-
-      <div class="sidebar" :class="{ 'full-height': menuVisible }">
-  <div class="top-container" data-aos="fade-right">
-    <div class="top-header-container">
-      <a class="site-title-container" href="https://halftop.github.io">
-        <img src="https://halftop.github.io/images/avatar.png" class="site-logo">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://halftop.github.io">
+        <img class="avatar" src="https://halftop.github.io/images/avatar.png" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://halftop.github.io">
         <h1 class="site-title">1/2顶点</h1>
       </a>
-      <div class="menu-btn" @click="menuVisible = !menuVisible">
-        <div class="line"></div>
-      </div>
     </div>
-    <div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
       
         
-          <a href="/" class="site-nav">
+          <a href="/" class="menu purple-link">
             首页
           </a>
         
       
         
-          <a href="/archives" class="site-nav">
+          <a href="/archives" class="menu purple-link">
             归档
           </a>
         
       
         
-          <a href="/tags" class="site-nav">
+          <a href="/tags" class="menu purple-link">
             标签
           </a>
         
       
         
-          <a href="/post/about" class="site-nav">
+          <a href="/post/about" class="menu purple-link">
             关于
           </a>
         
       
     </div>
   </div>
-  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
-    <div class="site-description">
-      有输入有输出，才是正确的学习方式。
-    </div>
-    <div class="site-footer">
-      Stop learning,do it!
-    </div>
-  </div>
-</div>
+</transition>
 
 
-      <div class="main-container">
-        <div class="content-container" data-aos="fade-up">
-          <h2 class="current-tag">标签: Verilog HDL</h2>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://halftop.github.io/post/verilog-day4">
-                  <h2 class="post-title">Verilog没有葵花宝典——day4（组合逻辑）</h2>
-                </a>
-                <div class="post-date">
-                  2019-04-25
-                </div>
-                <div class="post-abstract">
-                  <h2 id="题目">题目</h2>
+      <div class="content-container">
+
+        <div class="current-tag-container">
+          <h2 class="title">
+            <i class="icon icon-pricetags-outline"></i> Verilog HDL
+          </h2> 
+        </div>
+
+        
+<section class="post-item">
+    <div class="content">
+      <a href="https://halftop.github.io/post/verilog-day4">
+        <h2 class="post-title">Verilog没有葵花宝典——day4（组合逻辑）</h2>
+      </a>
+      <div class="post-abstract">
+        <h2 id="题目">题目</h2>
 <blockquote>
 <ol>
 <li>什么是竞争和冒险？</li>
@@ -105,26 +108,51 @@
 </ol>
 </blockquote>
 
-                </div>
-              </div>
-              
-                <a class="right" href="https://halftop.github.io/post/verilog-day4">
-                  <div class="feature-container" style="background-image: url('https://ws1.sinaimg.cn/mw690/7f79daaely1g2endkdglxj22bc1tuqv5.jpg')">
-                  </div>
-                </a>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://halftop.github.io/post/verilog-day1">
-                  <h2 class="post-title">Verilog没有葵花宝典——day1（进制与编码）</h2>
-                </a>
-                <div class="post-date">
-                  2019-04-22
-                </div>
-                <div class="post-abstract">
-                  <h2 id="题目">题目</h2>
+      </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2019-04-25</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="https://halftop.github.io/tag/f0tARmjal">
+                IC
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://halftop.github.io/tag/ADa051R6R">
+                Verilog HDL
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://halftop.github.io/tag/bwS6E4Jqc">
+                学习笔记
+                
+              </a>
+            
+          </span>
+        
+      </div>
+    </div>
+    
+      <a href="https://halftop.github.io/post/verilog-day4">
+        <div class="feature-container" style="background-image: url('https://ws1.sinaimg.cn/mw690/7f79daaely1g2endkdglxj22bc1tuqv5.jpg')">
+        </div>
+      </a>
+    
+  </section>
+
+<section class="post-item">
+    <div class="content">
+      <a href="https://halftop.github.io/post/verilog-day1">
+        <h2 class="post-title">Verilog没有葵花宝典——day1（进制与编码）</h2>
+      </a>
+      <div class="post-abstract">
+        <h2 id="题目">题目</h2>
 <blockquote>
 <ol>
 <li>bit, byte, word, dword, qword的区别。</li>
@@ -135,199 +163,362 @@
 </ol>
 </blockquote>
 
-                </div>
-              </div>
-              
-                <a class="right" href="https://halftop.github.io/post/verilog-day1">
-                  <div class="feature-container" style="background-image: url('https://ws1.sinaimg.cn/mw690/7f79daaely1g2cwnsl0exj24802tc4qs.jpg')">
-                  </div>
-                </a>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://halftop.github.io/post/verilog99_12to21">
-                  <h2 class="post-title">Verilog99题——12-21题</h2>
-                </a>
-                <div class="post-date">
-                  2019-04-02
-                </div>
-                <div class="post-abstract">
-                  <h2 id="前言">前言</h2>
+      </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2019-04-22</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="https://halftop.github.io/tag/ADa051R6R">
+                Verilog HDL
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://halftop.github.io/tag/bwS6E4Jqc">
+                学习笔记
+                
+              </a>
+            
+          </span>
+        
+      </div>
+    </div>
+    
+      <a href="https://halftop.github.io/post/verilog-day1">
+        <div class="feature-container" style="background-image: url('https://ws1.sinaimg.cn/mw690/7f79daaely1g2cwnsl0exj24802tc4qs.jpg')">
+        </div>
+      </a>
+    
+  </section>
+
+<section class="post-item">
+    <div class="content">
+      <a href="https://halftop.github.io/post/verilog99_12to21">
+        <h2 class="post-title">Verilog99题——12-21题</h2>
+      </a>
+      <div class="post-abstract">
+        <h2 id="前言">前言</h2>
 <p>1-7题是数字电路基础；
 8-21题是组合逻辑相关；
 这篇把剩下的组合逻辑相关的题目全部写完。</p>
 
-                </div>
-              </div>
-              
-                <a class="right" href="https://halftop.github.io/post/verilog99_12to21">
-                  <div class="feature-container" style="background-image: url('https://ws1.sinaimg.cn/mw690/7f79daaely1g2cwf97inyj20xc0irq2z.jpg')">
-                  </div>
-                </a>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://halftop.github.io/post/verilog99_10">
-                  <h2 class="post-title">verilog99题——10题</h2>
-                </a>
-                <div class="post-date">
-                  2019-03-13
-                </div>
-                <div class="post-abstract">
-                  <h2 id="题目">题目</h2>
+      </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2019-04-02</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="https://halftop.github.io/tag/9rG5j0Nww">
+                FPGA
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://halftop.github.io/tag/ADa051R6R">
+                Verilog HDL
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://halftop.github.io/tag/bwS6E4Jqc">
+                学习笔记
+                
+              </a>
+            
+          </span>
+        
+      </div>
+    </div>
+    
+      <a href="https://halftop.github.io/post/verilog99_12to21">
+        <div class="feature-container" style="background-image: url('https://ws1.sinaimg.cn/mw690/7f79daaely1g2cwf97inyj20xc0irq2z.jpg')">
+        </div>
+      </a>
+    
+  </section>
+
+<section class="post-item">
+    <div class="content">
+      <a href="https://halftop.github.io/post/verilog99_10">
+        <h2 class="post-title">verilog99题——10题</h2>
+      </a>
+      <div class="post-abstract">
+        <h2 id="题目">题目</h2>
 <p><strong>010.说明代码中w1和 w2对应电路的具体区别:</strong></p>
 <pre><code>wire [2:0] val; 
 wire w1 = val &gt; 0; 
 wire w2 = val &gt;= 0;
 </code></pre>
 
-                </div>
-              </div>
-              
-                <a class="right" href="https://halftop.github.io/post/verilog99_10">
-                  <div class="feature-container" style="background-image: url('https://ws1.sinaimg.cn/mw690/7f79daaely1g2cwf97inyj20xc0irq2z.jpg')">
-                  </div>
-                </a>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://halftop.github.io/post/verilog99_11">
-                  <h2 class="post-title">通过做verilog99题的第11题学习竞争与冒险</h2>
-                </a>
-                <div class="post-date">
-                  2019-03-11
-                </div>
-                <div class="post-abstract">
-                  <h2 id="题目">题目</h2>
+      </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2019-03-13</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="https://halftop.github.io/tag/ADa051R6R">
+                Verilog HDL
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://halftop.github.io/tag/bwS6E4Jqc">
+                学习笔记
+                
+              </a>
+            
+          </span>
+        
+      </div>
+    </div>
+    
+      <a href="https://halftop.github.io/post/verilog99_10">
+        <div class="feature-container" style="background-image: url('https://ws1.sinaimg.cn/mw690/7f79daaely1g2cwf97inyj20xc0irq2z.jpg')">
+        </div>
+      </a>
+    
+  </section>
+
+<section class="post-item">
+    <div class="content">
+      <a href="https://halftop.github.io/post/verilog99_11">
+        <h2 class="post-title">通过做verilog99题的第11题学习竞争与冒险</h2>
+      </a>
+      <div class="post-abstract">
+        <h2 id="题目">题目</h2>
 <p><strong>011.什么是竞争和冒险？</strong></p>
 <p>注：以下都是知识的搬运和总结，参考文献在最后。</p>
 
-                </div>
-              </div>
-              
-                <a class="right" href="https://halftop.github.io/post/verilog99_11">
-                  <div class="feature-container" style="background-image: url('https://ws1.sinaimg.cn/mw690/7f79daaely1g2cweowk13j20xc0irdg7.jpg')">
-                  </div>
-                </a>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://halftop.github.io/post/verilog99_8">
-                  <h2 class="post-title">verilog99题——8题</h2>
-                </a>
-                <div class="post-date">
-                  2019-03-10
-                </div>
-                <div class="post-abstract">
-                  <h2 id="题目">题目</h2>
+      </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2019-03-11</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="https://halftop.github.io/tag/9rG5j0Nww">
+                FPGA
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://halftop.github.io/tag/ADa051R6R">
+                Verilog HDL
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://halftop.github.io/tag/bwS6E4Jqc">
+                学习笔记
+                
+              </a>
+            
+          </span>
+        
+      </div>
+    </div>
+    
+      <a href="https://halftop.github.io/post/verilog99_11">
+        <div class="feature-container" style="background-image: url('https://ws1.sinaimg.cn/mw690/7f79daaely1g2cweowk13j20xc0irdg7.jpg')">
+        </div>
+      </a>
+    
+  </section>
+
+<section class="post-item">
+    <div class="content">
+      <a href="https://halftop.github.io/post/verilog99_8">
+        <h2 class="post-title">verilog99题——8题</h2>
+      </a>
+      <div class="post-abstract">
+        <h2 id="题目">题目</h2>
 <p><strong>008.只用2输入mux，实现与，或，非，异或。2输入mux定义为</strong></p>
 <blockquote>
 <p>o = s ? a : b;</p>
 </blockquote>
 
-                </div>
-              </div>
-              
-                <a class="right" href="https://halftop.github.io/post/verilog99_8">
-                  <div class="feature-container" style="background-image: url('https://ws1.sinaimg.cn/mw690/7f79daaely1g2cwf97inyj20xc0irq2z.jpg')">
-                  </div>
-                </a>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://halftop.github.io/post/verilog99_5&amp;6&amp;7">
-                  <h2 class="post-title">verilog99题——5、6、7题</h2>
-                </a>
-                <div class="post-date">
-                  2019-03-07
-                </div>
-                <div class="post-abstract">
-                  <h2 id="题目">题目</h2>
+      </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2019-03-10</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="https://halftop.github.io/tag/ADa051R6R">
+                Verilog HDL
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://halftop.github.io/tag/bwS6E4Jqc">
+                学习笔记
+                
+              </a>
+            
+          </span>
+        
+      </div>
+    </div>
+    
+      <a href="https://halftop.github.io/post/verilog99_8">
+        <div class="feature-container" style="background-image: url('https://ws1.sinaimg.cn/mw690/7f79daaely1g2cwf97inyj20xc0irq2z.jpg')">
+        </div>
+      </a>
+    
+  </section>
+
+<section class="post-item">
+    <div class="content">
+      <a href="https://halftop.github.io/post/verilog99_5&amp;6&amp;7">
+        <h2 class="post-title">verilog99题——5、6、7题</h2>
+      </a>
+      <div class="post-abstract">
+        <h2 id="题目">题目</h2>
 <p><strong>005.十进制转换为二进制编码：127，-127，127.375，-127.375</strong></p>
 <p><strong>006.画出CMOS三态缓冲器的电路原理图，解释一下高阻态。</strong></p>
 <p><strong>007.什么是open-drain output？</strong></p>
 
-                </div>
-              </div>
-              
-                <a class="right" href="https://halftop.github.io/post/verilog99_5&amp;6&amp;7">
-                  <div class="feature-container" style="background-image: url('https://ws1.sinaimg.cn/mw690/7f79daaely1g2cwf97inyj20xc0irq2z.jpg')">
-                  </div>
-                </a>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://halftop.github.io/post/verilog99_3&amp;4">
-                  <h2 class="post-title">verilog99题——3、4题</h2>
-                </a>
-                <div class="post-date">
-                  2019-03-06
-                </div>
-                <div class="post-abstract">
-                  <h2 id="题目">题目</h2>
+      </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2019-03-07</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="https://halftop.github.io/tag/ADa051R6R">
+                Verilog HDL
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://halftop.github.io/tag/bwS6E4Jqc">
+                学习笔记
+                
+              </a>
+            
+          </span>
+        
+      </div>
+    </div>
+    
+      <a href="https://halftop.github.io/post/verilog99_5&amp;6&amp;7">
+        <div class="feature-container" style="background-image: url('https://ws1.sinaimg.cn/mw690/7f79daaely1g2cwf97inyj20xc0irq2z.jpg')">
+        </div>
+      </a>
+    
+  </section>
+
+<section class="post-item">
+    <div class="content">
+      <a href="https://halftop.github.io/post/verilog99_3&amp;4">
+        <h2 class="post-title">verilog99题——3、4题</h2>
+      </a>
+      <div class="post-abstract">
+        <h2 id="题目">题目</h2>
 <p><strong>003.解释一下Vih，Vil，Vol，Voh，Vt。</strong></p>
 <p><strong>004.什么是原码，反码，补码，符号-数值码。以4bit为例，给出各自表示的数值范围。</strong></p>
 
-                </div>
-              </div>
-              
-                <a class="right" href="https://halftop.github.io/post/verilog99_3&amp;4">
-                  <div class="feature-container" style="background-image: url('https://ws1.sinaimg.cn/mw690/7f79daaely1g2cwf97inyj20xc0irq2z.jpg')">
-                  </div>
-                </a>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://halftop.github.io/post/Verilog99_1&amp;2">
-                  <h2 class="post-title">verilog99题——1、2题</h2>
-                </a>
-                <div class="post-date">
-                  2019-03-05
-                </div>
-                <div class="post-abstract">
-                  <h2 id="题目">题目</h2>
+      </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2019-03-06</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="https://halftop.github.io/tag/ADa051R6R">
+                Verilog HDL
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://halftop.github.io/tag/bwS6E4Jqc">
+                学习笔记
+                
+              </a>
+            
+          </span>
+        
+      </div>
+    </div>
+    
+      <a href="https://halftop.github.io/post/verilog99_3&amp;4">
+        <div class="feature-container" style="background-image: url('https://ws1.sinaimg.cn/mw690/7f79daaely1g2cwf97inyj20xc0irq2z.jpg')">
+        </div>
+      </a>
+    
+  </section>
+
+<section class="post-item">
+    <div class="content">
+      <a href="https://halftop.github.io/post/Verilog99_1&amp;2">
+        <h2 class="post-title">verilog99题——1、2题</h2>
+      </a>
+      <div class="post-abstract">
+        <h2 id="题目">题目</h2>
 <p><strong>001.画出CMOS反相器的电路原理图。</strong></p>
 <p><strong>002.反向器的速度与哪些因素有关？什么是转换时间（transition time）和传播延迟（propagation delay）？</strong></p>
 
-                </div>
-              </div>
-              
-                <a class="right" href="https://halftop.github.io/post/Verilog99_1&amp;2">
-                  <div class="feature-container" style="background-image: url('https://ws1.sinaimg.cn/mw690/7f79daaely1g2cwf97inyj20xc0irq2z.jpg')">
-                  </div>
-                </a>
-              
-            </article>
-          
+      </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2019-03-05</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="https://halftop.github.io/tag/ADa051R6R">
+                Verilog HDL
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://halftop.github.io/tag/bwS6E4Jqc">
+                学习笔记
+                
+              </a>
+            
+          </span>
+        
+      </div>
+    </div>
+    
+      <a href="https://halftop.github.io/post/Verilog99_1&amp;2">
+        <div class="feature-container" style="background-image: url('https://ws1.sinaimg.cn/mw690/7f79daaely1g2cwf97inyj20xc0irq2z.jpg')">
+        </div>
+      </a>
+    
+  </section>
 
-          <div class="pagination-container">
+
+<div class="pagination-container">
   
   
 </div>
 
-        </div>
+
       </div>
+
+      <div class="site-footer">
+  <div class="slogan">有输入有输出，才是正确的学习方式。</div>
+  Stop learning,do it!
+</div>
+
+
     </div>
-
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-
-<script type="application/javascript">
-
-AOS.init();
+    <script type="application/javascript">
 
 hljs.initHighlightingOnLoad()
 
