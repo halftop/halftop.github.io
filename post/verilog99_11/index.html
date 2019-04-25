@@ -1,113 +1,181 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" >
+      
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>1/2顶点</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-<title>通过做verilog99题的第11题学习竞争与冒险 | 1/2顶点</title>
-<meta name="description" content="有输入有输出，才是正确的学习方式。">
+<meta name="description" content="有输入有输出，才是正确的学习方式。"/>
+<meta name="keywords" content="有输入有输出，才是正确的学习方式。"/>
 
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico?v=1556157812004">
+<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico">
 
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
 <link rel="stylesheet" href="https://halftop.github.io/styles/main.css">
 
+<!-- Modernizr JS -->
+<script src="https://halftop.github.io/media/scripts/_vendors/modernizr-2.6.2.min.js"></script>
+<!-- FOR IE9 below -->
+<!--[if lt IE 9]>
+<scripts src="https://halftop.github.io/media/scripts/_vendors/respond.min.js"></scripts>
+<![endif]-->
 
-  
-    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
-  
+<!-- Comment -->
 
-  
+    
+        <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+    
 
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+    
 
 
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/tomorrow-night.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+<link crossorigin="anonymous" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" href="https://lib.baomitu.com/font-awesome/5.8.1/css/all.min.css" rel="stylesheet">
 
   </head>
   <body>
   
-    <nav class="navbar border fixed split-nav">
-  <div class="nav-brand">
-    <h3><a href="https://halftop.github.io">1/2顶点</a></h3>
-  </div>
-  <div class="collapsible">
-    <input id="collapsible1" type="checkbox" name="collapsible1">
-    <button>
-      <label for="collapsible1">
-        <div class="bar1"></div>
-        <div class="bar2"></div>
-        <div class="bar3"></div>
-      </label>
-    </button>
-    <div class="collapsible-body">
-      <ul class="inline">
-        
-          <li>
+<div id="fh5co-offcanvas">
+    <a href="#!" class="fh5co-close-offcanvas js-fh5co-close-offcanvas">
+        <span><i class="icon-cross3"></i> <span>Close</span></span>
+    </a>
+    <div class="fh5co-bio">
+        <figure>
+            <img src="https://halftop.github.io/media/images/avatar.png" alt="1/2顶点" class="img-responsive">
+        </figure>
+        <h3 class="heading">ABOUT ME</h3>
+        <h2>1/2顶点</h2>
+        <p>有输入有输出，才是正确的学习方式。</p>
+        <ul class="fh5co-social">
             
-              <a href="/" class="menu">
-                首页
-              </a>
+                <li>
+                    
+                </li>
             
-          </li>
-        
-          <li>
+                <li>
+                    
+                </li>
             
-              <a href="/archives" class="menu">
-                归档
-              </a>
+                <li>
+                    
+                </li>
             
-          </li>
-        
-          <li>
+                <li>
+                    
+                </li>
             
-              <a href="/tags" class="menu">
-                标签
-              </a>
+                <li>
+                    
+                </li>
             
-          </li>
-        
-          <li>
-            
-              <a href="/post/about" class="menu">
-                关于
-              </a>
-            
-          </li>
-        
-      </ul>
+        </ul>
     </div>
-  </div>
-</nav>
 
-    <div id="top" class="row site">
-      <div class="sm-12 md-8 col">
-        <div class="paper">
-          <article class="article">
-            <h1>通过做verilog99题的第11题学习竞争与冒险</h1>
-            <p class="article-meta">
-              2019-03-11
-              
-                <a href="https://halftop.github.io/tag/9rG5j0Nww" class="badge warning">
-                  FPGA
-                </a>
-              
-                <a href="https://halftop.github.io/tag/ADa051R6R" class="badge ">
-                  Verilog HDL
-                </a>
-              
-                <a href="https://halftop.github.io/tag/bwS6E4Jqc" class="badge ">
-                  学习笔记
-                </a>
-              
-            </p>
-            
-              <img src="https://ws1.sinaimg.cn/mw690/7f79daaely1g2cweowk13j20xc0irdg7.jpg" alt="通过做verilog99题的第11题学习竞争与冒险">
-            
-            <div class="post-content">
-              <h2 id="题目">题目</h2>
+    <div class="fh5co-menu">
+        <div class="fh5co-box">
+            <h3 class="heading">搜索</h3>
+            <form action="#">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="输入关键字">
+                </div>
+            </form>
+        </div>
+        <div class="fh5co-box">
+            <h3 class="heading">标签</h3>
+            <ul>
+                
+                    <li><a href="https://halftop.github.io/tag/f0tARmjal">IC</a></li>
+                
+                    <li><a href="https://halftop.github.io/tag/ADa051R6R">Verilog HDL</a></li>
+                
+                    <li><a href="https://halftop.github.io/tag/bwS6E4Jqc">学习笔记</a></li>
+                
+                    <li><a href="https://halftop.github.io/tag/9rG5j0Nww">FPGA</a></li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<header id="fh5co-header">
+    <div class="container-fluid">
+        <div class="row">
+            <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
+            <ul class="fh5co-social">
+                
+                    <li>
+                        <a href="/"
+                         >
+                            首页
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives"
+                         >
+                            归档
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags"
+                         >
+                            标签
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/post/about"
+                         >
+                            关于
+                        </a>
+                    </li>
+                
+            </ul>
+            <div class="col-lg-12 col-md-12 text-center">
+                <h1 id="fh5co-logo">
+                    <a href="https://halftop.github.io">1/2顶点</a>
+                </h1>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<!--  <a href="#" class="fh5co-post-prev"><span>👈 Prev</span></a>-->
+<!--  <a href="#" class="fh5co-post-next"><span>Next 👉</span></a>-->
+
+  <div class="container-fluid">
+      <div class="row fh5co-post-entry single-entry">
+          <article class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0">
+              <figure class="animate-box">
+                  
+                      <img src="https://ws1.sinaimg.cn/mw690/7f79daaely1g2cweowk13j20xc0irdg7.jpg" alt="通过做verilog99题的第11题学习竞争与冒险" class="img-responsive">
+                  
+              </figure>
+              <span class="fh5co-meta animate-box">
+                  
+                      <div class="tag-container">
+                          
+                              <a href="https://halftop.github.io/tag/9rG5j0Nww" class="tag">FPGA, </a>
+                          
+                              <a href="https://halftop.github.io/tag/ADa051R6R" class="tag">Verilog HDL, </a>
+                          
+                              <a href="https://halftop.github.io/tag/bwS6E4Jqc" class="tag">学习笔记, </a>
+                          
+                      </div>
+                  
+              </span>
+              <h2 class="fh5co-article-title animate-box">通过做verilog99题的第11题学习竞争与冒险</h2>
+              <span class="fh5co-meta fh5co-date animate-box">2019-03-11</span>
+
+              <div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-left content-article">
+                  <div class="row">
+                      <div class="col-md-12 animate-box post-content">
+                          <p> <h2 id="题目">题目</h2>
 <p><strong>011.什么是竞争和冒险？</strong></p>
 <p>注：以下都是知识的搬运和总结，参考文献在最后。</p>
  <!-- more --> 
@@ -150,11 +218,9 @@
 	<img src="https://wx1.sinaimg.cn/large/7f79daaely1g100ojqjrmj206i04gwek.jpg" alt="与非门构成的组合逻辑电路" title="与非门构成的组合逻辑电路">
 	<img src="https://wx4.sinaimg.cn/large/7f79daaely1g1014tvorej208p050jru.jpg" alt="产生险象的组合逻辑电路波形图" title="产生险象的组合逻辑电路波形图">
 </figure>
-	当B=C=1时，F应该恒等于1，这是在理想条件下得出得结论。实际上，门电路都存在延迟时间，假设每个门电路的延迟时间都为t。
-<pre><code>当A由低电平变为高电平，经过门延迟t后，反相器G1的输出d由高电平变为低电平，同时与非门G2的输出e也由高电平变为低电平，在G1的输出d变为低电平之前，d仍然维持高电平不变，因此G3的输出g不变；再经过门延迟t后，与非门G3的输出g由低变为高电平。由于之前e已经为低电平，所以输出F恒定为高电平不变。没有出现尖脉冲，即没有出现险象，所以该竞争是逻辑竞争、非临界竞争。
-
-而A由高电平变为低电平时，经过门延迟t后，反相器G1的输出d由低电平变为高电平，同时与非门G2的输出e也由低电平变为高电平；再经过门延迟t后，与非门G3的输出g才由高电平变为低电平。由图可以看出，在t的持续时间内，与非门Ga的输入都为高电平，再经过t后，输出持续时间为t的低电平尖脉冲，也就是说，这次竞争产生了险象，是逻辑临界竞争。
-</code></pre>
+<p>当B=C=1时，F应该恒等于1，这是在理想条件下得出得结论。实际上，门电路都存在延迟时间，假设每个门电路的延迟时间都为t。</p>
+<p>当A由低电平变为高电平，经过门延迟t后，反相器G1的输出d由高电平变为低电平，同时与非门G2的输出e也由高电平变为低电平，在G1的输出d为低电平之前，d仍然维持高电平不变，因此G3的输出g不变；再经过门延迟t后，与非门G3的输出g由低变为高电平。由于之前e已经为低电平，以输出F恒定为高电平不变。没有出现尖脉冲，即没有出现险象，所以该竞争是逻辑竞争、非临界竞争。</p>
+<p>而A由高电平变为低电平时，经过门延迟t后，反相器G1的输出d由低电平变为高电平，同时与非门G2的输出e也由低电平变为高电平；再经过门延t后，与非门G3的输出g才由高电平变为低电平。由图可以看出，在t的持续时间内，与非门Ga的输入都为高电平，再经过t后，输出持续时间为t低电平尖脉冲，也就是说，这次竞争产生了险象，是逻辑临界竞争。</p>
 <h3 id="冒险的判断方法">冒险的判断方法</h3>
 <ul>
 <li>代数法</li>
@@ -187,189 +253,88 @@
 <li>宣丽萍. FPGA 器件的竞争与冒险现象及消除方法[D]. , 2005.<a href="http://www.cnki.com.cn/Article/CJFDTotal-XDDJ200510055.htm">知网链接</a></li>
 <li>张晴. FPGA 设计中竞争冒险问题的研究[J]. 实验室研究与探索, 2003, 1: 47249.<a href="http://www.cnki.net/kcms/detail/detail.aspx?dbcode=CJFD&amp;dbname=cjfd2003&amp;filename=sysy200301018&amp;uid=WEEvREcwSlJHSldRa1FhdXNXaEd1OFFsell1dzJiakM3a0JKMGZhamsxTT0=$9A4hF_YAuvQ5obgVAqNKPCYcEjKensW4IQMovwHtwkF4VYPoHbKxJw!!&amp;v=MzAzMzNYM21yR05IRnJDVVJMT2ZaT2R0Rnk3bFVydkFGaFQ0VjdHNEh0TE1ybzlFYklRTEJIazV6aFJsNGpkNVM=">知网链接</a></li>
 </ol>
+ </p>
+                      </div>
+                  </div>
 
-            </div>
-          </article>
-        </div>
-        <div class="paper" data-aos="fade-in">
-          
-            <div class="next-post">
-              <div class="next">
-                下一篇
+                  <div class="row">
+                      <div class="col-md-12 animate-box">
+                          
+                              <div class="next-post">
+                                  <div class="next">下一篇</div>
+                                  <a href="https://halftop.github.io/post/verilog99_8">
+                                      <h3 class="post-title">
+                                          verilog99题——8题
+                                      </h3>
+                                  </a>
+                              </div>
+                          
+                      </div>
+                  </div>
+
+                  <div class="row">
+                      <div class="col-md-12 animate-box">
+                          
+                              
+                                  <div id="gitalk-container"></div>
+                              
+
+                              
+                          
+                      </div>
+                  </div>
               </div>
-              <a href="https://halftop.github.io/post/verilog99_8">
-                <h3 class="post-title">
-                  verilog99题——8题
-                </h3>
-              </a>
-            </div>
-          
-        </div>
-        
-          
-            <div class="paper" data-aos="fade-in">
-              <div id="gitalk-container"></div>
-            </div>
-          
 
-          
-        
+          </article>
       </div>
+  </div>
 
-      <div class="sm-12 md-4 col sidebar">
-  <div class="paper info-container">
-    <img src="https://halftop.github.io/images/avatar.png?v=1556157812004" class="no-responsive avatar">
-    <div class="text-muted">有输入有输出，才是正确的学习方式。</div>
-    <div class="social-container">
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    </div>
-  </div>
-  <div class="paper">
-    <div class="sidebar-title">
-      最新文章
-    </div>
-    <div class="row">
-      <ul>
-        
-          
-            <li>
-              <a href="https://halftop.github.io/post/verilog-day3">Verilog没有葵花宝典——day3（标准单元库）</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://halftop.github.io/post/verilog-day2">Verilog没有葵花宝典——day2（门电路）</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://halftop.github.io/post/verilog-day1">Verilog没有葵花宝典——day1（进制与编码）</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://halftop.github.io/post/verilog99_12to21">Verilog99题——12-21题</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://halftop.github.io/post/verilog99_10">verilog99题——10题</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://halftop.github.io/post/verilog99_11">通过做verilog99题的第11题学习竞争与冒险</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://halftop.github.io/post/verilog99_8">verilog99题——8题</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://halftop.github.io/post/verilog99_5&amp;6&amp;7">verilog99题——5、6、7题</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://halftop.github.io/post/verilog99_3&amp;4">verilog99题——3、4题</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://halftop.github.io/post/Verilog99_1&amp;2">verilog99题——1、2题</a>
-            </li>
-          
-        
-          
-        
-      </ul>
-    </div>
-  </div>
-  <div class="paper">
-    <div class="sidebar-title">
-      标签列表
-    </div>
-    <div class="row">
-      
-        <a href="https://halftop.github.io/tag/f0tARmjal" class="badge secondary">
-          IC
-        </a>
-      
-        <a href="https://halftop.github.io/tag/bwS6E4Jqc" class="badge success">
-          学习笔记
-        </a>
-      
-        <a href="https://halftop.github.io/tag/ADa051R6R" class="badge warning">
-          Verilog HDL
-        </a>
-      
-        <a href="https://halftop.github.io/tag/9rG5j0Nww" class="badge warning">
-          FPGA
-        </a>
-      
-    </div>
-  </div>
-  <div class="paper">
-    Stop learning,do it!
-  </div>
-</div>
+    
+<footer id="fh5co-footer">
+  <p>Stop learning,do it!</p>
+</footer>
 
 
-    </div>
-
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    
+<!-- jQuery -->
+<script src="https://halftop.github.io/media/scripts/_vendors/jquery.min.js"></script>
+<!-- jQuery Easing -->
+<script src="https://halftop.github.io/media/scripts/_vendors/jquery.easing.1.3.js"></script>
+<!-- Bootstrap -->
+<script src="https://halftop.github.io/media/scripts/_vendors/bootstrap.min.js"></script>
+<!-- Waypoints -->
+<script src="https://halftop.github.io/media/scripts/_vendors/jquery.waypoints.min.js"></script>
+<!-- Main JS -->
+<script src="https://halftop.github.io/media/scripts/_vendors/main.js"></script>
+<!-- Md5 Min JS -->
+<script src="https://halftop.github.io/media/scripts/_vendors/md5.min.js"></script>
 
 <script type="application/javascript">
-
-AOS.init();
-
-hljs.initHighlightingOnLoad()
-
+    hljs.initHighlightingOnLoad();
 </script>
 
 
-  
-  
-    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-    <script>
 
-      var gitalk = new Gitalk({
-        clientID: '42b8247150af6c920554',
-        clientSecret: 'ea9863ece62308a1854e39455221fa1ace6f8cd6',
-        repo: 'halftop.github.io',
-        owner: 'halftop',
-        admin: ['halftop'],
-        id: location.pathname,      // Ensure uniqueness and length less than 50
-        distractionFreeMode: false  // Facebook-like distraction free mode
-      })
+    
+        <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+        <script>
 
-      gitalk.render('gitalk-container')
+            var gitalk = new Gitalk({
+                clientID: '42b8247150af6c920554',
+                clientSecret: 'ea9863ece62308a1854e39455221fa1ace6f8cd6',
+                repo: 'halftop.github.io',
+                owner: 'halftop',
+                admin: ['halftop'],
+                id: md5(location.pathname),      // Ensure uniqueness and length less than 50
+                distractionFreeMode: false  // Facebook-like distraction free mode
+            })
 
-    </script>
-  
+            gitalk.render('gitalk-container')
 
-  
+        </script>
+    
+
+    
 
 
 
