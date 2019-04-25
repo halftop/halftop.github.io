@@ -1,111 +1,81 @@
-
-<!DOCTYPE html>
 <html>
   <head>
-    
-<meta charset="utf-8" >
-
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>verilog99题——8题 | 1/2顶点</title>
-<meta name="description" content="有输入有输出，才是正确的学习方式。">
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-
 <link rel="shortcut icon" href="https://halftop.github.io/favicon.ico">
 <link rel="stylesheet" href="https://halftop.github.io/styles/main.css">
 
-
-  
-    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
-  
-
-  
-
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
   </head>
   <body>
-    <div id="app" class="main">
-      <div class="site-header-container">
-  <div class="site-header">
-    <div class="left">
-      <a href="https://halftop.github.io">
-        <img class="avatar" src="https://halftop.github.io/images/avatar.png" alt="" width="32px" height="32px">
-      </a>
-      <a href="https://halftop.github.io">
-        <h1 class="site-title">1/2顶点</h1>
-      </a>
-    </div>
-    <div class="right">
-      <transition name="fade">
-        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
-      </transition>
-    </div>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://halftop.github.io">
+  <img class="avatar" src="https://halftop.github.io/images/avatar.png" alt="" width="80px" height="80px">
+  </a>
+  <h1 class="site-title">
+    1/2顶点
+  </h1>
+  <p class="site-description">
+    有输入有输出，才是正确的学习方式。
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
   </div>
 </div>
 
-<transition name="fade">
-  <div class="menu-container" style="display: none;" v-show="menuVisible">
-    <div class="menu-list">
       
-        
-          <a href="/" class="menu purple-link">
-            首页
-          </a>
-        
-      
-        
-          <a href="/archives" class="menu purple-link">
-            归档
-          </a>
-        
-      
-        
-          <a href="/tags" class="menu purple-link">
-            标签
-          </a>
-        
-      
-        
-          <a href="/post/about" class="menu purple-link">
-            关于
-          </a>
-        
-      
-    </div>
-  </div>
-</transition>
-
-
-      <div class="content-container">
         <div class="post-detail">
-          <h2 class="post-title">verilog99题——8题</h2>
-          <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2019-03-10</span>
-            
-              <span>
-                <i class="icon-pricetags-outline"></i>
-                
-                  <a href="https://halftop.github.io/tag/ADa051R6R">
-                    Verilog HDL
-                    
-                      ，
-                    
-                  </a>
-                
-                  <a href="https://halftop.github.io/tag/bwS6E4Jqc">
-                    学习笔记
-                    
-                  </a>
-                
-              </span>
-            
-          </div>
-          <div class="post-content">
-            <h2 id="题目">题目</h2>
+          <article class="post">
+            <h2 class="post-title">
+              verilog99题——8题
+            </h2>
+            <div class="post-info">
+              <time class="post-time">
+                · 2019-03-10 ·
+              </time>
+              
+                <a href="https://halftop.github.io/tag/ADa051R6R" class="post-tags">
+                  # Verilog HDL
+                </a>
+              
+                <a href="https://halftop.github.io/tag/bwS6E4Jqc" class="post-tags">
+                  # 学习笔记
+                </a>
+              
+            </div>
+            <div class="post-content">
+              <h2 id="题目">题目</h2>
 <p><strong>008.只用2输入mux，实现与，或，非，异或。2输入mux定义为</strong></p>
 <blockquote>
 <p>o = s ? a : b;</p>
@@ -114,73 +84,58 @@
 <center>
     <img src="https://wx4.sinaimg.cn/large/7f79daaely1g2eoniu27bj22dr1onwli.jpg" alt="答案" title="答案" width="600">
 </center>
-          </div>
+            </div>
+          </article>
         </div>
-
+    
         
           <div class="next-post">
-            <a class="purple-link" href="https://halftop.github.io/post/verilog99_5&amp;6&amp;7">
+            <div class="next">下一篇</div>
+            <a href="https://halftop.github.io/post/verilog99_5&amp;6&amp;7">
               <h3 class="post-title">
-                下一篇：verilog99题——5、6、7题
+                verilog99题——5、6、7题
               </h3>
             </a>
-          </div>
+          </div>  
+        
+
+        
           
-      </div>
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 
-      
-        
-          <div id="gitalk-container"></div>
-        
+<div id="gitalk-container"></div>
 
-        
-      
+<script>
 
-      <div class="site-footer">
-  <div class="slogan">有输入有输出，才是正确的学习方式。</div>
-  Stop learning,do it!
-</div>
+  var gitalk = new Gitalk({
+    clientID: '42b8247150af6c920554',
+    clientSecret: 'ea9863ece62308a1854e39455221fa1ace6f8cd6',
+    repo: 'halftop.github.io',
+    owner: 'halftop',
+    admin: ['halftop'],
+    id: location.pathname,      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
 
-
-    </div>
-    <script type="application/javascript">
-
-hljs.initHighlightingOnLoad()
-
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
+  gitalk.render('gitalk-container')
 
 </script>
 
+          
 
-  
-  
-    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-    <script>
+          
+        
+    
+        <div class="site-footer">
+  Stop learning,do it!
+</div>
 
-      var gitalk = new Gitalk({
-        clientID: '42b8247150af6c920554',
-        clientSecret: 'ea9863ece62308a1854e39455221fa1ace6f8cd6',
-        repo: 'halftop.github.io',
-        owner: 'halftop',
-        admin: ['halftop'],
-        id: location.pathname,      // Ensure uniqueness and length less than 50
-        distractionFreeMode: false  // Facebook-like distraction free mode
-      })
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
 
-      gitalk.render('gitalk-container')
-
-    </script>
-  
-
-  
-
-
-
-
+      </div>
+    </div>
   </body>
 </html>
