@@ -121,8 +121,8 @@ endmodule
 <h4 id="门级电路图">门级电路图</h4>
 <p>电路图在下面，因为反相器、与非门和或非门是cmos集成电路的基本单元，所以选择了这样的实现形式。</p>
 <figure class="half">
-	<img src="https://ws1.sinaimg.cn/large/7f79daaely1g1oepelcemj21341d0djp.jpg" alt="卡诺图化简" title="卡诺图化简" width="220">
-	<img src="https://ws3.sinaimg.cn/large/7f79daaely1g1oeqjjlauj20640570sn.jpg" alt="2-4译码器门级电路图" title="2-4译码器门级电路图">
+	<img src="https://i.loli.net/2019/04/25/5cc1cef303097.png" alt="卡诺图化简" title="卡诺图化简" width="220">
+	<img src="https://i.loli.net/2019/04/25/5cc1cefe5b34f.jpg" alt="2-4译码器门级电路图" title="2-4译码器门级电路图">
 </figure>
 <h3 id="3-输入一个8bit数输出其中1的个数-如果只能使用1bit全加器最少需要几个">3. 输入一个8bit数，输出其中1的个数。如果只能使用1bit全加器，最少需要几个？</h3>
 <h4 id="verilog描述-2">verilog描述</h4>
@@ -135,16 +135,16 @@ assign o_count = ( ( (i_data[0] + i_data[1]) + (i_data[2] + i_data[3]) ) + ( (i_
 endmodule
 </code></pre>
 <h4 id="本题至少使用几个1bit全加器">本题至少使用几个1bit全加器</h4>
-<p>下图使用八个1来说明。若不是最少请指正。</p>
+<p>下图使用八个1来说明。<a href="https://forum.allaboutcircuits.com/threads/count-number-of-logic-1s-in-7-bit-number.49821/">参考链接</a></p>
 <center>
-    <img src="https://ws1.sinaimg.cn/large/7f79daaely1g1ol572qzdj20ss0ssact.jpg" alt="全加器计数" title="全加器计数" width="400">
+    <img src="https://i.loli.net/2019/04/25/5cc1bb25dcb89.png" alt="全加器计数" title="全加器计数" width="400">
 </center>
 <h3 id="4-使用2输入muxo-s-a-btieh输出常数1tiel输出常数0实现以下功能">4. 使用2输入mux(o = s ？a ：b;)，TIEH(输出常数1)，TIEL(输出常数0)实现以下功能。</h3>
 <center>
-    <img src="https://ws1.sinaimg.cn/large/7f79daaely1g2eqsji2fgj22dr1onh34.jpg" alt="4.1-4.5" title="4.1-4.5" width="500">
+    <img src="https://i.loli.net/2019/04/25/5cc1d2de6756b.png" alt="4.1-4.5" title="4.1-4.5" width="500">
 </center>
 <center>
-    <img src="https://ws1.sinaimg.cn/mw690/7f79daaely1g2equ4tnj6j22dr1on4dn.jpg" alt="4.6" title="4.6" width="500">
+    <img src="https://i.loli.net/2019/04/25/5cc1d2e9d940c.png" alt="4.6" title="4.6" width="500">
 </center>
             </div>
           </article>

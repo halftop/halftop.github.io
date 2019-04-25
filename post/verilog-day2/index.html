@@ -93,7 +93,7 @@
 <p>PMOS——空穴导电，低电平通，高电平断，传递高电平<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\to</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.36687em;"></span><span class="strut bottom" style="height:0.36687em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mrel">→</span></span></span></span>连接电源。</p>
 <p>每个输入连接1P、1N；NMOS串联表示“与”；NMOS并联表示“或”。</p>
 <center>
-    <img src="https://wx2.sinaimg.cn/large/7f79daaely1g2dhckwys2j219r0n90wk.jpg" alt="cmos集成电路的基本单元（反相器、与非门、或非门）" title="cmos集成电路的基本单元（反相器、与非门、或非门）" width="600">
+    <img src="https://i.loli.net/2019/04/25/5cc1d08d95341.jpg" alt="cmos集成电路的基本单元（反相器、与非门、或非门）" title="cmos集成电路的基本单元（反相器、与非门、或非门）" width="600">
 </center>
 <h4 id="三态输出门">三态输出门</h4>
 <p>计算机系统的各部件模块（Module）及芯片（Chip）通常挂接在系统总线（System bus）上，在某一时刻只能有一个发送端。为了使各模块芯片能够分时传送信号，需要具有三态输出的门电路，简称三态门（Three-state gate），又称为三态缓冲器（Three-state buffer）三态门的输出端状态不仅有高电平和低电平，而且具有第三种状态--高阻状态（High-Impedance，Hi-Z）.</p>
@@ -110,17 +110,17 @@
 </li>
 </ol>
 <center>
-    <img src="https://wx3.sinaimg.cn/large/7f79daaely1g2cwtjjdptj213w0tztaf.jpg" alt="三态门" title="三态门" width="600">
+    <img src="https://i.loli.net/2019/04/25/5cc1c9b97d9d3.png" alt="三态门" title="三态门" width="600">
 </center>
 <h4 id="漏极开路门">漏极开路门</h4>
 <p>CMOS漏极开路门（Open-Drain Gate），又称漏极开路输出（open-drain output），简称OD门。</p>
 <p>各种CMOS门电路都可构成漏极开路门，下图为CMOS与非OD门的电路结构。F=(AB)'</p>
 <center>
-    <img src="https://wx2.sinaimg.cn/large/7f79daaely1g2cwtnubonj20a304cmxh.jpg" alt="OD门" title="OD门" >
+    <img src="https://i.loli.net/2019/04/25/5cc1ccb296f99.png" alt="OD门" title="OD门" >
 </center>
 <p>漏极开路OD门电路内的输出MOS管漏极是开路的，应用时，需要通过外接电阻（Extension resistance）接电源。与TTL集成的OC门类似，CMOS集成的OD门也可实现线与（Wired and）连接。</p>
 <center>
-    <img src="https://wx1.sinaimg.cn/large/7f79daaely1g2cwtpi31pj20kl0es117.jpg" alt="OD门实现线与逻辑" title="OD门实现线与逻辑" width="600">
+    <img src="https://i.loli.net/2019/04/25/5cc1d13190f8f.jpg" alt="OD门实现线与逻辑" title="OD门实现线与逻辑" width="600">
 </center>
 <p>可以看出，OD门就是将反相器的上面的PMOS管拿掉了而已。</p>
 <p>当两个与非门的输出全为1时，输出为1；只要其中一个输出为0，则输出为0，所以该电路符合与逻辑功能，即L=(AB)'(CD)'。</p>
@@ -144,11 +144,11 @@
 <p>传播延迟（propagation delay）：由于PN结上储存电荷的积累和消散都需要时间，因此MOS管由导通到截至或由截止到导通也需要时间。电路中寄生电容和负载电容的影响，也使得输出波形总是滞后于输入波形，这个延迟时间成为传播延迟（propagation delay），或者传输延迟时间。它反映了门电路的开关速度和信号传递时间。
 通常，输出信号由低电平变为高电平时，输出相对输入的延迟时间记为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>t</mi><mrow><mrow><mi mathvariant="normal">P</mi><mi mathvariant="normal">L</mi><mi mathvariant="normal">H</mi></mrow></mrow></msub></mrow><annotation encoding="application/x-tex">t_{\mathrm { PLH }}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.61508em;"></span><span class="strut bottom" style="height:0.76508em;vertical-align:-0.15em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit">t</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathrm">P</span><span class="mord mathrm">L</span><span class="mord mathrm">H</span></span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span>：而输出信号由高电平变为低电平时，输出相对输入的延迟时间记为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>t</mi><mrow><mrow><mi mathvariant="normal">P</mi><mi mathvariant="normal">H</mi><mi mathvariant="normal">L</mi></mrow></mrow></msub></mrow><annotation encoding="application/x-tex">t _ { \mathrm { PHL } }</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.61508em;"></span><span class="strut bottom" style="height:0.76508em;vertical-align:-0.15em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit">t</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathrm">P</span><span class="mord mathrm">H</span><span class="mord mathrm">L</span></span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span>。</p>
 <center>
-    <img src="https://wx2.sinaimg.cn/large/7f79daaely1g2cwtvdiefj20bv04w3z2.jpg" alt="传播延迟" title="传播延迟">
+    <img src="https://i.loli.net/2019/04/25/5cc1d21c583b6.jpg" alt="传播延迟" title="传播延迟">
 </center>
 <p>转换时间（transition time）：用来描述逻辑电路的输出从一种状态变为另一种状态所需的时间。其中输出从低态到高态的转换时间称为上升时间（<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mrow><mi mathvariant="normal">t</mi></mrow><mrow><mrow><mi mathvariant="normal">r</mi></mrow></mrow></msub></mrow><annotation encoding="application/x-tex">\mathrm{t}_{\mathrm{r}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.61508em;"></span><span class="strut bottom" style="height:0.76508em;vertical-align:-0.15em;"></span><span class="base textstyle uncramped"><span class=""><span class="mord textstyle uncramped"><span class="mord mathrm">t</span></span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathrm">r</span></span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span>,rise time）；从高态到低态的转换时间称为下降时间（<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mrow><mi mathvariant="normal">t</mi></mrow><mrow><mrow><mi mathvariant="normal">f</mi></mrow></mrow></msub></mrow><annotation encoding="application/x-tex">\mathrm{t}_{\mathrm{f}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.61508em;"></span><span class="strut bottom" style="height:0.76508em;vertical-align:-0.15em;"></span><span class="base textstyle uncramped"><span class=""><span class="mord textstyle uncramped"><span class="mord mathrm">t</span></span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathrm" style="margin-right:0.07778em;">f</span></span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span>,fall time）。</p>
 <center>
-    <img src="https://wx2.sinaimg.cn/large/7f79daaely1g2cwtwqawwj20bt04it97.jpg" alt="上升时间和下降时间" title="上升时间和下降时间">
+    <img src="https://i.loli.net/2019/04/25/5cc1d245690f3.jpg" alt="上升时间和下降时间" title="上升时间和下降时间">
 </center>
 <h3 id="第四题">第四题</h3>
 <p>将相关答案总结罗列至此，<a href="https://www.cnblogs.com/IClearner/p/6893645.html">参考链接</a>作备忘和进一步学习。</p>
