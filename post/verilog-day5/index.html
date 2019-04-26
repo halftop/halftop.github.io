@@ -1,0 +1,270 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>Verilog没有葵花宝典——day5（时序逻辑） | 1/2顶点</title>
+<meta name="description" content="有输入有输出，才是正确的学习方式。">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico">
+<link rel="stylesheet" href="https://halftop.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://halftop.github.io">
+        <img class="avatar" src="https://halftop.github.io/images/avatar.png" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://halftop.github.io">
+        <h1 class="site-title">1/2顶点</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          <h2 class="post-title">Verilog没有葵花宝典——day5（时序逻辑）</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2019-04-26</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://halftop.github.io/tag/f0tARmjal">
+                    IC
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://halftop.github.io/tag/9rG5j0Nww">
+                    FPGA
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://halftop.github.io/tag/ADa051R6R">
+                    Verilog HDL
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://halftop.github.io/tag/bwS6E4Jqc">
+                    学习笔记
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <h2 id="题目">题目</h2>
+<blockquote>
+<ol>
+<li>dff和latch有什么区别。</li>
+<li>什么是同步电路和异步电路。</li>
+<li>什么是setup time和 hold time。</li>
+<li>设计一个101序列检测器。要画出状态转移图，写verilog，并仿真测试。</li>
+</ol>
+</blockquote>
+<!-- more -->
+<h3 id="1-dff和latch有什么区别">1. dff和latch有什么区别。</h3>
+<p>都是时序逻辑，输出不但同当前的输入相关还同上一状态的输出相关。</p>
+<p>1、latch由电平触发，非同步控制。在使能信号有效时latch相当于通路，在使能信号无效时latch保持输出状态。DFF由时钟沿触发，同步控制。</p>
+<p>2、latch容易产生毛刺（glitch），DFF则不易产生毛刺。</p>
+<p>3、如果使用门电路来搭建latch和DFF，则latch消耗的门资源比DFF要少，这是latch比DFF优越的地方。所以，在ASIC中使用 latch的集成度比DFF高，但在FPGA中正好相反，因为FPGA中没有标准的latch单元，但有DFF单元，一个LATCH需要多个LE才能实现。</p>
+<p>4、latch将静态时序分析变得极为复杂。</p>
+<center>
+    <img src="https://i.loli.net/2019/04/26/5cc31e0a462a2.png" alt="D锁存器和D触发器的输出波形图" title="D锁存器和D触发器的输出波形图">
+</center>
+<p>上图所示为D锁存器和D触发器输出端随输入信号变化的波形图( Waveform diagram)。由图中可见,输入信号D在<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>t</mi><mi>a</mi></msub></mrow><annotation encoding="application/x-tex">t_a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.61508em;"></span><span class="strut bottom" style="height:0.76508em;vertical-align:-0.15em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit">t</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">a</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span>时刻以前,D锁存器和D触发器输出端随输入信号变化的波形相同;在t时刻,CP=1期间D发生了变化,D锁存器的输出随着输入信号的变化而变化,D触发器则是在下一个时钟到来后输出状态才发生改变。这是由于触发器不具有传输透明性(Transparency),即触发器输入端发生变化并不会同步引起其输出端发生变化。触发器输出端的变化仅受控制输入(时钟)信号或异步置位复位信号的控制。在通常情况下,除了输入信号在CP=1期间发生变化以外,锁存器和触发器的输出响应是相同的。</p>
+<h3 id="2-什么是同步电路和异步电路">2. 什么是同步电路和异步电路。</h3>
+<p><strong>同步电路</strong> ：各时钟端连在一起，并接在统一的系统时钟端。只有当时钟边沿到来时，电路的状态才会改变。改变后的状态一直保持到下一个时钟的到来，在此期间无论外部的信号如何变化，状态表中的每个状态都是稳定的。</p>
+<p><strong>异步电路</strong> : 电路中没有统一的时钟，电路状态可以由外部输入的变化直接引起。</p>
+<h3 id="3-什么是setup-time和-hold-time">3. 什么是setup time和 hold time。</h3>
+<p><strong>建立时间（setup time）</strong> 是指在触发器的时钟信号上升沿到来以前，数据稳定不变的最小时间，如果建立时间不够，数据将不能在这个时钟上升沿被打入触发器；</p>
+<p><strong>保持时间（hold time）</strong> 是指在触发器的时钟信号上升沿到来以后，数据稳定不变的最小时间，如果保持时间不够，数据同样不能被打入触发器。</p>
+<h3 id="4-设计一个101序列检测器-要画出状态转移图写verilog并仿真测试">4. 设计一个101序列检测器。要画出状态转移图，写verilog，并仿真测试。</h3>
+<h4 id="状态转移图">状态转移图</h4>
+<center>
+    <img src="https://i.loli.net/2019/04/26/5cc318f6ed952.png" alt="状态转移" title="状态转移" width="500">
+</center>
+<h4 id="verilog描述">verilog描述</h4>
+<pre><code class="language-v">module test29(
+input clk, rst_n, data,
+output reg flag_101
+    );
+parameter   ST0 = 4'b0001,
+            ST1 = 4'b0010,
+            ST2 = 4'b0100,
+            ST3 = 4'b1000;
+
+reg [3:0] c_st;
+reg [3:0] n_st;
+//FSM-1
+always @(posedge clk or negedge rst_n) begin
+  if (!rst_n) begin
+    c_st &lt;= ST0;
+  end else begin
+    c_st &lt;= n_st;
+  end
+end
+//FSM-2
+always @(*) begin
+  case (c_st)
+    ST0: n_st = data ? ST1 : ST0;
+    ST1: n_st = data ? ST1 : ST2;
+    ST2: n_st = data ? ST3 : ST0;
+    ST3: n_st = data ? ST1 : ST2;
+    default: n_st = ST0;
+  endcase
+end
+//FSM-3
+always @(posedge clk or negedge rst_n) begin
+  if (!rst_n) begin
+    flag_101 &lt;= 1'b0;
+  end else begin
+    case (n_st)
+      ST3: flag_101 &lt;= 1'b1;
+      ST0,ST1,ST2: flag_101 &lt;= 1'b0;
+      default: flag_101 &lt;= 1'b0;
+    endcase
+  end
+end
+endmodule
+</code></pre>
+<h4 id="仿真结果">仿真结果</h4>
+<center>
+    <img src="https://i.loli.net/2019/04/26/5cc31a11654c1.png" alt="全加器计数" title="全加器计数" width="600">
+</center>
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://halftop.github.io/post/verilog-day4">
+              <h3 class="post-title">
+                下一篇：Verilog没有葵花宝典——day4（组合逻辑）
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+        
+          <div id="gitalk-container"></div>
+        
+
+        
+      
+
+      <div class="site-footer">
+  <div class="slogan">有输入有输出，才是正确的学习方式。</div>
+  Stop learning,do it!
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '42b8247150af6c920554',
+        clientSecret: 'ea9863ece62308a1854e39455221fa1ace6f8cd6',
+        repo: 'halftop.github.io',
+        owner: 'halftop',
+        admin: ['halftop'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>
