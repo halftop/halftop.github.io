@@ -194,6 +194,42 @@ always @(posedge clk or negedge rst_n) begin
 end
 endmodule
 </code></pre>
+<h4 id="testbench">testbench</h4>
+<pre><code class="language-v">module tb29(    );
+reg     clk, rst_n, data;
+wire    flag_101;
+
+  initial begin
+    clk = 0;
+    forever #10 clk = ~clk;
+  end
+  
+  initial begin
+    rst_n = 1'b0;
+    #22 rst_n = 1'b1;
+  end
+
+  initial begin
+    repeat(100)begin
+      @(negedge clk)
+	      data = {$random};
+    end
+    $finish;
+  end
+  
+/*   initial begin
+    $dumpfile(&quot;seq101_tb.vcd&quot;);
+    $dumpvars();
+  end */
+
+test29 test29(
+    .clk        (clk     ), 
+    .rst_n      (rst_n   ), 
+    .data       (data    ),
+    .flag_101   (flag_101)
+    );
+endmodule
+</code></pre>
 <h4 id="仿真结果">仿真结果</h4>
 <center>
     <img src="https://i.loli.net/2019/04/26/5cc31a11654c1.png" alt="全加器计数" title="全加器计数" width="600">
