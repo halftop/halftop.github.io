@@ -1,0 +1,516 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>Verilog99题——22-30题（时序逻辑基础） | 1/2顶点</title>
+<meta name="description" content="有输入有输出，才是正确的学习方式。">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico?v=1556376257940">
+<link rel="stylesheet" href="https://halftop.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://halftop.github.io">
+        <img class="avatar" src="https://halftop.github.io/images/avatar.png?v=1556376257940" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://halftop.github.io">
+        <h1 class="site-title">1/2顶点</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">Verilog99题——22-30题（时序逻辑基础）</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2019-04-27</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://halftop.github.io/tag/9rG5j0Nww">
+                    FPGA
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://halftop.github.io/tag/ADa051R6R">
+                    Verilog HDL
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://halftop.github.io/tag/bwS6E4Jqc">
+                    学习笔记
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <h2 id="前言">前言</h2>
+<p><a href="https://mp.weixin.qq.com/s/prdZKHbKTFMH80eRnr7mLQ">不忘出芯veriloig99题</a>的22-30题是时序逻辑基础相关。</p>
+ <!-- more --> 
+<h3 id="22-画一个d触发器的电路图">22. 画一个D触发器的电路图。</h3>
+<h3 id="23-说明d触发器与latch的区别">23. 说明D触发器与Latch的区别。</h3>
+<p>都是时序逻辑，输出不但同当前的输入相关还同上一状态的输出相关。</p>
+<p>1、latch由电平触发，非同步控制。在使能信号有效时latch相当于通路，在使能信号无效时latch保持输出状态。DFF由时钟沿触发，同步控制。</p>
+<p>2、latch容易产生毛刺（glitch），DFF则不易产生毛刺。</p>
+<p>3、如果使用门电路来搭建latch和DFF，则latch消耗的门资源比DFF要少，这是latch比DFF优越的地方。所以，在ASIC中使用 latch的集成度比DFF高，但在FPGA中正好相反，因为FPGA中没有标准的latch单元，但有DFF单元，一个LATCH需要多个LE才能实现。</p>
+<p>4、latch将静态时序分析变得极为复杂。</p>
+<p><a href="http://xiaodu163.lofter.com/post/1cbb68d9_299d4c5">参考链接</a></p>
+<center>
+    <img src="https://i.loli.net/2019/04/26/5cc31e0a462a2.png" alt="D锁存器和D触发器的输出波形图" title="D锁存器和D触发器的输出波形图">
+</center>
+<p>上图所示为D锁存器和D触发器输出端随输入信号变化的波形图( Waveform diagram)。由图中可见,输入信号D在<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>t</mi><mi>a</mi></msub></mrow><annotation encoding="application/x-tex">t_a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.61508em;"></span><span class="strut bottom" style="height:0.76508em;vertical-align:-0.15em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit">t</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">a</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span>时刻以前,D锁存器和D触发器输出端随输入信号变化的波形相同;在t时刻,CP=1期间D发生了变化,D锁存器的输出随着输入信号的变化而变化,D触发器则是在下一个时钟到来后输出状态才发生改变。这是由于触发器不具有传输透明性(Transparency),即触发器输入端发生变化并不会同步引起其输出端发生变化。触发器输出端的变化仅受控制输入(时钟)信号或异步置位复位信号的控制。在通常情况下,除了输入信号在CP=1期间发生变化以外,锁存器和触发器的输出响应是相同的。</p>
+<h3 id="24-解释一下d触发器的建立时间与保持时间">24. 解释一下D触发器的建立时间与保持时间。</h3>
+<p><strong>建立时间（setup time）</strong> 是指在触发器的时钟信号上升沿到来以前，数据稳定不变的最小时间，如果建立时间不够，数据将不能在这个时钟上升沿被打入触发器；</p>
+<p><strong>保持时间（hold time）</strong> 是指在触发器的时钟信号上升沿到来以后，数据稳定不变的最小时间，如果保持时间不够，数据同样不能被打入触发器。</p>
+<h3 id="25-解释一下latch的建立时间与保持时间">25. 解释一下Latch的建立时间与保持时间。</h3>
+<p>建立时间（Setup time）<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>t</mi><mrow><mi>s</mi><mi>u</mi></mrow></msub></mrow><annotation encoding="application/x-tex">t_{su}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.61508em;"></span><span class="strut bottom" style="height:0.76508em;vertical-align:-0.15em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit">t</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit">s</span><span class="mord mathit">u</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span>：锁存器输入信号D到来时刻到输入信号达到稳定所持续的时间。</p>
+<p>保持时间（Hold time）<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>t</mi><mrow><mi>h</mi></mrow></msub></mrow><annotation encoding="application/x-tex">t_{h}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.61508em;"></span><span class="strut bottom" style="height:0.76508em;vertical-align:-0.15em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit">t</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit">h</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span>：输入信号D达到稳定时刻至输入信号被锁存器接受所持续的时间。</p>
+<p>控制脉冲宽度（Control pulse width）<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>t</mi><mrow><mi>w</mi></mrow></msub></mrow><annotation encoding="application/x-tex">t_{w}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.61508em;"></span><span class="strut bottom" style="height:0.76508em;vertical-align:-0.15em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit">t</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit" style="margin-right:0.02691em;">w</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span>：控制时钟（使能）脉冲C1，处于激活状态时的持续时间。</p>
+<p>其中，建立时间必须确保数据输入端的任何变化在控制输入信号到来以前能够准确地传送到输入电路：保持时间和控制脉冲宽度必须保证输入信号在产生新状态以前读入当前数据。</p>
+<p>传输延迟时间（Propagation delay）：是输入信号的时序变化对输出信号的时序影响，定义为从输入信号（D或C）变化时开始，到输出端（Q或QN）出现相应的输出响应所持续的时间。传输延迟时间通常描述为输入端信号发生变化，引起输出端电平从高到低变化时的传输延迟时间<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>t</mi><mrow><mi>p</mi><mi>H</mi><mi>L</mi></mrow></msub></mrow><annotation encoding="application/x-tex">t_{pHL}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.61508em;"></span><span class="strut bottom" style="height:0.9011879999999999em;vertical-align:-0.286108em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit">t</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit">p</span><span class="mord mathit" style="margin-right:0.08125em;">H</span><span class="mord mathit">L</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span>和输出端电平从低到高变化时的传输延迟时间<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>t</mi><mrow><mi>p</mi><mi>L</mi><mi>H</mi></mrow></msub></mrow><annotation encoding="application/x-tex">t_{pLH}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.61508em;"></span><span class="strut bottom" style="height:0.9011879999999999em;vertical-align:-0.286108em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit">t</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit">p</span><span class="mord mathit">L</span><span class="mord mathit" style="margin-right:0.08125em;">H</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span>。</p>
+<center>
+    <img src="https://wx4.sinaimg.cn/large/7f79daaely1g23lw6xjzsj20pn0hvgoa.jpg" alt="锁存器时序参数图" title="锁存器时序参数图" width="600">
+</center>
+<h3 id="26-用verilog实现1bit信号边沿检测功能输出一个周期宽度的脉冲信号">26. 用verilog实现1bit信号边沿检测功能，输出一个周期宽度的脉冲信号。</h3>
+<ol>
+<li>上升沿</li>
+<li>下降沿</li>
+<li>上升沿或者下降沿</li>
+</ol>
+<blockquote>
+<p>input clk, rst_n, data;</p>
+<p>output data_edge;</p>
+</blockquote>
+<h4 id="verilog描述">Verilog描述</h4>
+<pre><code class="language-v">module test26(
+    input   clk, rst_n, data,
+    output  rise_edge,  //上升沿
+    output  fall_edge,  //下降沿
+    output  data_edge   //边沿
+    );
+
+reg data_r,data_rr;
+
+always @(posedge clk or negedge rst_n) begin
+    if (!rst_n) begin
+        data_r  &lt;= 1'b0;
+        data_rr &lt;= 1'b0;     
+    end else begin
+      data_r    &lt;= data;
+      data_rr   &lt;= data_r;
+    end
+end
+
+assign rise_edge = ( ~data_rr &amp;&amp; data_r ) ? 1'b1 : 1'b0 ;
+assign fall_edge = ( data_rr &amp;&amp; ~data_r ) ? 1'b1 : 1'b0 ;
+assign data_edge = ( data_rr^data_r ) ? 1'b1 : 1'b0 ;
+endmodule
+</code></pre>
+<h4 id="仿真图">仿真图</h4>
+<center>
+ <img src="https://i.loli.net/2019/04/27/5cc41873d17e4.png" alt="边沿检测仿真图" title="边沿检测仿真图" width="800"> 
+</center>
+<h3 id="27-用verilog实现一个4bit二进制计数器">27. 用verilog实现一个4bit二进制计数器。</h3>
+<ol>
+<li>异步复位</li>
+<li>同步复位</li>
+</ol>
+<pre><code class="language-v">input clk, rst_n; 
+output [3:0] o_cnt;
+module test27(
+    input clk, rst_n,
+    output [3:0] o_cnt
+    );
+    reg [3:0] cnt;
+//异步复位
+/* always @ (posedge clk or negedge rst_n) begin
+    if ( !rst_n )
+        cnt &lt;= 4'b0000;
+    else if ( cnt == 4'b1111 )
+        cnt &lt;= 4'b0000;
+    else
+        cnt &lt;= cnt + 1'b1;
+end */
+//同步复位
+always @ (posedge clk) begin
+    if ( !rst_n )
+        cnt &lt;= 4'b0000;
+    else if ( cnt == 4'b1111 )
+        cnt &lt;= 4'b0000;
+    else
+        cnt &lt;= cnt + 1'b1;
+end
+
+assign o_cnt = cnt;
+
+endmodule
+</code></pre>
+<h3 id="28-用verilog实现串并转换">28. 用verilog实现串并转换。</h3>
+<ol>
+<li>lsb优先</li>
+<li>msb优先</li>
+</ol>
+<blockquote>
+<p>input clk, rst_n, data_i;</p>
+<p>output [7:0] data_o;</p>
+</blockquote>
+<h4 id="verilog描述-2">Verilog描述</h4>
+<pre><code class="language-v">module test28(
+    input clk, rst_n, data_i,
+    output [7:0] data_o
+    );
+    reg [7:0] data_r;
+    reg [2:0] cnt;
+//lsb
+always @(posedge clk or negedge rst_n) begin
+  if (!rst_n) begin
+    data_r &lt;= 8'd0;
+    cnt &lt;= 3'b0;
+  end else begin
+    data_r &lt;= {data_r[6:0],data_i};
+    cnt &lt;= cnt + 1'b1;
+  end
+end
+//msb
+/* always @(posedge clk or negedge rst_n) begin
+  if (!rst_n) begin
+    data_r &lt;= 8'd0;
+    cnt &lt;= 3'b0;
+  end else begin
+    data_r &lt;= {data_i,data_r[7:1]};
+    cnt &lt;= cnt + 1'b1;
+  end
+end */
+
+assign data_o = (cnt == 3'd0) ? data_r : data_o;
+endmodule
+</code></pre>
+<h4 id="testbench">testbench</h4>
+<pre><code class="language-v">module tb28(    );
+reg clk, rst_n, data_i;
+wire [7:0] data_o;
+  
+  initial begin
+    clk = 1;
+    forever #10 clk = ~clk;
+  end
+  
+  initial begin
+    rst_n = 1'b0;
+    #22 rst_n = 1'b1;
+  end
+
+  initial begin
+    repeat(100)begin
+      @(negedge clk)
+	data_i = {$random};
+    end
+    $finish;
+  end
+  
+  initial begin
+    $dumpfile(&quot;tb28.vcd&quot;);
+    $dumpvars();
+  end
+  
+test28 test28(
+    .clk     ( clk    ), 
+    .rst_n   ( rst_n  ), 
+    .data_i  ( data_i ),
+    .data_o  ( data_o )
+    );
+endmodule
+</code></pre>
+<h4 id="仿真图-2">仿真图</h4>
+<p>lsb优先：</p>
+<center>
+ <img src="https://i.loli.net/2019/04/27/5cc463b483a93.png" alt="lsb优先" title="lsb优先" width="800"> 
+</center>
+<p>msb优先:</p>
+<center>
+ <img src="https://i.loli.net/2019/04/27/5cc464fca2ff6.png" alt="msb优先" title="msb优先" width="800"> 
+</center>
+<p>上下两幅图结果正好相反，进一步验证了正确性。</p>
+<h3 id="29-序列检测器有101序列输入时输出为1其他输入情况下输出为0-画出状态转移图并用verilog描述">29. 序列检测器：有“101”序列输入时输出为1，其他输入情况下，输出为0。画出状态转移图，并用verilog描述。</h3>
+<blockquote>
+<p>input clk, rst_n, data;</p>
+<p>output flag_101;</p>
+</blockquote>
+<h4 id="状态转移图">状态转移图</h4>
+<center>
+    <img src="https://i.loli.net/2019/04/26/5cc318f6ed952.png" alt="状态转移" title="状态转移" width="500">
+</center>
+<h4 id="verilog描述-3">verilog描述</h4>
+<pre><code class="language-v">module test29(
+input clk, rst_n, data,
+output reg flag_101
+    );
+parameter   ST0 = 4'b0001,
+            ST1 = 4'b0010,
+            ST2 = 4'b0100,
+            ST3 = 4'b1000;
+
+reg [3:0] c_st;
+reg [3:0] n_st;
+//FSM-1
+always @(posedge clk or negedge rst_n) begin
+  if (!rst_n) begin
+    c_st &lt;= ST0;
+  end else begin
+    c_st &lt;= n_st;
+  end
+end
+//FSM-2
+always @(*) begin
+  case (c_st)
+    ST0: n_st = data ? ST1 : ST0;
+    ST1: n_st = data ? ST1 : ST2;
+    ST2: n_st = data ? ST3 : ST0;
+    ST3: n_st = data ? ST1 : ST2;
+    default: n_st = ST0;
+  endcase
+end
+//FSM-3
+always @(posedge clk or negedge rst_n) begin
+  if (!rst_n) begin
+    flag_101 &lt;= 1'b0;
+  end else begin
+    case (n_st)
+      ST3: flag_101 &lt;= 1'b1;
+      ST0,ST1,ST2: flag_101 &lt;= 1'b0;
+      default: flag_101 &lt;= 1'b0;
+    endcase
+  end
+end
+endmodule
+</code></pre>
+<h4 id="testbench-2">testbench</h4>
+<pre><code class="language-v">module tb29(    );
+reg     clk, rst_n, data;
+wire    flag_101;
+
+  initial begin
+    clk = 0;
+    forever #10 clk = ~clk;
+  end
+  
+  initial begin
+    rst_n = 1'b0;
+    #22 rst_n = 1'b1;
+  end
+
+  initial begin
+    repeat(100)begin
+      @(negedge clk)
+	      data = {$random};
+    end
+    $finish;
+  end
+  
+/*   initial begin
+    $dumpfile(&quot;seq101_tb.vcd&quot;);
+    $dumpvars();
+  end */
+
+test29 test29(
+    .clk        (clk     ), 
+    .rst_n      (rst_n   ), 
+    .data       (data    ),
+    .flag_101   (flag_101)
+    );
+endmodule
+</code></pre>
+<h4 id="仿真结果">仿真结果</h4>
+<center>
+    <img src="https://i.loli.net/2019/04/26/5cc31a11654c1.png" alt="全加器计数" title="全加器计数" width="600">
+</center>
+<h3 id="30-用verilog实现两路数据的乘法运算要求只使用1个乘法器">30. 用verilog实现两路数据的乘法运算，要求只使用1个乘法器。</h3>
+<blockquote>
+<p>input clk, rst_n;</p>
+<p>input sel_x;</p>
+<p>input [7:0] da_x_y;</p>
+<p>input [7:0] db_x_y;</p>
+<p>output reg [15:0] dout_x_y;</p>
+</blockquote>
+<h4 id="verilog描述-4">verilog描述</h4>
+<pre><code class="language-v">module test30(
+    input              clk             ,
+    input              rst_n           ,
+    input              sel_x           ,
+    input       [ 7:0] da_x            , 
+    input       [ 7:0] da_y            , 
+    input       [ 7:0] db_x            , 
+    input       [ 7:0] db_y            , 
+    output  reg [15:0] dout_x_y
+    );
+    wire    [ 7:0] da;
+    wire    [ 7:0] db;
+    wire    [15:0] dout;
+assign da = sel_x ? da_x : da_y;
+assign db = sel_x ? db_y : db_x;
+assign dout = da * db ;
+
+always @(posedge clk or negedge rst_n) begin
+  if (!rst_n) begin
+    dout_x_y &lt;= 16'd0;
+  end else begin
+    dout_x_y &lt;= dout;
+  end
+end
+endmodule
+</code></pre>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://halftop.github.io/post/verilog-day5">
+              <h3 class="post-title">
+                下一篇：Verilog没有葵花宝典——day5（时序逻辑）
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+        
+          <div id="gitalk-container"></div>
+        
+
+        
+      
+
+      <div class="site-footer">
+  <div class="slogan">有输入有输出，才是正确的学习方式。</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  Stop learning,do it!
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '42b8247150af6c920554',
+        clientSecret: 'ea9863ece62308a1854e39455221fa1ace6f8cd6',
+        repo: 'halftop.github.io',
+        owner: 'halftop',
+        admin: ['halftop'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>
