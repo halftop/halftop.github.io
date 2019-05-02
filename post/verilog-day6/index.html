@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico?v=1556549776802">
+<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico?v=1556788999133">
 <link rel="stylesheet" href="https://halftop.github.io/styles/main.css">
 
 
@@ -35,7 +35,7 @@
   <div class="site-header">
     <div class="left">
       <a href="https://halftop.github.io">
-        <img class="avatar" src="https://halftop.github.io/images/avatar.png?v=1556549776802" alt="" width="32px" height="32px">
+        <img class="avatar" src="https://halftop.github.io/images/avatar.png?v=1556788999133" alt="" width="32px" height="32px">
       </a>
       <a href="https://halftop.github.io">
         <h1 class="site-title">1/2顶点</h1>
@@ -177,7 +177,7 @@ always @ (*)
 <p>在第二种描述方式中使用了“always”语句,后面紧跟着一个敏感列表:@(*)。因此,这个语句只有在data0或data1发生变化时才会执行。上图中在时刻2、4和6,该语句都将执行,将data0和data1赋值的结果延时1ns以后赋值给A_XOR变量。在其他时刻,A_XOR变量必须保持。因此,从仿真语义上讲,需要一个存储单元,也可以说是寄存器,来保存A_XOR变量的中间值。所以这个A_XOR变量需要定义为reg类型。</p>
 <h3 id="12-阻塞赋值与非阻塞赋值的区别">1.2 阻塞赋值与非阻塞赋值的区别</h3>
 <p>两种赋值方式的格式只有符号的差别：<code>寄存器变量 =/&lt;= 表达式</code></p>
-<p>如果多个阻塞賦值语句顺序出现在begin..end语句中,前面的语句在执行时,将完全阻塞后面的语句,直到前面语句的赋值完成以后,才会执行下一句的右边表达式计算。例如<code>begin m=n;n=m;end</code>语句中,当m被完全赋值以后,在开始执行“n=m”将m的新值付给n。这样执行的结果就是n的初始值不变,而且m与n相等。</p>
+<p>如果多个阻塞赋值语句顺序出现在begin..end语句中,前面的语句在执行时,将完全阻塞后面的语句,直到前面语句的赋值完成以后,才会执行下一句的右边表达式计算。例如<code>begin m=n;n=m;end</code>语句中,当m被完全赋值以后,在开始执行“n=m”将m的新值付给n。这样执行的结果就是n的初始值不变,而且m与n相等。</p>
 <p>与阻塞赋值不同的是,如果多个非阻塞赋值语句顺序出现在begin…end语句中,前面语句的执行,并不会阻塞后面语句的执行。前面语句的计算完成,还没有赋值时,就会执行下一句的右边表达式计算。例如<code>begin m&lt;=n;n&lt;=m;end</code>语句中,最后的结果是将m与n值互换了。</p>
 <h3 id="13-parameter与define的区别">1.3 parameter与define的区别</h3>
 <p>parameter声明和作用于模块内部，可以在调用模块时进行参数传递；
@@ -255,7 +255,7 @@ endmodule
 <center>
  <img src="https://i.loli.net/2019/04/29/5cc70ba866143.png" alt="边沿检测仿真图" title="边沿检测仿真图" width="800"> 
 </center>
-<h3 id="3-记录一下第2题中用到的工具包括工具版本操作步骤或命令选项遇到的错误提示信息等">3. 记录一下第2题中用到的工具，包括工具版本，操作步骤或命令选项，遇到的错误，提示信息等。、</h3>
+<h3 id="3-记录一下第2题中用到的工具包括工具版本操作步骤或命令选项遇到的错误提示信息等">3. 记录一下第2题中用到的工具，包括工具版本，操作步骤或命令选项，遇到的错误，提示信息等。</h3>
 <p>VCS2014</p>
 <p>把源文件和仿真文件放到同一目录下
 <code>cd</code>到该目录</p>

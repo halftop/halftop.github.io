@@ -1,0 +1,362 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>Verilog没有葵花宝典——day7（串并转换） | 1/2顶点</title>
+<meta name="description" content="有输入有输出，才是正确的学习方式。">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico?v=1556788999133">
+<link rel="stylesheet" href="https://halftop.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://halftop.github.io">
+        <img class="avatar" src="https://halftop.github.io/images/avatar.png?v=1556788999133" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://halftop.github.io">
+        <h1 class="site-title">1/2顶点</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">Verilog没有葵花宝典——day7（串并转换）</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2019-05-02</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://halftop.github.io/tag/9rG5j0Nww">
+                    FPGA
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://halftop.github.io/tag/ADa051R6R">
+                    Verilog HDL
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://halftop.github.io/tag/bwS6E4Jqc">
+                    学习笔记
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <h2 id="题目">题目</h2>
+<blockquote>
+<ol>
+<li>复习verilog语法【选做题】</li>
+</ol>
+<p>文件操作fopen fdisplay fwrite fclose</p>
+<p>生成随机数 random</p>
+<p>初始化 readmemh readmemb</p>
+<p>finish stop</p>
+<ol start="2">
+<li>用verilog实现串并变换。</li>
+</ol>
+<p>mode 0 ：串行输入data_in[0]，并行输出data_out[3:0]
+mode 1 ：并行输入data_in[3:0]，串行输出data_out[0]
+mode 2 ：并行输入data_in[3:0]，并行输出data_out[3:0]，延迟1个时钟周期
+mode 3 ：并行输入data_in[3:0]，并行反序输出data_out[3:0]，延迟1个时钟周期并且交换bit</p>
+<p>附加要求【选做】
+将输入输出的位宽做成参数化</p>
+<ol start="3">
+<li>记录一下第2题中用到的工具，包括工具版本，操作步骤或命令选项，遇到的错误，提示信息等。比较一下，与昨天的记录有何相同，有何不同。</li>
+</ol>
+</blockquote>
+<!-- more --> 
+<h3 id="1复习verilog语法">1.复习verilog语法</h3>
+<ul>
+<li>
+<p>文件操作fopen fdisplay fwrite fclose</p>
+<pre><code class="language-verilog">integer fileunder;
+fileunder = $fopen(&quot;FileName&quot;);//打开文件，返回一个整型，会清空文件
+$fdisplay(fileunder,&quot;%d&quot;,mumber);//写入操作，写完换行
+$fwrite(fileunder,&quot;%d&quot;,mumber);//写入操作，写完不换行
+$fclose(fileunder);//关闭文件
+</code></pre>
+</li>
+<li>
+<p>生成随机数random</p>
+<p>每次调用<code>$random</code>任务时，它返回一个32位带符号的随机整数。将<code>$random</code>放入{}内，可以得到非负整数。<code>$random(seed)</code>中的seed是一个整数，用于指出随机数的取值范围。</p>
+<pre><code class="language-verilog">rand = $random % 60;//给出了一个范围在－59到59之间的随机数。
+rand = {$random} % 60;//通过位并接操作产生一个值在0到59之间的数。
+rand = min+{$random} % (max-min+1);//产生一个在min, max之间随机数的例子。
+</code></pre>
+</li>
+<li>
+<p>初始化 readmemh readmemb</p>
+<p>把文本文件的数据读到存储器阵列中，以对存储器阵列完成初始化。</p>
+<pre><code class="language-verilog">$readmemb(&quot;&lt;数据文件名&gt;&quot;,&lt;存储器名&gt;);
+$readmemb(&quot;&lt;数据文件名&gt;&quot;,&lt;存储器名&gt;,&lt;起始地址&gt;);
+$readmemb(&quot;&lt;数据文件名&gt;&quot;,&lt;存储器名&gt;,&lt;起始地址&gt;,&lt;终止地址&gt;);
+
+$readmemh(&quot;&lt;数据文件名&gt;&quot;,&lt;存储器名&gt;);
+$readmemh(&quot;&lt;数据文件名&gt;&quot;,&lt;存储器名&gt;,&lt;起始地址&gt;);
+$readmemh(&quot;&lt;数据文件名&gt;&quot;,&lt;存储器名&gt;,&lt;起始地址&gt;,&lt;终止地址&gt;);
+
+$readmemb中要求数据必须为二进制，$readmemh要求数据必须为十六进制
+</code></pre>
+</li>
+<li>
+<p>finish stop</p>
+<p><code>$stop</code>：用于在仿真时，暂停仿真。运行到<code>$stop</code>的时候，仿真会暂停；此时可以在命令行输入run继续运行仿真。</p>
+<p><code>$finish</code>：仿真停止。运行到<code>$finish</code>的时候，仿真停止退出，此时不可以再继续运行</p>
+</li>
+</ul>
+<h3 id="2-用verilog实现串并变换-选做-将输入输出的位宽做成参数化">2. 用verilog实现串并变换。【选做】 将输入输出的位宽做成参数化</h3>
+<p>借鉴了部分代码，用Vivado+modelsim仿了一下，功能没有问题，但是觉得写的一般。期待其他小伙伴的答案。</p>
+<pre><code class="language-verilog">module s_p_conver
+#(
+	parameter	WIDTH	=	4
+)
+(
+	input						clk			,
+	input						rst_n		,
+	input		[WIDTH-1:0]		data_in		,
+	output	reg	[WIDTH-1:0]		data_out	,
+	input		[1:0]			mode		
+);
+
+localparam CNT_WIDTH = clogb2(WIDTH);
+
+reg	[WIDTH-1:0]	data_out_r;
+
+reg	[CNT_WIDTH-1:0]	cnt;
+reg   [1:0] mode_r;
+wire change;
+
+always @(posedge clk or negedge rst_n)begin
+    if(!rst_n)
+      mode_r &lt;= 2'b00;
+    else 
+      mode_r &lt;= mode;
+end
+assign change = (mode_r ^ mode)? 1'b1: 1'b0;
+
+always @(posedge clk or negedge rst_n)begin
+    if(!rst_n)
+      cnt &lt;= 'd0;
+    else if(change == 1'b1)
+      cnt &lt;= 'd0;
+    else if(mode[1] == 1'b0) begin
+		case (mode[0])
+          1'b0: if(cnt == WIDTH) cnt &lt;= 'd1;else cnt &lt;= cnt + 1'b1;
+          1'b1: if(cnt == WIDTH-1) cnt &lt;= 'd0;else cnt &lt;= cnt + 1'b1;
+			default: cnt &lt;= cnt;
+		endcase
+	end
+	else
+		cnt &lt;= cnt;
+end
+//serial_parallel_convertion
+always @(posedge clk or negedge rst_n) begin
+	if (!rst_n) begin
+		data_out_r &lt;= 'd0;
+	end else begin:s_p
+		integer i;
+		case (mode)
+			2'b00: begin
+				for (i = WIDTH-1; i&gt;0; i=i-1) begin
+					data_out_r[i] &lt;= data_out_r[i-1];
+				end
+				data_out_r[0] &lt;= data_in[0];
+			end
+			2'b01: begin
+              if(cnt == 'd0)
+              data_out_r &lt;= data_in;
+              else
+              data_out_r &lt;= {1'b0,data_out_r[WIDTH-1:1]};
+			end
+			2'b10: begin
+				/* for (i = 0; i&lt;=WIDTH-1; i=i+1) begin
+					data_out_r[i] &lt;= data_in[i];
+				end */
+				data_out_r &lt;= data_in;
+			end
+			2'b11: begin
+				for (i = 0; i&lt;=WIDTH-1; i=i+1) begin
+					data_out_r[WIDTH-1-i] &lt;= data_in[i];
+				end
+			end
+			default: data_out_r &lt;= data_out_r;
+		endcase
+	end
+end
+//output
+always @(*) begin
+	case (mode)
+        2'b00: data_out = (cnt == 'd1) ? data_out_r : data_out;//latch
+		2'b01: data_out = data_out_r;
+		default: data_out = data_out_r;
+	endcase
+end
+
+function integer clogb2 (input integer depth);
+	begin
+      for(clogb2=0; depth&gt;0; clogb2=clogb2+1)
+		depth = depth &gt;&gt; 1;
+	end
+endfunction
+
+endmodule
+</code></pre>
+<h3 id="3-记录一下第2题中用到的工具">3. 记录一下第2题中用到的工具。。。。。。</h3>
+<p>这次使用vivado2017.4+modelsim调试。</p>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://halftop.github.io/post/verilog-day6">
+              <h3 class="post-title">
+                下一篇：Verilog没有葵花宝典——day6（边沿检测）
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+        
+          <div id="gitalk-container"></div>
+        
+
+        
+      
+
+      <div class="site-footer">
+  <div class="slogan">有输入有输出，才是正确的学习方式。</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  Stop learning,do it!
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '42b8247150af6c920554',
+        clientSecret: 'ea9863ece62308a1854e39455221fa1ace6f8cd6',
+        repo: 'halftop.github.io',
+        owner: 'halftop',
+        admin: ['halftop'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>
