@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Verilog99题——31-37题（存储相关） | 1/2顶点</title>
+<meta name="description" content="有输入有输出，才是正确的学习方式。">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico?v=1557025744636">
+<!--字体-->
+<link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Libre+Barcode+39" rel="stylesheet">
+<!--主要CSS-->
+<link rel="stylesheet" href="https://halftop.github.io/styles/main.css">
+<style type="text/css">
+      .tilt{
+        margin: 0;
+        overflow: hidden;
+        width: 100vw;
+        height: 100vh;
+        background: #49beb7;
+        background: linear-gradient(to top left, #4CB8C4 -40%, #2196F3);
+        position:fixed;
+        top:0;
+        left:0;
+        z-index: 999 !important;
+      }
+      .container {
+        position: absolute;
+        top:0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 250px;
+        height: 250px;
+        margin: auto;
+      }
+
+      .part {
+        width: 250px;
+        position: absolute;
+      }
+
+      .svgpath {
+        fill: rgba(145,220,90,0);
+        stroke: aqua;
+        stroke-width: 1.5px;
+        stroke-dasharray: 1000;
+        stroke-linecap: round;
+        z-index: 2;
+      }
+
+      .svgbg {
+        fill: rgba(255,255,255,0.2);
+        z-index: 1;
+       }
+
+      #playload {
+        animation: dash 2.5s reverse ease-in-out infinite;
+      }
+
+      @keyframes dash {
+        to {
+          stroke-dashoffset: 2000;
+        }
+      }</style>
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+
+<script src="https://halftop.github.io/media/dict/js/Vue.js"></script>
+<script src="https://halftop.github.io/media/dict/js/JQuery.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<link rel="stylesheet" href="https://halftop.github.io/media/dict/css/aos.css" />
+
+
+
+
+
+  </head>
+  <body>
+    <div class="tilt">
+      <div class='container'>
+        <svg class='part' x="0px" y="0px" viewBox="0 0 256 256" style="enable-background:new 0 0 256 256;" xml:space="preserve">
+          <path class="svgpath" id="playload" d="M189.5,140.5c-6.6,29.1-32.6,50.9-63.7,50.9c-36.1,0-65.3-29.3-65.3-65.3
+        c0,0,17,0,23.5,0c10.4,0,6.6-45.9,11-46c5.2-0.1,3.6,94.8,7.4,94.8c4.1,0,4.1-92.9,8.2-92.9c4.1,0,4.1,83,8.1,83
+        c4.1,0,4.1-73.6,8.1-73.6c4.1,0,4.1,63.9,8.1,63.9c4.1,0,4.1-53.9,8.1-53.9c4.1,0,4.1,44.1,8.2,44.1c4.1,0,3.1-34.5,7.2-34.5
+        c4.1,0,3.1,24.6,7.2,24.6c4.1,0,2.5-14.5,5.2-14.5c2.2,0,0.8,5.1,4.2,4.9c0.4,0,13.1,0,13.1,0c0-34.4-27.9-62.3-62.3-62.3
+        c-27.4,0-50.7,17.7-59,42.3" />
+
+          <path class="svgbg" d="M61,126c0,0,16.4,0,23,0c10.4,0,6.6-45.9,11-46c5.2-0.1,3.6,94.8,7.4,94.8c4.1,0,4.1-92.9,8.2-92.9
+        c4.1,0,4.1,83,8.1,83c4.1,0,4.1-73.6,8.1-73.6c4.1,0,4.1,63.9,8.1,63.9c4.1,0,4.1-53.9,8.1-53.9c4.1,0,4.1,44.1,8.2,44.1
+        c4.1,0,3.1-34.5,7.2-34.5c4.1,0,3.1,24.6,7.2,24.6c4.1,0,2.5-14.5,5.2-14.5c2.2,0,0.8,5.1,4.2,4.9c0.4,0,22.5,0,23,0" />
+        </svg></div> 
+    </div>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+
+  <div class="overlay"></div>
+  <div class="top-container" data-aos="fade-right">
+    <!--头像-->
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://halftop.github.io">
+        <img src="https://halftop.github.io/images/avatar.png?v=1557025744636" class="site-logo">
+      </a>
+      <h1 class="site-title">
+            1/2顶点
+            <p></p>
+        </h1>
+    </div>
+    <!--导航-->
+    <div class="top-header-nav">
+
+
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+    <div class="icons">
+        <ul>
+          <li v-for="(le,index) in alin.like">
+            <a :href="le.aim" :alt="le.alt">
+              <img :src="le.src" />
+            </a>
+          </li>
+        </ul>
+    </div> 
+
+  </div>
+
+
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+      <div class="site-footer">
+          <div class="tt">Stop learning,do it!</div>
+
+      </div>
+      <div class="site-description">
+          <p><a href="#">有输入有输出，才是正确的学习方式。</a></p>
+          <p>
+            
+            <span>&nbsp;</span>
+            Powered by <a href="https://gridea.dev">Gridea</a>
+            <span>•</span>Theme <a href="http://www.itaolaity.com/">Alin</a>
+          </p>
+      </div>
+  </div>
+</div>
+
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Verilog99题——31-37题（存储相关）</h2>
+            <div class="post-date">2019-05-04</div>
+            
+              <div class="feature-container" style="background-image: url('https://i.loli.net/2019/05/05/5cce53c62ccaa.jpeg')">
+              </div>
+            
+            <div class="post-content">
+              <h2 id="前言">前言</h2>
+<p><a href="https://mp.weixin.qq.com/s/prdZKHbKTFMH80eRnr7mLQ">不忘出芯veriloig99题</a>的31-37题是存储相关。</p>
+ <!-- more --> 
+<h3 id="31名词解释">31.名词解释</h3>
+<ul>
+<li>ROM：Read Only Memory，只读存储器。</li>
+<li>RAM：Random Access Memory，随机存取存储器，可以作手机、电脑的运行内存。</li>
+<li>SRAM：Static Random-Access Memory，静态随机存取存储器，只要供电数据就会保持，但断电数据就会消失。</li>
+<li>DRAM：Dynamic Random Access Memory，动态随机存储器，主要原理是利用电容存储电荷的多少来代表一个bit是0还是1，由于晶体管的漏电电流现象，电容会放电，所以要周期性的给电容充电，叫刷新。SRAM不需要刷新也会保持数据丢失，但是两者断电后数据都会消失，称为Volatile Memory。</li>
+<li>SDRAM：Synchronous Dynamic Random Access Memory，同步动态随机存储器，同步写入和读出数据的DRAM。</li>
+<li>EEPROM：Electrically Erasable Programmable Read Only Memory，电可擦除可编程只读存储器。</li>
+<li>DDR：Double Data Synchronous Dynamic Random Access Memory，双倍速率同步动态随机存储器，双倍速率传输的SDRAM，在时钟的上升沿和下降沿都可以进行数据传输。我们电脑的内存条都是DDR芯片。</li>
+<li>FLASH： Flash Memory，闪存，非易失性固态存储，如制成内存卡或U盘。</li>
+</ul>
+<h3 id="32-用verilog实现一个深度16位宽8bit的rom初始值等于对应地址加上0xa0">32. 用verilog实现一个深度16，位宽8bit的ROM，初始值等于对应地址加上<code>0xA0</code>。</h3>
+<pre><code class="language-verilog">module test32
+#(
+	parameter WD = 4'd8,			//数据位宽
+	parameter DP = 5'd16			//深度
+)
+(
+	input					i_en		,
+    input   [ADDR_WD-1:0]	i_addr		,
+	output		[WD-1:0]	o_data		
+    );
+	
+    localparam	ADDR_WD = clogb2(DP);	//地址位宽
+reg [WD-1:0] buffer [DP-1:0];
+
+integer i;
+
+initial begin
+  for (i = 0; i &lt; DP; i = i + 1) begin
+	buffer[i] &lt;= i + 8'hA0;
+  end
+end
+
+assign o_data = i_en ? buffer[i_addr] : 'hz ;
+
+function integer clogb2 (input integer depth);
+    begin
+        for(clogb2=0; depth&gt;0; clogb2=clogb2+1)
+        depth = depth &gt;&gt; 1;
+    end
+endfunction
+    
+endmodule
+</code></pre>
+<h3 id="33-画出sram-bit-cell结构图6管基本存储电路及其运作原理">33. 画出SRAM bit cell结构图——6管基本存储电路及其运作原理.</h3>
+<center>
+<img src =  "https://i.loli.net/2019/05/05/5cce4abb39405.jpg" alt="6管基本存储电路" title="6管基本存储电路" width="600" > 
+</center> 
+<p>晶体管M1及M2构成一个inverter，M3及M4构成另外一个inverter。这两个inverter的output分别接到另外一个inverter的input而形成一个latch，可以将数据锁存。M5及M6是开关，最常见的架构和用法如图所示，M5和M6是一起开或关的。</p>
+<p>连接到M5和M6的gate的信号一般称之为word line(字线，缩写成WL)，用来控制SRAM bit cell的开关。M5和M6的漏极是数据读出或写入的端口，一般称之为bit line(位线，缩写成BL)。如图所示，M6接到BL，相对地，M5则接到 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mover accent="true"><mrow><mi>B</mi><mi>L</mi></mrow><mo>¯</mo></mover></mrow><annotation encoding="application/x-tex">\bar{BL}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8201099999999999em;"></span><span class="strut bottom" style="height:0.8201099999999999em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord accent"><span class="vlist"><span style="top:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="mord textstyle cramped"><span class="mord mathit" style="margin-right:0.05017em;">B</span><span class="mord mathit">L</span></span></span><span style="top:-0.25233em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="accent-body"><span>¯</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span> 。bit cell的儲存值就是指Q的值。</p>
+<p>SRAM的基本单元有3种状态：standby（电路处于空闲），reading（读）与writing（写）。</p>
+<p>standby：如果字线（Word Line）没有设置为高电平，那么作为控制用的M5，M6两个晶体管处于断路，把基本单元与位线隔离。由M1-M4组成的两个反相器继续保持其状态。</p>
+<p>reading：假定存储的内容为1，即在Q处的电平为高，读周期之初，两根位线预充值为逻辑1，随后字线WL置为高电平，使得晶体管M5与M6通路。然后保存在Q的值会传递给位线BL，并且 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mover accent="true"><mrow><mi>B</mi><mi>L</mi></mrow><mo>¯</mo></mover></mrow><annotation encoding="application/x-tex">\bar{BL}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8201099999999999em;"></span><span class="strut bottom" style="height:0.8201099999999999em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord accent"><span class="vlist"><span style="top:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="mord textstyle cramped"><span class="mord mathit" style="margin-right:0.05017em;">B</span><span class="mord mathit">L</span></span></span><span style="top:-0.25233em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="accent-body"><span>¯</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span> 通过M1与M5通路直连到低电平，使其值为逻辑0（即Q的高电平使得晶体管M1通路）；在位线BL一侧，晶体管M4与M6形成的通路，把位线BL连接到VDD所代表的逻辑1（M4作为P沟道场效应管，由于栅极加了低电平 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mover accent="true"><mrow><mi>Q</mi></mrow><mo>¯</mo></mover></mrow><annotation encoding="application/x-tex">\bar{Q}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8201099999999999em;"></span><span class="strut bottom" style="height:1.0145499999999998em;vertical-align:-0.19444em;"></span><span class="base textstyle uncramped"><span class="mord accent"><span class="vlist"><span style="top:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="mord textstyle cramped"><span class="mord mathit">Q</span></span></span><span style="top:-0.25233em;margin-left:0.16668em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="accent-body"><span>¯</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span> 而形成通路）。如果存储的内容为0，相反的电路状态将会使 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mover accent="true"><mrow><mi>B</mi><mi>L</mi></mrow><mo>¯</mo></mover></mrow><annotation encoding="application/x-tex">\bar{BL}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8201099999999999em;"></span><span class="strut bottom" style="height:0.8201099999999999em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord accent"><span class="vlist"><span style="top:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="mord textstyle cramped"><span class="mord mathit" style="margin-right:0.05017em;">B</span><span class="mord mathit">L</span></span></span><span style="top:-0.25233em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="accent-body"><span>¯</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span> 为1而BL为0.这样在 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mover accent="true"><mrow><mi>B</mi><mi>L</mi></mrow><mo>¯</mo></mover></mrow><annotation encoding="application/x-tex">\bar{BL}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8201099999999999em;"></span><span class="strut bottom" style="height:0.8201099999999999em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord accent"><span class="vlist"><span style="top:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="mord textstyle cramped"><span class="mord mathit" style="margin-right:0.05017em;">B</span><span class="mord mathit">L</span></span></span><span style="top:-0.25233em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="accent-body"><span>¯</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span> 与BL间就会有一个很小的电位差，后续放大电路将会辨识出哪根位线是1哪根是0，从而完成读操作。</p>
+<p>writing：写周期之初，把要写入的状态加载到位线。如果要写入0，则设置 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mover accent="true"><mrow><mi>B</mi><mi>L</mi></mrow><mo>¯</mo></mover></mrow><annotation encoding="application/x-tex">\bar{BL}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8201099999999999em;"></span><span class="strut bottom" style="height:0.8201099999999999em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord accent"><span class="vlist"><span style="top:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="mord textstyle cramped"><span class="mord mathit" style="margin-right:0.05017em;">B</span><span class="mord mathit">L</span></span></span><span style="top:-0.25233em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="accent-body"><span>¯</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span> 为1且BL为0，随后字线WL加载为高电平，位线的状态被载入SRAM的基本单元。</p>
+<p><strong>参考链接：</strong></p>
+<p><a href="https://wenku.baidu.com/view/4938078b16fc700abb68fc89.html">SRAM的工作原理</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/27260982">转帖：6T SRAM的運作原理</a></p>
+<h3 id="34-用verilog实现一个单端口sram深度16位宽8bit-支持片选读写请求要求代码可综合">34. 用verilog实现一个单端口sram，深度16，位宽8bit。支持片选，读写请求，要求代码可综合。</h3>
+<blockquote>
+<p>module spram_16x8 (<br>
+input clk,<br>
+input [3:0] addr,<br>
+input [7:0] din,<br>
+output [7:0] dout,<br>
+...<br>
+);<br>
+...<br>
+endmodule</p>
+</blockquote>
+<pre><code class="language-verilog">module spram
+#(
+    parameter WD = 8,       //位宽
+    parameter DP = 16       //深度
+)
+(
+    input               clk     ,
+    input               cs_n    ,
+    input               w_r_n   ,
+    input       [AD-1:0]  addr    ,
+    input       [WD-1:0]  din     ,
+    output  reg [WD-1:0]  dout    
+    );
+localparam AD = clogb2(DP);
+reg [WD-1:0]  buffer  [DP-1:0];
+
+always @(posedge clk) begin
+    casex ({cs_n,w_r_n})
+        2'b1x: dout &lt;= 'hx;
+        2'b01: buffer[addr] &lt;= din;
+        2'b00: dout &lt;= buffer[addr];
+        default: ;
+    endcase
+end
+
+function integer clogb2 (input integer depth);
+    begin
+        for(clogb2=0; depth&gt;1; clogb2=clogb2+1)
+        depth = depth &gt;&gt; 1;
+    end
+endfunction
+endmodule
+</code></pre>
+<h3 id="35-用verilog实现一个同步双端口sram深度16位宽8bit-a口读出b口写入-支持片选读写请求要求代码可综合">35. 用verilog实现一个同步双端口sram，深度16，位宽8bit。A口读出，B口写入。支持片选，读写请求，要求代码可综合。</h3>
+<blockquote>
+<p>module dpram_16x8 (<br>
+input clk,<br>
+input [3:0] addr_a,<br>
+output [7:0] dout_a,<br>
+input [7:0] din_b,<br>
+input [3:0] addr_b,<br>
+...<br>
+);<br>
+...<br>
+endmodule</p>
+</blockquote>
+<pre><code class="language-verilog">module sy_dpram
+#(
+    parameter WD = 8,       //位宽
+    parameter DP = 16       //深度
+)
+(
+    input                   clk     , 
+    input                   cs_n    ,
+    input                   wr_n    ,
+    input                   rd_n    ,
+    input       [WD-1:0]    din_b   ,       //B口写入
+    input       [AD-1:0]    addr_b  ,
+    input       [AD-1:0]    addr_a  ,       //A口读出
+    output  reg [WD-1:0]    dout_a  
+    );
+
+    localparam AD = clogb2(DP);
+reg [WD-1:0] buffer [DP-1:0];
+/*
+always @(posedge clk) begin
+    if (!cs_n &amp;&amp; !rd_n) begin
+        dout_a &lt;= buffer[addr_a];
+    end
+end
+
+always @(posedge clk) begin
+    if (!cs_n &amp;&amp; !wr_n) begin
+        buffer[addr_b] &lt;= din_b;
+    end
+end
+*/
+always @(posedge clk) begin
+    casex ({cs_n,wr_n,rd_n})
+        3'b1xx: dout_a &lt;= 'hx;
+        3'b000: begin   dout_a &lt;= buffer[addr_a]; buffer[addr_b] &lt;= din_b;  end
+        3'b001: buffer[addr_b] &lt;= din_b;
+        3'b010: dout_a &lt;= buffer[addr_a];
+        default: ;
+    endcase
+end
+
+function integer clogb2 (input integer depth);
+    begin
+        for(clogb2=0; depth&gt;1; clogb2=clogb2+1)
+        depth = depth &gt;&gt; 1;
+    end
+endfunction
+endmodule
+</code></pre>
+<h3 id="36-用verilog实现一个异步双端口ram深度16位宽8bit-a口读出b口写入-支持片选读写请求要求代码可综合">36. 用verilog实现一个异步双端口ram，深度16，位宽8bit。A口读出，B口写入。支持片选，读写请求，要求代码可综合。</h3>
+<blockquote>
+<p>module dpram_16x8 (<br>
+input clk_a,<br>
+input [3:0] addr_a,<br>
+output [7:0] dout_a,<br>
+...<br>
+input clk_b,<br>
+input [7:0] din_b,<br>
+input [3:0] addr_b,<br>
+...<br>
+);<br>
+...<br>
+endmodule</p>
+</blockquote>
+<pre><code class="language-verilog">module as_dpram
+#(
+    parameter WD = 8,       //位宽
+    parameter DP = 16       //深度
+)
+(
+    input                  clk_a   , 
+    input                  rda_n   ,
+    input         [AD-1:0] addr_a  , 
+    output  reg   [WD-1:0] dout_a  , 
+
+    input                  clk_b   , 
+    input                  wrb_n   ,
+    input         [WD-1:0] din_b   , 
+    input         [AD-1:0] addr_b  , 
+
+    input                  cs_n     
+    );
+    
+    localparam AD = clogb2(DP);
+reg [WD-1:0] buffer [DP-1:0];
+
+always @(posedge clk_a) begin
+    casex ({cs_n,rda_n})
+        2'b1x: dout_a &lt;= 'hx;
+        2'b00: dout_a &lt;= buffer[addr_a];
+        default: ;
+    endcase
+end
+
+always @(posedge clk_b) begin
+    if (!cs_n &amp;&amp; !wrb_n) begin
+        buffer[addr_b] &lt;= din_b;
+    end
+end
+
+function integer clogb2 (input integer depth);
+    begin
+        for(clogb2=0; depth&gt;1; clogb2=clogb2+1)
+        depth = depth &gt;&gt; 1;
+    end
+endfunction
+
+endmodule
+</code></pre>
+<h3 id="37-用verilog实现一个同步双端口ram深度16位宽8bit-a口可读可写b口可读可写-支持片选读写请求要求代码可综合">37. 用verilog实现一个同步双端口ram，深度16，位宽8bit。A口可读可写，B口可读可写。支持片选，读写请求，要求代码可综合。</h3>
+<blockquote>
+<p>module dpram_16x8 (<br>
+input clk,<br>
+input [7:0] din_a,<br>
+input [3:0] addr_a,<br>
+output [7:0] dout_a,<br>
+...<br>
+input [7:0] din_b,<br>
+output [7:0] dout_b,<br>
+input [3:0] addr_b,<br>
+...<br>
+);<br>
+...<br>
+endmodule</p>
+</blockquote>
+<pre><code class="language-verilog">module sy_ture_dpram
+#(
+    parameter WD = 8,       //数据位宽
+    parameter AD = 4        //地址位宽
+)
+(
+    input                  clk     , 
+    input                  cs_n    ,
+
+    input                  aw_r_n  ,
+    input         [AD-1:0] addr_a  ,
+    input         [WD-1:0] din_a   ,
+    output  reg   [WD-1:0] dout_a  , 
+
+    input                  bw_r_n  ,
+    input         [AD-1:0] addr_b  ,
+    input         [WD-1:0] din_b   , 
+    output  reg   [WD-1:0] dout_b   
+  
+    );
+
+localparam  DP = 2**AD;
+reg [WD-1:0] buffer [DP-1:0];
+
+always @(posedge clk) begin
+    casex ({cs_n,aw_r_n})
+        2'b1x: dout_a &lt;= 'hx;
+        2'b01: buffer[addr_a] &lt;= din_a;
+        2'b00: dout_a &lt;= buffer[addr_a];
+        default: ;
+    endcase
+end
+
+always @(posedge clk) begin
+    casex ({cs_n,bw_r_n})
+        2'b1x: dout_b &lt;= 'hx;
+        2'b01: buffer[addr_b] &lt;= din_b;
+        2'b00: dout_b &lt;= buffer[addr_b];
+        default: ;
+    endcase
+end
+
+/* always @(posedge clk) begin
+    casex ({cs_n,aw_r_n,bw_r_n})
+        3'b1xx: begin dout_a &lt;= 'hx; dout_b &lt;= 'hx; end
+        3'b000: begin dout_a &lt;= buffer[addr_a]; dout_b &lt;= buffer[addr_b]; end   //A读B读
+        3'b001: begin dout_a &lt;= buffer[addr_a]; buffer[addr_b] &lt;= din_b; end    //A读B写
+        3'b010: begin buffer[addr_a] &lt;= din_a; dout_b &lt;= buffer[addr_b]; end    //A写B读
+        3'b011: begin                                                           //A写B写
+            if (addr_a == addr_b) begin
+                buffer[addr_a] &lt;= din_a;
+            end else begin
+                buffer[addr_a] &lt;= din_a;
+                buffer[addr_b] &lt;= din_b;
+            end 
+        end
+        default: ;
+    endcase
+end */
+
+endmodule
+</code></pre>
+<p><strong>注</strong>：注释里的描述无法综合出ram块，但是逻辑没有问题。</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://halftop.github.io/tag/f0tARmjal" class="tag">
+                    IC
+                  </a>
+                
+                  <a href="https://halftop.github.io/tag/9rG5j0Nww" class="tag">
+                    FPGA
+                  </a>
+                
+                  <a href="https://halftop.github.io/tag/ADa051R6R" class="tag">
+                    Verilog HDL
+                  </a>
+                
+                  <a href="https://halftop.github.io/tag/bwS6E4Jqc" class="tag">
+                    学习笔记
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://halftop.github.io/post/verilog-day7">
+                  <h3 class="post-title">
+                    Verilog没有葵花宝典——day7（串并转换）
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <footer>
+	<div class="foo-con">
+    	<p><a href="#">有输入有输出，才是正确的学习方式。</a></p>
+      	<p>
+	        
+	        <span>&nbsp;</span>
+	        Powered by <a href="https://gridea.dev">Gridea</a>
+	        <span>•</span>Theme <a href="http://www.itaolaity.com/">Alin</a>
+     	</p>
+    </div>
+</footer>
+
+
+
+<script src="https://halftop.github.io/media/dict/js/aos.js"></script>
+
+<!--Self-->
+<script>
+    $(window).on('load',function(){ 
+  　　$('.tilt').fadeOut(1000);
+　　}); 
+</script>
+
+
+<script type="application/javascript">
+
+/*动画初始化*/
+AOS.init(
+  {
+  offset: 200,
+  duration: 600,
+  easing: 'ease-in-sine',
+  delay: 100,
+  }
+);
+
+/*代码高亮*/
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible:false,
+    alin:{
+      like:[
+          {
+            "alt":"我的博客",
+            "aim":"https://halftop.github.io",
+            "src":"http://itaolaity.com/20190429220545.png"
+          },
+          {
+            "alt":"GitHub",
+            "aim":"https://github.com/halftop",
+            "src":"http://itaolaity.com/20190429220612.png"
+          },
+          {
+            "alt":"Email",
+            "aim":"mailto:yu.zh@live.com",
+            "src":"http://itaolaity.com/20190429220636.png"
+          }
+      ]
+    }
+  }
+});
+
+</script>
+
+
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '42b8247150af6c920554',
+        clientSecret: 'ea9863ece62308a1854e39455221fa1ace6f8cd6',
+        repo: 'halftop.github.io',
+        owner: 'halftop',
+        admin: ['halftop'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+    <script>
+      //添加SVG代码
+      var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="14" viewBox="20"><g fill="none" fill-rule="evenodd" transform="translate(1 1)"><circle cx="6" cy="6" r="6" fill="#FF5F56" stroke="#E0443E" stroke-width=".5"></circle><circle cx="26" cy="6" r="6" fill="#FFBD2E" stroke="#DEA123" stroke-width=".5"></circle><circle cx="46" cy="6" r="6" fill="#27C93F" stroke="#1AAB29" stroke-width=".5"></circle></g></svg>';
+      var code = document.querySelectorAll(".post-content pre code");
+      for(var i=0; i<code.length; i++){
+          code[i].insertAdjacentHTML("beforebegin", svg);
+      }
+      //注册添加Class
+      $('.post-detail h1,h2,h3,h4,h5').addClass("iconfont");
+
+
+    </script>
+  </body>
+</html>
