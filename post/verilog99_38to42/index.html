@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Verilog99题——38-42题（Fir滤波器） | 1/2顶点</title>
+<meta name="description" content="有输入有输出，才是正确的学习方式。">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico?v=1557067469522">
+<!--字体-->
+<link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Libre+Barcode+39" rel="stylesheet">
+<!--主要CSS-->
+<link rel="stylesheet" href="https://halftop.github.io/styles/main.css">
+<style type="text/css">
+      .tilt{
+        margin: 0;
+        overflow: hidden;
+        width: 100vw;
+        height: 100vh;
+        background: #49beb7;
+        background: linear-gradient(to top left, #4CB8C4 -40%, #2196F3);
+        position:fixed;
+        top:0;
+        left:0;
+        z-index: 999 !important;
+      }
+      .container {
+        position: absolute;
+        top:0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 250px;
+        height: 250px;
+        margin: auto;
+      }
+
+      .part {
+        width: 250px;
+        position: absolute;
+      }
+
+      .svgpath {
+        fill: rgba(145,220,90,0);
+        stroke: aqua;
+        stroke-width: 1.5px;
+        stroke-dasharray: 1000;
+        stroke-linecap: round;
+        z-index: 2;
+      }
+
+      .svgbg {
+        fill: rgba(255,255,255,0.2);
+        z-index: 1;
+       }
+
+      #playload {
+        animation: dash 2.5s reverse ease-in-out infinite;
+      }
+
+      @keyframes dash {
+        to {
+          stroke-dashoffset: 2000;
+        }
+      }</style>
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+
+<script src="https://halftop.github.io/media/dict/js/Vue.js"></script>
+<script src="https://halftop.github.io/media/dict/js/JQuery.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<link rel="stylesheet" href="https://halftop.github.io/media/dict/css/aos.css" />
+
+
+
+
+
+  </head>
+  <body>
+    <div class="tilt">
+      <div class='container'>
+        <svg class='part' x="0px" y="0px" viewBox="0 0 256 256" style="enable-background:new 0 0 256 256;" xml:space="preserve">
+          <path class="svgpath" id="playload" d="M189.5,140.5c-6.6,29.1-32.6,50.9-63.7,50.9c-36.1,0-65.3-29.3-65.3-65.3
+        c0,0,17,0,23.5,0c10.4,0,6.6-45.9,11-46c5.2-0.1,3.6,94.8,7.4,94.8c4.1,0,4.1-92.9,8.2-92.9c4.1,0,4.1,83,8.1,83
+        c4.1,0,4.1-73.6,8.1-73.6c4.1,0,4.1,63.9,8.1,63.9c4.1,0,4.1-53.9,8.1-53.9c4.1,0,4.1,44.1,8.2,44.1c4.1,0,3.1-34.5,7.2-34.5
+        c4.1,0,3.1,24.6,7.2,24.6c4.1,0,2.5-14.5,5.2-14.5c2.2,0,0.8,5.1,4.2,4.9c0.4,0,13.1,0,13.1,0c0-34.4-27.9-62.3-62.3-62.3
+        c-27.4,0-50.7,17.7-59,42.3" />
+
+          <path class="svgbg" d="M61,126c0,0,16.4,0,23,0c10.4,0,6.6-45.9,11-46c5.2-0.1,3.6,94.8,7.4,94.8c4.1,0,4.1-92.9,8.2-92.9
+        c4.1,0,4.1,83,8.1,83c4.1,0,4.1-73.6,8.1-73.6c4.1,0,4.1,63.9,8.1,63.9c4.1,0,4.1-53.9,8.1-53.9c4.1,0,4.1,44.1,8.2,44.1
+        c4.1,0,3.1-34.5,7.2-34.5c4.1,0,3.1,24.6,7.2,24.6c4.1,0,2.5-14.5,5.2-14.5c2.2,0,0.8,5.1,4.2,4.9c0.4,0,22.5,0,23,0" />
+        </svg></div> 
+    </div>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+
+  <div class="overlay"></div>
+  <div class="top-container" data-aos="fade-right">
+    <!--头像-->
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://halftop.github.io">
+        <img src="https://halftop.github.io/images/avatar.png?v=1557067469522" class="site-logo">
+      </a>
+      <h1 class="site-title">
+            1/2顶点
+            <p></p>
+        </h1>
+    </div>
+    <!--导航-->
+    <div class="top-header-nav">
+
+
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+    <div class="icons">
+        <ul>
+          <li v-for="(le,index) in alin.like">
+            <a :href="le.aim" :alt="le.alt">
+              <img :src="le.src" />
+            </a>
+          </li>
+        </ul>
+    </div> 
+
+  </div>
+
+
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+      <div class="site-footer">
+          <div class="tt">Stop learning,do it!</div>
+
+      </div>
+      <div class="site-description">
+          <p><a href="#">有输入有输出，才是正确的学习方式。</a></p>
+          <p>
+            
+            <span>&nbsp;</span>
+            Powered by <a href="https://gridea.dev">Gridea</a>
+            <span>•</span>Theme <a href="http://www.itaolaity.com/">Alin</a>
+          </p>
+      </div>
+  </div>
+</div>
+
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Verilog99题——38-42题（Fir滤波器）</h2>
+            <div class="post-date">2019-05-05</div>
+            
+              <div class="feature-container" style="background-image: url('https://i.loli.net/2019/05/05/5ccef096f2aa2.png')">
+              </div>
+            
+            <div class="post-content">
+              <h2 id="前言">前言</h2>
+<p><a href="https://mp.weixin.qq.com/s/prdZKHbKTFMH80eRnr7mLQ">不忘出芯veriloig99题</a>的38-42题是Fir滤波器的Verilog实现</p>
+ <!-- more --> 
+<h3 id="fir理论">FIR理论</h3>
+<p>线性时不变（ linear time-invariant，LTI）滤波器是一种最为普通的数字滤波器。LTI通过如下的线性卷积过程与其输入信号相互作用。</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi><mo>[</mo><mi>n</mi><mo>]</mo><mo>=</mo><mi>x</mi><mo>[</mo><mi>n</mi><mo>]</mo><mo>∗</mo><mi>f</mi><mo>[</mo><mi>n</mi><mo>]</mo><mo>=</mo><msub><mo>∑</mo><mrow><mi>k</mi></mrow></msub><mi>x</mi><mo>[</mo><mi>k</mi><mo>]</mo><mi>f</mi><mo>[</mo><mi>n</mi><mo>−</mo><mi>k</mi><mo>]</mo><mo>=</mo><msub><mo>∑</mo><mrow><mi>k</mi></mrow></msub><mi>f</mi><mo>[</mo><mi>k</mi><mo>]</mo><mi>x</mi><mo>[</mo><mi>n</mi><mo>−</mo><mi>k</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">y[n]=x[n] * f[n]=\sum_{k} x[k] f[n-k]=\sum_{k} f[k] x[n-k]
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:1.0500050000000005em;"></span><span class="strut bottom" style="height:2.3521180000000004em;vertical-align:-1.3021129999999999em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="mopen">[</span><span class="mord mathit">n</span><span class="mclose">]</span><span class="mrel">=</span><span class="mord mathit">x</span><span class="mopen">[</span><span class="mord mathit">n</span><span class="mclose">]</span><span class="mbin">∗</span><span class="mord mathit" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathit">n</span><span class="mclose">]</span><span class="mrel">=</span><span class="mop op-limits"><span class="vlist"><span style="top:1.2021129999999998em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit" style="margin-right:0.03148em;">k</span></span></span></span><span style="top:-0.000005000000000254801em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span><span class="op-symbol large-op mop">∑</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mord mathit">x</span><span class="mopen">[</span><span class="mord mathit" style="margin-right:0.03148em;">k</span><span class="mclose">]</span><span class="mord mathit" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathit">n</span><span class="mbin">−</span><span class="mord mathit" style="margin-right:0.03148em;">k</span><span class="mclose">]</span><span class="mrel">=</span><span class="mop op-limits"><span class="vlist"><span style="top:1.2021129999999998em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit" style="margin-right:0.03148em;">k</span></span></span></span><span style="top:-0.000005000000000254801em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span><span class="op-symbol large-op mop">∑</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mord mathit" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathit" style="margin-right:0.03148em;">k</span><span class="mclose">]</span><span class="mord mathit">x</span><span class="mopen">[</span><span class="mord mathit">n</span><span class="mbin">−</span><span class="mord mathit" style="margin-right:0.03148em;">k</span><span class="mclose">]</span></span></span></span></span></p>
+<h4 id="直接形式的fir滤波器">直接形式的FIR滤波器</h4>
+<p>带有常系数的FIR滤波器是一种LTI滤波器。对于输入序列<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi><mo>[</mo><mi>n</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">x[n]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mord mathit">x</span><span class="mopen">[</span><span class="mord mathit">n</span><span class="mclose">]</span></span></span></span>，长度为L或N=L-1阶FIR的输出可通过上式的有限卷积和的形式给出，即：</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi><mo>[</mo><mi>n</mi><mo>]</mo><mo>=</mo><mi>x</mi><mo>[</mo><mi>n</mi><mo>]</mo><mo>∗</mo><mi>f</mi><mo>[</mo><mi>n</mi><mo>]</mo><mo>=</mo><msubsup><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow><mrow><mi>L</mi><mo>−</mo><mn>1</mn></mrow></msubsup><mi>f</mi><mo>[</mo><mi>k</mi><mo>]</mo><mi>x</mi><mo>[</mo><mi>n</mi><mo>−</mo><mi>k</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">y[n]=x[n] * f[n]=\sum_{k=0}^{L-1} f[k] x[n-k]
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:1.8283360000000002em;"></span><span class="strut bottom" style="height:3.1304490000000005em;vertical-align:-1.302113em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="mopen">[</span><span class="mord mathit">n</span><span class="mclose">]</span><span class="mrel">=</span><span class="mord mathit">x</span><span class="mopen">[</span><span class="mord mathit">n</span><span class="mclose">]</span><span class="mbin">∗</span><span class="mord mathit" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathit">n</span><span class="mclose">]</span><span class="mrel">=</span><span class="mop op-limits"><span class="vlist"><span style="top:1.202113em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit" style="margin-right:0.03148em;">k</span><span class="mrel">=</span><span class="mord mathrm">0</span></span></span></span><span style="top:-0.000005000000000032756em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span><span class="op-symbol large-op mop">∑</span></span></span><span style="top:-1.250005em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord scriptstyle uncramped"><span class="mord mathit">L</span><span class="mbin">−</span><span class="mord mathrm">1</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mord mathit" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathit" style="margin-right:0.03148em;">k</span><span class="mclose">]</span><span class="mord mathit">x</span><span class="mopen">[</span><span class="mord mathit">n</span><span class="mbin">−</span><span class="mord mathit" style="margin-right:0.03148em;">k</span><span class="mclose">]</span></span></span></span></span></p>
+<p>其中<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo>[</mo><mn>0</mn><mo>]</mo><mo>≠</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">f[0] \neq 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathrm">0</span><span class="mclose">]</span><span class="mrel">≠</span><span class="mord mathrm">0</span></span></span></span>直到<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo>[</mo><mi>L</mi><mo>−</mo><mn>1</mn><mo>]</mo><mo>≠</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">f[L-1] \neq 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathit">L</span><span class="mbin">−</span><span class="mord mathrm">1</span><span class="mclose">]</span><span class="mrel">≠</span><span class="mord mathrm">0</span></span></span></span>都是FIR的L个系数，同时也对应FIR的脉冲响应。对于LTI系统，在z域描述上式更便捷：</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>Y</mi><mo>(</mo><mi>z</mi><mo>)</mo><mo>=</mo><mi>F</mi><mo>(</mo><mi>z</mi><mo>)</mo><mi>X</mi><mo>(</mo><mi>z</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">Y(z)=F(z) X(z)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord mathit" style="margin-right:0.22222em;">Y</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.04398em;">z</span><span class="mclose">)</span><span class="mrel">=</span><span class="mord mathit" style="margin-right:0.13889em;">F</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.04398em;">z</span><span class="mclose">)</span><span class="mord mathit" style="margin-right:0.07847em;">X</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.04398em;">z</span><span class="mclose">)</span></span></span></span></span></p>
+<p>其中<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>F</mi><mo>(</mo><mi>z</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">F(z)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">F</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.04398em;">z</span><span class="mclose">)</span></span></span></span>是FIR的传递函数，其在z域的定义：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>F</mi><mo>(</mo><mi>z</mi><mo>)</mo><mo>=</mo><msubsup><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow><mrow><mi>L</mi><mo>−</mo><mn>1</mn></mrow></msubsup><mi>f</mi><mo>[</mo><mi>k</mi><mo>]</mo><msup><mi>z</mi><mrow><mo>−</mo><mi>k</mi></mrow></msup></mrow><annotation encoding="application/x-tex">F(z)=\sum_{k=0}^{L-1} f[k] z^{-k}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.881462em;"></span><span class="strut bottom" style="height:1.1827699999999999em;vertical-align:-0.3013079999999999em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">F</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.04398em;">z</span><span class="mclose">)</span><span class="mrel">=</span><span class="mop"><span class="op-symbol small-op mop" style="top:-0.0000050000000000050004em;">∑</span><span class="vlist"><span style="top:0.3013079999999999em;margin-left:0em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit" style="margin-right:0.03148em;">k</span><span class="mrel">=</span><span class="mord mathrm">0</span></span></span></span><span style="top:-0.403131em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord scriptstyle uncramped"><span class="mord mathit">L</span><span class="mbin">−</span><span class="mord mathrm">1</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mord mathit" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathit" style="margin-right:0.03148em;">k</span><span class="mclose">]</span><span class="mord"><span class="mord mathit" style="margin-right:0.04398em;">z</span><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord scriptstyle uncramped"><span class="mord">−</span><span class="mord mathit" style="margin-right:0.03148em;">k</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span></p>
+<p>下图给出长度为L的LTI型FIR滤波器的图解。FIR滤波器由“抽头延迟线”、加法器、乘法器混合构成。该图展示了直接形式的FIR滤波器。</p>
+<center>
+ <img src="https://i.loli.net/2019/05/05/5cced614e8505.png" alt="直接形式的FIR滤波器" title="直接形式的FIR滤波器" width=""> 
+</center>
+<h4 id="fir滤波器的转置结构">FIR滤波器的转置结构</h4>
+<p>FIR滤波器的卷积公式可以表示成另一种形式，即</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi><mo>[</mo><mi>n</mi><mo>]</mo><mo>=</mo><mi>f</mi><mo>[</mo><mi>n</mi><mo>]</mo><mo>∗</mo><mi>x</mi><mo>[</mo><mi>n</mi><mo>]</mo><mo>=</mo><msubsup><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow><mrow><mi>L</mi><mo>−</mo><mn>1</mn></mrow></msubsup><mi>f</mi><mo>[</mo><mi>n</mi><mo>−</mo><mi>k</mi><mo>]</mo><mi>x</mi><mo>[</mo><mi>k</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">y[n]=f[n] * x[n]=\sum_{k=0}^{L-1} f[n-k] x[k]
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:1.8283360000000002em;"></span><span class="strut bottom" style="height:3.1304490000000005em;vertical-align:-1.302113em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="mopen">[</span><span class="mord mathit">n</span><span class="mclose">]</span><span class="mrel">=</span><span class="mord mathit" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathit">n</span><span class="mclose">]</span><span class="mbin">∗</span><span class="mord mathit">x</span><span class="mopen">[</span><span class="mord mathit">n</span><span class="mclose">]</span><span class="mrel">=</span><span class="mop op-limits"><span class="vlist"><span style="top:1.202113em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit" style="margin-right:0.03148em;">k</span><span class="mrel">=</span><span class="mord mathrm">0</span></span></span></span><span style="top:-0.000005000000000032756em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span><span class="op-symbol large-op mop">∑</span></span></span><span style="top:-1.250005em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord scriptstyle uncramped"><span class="mord mathit">L</span><span class="mbin">−</span><span class="mord mathrm">1</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mord mathit" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathit">n</span><span class="mbin">−</span><span class="mord mathit" style="margin-right:0.03148em;">k</span><span class="mclose">]</span><span class="mord mathit">x</span><span class="mopen">[</span><span class="mord mathit" style="margin-right:0.03148em;">k</span><span class="mclose">]</span></span></span></span></span></p>
+<p>这种形式的FIR滤波器结构是直接FIR滤波器的转置结构。如下图所示,给出FIR滤波器的转置结构。</p>
+<center>
+ <img src="https://i.loli.net/2019/05/05/5ccedf2c5f420.png" alt="FIR滤波器的转置结构结构" title="FIR滤波器的转置结构结构" width=""> 
+</center>
+<h4 id="两种结构的粗略对比">两种结构的粗略对比</h4>
+<p>直接FIR滤波器结构需要在两个加法器之间插入额外的流水线寄存器,来降低加法器树的延迟,以实现高吞吐量。而转置结构在加法器之间都存在寄存器,因此在不插入额外寄存器的情况下,就可以达到和直接FIR滤波器相同的吞吐量。转置滤波器结构需要更多的延迟寄存器，转置FIR延迟寄存器的个数比直接FIR滤波器使用的寄存器的个数的2倍还要多一点。在某种程度上,这可能是转置FIR相比于标准FIR的一个缺点。但是,在FPGA中,由于可用的延迟/触发器的数量很多,所以可以不必太在意这个问题。</p>
+<h4 id="改进fir硬件实现的方法">改进FIR硬件实现的方法</h4>
+<ol>
+<li>通过对系数采用CSD编码，如<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>3</mn><mi mathvariant="normal">.</mi><mn>7</mn><mn>5</mn><mo>=</mo><msup><mn>2</mn><mn>2</mn></msup><mo>−</mo><msup><mn>2</mn><mrow><mo>−</mo><mn>2</mn></mrow></msup></mrow><annotation encoding="application/x-tex">3.75 = 2^2-2^{-2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8141079999999999em;"></span><span class="strut bottom" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="base textstyle uncramped"><span class="mord mathrm">3</span><span class="mord mathrm">.</span><span class="mord mathrm">7</span><span class="mord mathrm">5</span><span class="mrel">=</span><span class="mord"><span class="mord mathrm">2</span><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathrm">2</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mbin">−</span><span class="mord"><span class="mord mathrm">2</span><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord scriptstyle uncramped"><span class="mord">−</span><span class="mord mathrm">2</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span>。</li>
+<li>注意系数是否具有对称性，并加以利用。</li>
+<li>采用流水线技术。</li>
+</ol>
+<p>接下来看题目：</p>
+<h3 id="38用verilog实现一个3-tap低通fir滤波器输入输出为8bit无符号数滤波器系数14-12-14">38.用verilog实现一个3-tap低通FIR滤波器，输入输出为8bit无符号数，滤波器系数<code>[1/4 1/2 1/4]</code></h3>
+<blockquote>
+<p>module fir_lpf_3tap (<br>
+input clk,<br>
+input rst_n,<br>
+input [7:0] din,<br>
+output [7:0] dout<br>
+);<br>
+...<br>
+endmodule</p>
+</blockquote>
+<h4 id="verilog描述">verilog描述</h4>
+<p>本题采用直接结构的FIR，由于系数简单直接采用截位的方式实现，并为采用流水线和对称结构。</p>
+<pre><code class="language-verilog">module fir_lpf_3tap(
+    input               clk     , 
+    input               rst_n   , 
+    input   [7:0]       din     , 
+    output  reg [7:0]   dout
+    );
+
+reg [7:0] tap [0:2];
+integer i;
+always @(posedge clk or negedge rst_n) begin
+    if (!rst_n) begin
+        for (i = 0; i&lt;=2; i=i+1) begin
+            tap[i] &lt;= 0;
+        end
+        dout &lt;= 8'd0;
+    end else begin
+        // dout &lt;= (tap[0] &gt;&gt; 2) + (tap[1]  &gt;&gt; 1) + (tap[2] &gt;&gt; 2);
+        dout &lt;= tap[0][7:2] + tap[1][7:1] + tap[2][7:2];
+        /* for (i = 2; i &gt; 0; i=i-1) begin
+            tap[i] &lt;= tap[i-1];
+        end */
+        tap[2] &lt;= tap[1];
+        tap[1] &lt;= tap[0];
+        tap[0] &lt;= din;
+    end
+end
+endmodule
+</code></pre>
+<h3 id="综合结果">综合结果</h3>
+<center>
+ <img src="https://images.zsxq.com/FsTOyjMf4Gbk8FH-yajgzmBpnzPv?e=1906272000&token=kIxbL07-8jAj8w1n4s9zv64FuZZNEATmlU_Vm6zD:mDW_JPlyuu-JsBX-5dTIjroCVzw=" alt="直接结构的3-tapFIR" title="直接结构的3-tapFIR" width="800"> 
+</center>
+<p>该综合结果与直接形式的FIR滤波器的结构图对比，可以很明显看出两种结构完全一致。</p>
+<h3 id="39-用verilog实现一个3-tap低通fir滤波器输入输出为8bit无符号数滤波器系数14-12-14支持bypass功能fir_bypass为1时输出原始数据">39. 用verilog实现一个3-tap低通FIR滤波器，输入输出为8bit无符号数，滤波器系数<code>[1/4 1/2 1/4]</code>，支持bypass功能：fir_bypass为1时输出原始数据。</h3>
+<p><strong>注：bypass即为全通</strong></p>
+<blockquote>
+<p>module fir_lpf_3tap (<br>
+input clk,<br>
+input rst_n,<br>
+input fir_bypass,<br>
+input [7:0] din,<br>
+output [7:0] dout<br>
+);<br>
+...<br>
+endmodule</p>
+</blockquote>
+<h4 id="verilog描述-2">verilog描述</h4>
+<pre><code class="language-verilog">module fir_lpf_3tap(
+    input               clk         , 
+    input               rst_n       , 
+    input               fir_bypass  ,
+    input       [7:0]   din         , 
+    output  reg [7:0]   dout        
+    );
+
+reg [7:0] tap [0:2];
+integer i;
+always @(posedge clk or negedge rst_n) begin
+    if (!rst_n) begin
+        for (i = 0; i&lt;=2; i=i+1) begin
+            tap[i] &lt;= 0;
+        end
+        dout &lt;= 8'd0;
+    end else if (!fir_bypass)begin
+        // dout &lt;= (tap[0] &gt;&gt; 2) + (tap[1]  &gt;&gt; 1) + (tap[2] &gt;&gt; 2);
+        dout &lt;= tap[0][7:2] + tap[1][7:1] + tap[2][7:2];
+        /* for (i = 2; i &gt; 0; i=i-1) begin
+            tap[i] &lt;= tap[i-1];
+        end */
+        tap[2] &lt;= tap[1];
+        tap[1] &lt;= tap[0];
+        tap[0] &lt;= din;
+    end else begin
+        dout &lt;= din;
+    end
+end
+endmodule
+</code></pre>
+<h3 id="40-用verilog实现一个低通fir滤波器输入输出为8bit无符号数滤波器系数根据mode选择">40. 用verilog实现一个低通FIR滤波器，输入输出为8bit无符号数，滤波器系数根据mode选择：</h3>
+<p>mode 0：bypass
+mode 1：[1 2 1]/4
+mode 2：[1 2 2 2 1]/8
+mode 3：[1 2 3 4 3 2 1]/16</p>
+<blockquote>
+<p>module fir_lpf (<br>
+input clk,<br>
+input rst_n,<br>
+input [1:0] mode,<br>
+input [7:0] din,<br>
+output [7:0] dout<br>
+);<br>
+...<br>
+endmodule</p>
+</blockquote>
+<h4 id="简要分析">简要分析</h4>
+<ol>
+<li>系数是关于中间对称的。</li>
+<li>系数可以通过移位实现。</li>
+<li>可以使用流水线：
+<ol>
+<li>延迟（获取输入采样）。</li>
+<li>与系数相乘，获得乘积（乘法、移位）。</li>
+<li>乘积作和（计算结果）。</li>
+</ol>
+</li>
+</ol>
+<h4 id="verilog描述-3">verilog描述</h4>
+<p>仍然采用直接形式设计，但是使用了系数对称和流水线来改进设计。</p>
+<pre><code class="language-verilog">module test40(
+    input               clk     , 
+    input               rst_n   , 
+    input       [1:0]   mode    , 
+    input       [7:0]   din     , 
+    output      [7:0]   dout    
+    );
+
+reg [7:0] tap [6:0];
+reg [8:0] product [3:0];
+reg [7:0] dout_r;
+//延迟（获取输入采样）
+integer i;
+always @(posedge clk or negedge rst_n) begin
+    if (!rst_n) begin
+        for (i = 0; i &lt;= 6; i = i + 1) begin
+            tap[i] &lt;= 8'd0;
+        end
+    end else begin
+        for (i = 6; i &gt; 0; i = i - 1) begin
+            tap[i] &lt;= tap[i-1];
+        end
+        tap[0] &lt;= din;
+    end
+end
+//与系数相乘，获得乘积（乘法、移位）
+always @(posedge clk or negedge rst_n) begin
+    if (!rst_n) begin
+        for (i = 0; i &lt;= 3; i = i + 1) begin
+            product[i] &lt;= 8'd0;
+        end
+    end else begin
+        case (mode)
+            2'd1: begin
+                product[0] = (tap[0] + tap[2]) &gt;&gt; 2;
+                product[1] = tap[1] &gt;&gt; 1;
+            end
+            2'd2: begin
+                product[0] = (tap[0] + tap[4]) &gt;&gt; 3;
+                product[1] = (tap[1] + tap[2] + tap[3]) &gt;&gt; 2;
+            end
+            2'd3: begin
+                product[0] = (tap[0] + tap[6]) &gt;&gt; 4;
+                product[1] = (tap[1] + tap[5]) &gt;&gt; 3;
+                product[2] = ((tap[2] + tap[4]) * 3) &gt;&gt; 4;
+                product[3] = tap[3] &gt;&gt; 2;
+            end
+            default: ;
+        endcase
+    end
+end
+//乘积作和（计算结果）
+always @(posedge clk or negedge rst_n) begin
+    if (!rst_n) begin
+        dout_r &lt;= 8'd0;
+    end else begin
+        case (mode)
+            2'd1: dout_r &lt;= product[0] + product[1];
+            2'd2: dout_r &lt;= product[0] + product[1];
+            2'd3: dout_r &lt;= (product[0] + product[1]) + (product[2] + product[3]);
+            default: dout_r &lt;= din;
+        endcase
+    end
+end
+
+assign dout = dout_r;
+endmodule
+</code></pre>
+<h3 id="41-用verilog实现一个参数化的fir滤波器-可配置参数包括-1-输入输出数据位宽n-2-滤波器阶数t-3-滤波器系数位宽m-输入数据与滤波器系数为无符号数">41. 用verilog实现一个参数化的FIR滤波器。可配置参数包括 1. 输入输出数据位宽N 2. 滤波器阶数T 3. 滤波器系数位宽M （输入数据与滤波器系数为无符号数）</h3>
+<h4 id="verilog描述-4">verilog描述</h4>
+<pre><code class="language-verilog">//基于SOP（乘积和）的转置结构的FIR滤波器。
+//load_sw为低时为缓存系数过程，load_sw为高时为计算和输出过程。
+module fir
+#(
+    parameter   DIN_WIDTH    = 8    ,   //输入数据位宽
+                FIR_TAP      = 4    ,   //滤波器阶数
+                COEF_WIDTH   = 8    ,   //系数位宽
+                DOUT_WIDTH   = 8       //输出数据位宽
+)
+(
+    input           clk         ,
+    input           rst_n       ,
+    input           load_sw     ,               // load/run switch
+    input       [ DIN_WIDTH-1:0]    data_in ,   //数据
+    input       [COEF_WIDTH-1:0]    coff_in ,   //系数
+    output      [DOUT_WIDTH-1:0]    data_out    //输出
+    );
+
+localparam  PROD_WIDTH   = DIN_WIDTH + COEF_WIDTH, //乘积位宽
+            ADD_WIDTH    = PROD_WIDTH + clogb2(FIR_TAP) ;//乘积和位宽
+
+reg [DIN_WIDTH-1:0] data_in_r;
+wire [ADD_WIDTH-1:0] data_out_w;
+
+reg [COEF_WIDTH-1:0] coff [FIR_TAP-1:0];    //系数
+wire [PROD_WIDTH-1:0] prod [FIR_TAP-1:0];   //乘积
+reg [ADD_WIDTH-1:0] sum [FIR_TAP-1:0];      //乘积和
+//----&gt; Load Data or Coefficient
+always @(posedge clk or negedge rst_n) begin: LOAD
+    integer i;
+    if (!rst_n) begin
+        for (i = 0; i &lt;= FIR_TAP-1; i = i +1) begin
+            coff[i] &lt;= 'd0;
+        end
+        data_in_r &lt;= 'd0;
+    end else if(!load_sw) begin     //缓存系数
+        coff[FIR_TAP-1] &lt;= coff_in;
+        for (i = FIR_TAP-1; i &gt; 0; i = i -1) begin
+            coff[i-1] &lt;= coff[i];
+        end
+    end else begin
+        data_in_r &lt;= data_in;       //缓存数据
+    end
+end
+//----&gt; Compute products
+genvar k;
+generate
+    for (k = 0; k &lt; FIR_TAP; k = k + 1) begin
+        assign prod[k] = data_in_r * coff[k];
+    end
+endgenerate
+//----&gt; Compute sum-of-products
+always @(posedge clk or negedge rst_n) begin: SOP
+    integer m;
+    if (!rst_n) begin
+        for (m = 0; m &lt; FIR_TAP; m = m + 1) begin
+            sum[m] &lt;= 'd0;
+        end
+    end else begin
+        for (m = 0; m &lt; FIR_TAP - 1; m = m + 1) begin
+            sum[m] &lt;= prod[m] + sum[m+1];
+        end
+        sum[FIR_TAP-1] &lt;= prod[FIR_TAP-1];
+    end
+end
+assign data_out_w = sum[0];
+
+assign data_out = data_out_w[ADD_WIDTH-1:ADD_WIDTH-DOUT_WIDTH];
+
+function integer clogb2 (input integer depth);
+    begin
+        for(clogb2=0; depth&gt;1; clogb2=clogb2+1)
+        depth = depth &gt;&gt; 1;
+    end
+endfunction
+endmodule
+</code></pre>
+<h4 id="综合结果-2">综合结果</h4>
+<center>
+ <img src="https://i.loli.net/2019/05/05/5ccef096f2aa2.png" alt="基于SOP（乘积和）的转置结构的可编程FIR滤波器" title="基于SOP（乘积和）的转置结构的可编程FIR滤波器" width=""> 
+</center>
+请查看原图，并与FIR滤波器的转置结构图进行对比。
+<h3 id="42-用verilog实现一个3-tap低通fir滤波器y通路输入输出为8bit无符号数滤波器系数14-12-14-c通路bypass输出">42. 用verilog实现一个3-tap低通FIR滤波器，Y通路输入输出为8bit无符号数，滤波器系数<code>[1/4 1/2 1/4]</code>。C通路bypass输出。</h3>
+<blockquote>
+<p>module fir_lpf_3tap_YC (<br>
+input clk,<br>
+input rst_n,<br>
+input [7:0] yin,<br>
+output [7:0] yout,<br>
+input [7:0] cin,<br>
+output [7:0] cout<br>
+);<br>
+...<br>
+endmodule</p>
+</blockquote>
+<h4 id="verilog描述-5">verilog描述</h4>
+<pre><code class="language-verilog">module fir_lpf_3tap(
+    input               clk     , 
+    input               rst_n   , 
+    input       [7:0]   yin     , 
+    output      [7:0]   yout    ,
+    input       [7:0]   cin     ,
+    output      [7:0]   cout    
+    );
+
+reg [7:0] tap [0:2];
+reg [8:0] product [0:1];
+reg [7:0] yout_r    ;
+
+always @(posedge clk or negedge rst_n) begin
+    if (!rst_n) begin
+        tap[0] &lt;= 8'd0;
+        tap[1] &lt;= 8'd0;
+        tap[2] &lt;= 8'd0;
+    end else begin
+        tap[2] &lt;= tap[1];
+        tap[1] &lt;= tap[0];
+        tap[0] &lt;= yin;
+    end
+end
+
+always @(posedge clk or negedge rst_n) begin
+    if (!rst_n) begin
+        product[0] &lt;= 9'd0;
+        product[1] &lt;= 9'd0;
+    end else begin
+        product[0] = (tap[0] + tap[2]) &gt;&gt; 2;
+        product[1] = tap[1] &gt;&gt; 1;        
+    end
+end
+
+always @(posedge clk or negedge rst_n) begin
+    if (!rst_n) begin
+        yout_r &lt;= 8'd0;
+    end else begin
+        yout_r &lt;= product[0] + product[1];
+    end
+end
+
+assign yout = yout_r;
+assign cout = cin;
+
+endmodule
+</code></pre>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://halftop.github.io/tag/f0tARmjal" class="tag">
+                    IC
+                  </a>
+                
+                  <a href="https://halftop.github.io/tag/9rG5j0Nww" class="tag">
+                    FPGA
+                  </a>
+                
+                  <a href="https://halftop.github.io/tag/ADa051R6R" class="tag">
+                    Verilog HDL
+                  </a>
+                
+                  <a href="https://halftop.github.io/tag/bwS6E4Jqc" class="tag">
+                    学习笔记
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://halftop.github.io/post/verilog99_31to37">
+                  <h3 class="post-title">
+                    Verilog99题——31-37题（存储相关）
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <footer>
+	<div class="foo-con">
+    	<p><a href="#">有输入有输出，才是正确的学习方式。</a></p>
+      	<p>
+	        
+	        <span>&nbsp;</span>
+	        Powered by <a href="https://gridea.dev">Gridea</a>
+	        <span>•</span>Theme <a href="http://www.itaolaity.com/">Alin</a>
+     	</p>
+    </div>
+</footer>
+
+
+
+<script src="https://halftop.github.io/media/dict/js/aos.js"></script>
+
+<!--Self-->
+<script>
+    $(window).on('load',function(){ 
+  　　$('.tilt').fadeOut(1000);
+　　}); 
+</script>
+
+
+<script type="application/javascript">
+
+/*动画初始化*/
+AOS.init(
+  {
+  offset: 200,
+  duration: 600,
+  easing: 'ease-in-sine',
+  delay: 100,
+  }
+);
+
+/*代码高亮*/
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible:false,
+    alin:{
+      like:[
+          {
+            "alt":"我的博客",
+            "aim":"https://halftop.github.io",
+            "src":"http://itaolaity.com/20190429220545.png"
+          },
+          {
+            "alt":"GitHub",
+            "aim":"https://github.com/halftop",
+            "src":"http://itaolaity.com/20190429220612.png"
+          },
+          {
+            "alt":"Email",
+            "aim":"mailto:yu.zh@live.com",
+            "src":"http://itaolaity.com/20190429220636.png"
+          }
+      ]
+    }
+  }
+});
+
+</script>
+
+
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '42b8247150af6c920554',
+        clientSecret: 'ea9863ece62308a1854e39455221fa1ace6f8cd6',
+        repo: 'halftop.github.io',
+        owner: 'halftop',
+        admin: ['halftop'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+    <script>
+      //添加SVG代码
+      var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="14" viewBox="20"><g fill="none" fill-rule="evenodd" transform="translate(1 1)"><circle cx="6" cy="6" r="6" fill="#FF5F56" stroke="#E0443E" stroke-width=".5"></circle><circle cx="26" cy="6" r="6" fill="#FFBD2E" stroke="#DEA123" stroke-width=".5"></circle><circle cx="46" cy="6" r="6" fill="#27C93F" stroke="#1AAB29" stroke-width=".5"></circle></g></svg>';
+      var code = document.querySelectorAll(".post-content pre code");
+      for(var i=0; i<code.length; i++){
+          code[i].insertAdjacentHTML("beforebegin", svg);
+      }
+      //注册添加Class
+      $('.post-detail h1,h2,h3,h4,h5').addClass("iconfont");
+
+
+    </script>
+  </body>
+</html>
