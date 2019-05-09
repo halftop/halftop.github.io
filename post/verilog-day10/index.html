@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>Verilog没有葵花宝典——day5（时序逻辑） | 1/2顶点</title>
+<title>Verilog没有葵花宝典——day10（PWM） | 1/2顶点</title>
 <meta name="description" content="有输入有输出，才是正确的学习方式。">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -181,144 +181,172 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">Verilog没有葵花宝典——day5（时序逻辑）</h2>
-            <div class="post-date">2019-04-26</div>
+            <h2 class="post-title">Verilog没有葵花宝典——day10（PWM）</h2>
+            <div class="post-date">2019-05-08</div>
             
-              <div class="feature-container" style="background-image: url('https://i.loli.net/2019/05/03/5ccba0745769c.jpg')">
+              <div class="feature-container" style="background-image: url('https://i.loli.net/2019/05/09/5cd38c0ec7b89.jpg')">
               </div>
             
             <div class="post-content">
               <h2 id="题目">题目</h2>
 <blockquote>
-<ol>
-<li>dff和latch有什么区别。</li>
-<li>什么是同步电路和异步电路。</li>
-<li>什么是setup time和 hold time。</li>
-<li>设计一个101序列检测器。要画出状态转移图，写verilog，并仿真测试。</li>
-</ol>
+<p>用verilog实现PWM控制呼吸灯。呼吸周期2秒：1秒逐渐变亮，1秒逐渐变暗。系统时钟24MHz，pwm周期1ms，精度1us。</p>
 </blockquote>
-<!-- more -->
-<ul>
-<li><a href="#%E9%A2%98%E7%9B%AE">题目</a>
-<ul>
-<li><a href="#1-dff%E5%92%8Clatch%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB">1. dff和latch有什么区别。</a></li>
-<li><a href="#2-%E4%BB%80%E4%B9%88%E6%98%AF%E5%90%8C%E6%AD%A5%E7%94%B5%E8%B7%AF%E5%92%8C%E5%BC%82%E6%AD%A5%E7%94%B5%E8%B7%AF">2. 什么是同步电路和异步电路。</a></li>
-<li><a href="#3-%E4%BB%80%E4%B9%88%E6%98%AFsetup-time%E5%92%8C-hold-time">3. 什么是setup time和 hold time。</a></li>
-<li><a href="#4-%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA101%E5%BA%8F%E5%88%97%E6%A3%80%E6%B5%8B%E5%99%A8%E8%A6%81%E7%94%BB%E5%87%BA%E7%8A%B6%E6%80%81%E8%BD%AC%E7%A7%BB%E5%9B%BE%E5%86%99verilog%E5%B9%B6%E4%BB%BF%E7%9C%9F%E6%B5%8B%E8%AF%95">4. 设计一个101序列检测器。要画出状态转移图，写verilog，并仿真测试。</a>
-<ul>
-<li><a href="#%E7%8A%B6%E6%80%81%E8%BD%AC%E7%A7%BB%E5%9B%BE">状态转移图</a></li>
-<li><a href="#verilog%E6%8F%8F%E8%BF%B0">verilog描述</a></li>
-<li><a href="#testbench">testbench</a></li>
-<li><a href="#%E4%BB%BF%E7%9C%9F%E7%BB%93%E6%9E%9C">仿真结果</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="1-dff和latch有什么区别">1. dff和latch有什么区别。</h3>
-<p>都是时序逻辑，输出不但同当前的输入相关还同上一状态的输出相关。</p>
-<p>1、latch由电平触发，非同步控制。在使能信号有效时latch相当于通路，在使能信号无效时latch保持输出状态。DFF由时钟沿触发，同步控制。</p>
-<p>2、latch容易产生毛刺（glitch），DFF则不易产生毛刺。</p>
-<p>3、如果使用门电路来搭建latch和DFF，则latch消耗的门资源比DFF要少，这是latch比DFF优越的地方。所以，在ASIC中使用 latch的集成度比DFF高，但在FPGA中正好相反，因为FPGA中没有标准的latch单元，但有DFF单元，一个LATCH需要多个LE才能实现。</p>
-<p>4、latch将静态时序分析变得极为复杂。</p>
+<h3 id="思路">思路</h3>
 <center>
-    <img src="https://i.loli.net/2019/04/26/5cc31e0a462a2.png" alt="D锁存器和D触发器的输出波形图" title="D锁存器和D触发器的输出波形图">
+ <img src="https://i.loli.net/2019/05/08/5cd29cc73330d.jpg" alt="思路（网图侵删）" title="思路（侵删）" width=""> 
 </center>
-<p>上图所示为D锁存器和D触发器输出端随输入信号变化的波形图( Waveform diagram)。由图中可见,输入信号D在<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>t</mi><mi>a</mi></msub></mrow><annotation encoding="application/x-tex">t_a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.61508em;"></span><span class="strut bottom" style="height:0.76508em;vertical-align:-0.15em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit">t</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">a</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span>时刻以前,D锁存器和D触发器输出端随输入信号变化的波形相同;在t时刻,CP=1期间D发生了变化,D锁存器的输出随着输入信号的变化而变化,D触发器则是在下一个时钟到来后输出状态才发生改变。这是由于触发器不具有传输透明性(Transparency),即触发器输入端发生变化并不会同步引起其输出端发生变化。触发器输出端的变化仅受控制输入(时钟)信号或异步置位复位信号的控制。在通常情况下,除了输入信号在CP=1期间发生变化以外,锁存器和触发器的输出响应是相同的。</p>
-<h3 id="2-什么是同步电路和异步电路">2. 什么是同步电路和异步电路。</h3>
-<p><strong>同步电路</strong> ：各时钟端连在一起，并接在统一的系统时钟端。只有当时钟边沿到来时，电路的状态才会改变。改变后的状态一直保持到下一个时钟的到来，在此期间无论外部的信号如何变化，状态表中的每个状态都是稳定的。</p>
-<p><strong>异步电路</strong> : 电路中没有统一的时钟，电路状态可以由外部输入的变化直接引起。</p>
-<h3 id="3-什么是setup-time和-hold-time">3. 什么是setup time和 hold time。</h3>
-<p><strong>建立时间（setup time）</strong> 是指在触发器的时钟信号上升沿到来以前，数据稳定不变的最小时间，如果建立时间不够，数据将不能在这个时钟上升沿被打入触发器；</p>
-<p><strong>保持时间（hold time）</strong> 是指在触发器的时钟信号上升沿到来以后，数据稳定不变的最小时间，如果保持时间不够，数据同样不能被打入触发器。</p>
-<h3 id="4-设计一个101序列检测器-要画出状态转移图写verilog并仿真测试">4. 设计一个101序列检测器。要画出状态转移图，写verilog，并仿真测试。</h3>
-<h4 id="状态转移图">状态转移图</h4>
-<center>
-    <img src="https://i.loli.net/2019/04/26/5cc318f6ed952.png" alt="状态转移" title="状态转移" width="500">
-</center>
-<h4 id="verilog描述">verilog描述</h4>
-<pre><code class="language-v">module test29(
-input clk, rst_n, data,
-output reg flag_101
-    );
-parameter   ST0 = 4'b0001,
-            ST1 = 4'b0010,
-            ST2 = 4'b0100,
-            ST3 = 4'b1000;
+<p>就不重复造轮子了，请点击 <a href="http://www.stepfpga.com/doc/%E5%91%BC%E5%90%B8%E7%81%AF">详细思路</a></p>
+<h3 id="verilog描述">Verilog描述</h3>
+<pre><code class="language-verilog">// --------------------------------------------------------------------
+// &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; COPYRIGHT NOTICE &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;
+// --------------------------------------------------------------------
+// Author: halftop
+// Github: https://github.com/halftop
+// Email: yu.zh@live.com
+// Description: LED通过PWM调亮度,实现呼吸灯
+// Dependencies: 
+// LastEditors: halftop
+// Since: 2019-05-08 11:24:52
+// LastEditTime: 2019-05-08 16:08:10
+// ********************************************************************
+// Module Function:呼吸灯
+`define SIMULATION;
+module pwm_genrate
+#(
+    parameter CLK_FREQUENCE	= 24,	//MHz
+            PWM_PRECISION	= 1,	//us
+            PWM_PERIOD		= 1,	//ms
+            BREATH_CYCLE	= 2		//s
+)
+(
+    input					clk     ,
+    input					rst_n	,
+    output	reg				pwm_sig	
+);
 
-reg [3:0] c_st;
-reg [3:0] n_st;
-//FSM-1
+`ifdef	SIMULATION
+localparam	PRECISION_CNT	= CLK_FREQUENCE*PWM_PRECISION,
+            PERIOD_CNT		= PWM_PERIOD*10/PWM_PRECISION,
+            CYCLE_CNT		= BREATH_CYCLE*5/PWM_PRECISION/PWM_PERIOD,
+            PRECISION_WD	= clogb2(PRECISION_CNT),
+            PERIOD_WD		= clogb2(PERIOD_CNT),
+            CYCLE_WD		= clogb2(CYCLE_CNT);
+`else
+localparam	PRECISION_CNT	= CLK_FREQUENCE*PWM_PRECISION,
+            PERIOD_CNT		= PWM_PERIOD*1000/PWM_PRECISION,
+            CYCLE_CNT		= BREATH_CYCLE*500/PWM_PRECISION/PWM_PERIOD,
+            PRECISION_WD	= clogb2(PRECISION_CNT),
+            PERIOD_WD		= clogb2(PERIOD_CNT),
+            CYCLE_WD		= clogb2(CYCLE_CNT);
+`endif
+
+reg     [PRECISION_WD-1:0]  cnt_pre;//精度计数
+reg     [PERIOD_WD-1:0]     cnt_per;//pwm周期计数
+reg     [CYCLE_WD-1:0]      cnt_cyc;//呼吸周期计数
+wire                        time_pre;//精度标志
+wire                        time_per;//pwm周期标志
+wire                        time_cyc;//半个呼吸周期计数
+reg                         turn_flag;//默认低亮高灭；1为逐渐变暗，0为逐渐变亮
+
 always @(posedge clk or negedge rst_n) begin
-  if (!rst_n) begin
-    c_st &lt;= ST0;
-  end else begin
-    c_st &lt;= n_st;
-  end
+    if (!rst_n) begin
+        cnt_pre &lt;= 'd0;
+    end else if (cnt_pre&lt;PRECISION_CNT) begin
+        cnt_pre &lt;= cnt_pre + 1'b1;
+    end else begin
+        cnt_pre &lt;= 'd1;
+    end
 end
-//FSM-2
-always @(*) begin
-  case (c_st)
-    ST0: n_st = data ? ST1 : ST0;
-    ST1: n_st = data ? ST1 : ST2;
-    ST2: n_st = data ? ST3 : ST0;
-    ST3: n_st = data ? ST1 : ST2;
-    default: n_st = ST0;
-  endcase
-end
-//FSM-3
+assign time_pre = cnt_pre == PRECISION_CNT;
+
 always @(posedge clk or negedge rst_n) begin
-  if (!rst_n) begin
-    flag_101 &lt;= 1'b0;
-  end else begin
-    case (n_st)
-      ST3: flag_101 &lt;= 1'b1;
-      ST0,ST1,ST2: flag_101 &lt;= 1'b0;
-      default: flag_101 &lt;= 1'b0;
-    endcase
-  end
+    if (!rst_n) begin
+        cnt_per &lt;= 'd0;
+    end else if (time_pre) begin
+        cnt_per &lt;= (cnt_per&lt;PERIOD_CNT)?(cnt_per+1'b1):1'd1;
+    end else begin
+        cnt_per &lt;= cnt_per;
+    end
 end
+assign time_per = cnt_per == PERIOD_CNT &amp;&amp; time_pre;
+
+always @(posedge clk or negedge rst_n) begin
+    if (!rst_n) begin
+        cnt_cyc &lt;= 'd0;
+    end else if (time_per) begin
+        cnt_cyc &lt;= (cnt_cyc&lt;CYCLE_CNT)?(cnt_cyc+1'b1):1'd1;
+    end else begin
+        cnt_cyc &lt;= cnt_cyc;
+    end
+end
+assign time_cyc = cnt_cyc == CYCLE_CNT &amp;&amp; time_per;
+
+always @(posedge clk or negedge rst_n) begin
+    if (!rst_n) begin
+        turn_flag &lt;= 1'b0;
+    end else if (time_cyc) begin
+        turn_flag &lt;= ~turn_flag;
+    end else begin
+        turn_flag &lt;= turn_flag;
+    end
+end
+
+always @(posedge clk or negedge rst_n) begin
+    if (!rst_n) begin
+        pwm_sig &lt;= 1'b1;
+    end else begin
+        case (turn_flag)
+            1'b0: pwm_sig &lt;= (cnt_per&gt;cnt_cyc)?1'b1:1'b0;
+            1'b1: pwm_sig &lt;= (cnt_per&lt;cnt_cyc)?1'b1:1'b0;
+            default: pwm_sig &lt;= pwm_sig;
+        endcase
+    end
+end
+
+function integer clogb2 (input integer depth);
+    begin
+        for(clogb2=0; depth&gt;0; clogb2=clogb2+1)
+        depth = depth &gt;&gt; 1;
+    end
+endfunction
 endmodule
 </code></pre>
-<h4 id="testbench">testbench</h4>
-<pre><code class="language-v">module tb29(    );
-reg     clk, rst_n, data;
-wire    flag_101;
+<h3 id="testbench">testbench</h3>
+<pre><code class="language-verilog">module tb_pwm_led;
+reg clk;
+reg rst_n;
+wire pwm_sig;
 
-  initial begin
-    clk = 0;
-    forever #10 clk = ~clk;
+initial begin
+    clk = 1;
+    forever #1 clk = ~clk;
   end
-  
-  initial begin
+
+initial begin
     rst_n = 1'b0;
     #22 rst_n = 1'b1;
+    #20000 $finish;
   end
 
-  initial begin
-    repeat(100)begin
-      @(negedge clk)
-	      data = {$random};
-    end
-    $finish;
-  end
-  
-/*   initial begin
-    $dumpfile(&quot;seq101_tb.vcd&quot;);
-    $dumpvars();
-  end */
-
-test29 test29(
-    .clk        (clk     ), 
-    .rst_n      (rst_n   ), 
-    .data       (data    ),
-    .flag_101   (flag_101)
-    );
+pwm_genrate
+#(
+    5,	//MHz
+    1,	//us
+    1,	//ms
+    2		//s
+)
+pwm_led
+(
+    .clk		(clk	),
+    .rst_n		(rst_n	),
+    .pwm_sig	(pwm_sig)	
+);
 endmodule
 </code></pre>
-<h4 id="仿真结果">仿真结果</h4>
+<h3 id="仿真图">仿真图</h3>
 <center>
-    <img src="https://i.loli.net/2019/04/26/5cc31a11654c1.png" alt="全加器计数" title="全加器计数" width="600">
+ <img src="https://i.loli.net/2019/05/08/5cd29e8d9fa40.png" alt="pwm呼吸灯仿真" title="pwm呼吸灯仿真" width="800"> 
 </center>
             </div>
             
@@ -326,6 +354,10 @@ endmodule
                 
                   <a href="https://halftop.github.io/tag/eBG9zXtcm" class="tag">
                     Verilog没有葵花宝典
+                  </a>
+                
+                  <a href="https://halftop.github.io/tag/f0tARmjal" class="tag">
+                    IC
                   </a>
                 
                   <a href="https://halftop.github.io/tag/9rG5j0Nww" class="tag">
@@ -345,9 +377,9 @@ endmodule
             
               <div class="next-post">
                 <div class="next">下一篇</div>
-                <a href="https://halftop.github.io/post/verilog-day4">
+                <a href="https://halftop.github.io/post/verilog-day9">
                   <h3 class="post-title">
-                    Verilog没有葵花宝典——day4（组合逻辑）
+                    Verilog没有葵花宝典——day9（按键防抖）
                   </h3>
                 </a>
               </div>
