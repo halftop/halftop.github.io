@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>Verilog没有葵花宝典——day9（按键防抖） | 1/2顶点</title>
+<title>Verilog99题——45.46题（奇、偶分频） | 1/2顶点</title>
 <meta name="description" content="有输入有输出，才是正确的学习方式。">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -181,203 +181,141 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">Verilog没有葵花宝典——day9（按键防抖）</h2>
-            <div class="post-date">2019-05-07</div>
-            
-              <div class="feature-container" style="background-image: url('https://i.loli.net/2019/05/07/5cd1814a74fa3.png')">
-              </div>
+            <h2 class="post-title">Verilog99题——45.46题（奇、偶分频）</h2>
+            <div class="post-date">2019-05-10</div>
             
             <div class="post-content">
               <h2 id="题目">题目</h2>
 <blockquote>
-<ol>
-<li>用verilog实现按键抖动消除电路，抖动小于15ms，输入时钟12MHz。</li>
-<li>记录题目1中用到的工具，操作步骤，遇到的错误和提示信息。</li>
+<ol start="45">
+<li>用verilog实现二分频。</li>
+<li>用verilog实现三分频电路，要求输出50%占空比。</li>
 </ol>
 </blockquote>
-<!-- more --> 
-<!-- TOC -->
-<ul>
-<li><a href="#%E9%A2%98%E7%9B%AE">题目</a></li>
-<li><a href="#%E7%AC%AC%E4%B8%80%E9%A2%98">第一题</a>
-<ul>
-<li><a href="#%E6%80%9D%E8%B7%AF">思路</a></li>
-<li><a href="#verilog%E6%8F%8F%E8%BF%B0">Verilog描述</a></li>
-<li><a href="#testbench">testbench</a></li>
-</ul>
-</li>
-<li><a href="#%E7%AC%AC%E4%BA%8C%E9%A2%98">第二题</a></li>
-</ul>
-<!-- /TOC -->
-<h2 id="第一题">第一题</h2>
-<p><strong>用verilog实现按键抖动消除电路，抖动小于15ms，输入时钟12MHz。</strong></p>
-<h3 id="思路">思路</h3>
-<p>假设按键按下时是低电平，松开时是高电平。监测按键由按下到松开整个过程，并用<code>key_vld</code>信号来表示x消抖后的按键输出。进一步可以输出按下、松开的有效信号（边沿检测），甚至可以按键计时。使用状态机完成，伪状态转移图：</p>
-<center>
- <img src="https://i.loli.net/2019/05/07/5cd17f85ef647.jpg" alt="按键去抖状态转移图" title="按键去抖状态转移图" width="600"> 
-</center>
-<p>仿真图：</p>
-<center>
- <img src="https://i.loli.net/2019/05/07/5cd1814a74fa3.png" alt="按键消抖仿真图" title="按键消抖仿真图" width=""> 
-</center>
-<h3 id="verilog描述">Verilog描述</h3>
-<pre><code class="language-verilog">module debounce
-#(
-	parameter DELAY_TIME = 18'h3ffff
-)
-(
-	input				clk,
-	input				rst_n,
-	input				key_in,
-	output	reg			key_vld
+<!-- more -->
+<h3 id="思路及方法">思路及方法</h3>
+<p>偶数分频十分简单,只需用高速时钟做一个同步计数器,然后在相应的位抽头即可。奇数分频电路相对复杂些。引用一篇比较详细的blog：<a href="https://mp.weixin.qq.com/s/Xd6vn51L1hD0mRClQbVfaQ">verilog实现简单分频器</a></p>
+<h3 id="45">45</h3>
+<h4 id="verilog描述">verilog描述</h4>
+<pre><code class="language-verilog">// --------------------------------------------------------------------
+// &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; COPYRIGHT NOTICE &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;
+// --------------------------------------------------------------------
+// Author: halftop
+// Github: https://github.com/halftop
+// Email: yu.zh@live.com
+// Description: 二分频
+// Dependencies: 
+// LastEditors: halftop
+// Since: 2019-05-10 10:37:19
+// LastEditTime: 2019-05-10 11:04:06
+// ********************************************************************
+// Module Function:二分频
+`timescale 1ns / 1ps
+
+module div_2(
+    input					clk			,
+    input					rst_n		,
+    output  reg             clk_out     
 );
 
-localparam	IDLE		= 4'b0001,
-			PRESS_DELAY	= 4'b0010,
-			WAIT_RELEASE= 4'b0100,
-			RELEASE_DELA= 4'b1000;
-
-reg [1:0] key_in_r;
-wire key_press_edge;
-wire key_release_edge;
-
 always @(posedge clk or negedge rst_n) begin
-	if (!rst_n) begin
-		key_in_r &lt;= 2'b11;
-	end else begin
-		key_in_r &lt;= {key_in_r[0],key_in};
-	end
-end
-assign key_press_edge = key_in_r[1] &amp; (~key_in_r[0]);
-assign key_release_edge = (~key_in_r[1]) &amp; key_in_r[0];
-
-
-reg	[17:0]	  cnt;
-reg [3:0] cstate,nstate;
-//FSM-1
-always @(posedge clk or negedge rst_n) begin
-	if (!rst_n) begin
-		cstate &lt;= IDLE;
-	end else begin
-		cstate &lt;= nstate;
-	end
-end
-//FSM-2
-always @(*) begin
-	case (cstate)
-		IDLE	 : nstate = key_press_edge ? PRESS_DELAY : IDLE;
-		PRESS_DELAY: begin
-			if (cnt==DELAY_TIME &amp;&amp; key_in_r[0] == 0) begin
-				nstate = WAIT_RELEASE;//按下完成
-			end else if (cnt&lt;DELAY_TIME &amp;&amp; key_in_r[0] == 1) begin
-				nstate = IDLE;//抖动
-			end else begin
-				nstate = PRESS_DELAY;//计数未完成
-			end
-		end
-		WAIT_RELEASE: nstate = key_release_edge ? RELEASE_DELA : WAIT_RELEASE;
-		RELEASE_DELA: begin
-			if (cnt==DELAY_TIME &amp;&amp; key_in_r[0] == 1) begin
-				nstate = IDLE;//松开完成
-			end else if (cnt&lt;DELAY_TIME &amp;&amp; key_in_r[0] == 0) begin
-				nstate = WAIT_RELEASE;//抖动
-			end else begin
-				nstate = RELEASE_DELA;//计数未完成
-			end
-		end
-		default: nstate = IDLE;
-	endcase
-end
-//FSM-3
-always @(posedge clk or negedge rst_n) begin
-	if (!rst_n) begin
-		key_vld &lt;= 1'b1;
-	end else begin
-		case (nstate)
-			IDLE,PRESS_DELAY:key_vld &lt;= 1'b1;
-			WAIT_RELEASE,RELEASE_DELA: key_vld &lt;= 1'b0;
-			default: key_vld &lt;= 1'b1;
-		endcase
-	end
+    if (!rst_n) begin
+        clk_out &lt;= 1'b0;
+    end else begin
+        clk_out &lt;= ~clk_out;
+    end
 end
 
-always @(posedge clk or negedge rst_n) begin
-    if(!rst_n)
-		cnt &lt;= 18'd0;
-    else if (cstate==PRESS_DELAY || cstate==RELEASE_DELA) begin
-		if (cnt==DELAY_TIME) begin
-			cnt &lt;= 18'd0;
-		end else begin
-			cnt &lt;= cnt + 1'b1;
-		end
-	end else begin
-		cnt &lt;= 18'd0;
-	end
-end  
 endmodule
 </code></pre>
-<h3 id="testbench">testbench</h3>
-<pre><code class="language-verilog">module tb_debounce;
-reg		clk		;
-reg		rst_n	;
-reg		key_in	;
-wire	key_vld	;
+<h3 id="46">46</h3>
+<h4 id="verilog描述-2">verilog描述</h4>
+<pre><code class="language-verilog">// --------------------------------------------------------------------
+// &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; COPYRIGHT NOTICE &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;
+// --------------------------------------------------------------------
+// Author: halftop
+// Github: https://github.com/halftop
+// Email: yu.zh@live.com
+// Description: 实现任意奇数分频
+// Dependencies: 
+// LastEditors: halftop
+// Since: 2019-05-10 11:04:51
+// LastEditTime: 2019-05-10 22:18:17
+// ********************************************************************
+// Module Function:实现任意奇数分频
+`timescale 1ns / 1ps
 
-initial begin
-	clk = 1;
-	forever #10 clk = ~clk;
-  end
-
-initial begin
-	rst_n = 1'b0;
-	#22 rst_n = 1'b1;
-  end
-
-initial begin
-	key_in = 1'b1;
-	repeat(15) begin
-		@(posedge clk)
-			key_in = {$random};
-	end
-	repeat(25) begin
-		@(posedge clk)
-			key_in = 1'b0;
-	end
-	repeat(25) begin
-		@(posedge clk)
-			key_in = 1'b1;
-	end
-	repeat(15) begin
-		@(posedge clk)
-			key_in = {$random};
-	end
-	$finish;
-end
-
-debounce
+module div_odd
 #(
-	 'd10
+    parameter N	= 3
+    
 )
-debounce
 (
-	.clk		(clk	),
-	.rst_n		(rst_n	),
-	.key_in		(key_in	),
-	.key_vld	(key_vld)	
+    input					clk			,
+    input					rst_n		,
+    output                  clk_out     
 );
+
+localparam  WD = clogb2(N);
+
+reg                 clk_out_p   ;
+reg                 clk_out_n   ;
+reg     [WD-1:0]    count       ;
+
+always @(posedge clk or negedge rst_n) begin
+    if (!rst_n) begin
+        count &lt;= 'd0;
+    end else if (count==N-1) begin
+        count &lt;= 'd0;
+    end else begin
+        count &lt;= count + 1'b1;
+    end
+end
+
+always @(posedge clk or negedge rst_n) begin
+    if (!rst_n) begin
+        clk_out_p &lt;= 1'b1;
+    end else if (count&gt;N/2) begin
+        clk_out_p &lt;= 1'b0;
+    end else begin
+        clk_out_p &lt;= 1'b1;
+    end
+end
+
+always @(negedge clk or negedge rst_n) begin
+    if (!rst_n) begin
+        clk_out_n &lt;= 1'b0;
+    end else begin
+        clk_out_n &lt;= clk_out_p;
+    end
+end
+
+assign clk_out = clk_out_p&amp;clk_out_n;
+
+function integer clogb2 (input integer depth);
+    begin
+        for(clogb2=0; depth&gt;0; clogb2=clogb2+1)
+        depth = depth &gt;&gt; 1;
+    end
+endfunction
+
 endmodule
 </code></pre>
-<h2 id="第二题">第二题</h2>
-<p>警告信息</p>
-<p><code>Ignoring unknown option '-debug-all' passed to 'vcs' and continuing</code></p>
-<p>原因是将<code>-debug_all</code>写出了<code>-debug-all</code>。</p>
-
+<h4 id="仿真结果">仿真结果</h4>
+<p>三分频：</p>
+<center>
+ <img src="https://i.loli.net/2019/05/10/5cd589db5ed2a.png" alt="三分频仿真结果" title="三分频仿真结果" width="800"> 
+</center>
+<p>七分频：</p>
+<center>
+ <img src="https://i.loli.net/2019/05/10/5cd58b4047f97.png" alt="七分频仿真结果" title="七分频仿真结果" width="800"> 
+</center>
             </div>
             
               <div class="tag-container">
                 
-                  <a href="https://halftop.github.io/tag/eBG9zXtcm" class="tag">
-                    Verilog没有葵花宝典
+                  <a href="https://halftop.github.io/tag/DztcUtg4_" class="tag">
+                    Verilog99题
                   </a>
                 
                   <a href="https://halftop.github.io/tag/ADa051R6R" class="tag">
@@ -393,9 +331,9 @@ endmodule
             
               <div class="next-post">
                 <div class="next">下一篇</div>
-                <a href="https://halftop.github.io/post/verilog-day8">
+                <a href="https://halftop.github.io/post/verilog99_43to44">
                   <h3 class="post-title">
-                    Verilog没有葵花宝典——day8（计数器）
+                    Verilog99题——43、44题（两道算法题）
                   </h3>
                 </a>
               </div>
