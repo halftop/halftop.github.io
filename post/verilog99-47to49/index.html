@@ -5,7 +5,7 @@
     
 <meta charset="utf-8" >
 
-<title>verilog99题——10题 | 1/2顶点</title>
+<title>Verilog99题-47-49题（时钟相关） | 1/2顶点</title>
 <meta name="description" content="    有输入有输出，才是正确的学习方式    ">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -85,12 +85,9 @@
       <div class="content-container">
         <div class="post-detail">
           
-            <div class="feature-container" style="background-image: url('https://i.loli.net/2019/05/03/5ccba276b5a36.jpg')">
-            </div>
-          
-          <h2 class="post-title">verilog99题——10题</h2>
+          <h2 class="post-title">Verilog99题-47-49题（时钟相关）</h2>
           <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2019-03-13</span>
+            <span><i class="icon-calendar-outline"></i> 2019-05-14</span>
             
               <span>
                 <i class="icon-pricetags-outline"></i>
@@ -118,25 +115,116 @@
             
           </div>
           <div class="post-content">
-            <h2 id="题目">题目</h2>
-<p><strong>010.说明代码中w1和 w2对应电路的具体区别:</strong></p>
-<pre><code>wire [2:0] val; 
-wire w1 = val &gt; 0; 
-wire w2 = val &gt;= 0;
+            <h2 id="前言">前言</h2>
+<p><a href="https://mp.weixin.qq.com/s/prdZKHbKTFMH80eRnr7mLQ">不忘出芯veriloig99题</a>的45-题是</p>
+<p><ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%89%8D%E8%A8%80">前言</a>
+<ul>
+<li><a href="#47-%E7%94%BB%E5%87%BAclock-gating-cell%E7%9A%84%E5%8E%9F%E7%90%86%E5%9B%BE">47. 画出clock gating cell的原理图。</a>
+<ul>
+<li><a href="#%E5%9F%BA%E4%BA%8Elatch%E5%92%8C%E4%B8%8E%E9%97%A8">基于latch和与门</a></li>
+<li><a href="#%E5%9F%BA%E4%BA%8Elatch%E5%92%8C%E6%88%96%E9%97%A8">基于latch和或门</a></li>
+<li><a href="#49-%E7%94%A8verilog%E5%AE%9E%E7%8E%B0glitch-free%E6%97%B6%E9%92%9F%E5%88%87%E6%8D%A2%E7%94%B5%E8%B7%AF-%E8%BE%93%E5%85%A5selclkaclkbsel%E4%B8%BA1%E8%BE%93%E5%87%BAclkasel%E4%B8%BA0%E8%BE%93%E5%87%BAclkb">49. 用verilog实现glitch free时钟切换电路。输入sel，clka，clkb，sel为1输出clka，sel为0输出clkb。</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</p>
+<h3 id="47-画出clock-gating-cell的原理图">47. 画出clock gating cell的原理图。</h3>
+<h4 id="基于latch和与门">基于latch和与门</h4>
+<center>
+ <img src="https://i.loli.net/2019/05/14/5cda80576019768349.png" alt="ICG_AND" title="ICG_AND" width=""> 
+</center>
+<center>
+ <img src="https://i.loli.net/2019/05/14/5cda83e3d3c2768584.png" alt="AND_ICG_tim" title="AND_ICG_tim" width=""> 
+</center>
+<h4 id="基于latch和或门">基于latch和或门</h4>
+<center>
+ <img src="https://i.loli.net/2019/05/14/5cda80ab9f0fa61819.png" alt="ICG_OR" title="ICG_OR" width=""> 
+</center>
+<center>
+ <img src="https://i.loli.net/2019/05/14/5cda84254038421193.png" alt="OR_ICG_timOR_ICG_tim" title="OR_ICG_tim" width=""> 
+</center>
+#### 48. 用verilog实现静态时钟切换电路。外部管脚输入sel，clk，testclk。sel为1输出clk，sel为0输出testclk。
+<pre><code class="language-verilog">module clk_switch(
+    input                   clk0        ,
+    input                   clk1        ,
+    input                   rst_n       ,
+    input                   select      ,
+    output                  outclk      
+    );
+
+    assign outclk = select ? clk1 : clk0;
 </code></pre>
- <!-- more --> 
-<p>这个题看了别人的作业和点评，最后使用二进制补码。答案和过程如下图</p>
- <center>
-		<img src="https://i.loli.net/2019/04/25/5cc1ce8bde04f.jpg" alt="image" title="第十题答案">
-	<center>
+<h4 id="49-用verilog实现glitch-free时钟切换电路-输入selclkaclkbsel为1输出clkasel为0输出clkb">49. 用verilog实现glitch free时钟切换电路。输入sel，clka，clkb，sel为1输出clka，sel为0输出clkb。</h4>
+<pre><code class="language-verilog">module clk_switch(
+    input                   clk0        ,
+    input                   clk1        ,
+    input                   rst_n       ,
+    input                   select      ,
+    output                  outclk      
+    );
+
+reg     out_r1;
+reg     out1;
+reg     out_r0;
+reg     out0;
+ 
+ always @(posedge clk1 or negedge rst_n)begin
+     if(rst_n == 1'b0)begin
+         out_r1 &lt;= 0;
+     end
+     else begin
+         out_r1 &lt;= ~out0 &amp; select;
+     end
+ end
+ 
+ always @(negedge clk1 or negedge rst_n)begin
+     if(rst_n == 1'b0)begin
+         out1 &lt;= 0;
+     end
+     else begin
+         out1 &lt;= out_r1;
+     end
+ end
+ 
+ always @(posedge clk0 or negedge rst_n)begin
+     if(rst_n == 1'b0)begin
+         out_r0 &lt;= 0;
+     end
+     else begin
+         out_r0 &lt;= ~select &amp; ~out1;
+     end
+ end
+ 
+ always @(negedge clk0 or negedge rst_n)begin
+     if(rst_n == 1'b0)begin
+         out0 &lt;= 0;
+     end
+     else begin
+         out0 &lt;= out_r0;
+     end
+ end
+ 
+ assign outclk = (out1 &amp; clk1) | (out0 &amp; clk0);
+endmodule
+</code></pre>
+<p>具体请点击<a href="https://mp.weixin.qq.com/s/w3Wu7HkSr5v94kHrLvRIcw">中文版</a>或<a href="https://www.eetimes.com/document.asp?doc_id=1202359">英文版</a>。</p>
+<p><a href="https://www.cnblogs.com/-9-8/p/5409862.html">另附1篇</a></p>
+
           </div>
         </div>
 
         
           <div class="next-post">
-            <a class="purple-link" href="https://halftop.github.io/post/verilog99_11">
+            <a class="purple-link" href="https://halftop.github.io/post/verilog99-45to46">
               <h3 class="post-title">
-                下一篇：通过做verilog99题的第11题学习竞争与冒险
+                下一篇：Verilog99题——45.46题（奇、偶分频）
               </h3>
             </a>
           </div>
