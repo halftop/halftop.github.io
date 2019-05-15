@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico?v=1557826708319">
+<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico?v=1557902805061">
 <link rel="stylesheet" href="https://halftop.github.io/styles/main.css">
 
 
@@ -35,7 +35,7 @@
   <div class="site-header">
     <div class="left">
       <a href="https://halftop.github.io">
-        <img class="avatar" src="https://halftop.github.io/images/avatar.png?v=1557826708319" alt="" width="32px" height="32px">
+        <img class="avatar" src="https://halftop.github.io/images/avatar.png?v=1557902805061" alt="" width="32px" height="32px">
       </a>
       <a href="https://halftop.github.io">
         <h1 class="site-title">1/2顶点</h1>
@@ -126,6 +126,7 @@
 <ul>
 <li><a href="#%E5%9F%BA%E4%BA%8Elatch%E5%92%8C%E4%B8%8E%E9%97%A8">基于latch和与门</a></li>
 <li><a href="#%E5%9F%BA%E4%BA%8Elatch%E5%92%8C%E6%88%96%E9%97%A8">基于latch和或门</a></li>
+<li><a href="#48-%E7%94%A8verilog%E5%AE%9E%E7%8E%B0%E9%9D%99%E6%80%81%E6%97%B6%E9%92%9F%E5%88%87%E6%8D%A2%E7%94%B5%E8%B7%AF-%E5%A4%96%E9%83%A8%E7%AE%A1%E8%84%9A%E8%BE%93%E5%85%A5selclktestclk-sel%E4%B8%BA1%E8%BE%93%E5%87%BAclksel%E4%B8%BA0%E8%BE%93%E5%87%BAtestclk">48. 用verilog实现静态时钟切换电路。外部管脚输入sel，clk，testclk。sel为1输出clk，sel为0输出testclk。</a></li>
 <li><a href="#49-%E7%94%A8verilog%E5%AE%9E%E7%8E%B0glitch-free%E6%97%B6%E9%92%9F%E5%88%87%E6%8D%A2%E7%94%B5%E8%B7%AF-%E8%BE%93%E5%85%A5selclkaclkbsel%E4%B8%BA1%E8%BE%93%E5%87%BAclkasel%E4%B8%BA0%E8%BE%93%E5%87%BAclkb">49. 用verilog实现glitch free时钟切换电路。输入sel，clka，clkb，sel为1输出clka，sel为0输出clkb。</a></li>
 </ul>
 </li>
@@ -150,7 +151,7 @@
 <center>
  <img src="https://i.loli.net/2019/05/14/5cda84254038421193.png" alt="OR_ICG_timOR_ICG_tim" title="OR_ICG_tim" width=""> 
 </center>
-#### 48. 用verilog实现静态时钟切换电路。外部管脚输入sel，clk，testclk。sel为1输出clk，sel为0输出testclk。
+<h4 id="48-用verilog实现静态时钟切换电路-外部管脚输入selclktestclk-sel为1输出clksel为0输出testclk">48. 用verilog实现静态时钟切换电路。外部管脚输入sel，clk，testclk。sel为1输出clk，sel为0输出testclk。</h4>
 <pre><code class="language-verilog">module clk_switch(
     input                   clk0        ,
     input                   clk1        ,
