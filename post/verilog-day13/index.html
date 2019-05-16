@@ -5,7 +5,7 @@
     
 <meta charset="utf-8" >
 
-<title>Verilog99题——45.46题（奇、偶分频） | 1/2顶点</title>
+<title>Verilog没有葵花宝典——day13（存储器） | 1/2顶点</title>
 <meta name="description" content="    有输入有输出，才是正确的学习方式    ">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -85,18 +85,15 @@
       <div class="content-container">
         <div class="post-detail">
           
-            <div class="feature-container" style="background-image: url('https://i.loli.net/2019/05/11/5cd67ec3e184c.jpg')">
-            </div>
-          
-          <h2 class="post-title">Verilog99题——45.46题（奇、偶分频）</h2>
+          <h2 class="post-title">Verilog没有葵花宝典——day13（存储器）</h2>
           <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2019-05-10</span>
+            <span><i class="icon-calendar-outline"></i> 2019-05-16</span>
             
               <span>
                 <i class="icon-pricetags-outline"></i>
                 
-                  <a href="https://halftop.github.io/tag/DztcUtg4_">
-                    Verilog99题
+                  <a href="https://halftop.github.io/tag/eBG9zXtcm">
+                    Verilog没有葵花宝典
                     
                       ，
                     
@@ -120,160 +117,81 @@
           <div class="post-content">
             <h2 id="题目">题目</h2>
 <blockquote>
-<ol start="45">
-<li>用verilog实现二分频。</li>
-<li>用verilog实现三分频电路，要求输出50%占空比。</li>
+<ol>
+<li>存储名词解释</li>
+<li>用verilog实现一个深度为16，位宽8bit的单端口SRAM。搭建一个仿真环境，完成初始化，读取，写入的操作。</li>
+<li>接第2题，如果同时对一个地址进行读和写操作，会怎样?实际中应该如何处理?</li>
+<li>使用单端口SRAM构造一个双端口同步FIFO。</li>
 </ol>
 </blockquote>
-<!-- more -->
+<!-- more --> 
 <p><ul class="markdownIt-TOC">
 <li>
 <ul>
 <li><a href="#%E9%A2%98%E7%9B%AE">题目</a>
 <ul>
-<li><a href="#%E6%80%9D%E8%B7%AF%E5%8F%8A%E6%96%B9%E6%B3%95">思路及方法</a></li>
-<li><a href="#45">45</a>
-<ul>
-<li><a href="#verilog%E6%8F%8F%E8%BF%B0">verilog描述</a></li>
-</ul>
-</li>
-<li><a href="#46">46</a>
-<ul>
-<li><a href="#verilog%E6%8F%8F%E8%BF%B0-2">verilog描述</a></li>
-<li><a href="#%E4%BB%BF%E7%9C%9F%E7%BB%93%E6%9E%9C">仿真结果</a></li>
-</ul>
-</li>
+<li><a href="#1-%E5%AD%98%E5%82%A8%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A">1. 存储名词解释</a></li>
+<li><a href="#2-%E5%8D%95%E7%AB%AF%E5%8F%A3sram">2. 单端口SRAM</a></li>
+<li><a href="#3-%E6%8E%A5%E7%AC%AC2%E9%A2%98%E5%A6%82%E6%9E%9C%E5%90%8C%E6%97%B6%E5%AF%B9%E4%B8%80%E4%B8%AA%E5%9C%B0%E5%9D%80%E8%BF%9B%E8%A1%8C%E8%AF%BB%E5%92%8C%E5%86%99%E6%93%8D%E4%BD%9C%E4%BC%9A%E6%80%8E%E6%A0%B7%E5%AE%9E%E9%99%85%E4%B8%AD%E5%BA%94%E8%AF%A5%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86">3. 接第2题，如果同时对一个地址进行读和写操作，会怎样?实际中应该如何处理?</a></li>
+<li><a href="#4-%E4%BD%BF%E7%94%A8%E5%8D%95%E7%AB%AF%E5%8F%A3sram%E6%9E%84%E9%80%A0%E4%B8%80%E4%B8%AA%E5%8F%8C%E7%AB%AF%E5%8F%A3%E5%90%8C%E6%AD%A5fifo">4. 使用单端口SRAM构造一个双端口同步FIFO。</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 </p>
-<h3 id="思路及方法">思路及方法</h3>
-<p>偶数分频十分简单,只需用高速时钟做一个同步计数器,然后在相应的位抽头即可。奇数分频电路相对复杂些。引用一篇比较详细的blog：<a href="https://mp.weixin.qq.com/s/Xd6vn51L1hD0mRClQbVfaQ">verilog实现简单分频器</a></p>
-<h3 id="45">45</h3>
-<h4 id="verilog描述">verilog描述</h4>
-<pre><code class="language-verilog">// --------------------------------------------------------------------
-// &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; COPYRIGHT NOTICE &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;
-// --------------------------------------------------------------------
-// Author: halftop
-// Github: https://github.com/halftop
-// Email: yu.zh@live.com
-// Description: 二分频
-// Dependencies: 
-// LastEditors: halftop
-// Since: 2019-05-10 10:37:19
-// LastEditTime: 2019-05-10 11:04:06
-// ********************************************************************
-// Module Function:二分频
-`timescale 1ns / 1ps
-
-module div_2(
-    input					clk			,
-    input					rst_n		,
-    output  reg             clk_out     
-);
-
-always @(posedge clk or negedge rst_n) begin
-    if (!rst_n) begin
-        clk_out &lt;= 1'b0;
-    end else begin
-        clk_out &lt;= ~clk_out;
-    end
-end
-
-endmodule
-</code></pre>
-<h3 id="46">46</h3>
-<h4 id="verilog描述-2">verilog描述</h4>
-<pre><code class="language-verilog">// --------------------------------------------------------------------
-// &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; COPYRIGHT NOTICE &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;
-// --------------------------------------------------------------------
-// Author: halftop
-// Github: https://github.com/halftop
-// Email: yu.zh@live.com
-// Description: 实现任意奇数分频
-// Dependencies: 
-// LastEditors: halftop
-// Since: 2019-05-10 11:04:51
-// LastEditTime: 2019-05-10 22:18:17
-// ********************************************************************
-// Module Function:实现任意奇数分频
-`timescale 1ns / 1ps
-
-module div_odd
+<h3 id="1-存储名词解释">1. 存储名词解释</h3>
+<p>见<a href="https://halftop.github.io/post/verilog99_31to37/#31%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A">Verilog99题的第31题</a></p>
+<h3 id="2-单端口sram">2. 单端口SRAM</h3>
+<pre><code class="language-verilog">module spram
 #(
-    parameter N	= 3
-    
+    parameter WD = 8,       //数据位宽
+    parameter AD = 16       //地址位宽
 )
 (
-    input					clk			,
-    input					rst_n		,
-    output                  clk_out     
-);
+    input               clk     ,
+    input               cs_n    ,
+    input               w_r_n   ,
+    input       [AD-1:0]  addr    ,
+    input       [WD-1:0]  din     ,
+    output  reg [WD-1:0]  dout    
+    );
+localparam	DP=1&lt;&lt;AD；
+reg [WD-1:0]  buffer  [DP-1:0];
 
-localparam  WD = clogb2(N);
-
-reg                 clk_out_p   ;
-reg                 clk_out_n   ;
-reg     [WD-1:0]    count       ;
-
-always @(posedge clk or negedge rst_n) begin
-    if (!rst_n) begin
-        count &lt;= 'd0;
-    end else if (count==N-1) begin
-        count &lt;= 'd0;
-    end else begin
-        count &lt;= count + 1'b1;
-    end
+always @(posedge clk) begin
+    casex ({cs_n,w_r_n})
+        2'b1x: dout &lt;= 'hx;
+        2'b01: buffer[addr] &lt;= din;
+        2'b00: dout &lt;= buffer[addr];
+        default: ;
+    endcase
 end
-
-always @(posedge clk or negedge rst_n) begin
-    if (!rst_n) begin
-        clk_out_p &lt;= 1'b1;
-    end else if (count&gt;N/2) begin
-        clk_out_p &lt;= 1'b0;
-    end else begin
-        clk_out_p &lt;= 1'b1;
-    end
-end
-
-always @(negedge clk or negedge rst_n) begin
-    if (!rst_n) begin
-        clk_out_n &lt;= 1'b0;
-    end else begin
-        clk_out_n &lt;= clk_out_p;
-    end
-end
-
-assign clk_out = clk_out_p&amp;clk_out_n;
 
 function integer clogb2 (input integer depth);
     begin
-        for(clogb2=0; depth&gt;0; clogb2=clogb2+1)
+        for(clogb2=0; depth&gt;1; clogb2=clogb2+1)
         depth = depth &gt;&gt; 1;
     end
 endfunction
-
 endmodule
 </code></pre>
-<h4 id="仿真结果">仿真结果</h4>
-<p>三分频：</p>
-<center>
- <img src="https://i.loli.net/2019/05/10/5cd589db5ed2a.png" alt="三分频仿真结果" title="三分频仿真结果" width="800"> 
-</center>
-<p>七分频：</p>
-<center>
- <img src="https://i.loli.net/2019/05/10/5cd58b4047f97.png" alt="七分频仿真结果" title="七分频仿真结果" width="800"> 
-</center>
+<p>tb稍后放出，目前比较乱。</p>
+<h3 id="3-接第2题如果同时对一个地址进行读和写操作会怎样实际中应该如何处理">3. 接第2题，如果同时对一个地址进行读和写操作，会怎样?实际中应该如何处理?</h3>
+<p>目前的水平觉得不会，但是大神们讨论了很多，不敢说话。</p>
+<h3 id="4-使用单端口sram构造一个双端口同步fifo">4. 使用单端口SRAM构造一个双端口同步FIFO。</h3>
+<p>放出大神的思路<a href="https://mp.weixin.qq.com/s/Sl9-BeUJ6bUNzjsUQvYqUQ">使用单端口SRAM构造一个双端口同步FIFO</a></p>
+<p>只想说厉害了！说得比较通俗易懂，实现起来没那么简单~</p>
+<p>估计今天是实现不了了，留坑！</p>
+
           </div>
         </div>
 
         
           <div class="next-post">
-            <a class="purple-link" href="https://halftop.github.io/post/verilog99_43to44">
+            <a class="purple-link" href="https://halftop.github.io/post/verilog99-47to49">
               <h3 class="post-title">
-                下一篇：Verilog99题——43、44题（两道算法题）
+                下一篇：Verilog99题-47-49题（时钟相关）
               </h3>
             </a>
           </div>
