@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico?v=1557904697174">
+<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico?v=1557977384328">
 <link rel="stylesheet" href="https://halftop.github.io/styles/main.css">
 
 
@@ -35,7 +35,7 @@
   <div class="site-header">
     <div class="left">
       <a href="https://halftop.github.io">
-        <img class="avatar" src="https://halftop.github.io/images/avatar.png?v=1557904697174" alt="" width="32px" height="32px">
+        <img class="avatar" src="https://halftop.github.io/images/avatar.png?v=1557977384328" alt="" width="32px" height="32px">
       </a>
       <a href="https://halftop.github.io">
         <h1 class="site-title">1/2顶点</h1>
@@ -144,6 +144,8 @@
 </ol>
 </blockquote>
 <!-- more --> 
+<p><ul class="markdownIt-TOC">
+<li>
 <ul>
 <li><a href="#%E9%A2%98%E7%9B%AE">题目</a>
 <ul>
@@ -154,16 +156,19 @@
 <li><a href="#%E9%97%A8%E7%BA%A7%E7%94%B5%E8%B7%AF%E5%9B%BE">门级电路图</a></li>
 </ul>
 </li>
-<li><a href="#3-%E8%BE%93%E5%85%A5%E4%B8%80%E4%B8%AA8bit%E6%95%B0%E8%BE%93%E5%87%BA%E5%85%B6%E4%B8%AD1%E7%9A%84%E4%B8%AA%E6%95%B0%E5%A6%82%E6%9E%9C%E5%8F%AA%E8%83%BD%E4%BD%BF%E7%94%A81bit%E5%85%A8%E5%8A%A0%E5%99%A8%E6%9C%80%E5%B0%91%E9%9C%80%E8%A6%81%E5%87%A0%E4%B8%AA">3. 输入一个8bit数，输出其中1的个数。如果只能使用1bit全加器，最少需要几个？</a>
+<li><a href="#3-%E8%BE%93%E5%85%A5%E4%B8%80%E4%B8%AA8bit%E6%95%B0%E8%BE%93%E5%87%BA%E5%85%B6%E4%B8%AD1%E7%9A%84%E4%B8%AA%E6%95%B0-%E5%A6%82%E6%9E%9C%E5%8F%AA%E8%83%BD%E4%BD%BF%E7%94%A81bit%E5%85%A8%E5%8A%A0%E5%99%A8%E6%9C%80%E5%B0%91%E9%9C%80%E8%A6%81%E5%87%A0%E4%B8%AA">3. 输入一个8bit数，输出其中1的个数。如果只能使用1bit全加器，最少需要几个？</a>
 <ul>
-<li><a href="#verilog%E6%8F%8F%E8%BF%B0-1">verilog描述</a></li>
+<li><a href="#verilog%E6%8F%8F%E8%BF%B0-2">verilog描述</a></li>
 <li><a href="#%E6%9C%AC%E9%A2%98%E8%87%B3%E5%B0%91%E4%BD%BF%E7%94%A8%E5%87%A0%E4%B8%AA1bit%E5%85%A8%E5%8A%A0%E5%99%A8">本题至少使用几个1bit全加器</a></li>
 </ul>
 </li>
-<li><a href="#4-%E4%BD%BF%E7%94%A82%E8%BE%93%E5%85%A5muxo--s-a-btieh%E8%BE%93%E5%87%BA%E5%B8%B8%E6%95%B01tiel%E8%BE%93%E5%87%BA%E5%B8%B8%E6%95%B00%E5%AE%9E%E7%8E%B0%E4%BB%A5%E4%B8%8B%E5%8A%9F%E8%83%BD">4. 使用2输入mux(o = s ？a ：b;)，TIEH(输出常数1)，TIEL(输出常数0)实现以下功能。</a></li>
+<li><a href="#4-%E4%BD%BF%E7%94%A82%E8%BE%93%E5%85%A5muxo-s-a-btieh%E8%BE%93%E5%87%BA%E5%B8%B8%E6%95%B01tiel%E8%BE%93%E5%87%BA%E5%B8%B8%E6%95%B00%E5%AE%9E%E7%8E%B0%E4%BB%A5%E4%B8%8B%E5%8A%9F%E8%83%BD">4. 使用2输入mux(o = s ？a ：b;)，TIEH(输出常数1)，TIEL(输出常数0)实现以下功能。</a></li>
 </ul>
 </li>
 </ul>
+</li>
+</ul>
+</p>
 <h3 id="1-什么是竞争和冒险">1. 什么是竞争和冒险？</h3>
 <p>这个题以前做过，自己总结了一篇比较详细的内容：<a href="https://halftop.github.io/post/verilog99_11">通过做verilog99题的第11题学习竞争与冒险</a></p>
 <p><strong>冒险</strong>：在信号传输与状态变换时会发生的延迟（Delay）。事实上，由于这些延迟，当输入信号发生变化时，其输出信号不能立即跟随输入信号的变化而变化，而是经过一段过渡时间后才能达到原先所期望的状态，从而可能产生瞬间的错误输出，造成逻辑功能的瞬时紊乱。这种现象被称为逻辑电路的“<em><strong>冒险现象</strong></em>”（Hazard），简称“险象”。</p>
