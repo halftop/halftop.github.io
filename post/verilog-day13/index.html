@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico?v=1558012021082">
+<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico?v=1558064139872">
 <link rel="stylesheet" href="https://halftop.github.io/styles/main.css">
 
 
@@ -35,7 +35,7 @@
   <div class="site-header">
     <div class="left">
       <a href="https://halftop.github.io">
-        <img class="avatar" src="https://halftop.github.io/images/avatar.png?v=1558012021082" alt="" width="32px" height="32px">
+        <img class="avatar" src="https://halftop.github.io/images/avatar.png?v=1558064139872" alt="" width="32px" height="32px">
       </a>
       <a href="https://halftop.github.io">
         <h1 class="site-title">1/2顶点</h1>
@@ -131,7 +131,12 @@
 <li><a href="#%E9%A2%98%E7%9B%AE">题目</a>
 <ul>
 <li><a href="#1-%E5%AD%98%E5%82%A8%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A">1. 存储名词解释</a></li>
-<li><a href="#2-%E5%8D%95%E7%AB%AF%E5%8F%A3sram">2. 单端口SRAM</a></li>
+<li><a href="#2-%E5%8D%95%E7%AB%AF%E5%8F%A3sram">2. 单端口SRAM</a>
+<ul>
+<li><a href="#verilog%E6%8F%8F%E8%BF%B0">Verilog描述</a></li>
+<li><a href="#testbench">testbench</a></li>
+</ul>
+</li>
 <li><a href="#3-%E6%8E%A5%E7%AC%AC2%E9%A2%98%E5%A6%82%E6%9E%9C%E5%90%8C%E6%97%B6%E5%AF%B9%E4%B8%80%E4%B8%AA%E5%9C%B0%E5%9D%80%E8%BF%9B%E8%A1%8C%E8%AF%BB%E5%92%8C%E5%86%99%E6%93%8D%E4%BD%9C%E4%BC%9A%E6%80%8E%E6%A0%B7%E5%AE%9E%E9%99%85%E4%B8%AD%E5%BA%94%E8%AF%A5%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86">3. 接第2题，如果同时对一个地址进行读和写操作，会怎样?实际中应该如何处理?</a></li>
 <li><a href="#4-%E4%BD%BF%E7%94%A8%E5%8D%95%E7%AB%AF%E5%8F%A3sram%E6%9E%84%E9%80%A0%E4%B8%80%E4%B8%AA%E5%8F%8C%E7%AB%AF%E5%8F%A3%E5%90%8C%E6%AD%A5fifo">4. 使用单端口SRAM构造一个双端口同步FIFO。</a></li>
 </ul>
@@ -143,6 +148,7 @@
 <h3 id="1-存储名词解释">1. 存储名词解释</h3>
 <p>见<a href="https://halftop.github.io/post/verilog99_31to37/#31%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A">Verilog99题的第31题</a></p>
 <h3 id="2-单端口sram">2. 单端口SRAM</h3>
+<h4 id="verilog描述">Verilog描述</h4>
 <pre><code class="language-verilog">module spram
 #(
     parameter WD = 8,       //数据位宽
@@ -170,7 +176,92 @@ end
 
 endmodule
 </code></pre>
-<p>tb稍后放出，目前比较乱。</p>
+<h4 id="testbench">testbench</h4>
+<pre><code class="language-verilog">`timescale 1ns / 1ps
+
+// memory inst hierachy name
+`define MEM_INST      tb34.spram16_8.buffer
+// memory initilazation file (hex format)
+`define MEM_INIT_FILE &quot;E:/verilog/test/test.srcs/sources_1/new/sp_mem_init.hex&quot;
+
+module tb34(    );
+reg             clk     ;
+reg             cs_n    ;
+reg             w_r_n   ;
+reg     [4:1]   addr    ;
+reg     [8:1]   din     ;
+wire    [8:1]   dout    ;
+
+initial begin
+    clk = 1;
+    forever #10 clk = ~clk;
+  end
+
+// memory initilization
+integer fp_dmem;
+
+initial begin
+    fp_dmem = $fopen(`MEM_INIT_FILE, &quot;r&quot;);  //open for read
+    if(fp_dmem)
+        #5 $readmemh(`MEM_INIT_FILE, `MEM_INST);
+    else begin
+        $display(&quot;%s open failed.&quot;,`MEM_INIT_FILE);
+        $finish;
+    end
+end
+
+integer i;
+initial begin
+    cs_n = 1'b1;
+    w_r_n = 1'b0;
+    addr = 4'd0;
+    din = 8'h00;
+    #100
+    @(negedge clk)//read
+        cs_n = 1'b0;
+    for (i = 0; i&lt;16; i=i+1) begin
+        @(negedge clk)
+            addr = i;
+    end
+    @(negedge clk)//write
+        w_r_n = 1'b1;
+    for (i = 0; i&lt;16; i=i+1) begin
+        @(negedge clk) begin
+            addr = i;
+            din = i + 'ha0;
+        end
+    end
+    @(negedge clk)//read
+        w_r_n = 1'b0;
+    for (i = 0; i&lt;16; i=i+1) begin
+        @(negedge clk)
+            addr = i;
+    end
+    @(negedge clk)
+        cs_n = 1'b1;
+    // #100 $finish;
+    #100 $stop;
+end
+
+/* initial begin
+    $dumpfile(&quot;spram_tb.vcd&quot;);
+    $dumpvars();
+end */
+spram #(
+    .WD ( 8),
+    .AD ( 4)
+)
+spram16_8
+(
+    .clk     ( clk   ),
+    .cs_n    ( cs_n  ),
+    .w_r_n   ( w_r_n ),
+    .addr    ( addr  ),
+    .din     ( din   ),
+    .dout    ( dout  )
+    );
+endmodule
+</code></pre>
 <h3 id="3-接第2题如果同时对一个地址进行读和写操作会怎样实际中应该如何处理">3. 接第2题，如果同时对一个地址进行读和写操作，会怎样?实际中应该如何处理?</h3>
 <p>目前的水平觉得不会，但是大神们讨论了很多，不敢说话。</p>
 <h3 id="4-使用单端口sram构造一个双端口同步fifo">4. 使用单端口SRAM构造一个双端口同步FIFO。</h3>
