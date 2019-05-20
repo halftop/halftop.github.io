@@ -5,7 +5,7 @@
     
 <meta charset="utf-8" >
 
-<title>verilog99题——3、4题 | 1/2顶点</title>
+<title>Verilog99题-50-52题 | 1/2顶点</title>
 <meta name="description" content="    有输入有输出，才是正确的学习方式    ">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -85,18 +85,25 @@
       <div class="content-container">
         <div class="post-detail">
           
-            <div class="feature-container" style="background-image: url('https://i.loli.net/2019/05/03/5ccba276b5a36.jpg')">
+            <div class="feature-container" style="background-image: url('https://i.loli.net/2019/05/20/5ce26782355c738671.jpg')">
             </div>
           
-          <h2 class="post-title">verilog99题——3、4题</h2>
+          <h2 class="post-title">Verilog99题-50-52题</h2>
           <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2019-03-06</span>
+            <span><i class="icon-calendar-outline"></i> 2019-05-20</span>
             
               <span>
                 <i class="icon-pricetags-outline"></i>
                 
                   <a href="https://halftop.github.io/tag/DztcUtg4_">
                     Verilog99题
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://halftop.github.io/tag/9rG5j0Nww">
+                    FPGA
                     
                       ，
                     
@@ -118,43 +125,80 @@
             
           </div>
           <div class="post-content">
-            <h2 id="题目">题目</h2>
-<p><strong>003.解释一下Vih，Vil，Vol，Voh，Vt。</strong></p>
-<p><strong>004.什么是原码，反码，补码，符号-数值码。以4bit为例，给出各自表示的数值范围。</strong></p>
-<!-- more --> 
-<p><ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#%E9%A2%98%E7%9B%AE">题目</a>
-<ul>
-<li><a href="#%E7%AC%AC%E4%B8%89%E9%A2%98">第三题</a></li>
-<li><a href="#%E7%AC%AC%E5%9B%9B%E9%A2%98">第四题</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</p>
-<h3 id="第三题">第三题</h3>
-<p>ViH:输入高电平，保证逻辑门的输入为高电平时所允许的最小输入电平，当输入电平高于Vih时，则认为输入电平为高电平。</p>
-<p>Vil:输入低电平，保证逻辑门的输入为低电平时所允许的最大输入电平，当输入电平低于Vil时，则认为输入电平为低电平。</p>
-<p>Voh:输出高电平，保证逻辑门的输出为高电平时的输出电平的最小值，逻辑门的输出为高电平时的电平值都必须大于Voh。</p>
-<p>Vol:输出低电平，保证逻辑门的输出为低电平时的输出电平的最大值，逻辑门的输出为高电平时的电平值都必须小于Vol。</p>
-<p>Vt:阀值电平，数字电路芯片都存在一个阈值电平，就是电路能勉强翻转动作时的电平。它是一个界于ViL、ViH之间的电压值，CMOS电路的阈值电平，是二分之一的电源电压值。如果要保证输出稳定，则必须要求输入的高电平&gt;ViH，输入的低电平&lt;ViL；如果输入电平在阈值上下，也就是ViL-ViH这个区域，电路的输出会处于不稳定状态（即亚稳态）。
-对于一般的逻辑电平，以上参数的关系：VoH&gt;ViH&gt;Vt&gt;ViL&gt;VoL</p>
-<h3 id="第四题">第四题</h3>
-<p><strong>原码</strong>：带符号数的符号数值码表示，又称作原码，用二进制数位串的最高有效位（MSB）作为符号位，0表示正号（Plus），1表示负号（Minus），其余较低位表示数的绝对值（数值）（Magnitude）。以4bit为例，最大——0111；最小——1111，范围-7~+7。</p>
-<p><strong>反码</strong>：正数的反码是它本身，负数的反码是保留符号位，其它位按位取反。范围与原码相同，以4bit为例是-7~+7。</p>
-<p><strong>补码</strong>：正数的补码是它本身，负数的补码是保留符号位，其它位按位取反再加1。以4bit为例，表示范围为-8~+7。</p>
+            <h2 id="前言">前言</h2>
+<p><a href="https://mp.weixin.qq.com/s/prdZKHbKTFMH80eRnr7mLQ">不忘出芯veriloig99题</a>的50-52题是关于亚稳态和复位亚稳态消除问题。</p>
+<!-- more -->
+<h3 id="50解释一下亚稳态">50.解释一下亚稳态。</h3>
+<p>触发器的建立时间和保持时间在时钟上升沿左右定义了一个时间窗口，如果触发器数据输入端口上的数据在这个时间窗口内发生变化（或者数据更新），那么就会产生时序违规。如果数据在上述窗口中被采集，触发器中的晶体管不能可靠地设置为逻辑0或者逻辑1对应的电平上，导致触发器的输出无法在某个规定时间段内达到一个可以确定的状态，介于0和1之间。亚稳态是可以传播的。</p>
+<h3 id="51-用verilog实现异步复位同步释放电路">51. 用verilog实现异步复位同步释放电路。</h3>
+<p>关于异步复位，同步释放的更多内容：<a href="https://www.cnblogs.com/linjie-swust/archive/2012/01/07/YWT.html">FPGA中亚稳态——让你无处可逃</a></p>
+<center>
+ <img src="https://i.loli.net/2019/05/20/5ce2156dd372699513.jpg" alt="异步复位，同步释放" title="异步复位，同步释放" width="600"> 
+</center>
+<pre><code class="language-verilog">module reset_gen (
+    input					clk			, 
+    input					rst_async_n	,
+    output					rst_sync_n	
+);
+reg rst_s1, rst_s2;
 
+always @ (posedge clk or negedge rst_async_n)
+    if (!rst_async_n)
+         begin 
+            rst_s1 &lt;= 1'b0;
+            rst_s2 &lt;= 1'b0;
+        end
+    else 
+        begin
+            rst_s1 &lt;= 1'b1;
+            rst_s2 &lt;= rst_s1;
+        end
+
+assign rst_sync_n = rst_s2; //rst_sync_n才是我们真正对系统输出的复位信号
+
+endmodule 
+</code></pre>
+<h3 id="52-用verilog实现异步复位同步释放电路支持测试模式的复位信号切换">52. 用verilog实现异步复位同步释放电路，支持测试模式的复位信号切换。</h3>
+<pre><code class="language-verilog">module reset_gen (
+    input					clk			, 
+    input					rst_async_n	,
+    input					test_shift  ,
+    output					rst_sync_n	
+);
+reg rst_s1;
+reg rst_s2;
+wire tmrst;
+
+assign  tmrst = rst_async_n | test_shift;
+
+always @ (posedge clk or negedge tmrst)
+    if (!tmrst)
+         begin 
+            rst_s1 &lt;= 1'b0;
+            rst_s2 &lt;= 1'b0;
+        end
+    else 
+        begin
+            rst_s1 &lt;= 1'b1;
+            rst_s2 &lt;= rst_s1;
+        end
+
+assign rst_sync_n = rst_s2;
+
+endmodule 
+</code></pre>
+<p>这个测试模式的用意还未领悟，本题的<a href="https://www.eetimes.com/document.asp?doc_id=1145510">参考链接</a>。以门控时钟和复位信号，讲解了测试模式的一些知识。文章中有一处错误，讲解复位信号的测试模式切换的时候，少写了取反符号（粗心所致）。如下图：</p>
+<center>
+ <img src="https://i.loli.net/2019/05/20/5ce265a70875a57159.png" alt="错误示例" title="错误示例" width=""> 
+</center>
           </div>
         </div>
 
         
           <div class="next-post">
-            <a class="purple-link" href="https://halftop.github.io/post/Verilog99_1&amp;2">
+            <a class="purple-link" href="https://halftop.github.io/post/verilog-day13">
               <h3 class="post-title">
-                下一篇：verilog99题——1、2题
+                下一篇：Verilog没有葵花宝典——day13（存储器）
               </h3>
             </a>
           </div>
