@@ -1,0 +1,379 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>AMBA-APB总线协议学习 | 1/2顶点</title>
+<meta name="description" content="    有输入有输出，才是正确的学习方式    ">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico?v=1558538303660">
+<link rel="stylesheet" href="https://halftop.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://halftop.github.io">
+        <img class="avatar" src="https://halftop.github.io/images/avatar.png?v=1558538303660" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://halftop.github.io">
+        <h1 class="site-title">1/2顶点</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+            <div class="feature-container" style="background-image: url('https://i.loli.net/2019/05/22/5ce568005748469253.png')">
+            </div>
+          
+          <h2 class="post-title">AMBA-APB总线协议学习</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2019-05-22</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://halftop.github.io/tag/f0tARmjal">
+                    IC
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://halftop.github.io/tag/bwS6E4Jqc">
+                    学习笔记
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <h2 id="简介">简介</h2>
+<blockquote>
+<p>The Advanced Peripheral Bus(APB)is part of the Advanced Microcontroller Bus architecture (AMBA)protocol family. It defines a low-cost interface that is optimized for minimal consumption and reduced interface complexity.</p>
+</blockquote>
+<!-- more -->
+<blockquote>
+<p>The APB protocol is not pipelined, use it to connect to low-bandwidth peripherals that do not require the high performance of the AXI protocol.</p>
+<p>The APB protocol relates a signal transition to the rising edge of the clock, to simplify the integration of APB peripherals into any design flow. Every transfer takes at least two cycles.</p>
+<p>The APB can interface with :</p>
+<ul>
+<li>
+<p>AMBA Advanced High-performance Bus (AHB)</p>
+</li>
+<li>
+<p>AMBA Advanced High-performance Bus Lite (AHB-Lite)</p>
+</li>
+<li>
+<p>AMBA Advanced Extensible Interface (AXI)</p>
+</li>
+<li>
+<p>AMBA Advanced Extensible Interface Lite (ax4-Lite)</p>
+</li>
+</ul>
+<p>You can use it to access the programmable control registers of peripheral devices.</p>
+</blockquote>
+<h2 id="版本">版本</h2>
+<ol>
+<li>The APB Specification Rev E, released in 1998（过时）</li>
+<li>AMBA 2 APB Specification</li>
+<li>AMBA 3 APB Protocol Specification v1.0</li>
+<li>AMBA APB Protocol Specification v2.0.</li>
+</ol>
+<h2 id="信号">信号</h2>
+<p>英语通俗易懂。</p>
+<center>
+ <img src="https://i.loli.net/2019/05/22/5ce549f1335d014773.png" alt="APB signal descriptions" title="APB signal descriptions" width="900"> 
+</center>
+<p>简要翻译一下，建议看上方英文原版。</p>
+<table>
+<thead>
+<tr>
+<th>信号名</th>
+<th>来源</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PCLK</td>
+<td>时钟源</td>
+<td>系统时钟，传输发生在上升沿</td>
+</tr>
+<tr>
+<td>PRESETn</td>
+<td>复位源</td>
+<td>复位信号，低使能</td>
+</tr>
+<tr>
+<td>PADDR</td>
+<td>APB桥</td>
+<td>地址信号，最高可达32位</td>
+</tr>
+<tr>
+<td>PPROT</td>
+<td>APB桥</td>
+<td>保护类型，详见手册</td>
+</tr>
+<tr>
+<td>PSELx</td>
+<td>APB桥</td>
+<td>片选信号，表示x从机是否被选中</td>
+</tr>
+<tr>
+<td>PENABLE</td>
+<td>APB桥</td>
+<td>使能信号，标记传输使能</td>
+</tr>
+<tr>
+<td>PWRITE</td>
+<td>APB桥</td>
+<td>读/写控制信号，高位写，低为读</td>
+</tr>
+<tr>
+<td>PWDATA</td>
+<td>APB桥</td>
+<td>写数据</td>
+</tr>
+<tr>
+<td>PSTRB</td>
+<td>APB桥</td>
+<td>写选通信号，指示哪个字节是有效的数据，详见手册。</td>
+</tr>
+<tr>
+<td>PREADY</td>
+<td>从机</td>
+<td>标记从机是否已将数据发送到总线，高为ready</td>
+</tr>
+<tr>
+<td>PRDATA</td>
+<td>从机</td>
+<td>读数据</td>
+</tr>
+<tr>
+<td>PSLVERR</td>
+<td>从机</td>
+<td>故障信号，高为发生故障</td>
+</tr>
+</tbody>
+</table>
+<h2 id="写时序">写时序</h2>
+<h3 id="无等待模式">无等待模式</h3>
+<center>
+ <img src="https://i.loli.net/2019/05/22/5ce54bee66ef089847.png" alt="Write transfer with no wait states" title="Write transfer with no wait states" width=""> 
+</center>
+<p>两个阶段：<strong>the Setup phase</strong>（设置阶段？），<strong>the Access phase</strong>（访问阶段？）</p>
+<p><strong>the Setup phase</strong>（设置阶段）：在T1，地址<strong>PADDR</strong>，写入数据<strong>PWDATA</strong>，写入信号<strong>PWRITE</strong>和选择信号<strong>PSEL</strong>在<strong>PCLK</strong>的上升沿进行寄存，这标志着写操作的开始。</p>
+<p><strong>the Access phase</strong>（访问阶段）：在T2，使能信号<strong>PENABLE</strong>和就绪信号<strong>PREADY</strong>在PCLK的上升沿被寄存。</p>
+<p><strong>PENABLE</strong>变高表示访问阶段的开始；<strong>PREADY</strong>变高表示从机可以在PCLK的下一个上升沿完成传输。</p>
+<p>地址<strong>PADDR</strong>，写入数据<strong>PWDATA</strong>和控制信号都要在传输在T3（<strong>the Access phase</strong>结束）之前保持有效。</p>
+<p>使能信号<strong>PENABLE</strong>在传输结束时被置为低电平。选择信号<strong>PSEL</strong>也被置为低电平，除非其后紧跟着对同一外设的另一次写操作。</p>
+<h3 id="等待模式">等待模式</h3>
+<center>
+ <img src="https://i.loli.net/2019/05/22/5ce5527ea63b932405.png" alt="Write transfer with wait states" title="Write transfer with wait states" width=""> 
+</center>
+<p>等待模式引入从机状态信号<strong>PREADY</strong>。在访问阶段，当<strong>PENABLE</strong>为高电平时，从机通过拉低<strong>PREADY</strong>来延时写操作。<strong>PREADY</strong>为低电平期间，以下信号保持不变：</p>
+<ul>
+<li>address, <strong>PADDR</strong></li>
+<li>write signal, <strong>PWRITE</strong></li>
+<li>select signal, <strong>PSEL</strong></li>
+<li>enable signal, <strong>PENABLE</strong></li>
+<li>write data, <strong>PWDATA</strong></li>
+<li>write strobes, <strong>PSTRB</strong></li>
+<li>protection type, <strong>PPROT</strong>.</li>
+</ul>
+<p>当<strong>PENABLE</strong>为低电平时，<strong>PREADY</strong>可以设置为任何值以确保具有固定双周期访问权限的外设可以将<strong>PREADY</strong>置为高电平。</p>
+<p><strong>注意</strong>：推荐直到下一次访问开始，地址和写操作相关信号一直保持不变。这样可以降低功耗。</p>
+<h2 id="读时序">读时序</h2>
+<h3 id="无等待模式-2">无等待模式</h3>
+<center>
+ <img src="https://i.loli.net/2019/05/22/5ce557c70f34888108.png" alt=" Read transfer with no wait states" title=" Read transfer with no wait states" width=""> 
+</center>
+<p>对照无等待写时序理解，从器件必须在读传输结束前提供数据。</p>
+<h3 id="等待模式-2">等待模式</h3>
+<p>如果在访问阶段<strong>PREADY</strong>被从机置为低电平，则传输会延时。<strong>PREADY</strong>为低电平期间，以下信号保持不变：</p>
+<ul>
+<li>address, <strong>PADDR</strong></li>
+<li>write signal, <strong>PWRITE</strong></li>
+<li>select signal, <strong>PSEL</strong></li>
+<li>enable signal, <strong>PENABLE</strong></li>
+<li>protection type, <strong>PPROT</strong>.</li>
+</ul>
+<p>下图显示延时两个时钟周期：</p>
+<center>
+ <img src="https://i.loli.net/2019/05/22/5ce559ddb398d66056.png" alt="Read transfer with wait states" title="Read transfer with wait states" width=""> 
+</center>
+<h2 id="系统状态转移">系统状态转移</h2>
+<center>
+ <img src="https://i.loli.net/2019/05/22/5ce55cbd1326789441.png" alt="State diagram" title="State diagram" width=""> 
+</center>
+<ul>
+<li>
+<p>IDLE：初始状态，也是等待传输状态。当片选信号PSELx拉高时总线请求通信，进入SETUP状态</p>
+</li>
+<li>
+<p>SETUP：设置阶段，主从机在该状态设置相应的信号，准备好所有数据。只在该状态停留一个周期，总是在时钟的下一个上升沿到来时进入ACCESS阶段。</p>
+</li>
+<li>
+<p>ACCESS：访问阶段，拉高<strong>PENABLE</strong>信号。在从SETUP到ACCESS状态的转换期间，地址，写入，选择和写入数据信号必须保持稳定。</p>
+<p>退出ACCESS阶段由从机状态信号<strong>PREADY</strong>控制：</p>
+<ul>
+<li>当<strong>PREADY</strong>信号拉高，传输完成，根据是否有下一次传输（<strong>PSELx</strong>是否为高），进入IDLE状还是SETUP状态。</li>
+<li>当<strong>PREADY</strong>信号为低，数据未准备好，在ACCESS状态等待<strong>PREADY</strong>信号拉高。</li>
+</ul>
+</li>
+</ul>
+<h2 id="其它功能日后补充">其它功能（日后补充）</h2>
+<h3 id="写选通">写选通</h3>
+<h3 id="传输错误响应">传输错误响应</h3>
+<h3 id="保护单元支持">保护单元支持</h3>
+<p>参考文档：<a href="https://static.docs.arm.com/ihi0024/c/IHI0024C_amba_apb_protocol_spec.pdf">AMBA APB Protocol Specification v2.0</a></p>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://halftop.github.io/post/verilog99-50to52">
+              <h3 class="post-title">
+                下一篇：Verilog99题-50-52题
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+        
+          <div id="gitalk-container"></div>
+        
+
+        
+      
+
+      <div class="site-footer">
+  <div class="slogan">    有输入有输出，才是正确的学习方式    </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  <center>
+ <img src="https://i.loli.net/2019/05/11/5cd67babc54e9.gif" alt="fighting and confidence" title="fighting and confidence" width="300"> 
+</center>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '42b8247150af6c920554',
+        clientSecret: 'ea9863ece62308a1854e39455221fa1ace6f8cd6',
+        repo: 'halftop.github.io',
+        owner: 'halftop',
+        admin: ['halftop'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>
