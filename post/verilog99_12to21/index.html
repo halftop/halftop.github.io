@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico?v=1558538303660">
+<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico?v=1558779499113">
 <link rel="stylesheet" href="https://halftop.github.io/styles/main.css">
 
 
@@ -28,6 +28,100 @@
 
 
 
+	<p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+  <div id="toc-article" class="toc-article">
+      <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+    <strong class="toc-title">文章目录</strong>
+           <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%89%8D%E8%A8%80">前言</a>
+<ul>
+<li><a href="#%E9%A2%98%E7%9B%AE012">题目012</a>
+<ul>
+<li><a href="#verilog%E6%8F%8F%E8%BF%B0">verilog描述</a></li>
+<li><a href="#%E6%80%9D%E8%B7%AF%E5%8F%8A%E7%94%B5%E8%B7%AF%E5%9B%BE">思路及电路图</a></li>
+</ul>
+</li>
+<li><a href="#%E9%A2%98%E7%9B%AE013">题目013</a>
+<ul>
+<li><a href="#verilog%E6%8F%8F%E8%BF%B0-2">verilog描述</a></li>
+<li><a href="#%E9%97%A8%E7%BA%A7%E7%94%B5%E8%B7%AF%E5%9B%BE">门级电路图</a></li>
+</ul>
+</li>
+<li><a href="#%E9%A2%98%E7%9B%AE014">题目014</a>
+<ul>
+<li><a href="#verilog%E6%8F%8F%E8%BF%B0-3">verilog描述</a></li>
+<li><a href="#%E6%80%9D%E8%B7%AF%E5%8F%8A%E7%94%B5%E8%B7%AF%E5%9B%BE-2">思路及电路图</a></li>
+</ul>
+</li>
+<li><a href="#%E9%A2%98%E7%9B%AE015">题目015</a>
+<ul>
+<li><a href="#%E6%80%9D%E8%B7%AF">思路</a></li>
+<li><a href="#verilog%E6%8F%8F%E8%BF%B0-4">verilog描述</a></li>
+</ul>
+</li>
+<li><a href="#%E9%A2%98%E7%9B%AE016">题目016</a>
+<ul>
+<li><a href="#%E6%B3%A8%E6%84%8F">注意</a></li>
+<li><a href="#verilog%E6%8F%8F%E8%BF%B0-5">verilog描述</a></li>
+</ul>
+</li>
+<li><a href="#%E9%A2%98%E7%9B%AE017">题目017</a>
+<ul>
+<li><a href="#verilog%E6%8F%8F%E8%BF%B0-6">verilog描述</a></li>
+</ul>
+</li>
+<li><a href="#%E9%A2%98%E7%9B%AE018">题目018</a>
+<ul>
+<li><a href="#%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86">基础知识</a></li>
+<li><a href="#%E6%80%9D%E8%B7%AF-2">思路</a></li>
+<li><a href="#verilog%E6%8F%8F%E8%BF%B0-7">verilog描述</a></li>
+<li><a href="#testbench">testbench</a></li>
+<li><a href="#%E4%BB%BF%E7%9C%9F%E7%BB%93%E6%9E%9C">仿真结果</a></li>
+</ul>
+</li>
+<li><a href="#%E9%A2%98%E7%9B%AE019">题目019</a>
+<ul>
+<li><a href="#verilog%E6%8F%8F%E8%BF%B0-8">verilog描述</a></li>
+<li><a href="#%E6%B3%A8%E6%84%8F-2">注意</a></li>
+</ul>
+</li>
+<li><a href="#%E9%A2%98%E7%9B%AE020">题目020</a>
+<ul>
+<li><a href="#verilog%E6%8F%8F%E8%BF%B0-9">verilog描述</a></li>
+<li><a href="#%E9%99%84%E5%8A%A0%E9%A2%98">附加题</a></li>
+</ul>
+</li>
+<li><a href="#%E9%A2%98%E7%9B%AE021">题目021</a>
+<ul>
+<li><a href="#verilog%E6%8F%8F%E8%BF%B0-10">verilog描述</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+         </div>
+   <script type="text/javascript">
+  function showToc(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:block");
+    show_toc_btn.setAttribute("style","display:none");
+    };
+  function showBtn(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:none");
+    show_toc_btn.setAttribute("style","display:block");
+    };
+   </script>
   </head>
   <body>
     <div id="app" class="main">
@@ -35,7 +129,7 @@
   <div class="site-header">
     <div class="left">
       <a href="https://halftop.github.io">
-        <img class="avatar" src="https://halftop.github.io/images/avatar.png?v=1558538303660" alt="" width="32px" height="32px">
+        <img class="avatar" src="https://halftop.github.io/images/avatar.png?v=1558779499113" alt="" width="32px" height="32px">
       </a>
       <a href="https://halftop.github.io">
         <h1 class="site-title">1/2顶点</h1>

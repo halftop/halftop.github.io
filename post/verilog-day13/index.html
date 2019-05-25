@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico?v=1558538303660">
+<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico?v=1558779499113">
 <link rel="stylesheet" href="https://halftop.github.io/styles/main.css">
 
 
@@ -28,6 +28,48 @@
 
 
 
+	<p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+  <div id="toc-article" class="toc-article">
+      <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+    <strong class="toc-title">文章目录</strong>
+           <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E9%A2%98%E7%9B%AE">题目</a>
+<ul>
+<li><a href="#1-%E5%AD%98%E5%82%A8%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A">1. 存储名词解释</a></li>
+<li><a href="#2-%E5%8D%95%E7%AB%AF%E5%8F%A3sram">2. 单端口SRAM</a>
+<ul>
+<li><a href="#verilog%E6%8F%8F%E8%BF%B0">Verilog描述</a></li>
+<li><a href="#testbench">testbench</a></li>
+</ul>
+</li>
+<li><a href="#3-%E6%8E%A5%E7%AC%AC2%E9%A2%98%E5%A6%82%E6%9E%9C%E5%90%8C%E6%97%B6%E5%AF%B9%E4%B8%80%E4%B8%AA%E5%9C%B0%E5%9D%80%E8%BF%9B%E8%A1%8C%E8%AF%BB%E5%92%8C%E5%86%99%E6%93%8D%E4%BD%9C%E4%BC%9A%E6%80%8E%E6%A0%B7%E5%AE%9E%E9%99%85%E4%B8%AD%E5%BA%94%E8%AF%A5%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86">3. 接第2题，如果同时对一个地址进行读和写操作，会怎样?实际中应该如何处理?</a></li>
+<li><a href="#4-%E4%BD%BF%E7%94%A8%E5%8D%95%E7%AB%AF%E5%8F%A3sram%E6%9E%84%E9%80%A0%E4%B8%80%E4%B8%AA%E5%8F%8C%E7%AB%AF%E5%8F%A3%E5%90%8C%E6%AD%A5fifo">4. 使用单端口SRAM构造一个双端口同步FIFO。</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+         </div>
+   <script type="text/javascript">
+  function showToc(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:block");
+    show_toc_btn.setAttribute("style","display:none");
+    };
+  function showBtn(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:none");
+    show_toc_btn.setAttribute("style","display:block");
+    };
+   </script>
   </head>
   <body>
     <div id="app" class="main">
@@ -35,7 +77,7 @@
   <div class="site-header">
     <div class="left">
       <a href="https://halftop.github.io">
-        <img class="avatar" src="https://halftop.github.io/images/avatar.png?v=1558538303660" alt="" width="32px" height="32px">
+        <img class="avatar" src="https://halftop.github.io/images/avatar.png?v=1558779499113" alt="" width="32px" height="32px">
       </a>
       <a href="https://halftop.github.io">
         <h1 class="site-title">1/2顶点</h1>

@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico?v=1558538303660">
+<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico?v=1558779499113">
 <link rel="stylesheet" href="https://halftop.github.io/styles/main.css">
 
 
@@ -28,6 +28,59 @@
 
 
 
+	<p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+  <div id="toc-article" class="toc-article">
+      <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+    <strong class="toc-title">文章目录</strong>
+           <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E9%A2%98%E7%9B%AE">题目</a>
+<ul>
+<li><a href="#%E7%AC%AC%E4%B8%80%E9%A2%98">第一题</a>
+<ul>
+<li><a href="#verilog%E6%8F%8F%E8%BF%B0">Verilog描述</a></li>
+<li><a href="#vcs%E4%BB%BF%E7%9C%9F%E7%BB%93%E6%9E%9C">vcs仿真结果</a></li>
+</ul>
+</li>
+<li><a href="#%E7%AC%AC%E4%BA%8C%E9%A2%98">第二题</a>
+<ul>
+<li><a href="#verilog%E6%8F%8F%E8%BF%B0-2">Verilog描述</a></li>
+<li><a href="#vcs%E4%BB%BF%E7%9C%9F">VCS仿真</a></li>
+</ul>
+</li>
+<li><a href="#%E7%AC%AC%E4%B8%89%E9%A2%98">第三题</a>
+<ul>
+<li><a href="#verilog%E6%8F%8F%E8%BF%B0-3">Verilog描述</a></li>
+<li><a href="#vcs%E4%BB%BF%E7%9C%9F-2">VCS仿真</a></li>
+</ul>
+</li>
+<li><a href="#%E7%AC%AC%E5%9B%9B%E9%A2%98">第四题</a></li>
+<li><a href="#%E7%AC%AC%E4%BA%94%E9%A2%98">第五题</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+         </div>
+   <script type="text/javascript">
+  function showToc(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:block");
+    show_toc_btn.setAttribute("style","display:none");
+    };
+  function showBtn(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:none");
+    show_toc_btn.setAttribute("style","display:block");
+    };
+   </script>
   </head>
   <body>
     <div id="app" class="main">
@@ -35,7 +88,7 @@
   <div class="site-header">
     <div class="left">
       <a href="https://halftop.github.io">
-        <img class="avatar" src="https://halftop.github.io/images/avatar.png?v=1558538303660" alt="" width="32px" height="32px">
+        <img class="avatar" src="https://halftop.github.io/images/avatar.png?v=1558779499113" alt="" width="32px" height="32px">
       </a>
       <a href="https://halftop.github.io">
         <h1 class="site-title">1/2顶点</h1>

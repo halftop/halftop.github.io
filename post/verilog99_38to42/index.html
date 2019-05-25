@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico?v=1558538303660">
+<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico?v=1558779499113">
 <link rel="stylesheet" href="https://halftop.github.io/styles/main.css">
 
 
@@ -28,6 +28,75 @@
 
 
 
+	<p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+  <div id="toc-article" class="toc-article">
+      <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+    <strong class="toc-title">文章目录</strong>
+           <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%89%8D%E8%A8%80">前言</a>
+<ul>
+<li><a href="#fir%E7%90%86%E8%AE%BA">FIR理论</a>
+<ul>
+<li><a href="#%E7%9B%B4%E6%8E%A5%E5%BD%A2%E5%BC%8F%E7%9A%84fir%E6%BB%A4%E6%B3%A2%E5%99%A8">直接形式的FIR滤波器</a></li>
+<li><a href="#fir%E6%BB%A4%E6%B3%A2%E5%99%A8%E7%9A%84%E8%BD%AC%E7%BD%AE%E7%BB%93%E6%9E%84">FIR滤波器的转置结构</a></li>
+<li><a href="#%E4%B8%A4%E7%A7%8D%E7%BB%93%E6%9E%84%E7%9A%84%E7%B2%97%E7%95%A5%E5%AF%B9%E6%AF%94">两种结构的粗略对比</a></li>
+<li><a href="#%E6%94%B9%E8%BF%9Bfir%E7%A1%AC%E4%BB%B6%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%96%B9%E6%B3%95">改进FIR硬件实现的方法</a></li>
+</ul>
+</li>
+<li><a href="#38%E7%94%A8verilog%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA3-tap%E4%BD%8E%E9%80%9Afir%E6%BB%A4%E6%B3%A2%E5%99%A8%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E4%B8%BA8bit%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0%E6%BB%A4%E6%B3%A2%E5%99%A8%E7%B3%BB%E6%95%B014-12-14">38.用verilog实现一个3-tap低通FIR滤波器，输入输出为8bit无符号数，滤波器系数<code>[1/4 1/2 1/4]</code></a>
+<ul>
+<li><a href="#verilog%E6%8F%8F%E8%BF%B0">verilog描述</a></li>
+</ul>
+</li>
+<li><a href="#%E7%BB%BC%E5%90%88%E7%BB%93%E6%9E%9C">综合结果</a></li>
+<li><a href="#39-%E7%94%A8verilog%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA3-tap%E4%BD%8E%E9%80%9Afir%E6%BB%A4%E6%B3%A2%E5%99%A8%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E4%B8%BA8bit%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0%E6%BB%A4%E6%B3%A2%E5%99%A8%E7%B3%BB%E6%95%B014-12-14%E6%94%AF%E6%8C%81bypass%E5%8A%9F%E8%83%BDfir_bypass%E4%B8%BA1%E6%97%B6%E8%BE%93%E5%87%BA%E5%8E%9F%E5%A7%8B%E6%95%B0%E6%8D%AE">39. 用verilog实现一个3-tap低通FIR滤波器，输入输出为8bit无符号数，滤波器系数<code>[1/4 1/2 1/4]</code>，支持bypass功能：fir_bypass为1时输出原始数据。</a>
+<ul>
+<li><a href="#verilog%E6%8F%8F%E8%BF%B0-2">verilog描述</a></li>
+</ul>
+</li>
+<li><a href="#40-%E7%94%A8verilog%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E4%BD%8E%E9%80%9Afir%E6%BB%A4%E6%B3%A2%E5%99%A8%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E4%B8%BA8bit%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0%E6%BB%A4%E6%B3%A2%E5%99%A8%E7%B3%BB%E6%95%B0%E6%A0%B9%E6%8D%AEmode%E9%80%89%E6%8B%A9">40. 用verilog实现一个低通FIR滤波器，输入输出为8bit无符号数，滤波器系数根据mode选择：</a>
+<ul>
+<li><a href="#%E7%AE%80%E8%A6%81%E5%88%86%E6%9E%90">简要分析</a></li>
+<li><a href="#verilog%E6%8F%8F%E8%BF%B0-3">verilog描述</a></li>
+</ul>
+</li>
+<li><a href="#41-%E7%94%A8verilog%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E5%8F%82%E6%95%B0%E5%8C%96%E7%9A%84fir%E6%BB%A4%E6%B3%A2%E5%99%A8">41. 用verilog实现一个参数化的FIR滤波器。</a>
+<ul>
+<li><a href="#verilog%E6%8F%8F%E8%BF%B0-4">verilog描述</a></li>
+<li><a href="#%E7%BB%BC%E5%90%88%E7%BB%93%E6%9E%9C-2">综合结果</a></li>
+</ul>
+</li>
+<li><a href="#42-%E7%94%A8verilog%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA3-tap%E4%BD%8E%E9%80%9Afir%E6%BB%A4%E6%B3%A2%E5%99%A8y%E9%80%9A%E8%B7%AF%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E4%B8%BA8bit%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0%E6%BB%A4%E6%B3%A2%E5%99%A8%E7%B3%BB%E6%95%B014-12-14-c%E9%80%9A%E8%B7%AFbypass%E8%BE%93%E5%87%BA">42. 用verilog实现一个3-tap低通FIR滤波器，Y通路输入输出为8bit无符号数，滤波器系数<code>[1/4 1/2 1/4]</code>。C通路bypass输出。</a>
+<ul>
+<li><a href="#verilog%E6%8F%8F%E8%BF%B0-5">verilog描述</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+         </div>
+   <script type="text/javascript">
+  function showToc(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:block");
+    show_toc_btn.setAttribute("style","display:none");
+    };
+  function showBtn(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:none");
+    show_toc_btn.setAttribute("style","display:block");
+    };
+   </script>
   </head>
   <body>
     <div id="app" class="main">
@@ -35,7 +104,7 @@
   <div class="site-header">
     <div class="left">
       <a href="https://halftop.github.io">
-        <img class="avatar" src="https://halftop.github.io/images/avatar.png?v=1558538303660" alt="" width="32px" height="32px">
+        <img class="avatar" src="https://halftop.github.io/images/avatar.png?v=1558779499113" alt="" width="32px" height="32px">
       </a>
       <a href="https://halftop.github.io">
         <h1 class="site-title">1/2顶点</h1>
