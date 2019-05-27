@@ -13,6 +13,13 @@
 <li>
 <ul>
 <li><a href="#%E9%A2%98%E7%9B%AE">题目</a></li>
+<li><a href="#%E6%80%BB%E7%BB%93">总结</a></li>
+<li><a href="#verilog%E6%8F%8F%E8%BF%B0">Verilog描述</a>
+<ul>
+<li><a href="#%E6%85%A2%E6%97%B6%E9%92%9F%E5%9F%9F%E5%88%B0%E5%BF%AB%E6%97%B6%E9%92%9F%E5%9F%9F%E4%B8%A4%E7%BA%A7%E5%AF%84%E5%AD%98%E5%99%A8%E5%90%8C%E6%AD%A5">慢时钟域到快时钟域，两级寄存器同步</a></li>
+<li><a href="#%E5%BF%AB%E6%97%B6%E9%92%9F%E5%9F%9F%E5%88%B0%E6%85%A2%E6%97%B6%E9%92%9F%E5%9F%9F">快时钟域到慢时钟域</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -35,7 +42,7 @@
     
 <meta charset="utf-8" >
 
-<title>verilog99题——10题 | 1/2顶点</title>
+<title>Verilog99题-57题 | 1/2顶点</title>
 <meta name="description" content="    有输入有输出，才是正确的学习方式    ">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -116,12 +123,12 @@
       <div class="content-container">
         <div class="post-detail">
           
-            <div class="feature-container" style="background-image: url('https://i.loli.net/2019/05/03/5ccba276b5a36.jpg')">
+            <div class="feature-container" style="background-image: url('https://i.loli.net/2019/05/27/5cebe50d632f975369.png')">
             </div>
           
-          <h2 class="post-title">verilog99题——10题</h2>
+          <h2 class="post-title">Verilog99题-57题</h2>
           <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2019-03-13</span>
+            <span><i class="icon-calendar-outline"></i> 2019-05-27</span>
             
               <span>
                 <i class="icon-pricetags-outline"></i>
@@ -150,24 +157,122 @@
           </div>
           <div class="post-content">
             <h2 id="题目">题目</h2>
-<p><strong>010.说明代码中w1和 w2对应电路的具体区别:</strong></p>
-<pre><code>wire [2:0] val; 
-wire w1 = val &gt; 0; 
-wire w2 = val &gt;= 0;
+<blockquote>
+<p>在clk a时钟域的一个单周期脉冲信号，如何正确的传递到clk b时钟域? 要考虑clk a和b的各种不同频率/相位的场景。</p>
+</blockquote>
+<!-- more --> 
+<h2 id="总结">总结</h2>
+<p>关于单bit信号的跨时钟域传输<a href="https://www.cnblogs.com/IClearner/p/6485389.html">这篇博客</a>总结的比较详细，这里直接copy一下结论：</p>
+<blockquote>
+<ul>
+<li>在跨时钟域的时候，不一定需要跨时钟域电路（同步器或者握手信号），接近异步时钟或者就是异步时钟的时候跨时钟域就得加上了。</li>
+<li>在慢到快的时钟域中，加上触发器链（两级触发器）基本上就可以了，主要是抑制亚稳态的传播。</li>
+<li>但是在快到慢的时钟域中，不仅需要触发器链进行抑制亚稳态的传播，还要防止慢时钟域采不到快时钟域的数据，因此就添加反馈/握手电路（这个反馈信号是指跨时钟域的反馈信号）。（可以使用脉冲展宽）</li>
+</ul>
+</blockquote>
+<h2 id="verilog描述">Verilog描述</h2>
+<p>参考了<a href="https://wx.zsxq.com/dweb/#/index/458811454428"><strong>NingHeChua*</strong></a>的描述</p>
+<h3 id="慢时钟域到快时钟域两级寄存器同步">慢时钟域到快时钟域，两级寄存器同步</h3>
+<pre><code class="language-verilog">module Sync_Pulse(
+        input           clkb,
+        input           rst_n,
+        input           pulse_ina,
+        output          pulse_outb
+    );
+    
+    reg	signal_r;
+    reg signal_rr;
+    
+    always @ (posedge clkb or negedge rst_n)
+        if (!rst_n) begin
+           signal_r &lt;= 1'b0;
+           signal_rr &lt;= 1'b0;
+        end else begin
+           signal_r &lt;= pulse_ina;
+           signal_rr &lt;= signal_r;
+        end
+    assign pulse_outb = signal_rr;
+endmodule
 </code></pre>
- <!-- more --> 
-<p>这个题看了别人的作业和点评，最后使用二进制补码。答案和过程如下图</p>
- <center>
-		<img src="https://i.loli.net/2019/04/25/5cc1ce8bde04f.jpg" alt="image" title="第十题答案">
-	<center>
+<h3 id="快时钟域到慢时钟域">快时钟域到慢时钟域</h3>
+<pre><code class="language-verilog">module Sync_Pulse(
+    input           clka,
+    input           clkb,
+    input           rst_n,
+    input           pulse_ina,
+    output          pulse_outb,
+    output          signal_outb
+);
+//-------------------------------------------------------
+reg             signal_a;
+reg             signal_b;
+reg             signal_b_r;
+reg             signal_b_rr;
+reg             signal_a_r;
+reg             signal_a_rr;
+//-------------------------------------------------------
+//在clka下，生成展宽信号signal_a
+always @(posedge clka or negedge rst_n)begin
+    if(rst_n == 1'b0)begin
+        signal_a &lt;= 1'b0;
+    end
+    else if(pulse_ina == 1'b1)begin
+        signal_a &lt;= 1'b1;
+    end
+    else if(signal_a_rr == 1'b1)
+        signal_a &lt;= 1'b0;
+    else 
+        signal_a &lt;= signal_a;
+end
+//-------------------------------------------------------
+//在clkb下同步signal_a
+always @(posedge clkb or negedge rst_n)begin
+    if(rst_n == 1'b0)begin
+        signal_b &lt;= 1'b0;
+    end
+    else begin
+        signal_b &lt;= signal_a;
+    end
+end
+//-------------------------------------------------------
+//在clkb下生成脉冲信号和输出信号
+always @(posedge clkb or negedge rst_n)begin
+    if(rst_n == 1'b0)begin
+        signal_b_r &lt;= 'b0;
+        signal_b_rr &lt;= 'b0;
+    end
+    else begin
+        signal_b_rr &lt;= signal_b_r;
+        signal_b_r &lt;= signal_b;
+    end
+end
+assign    pulse_outb = ~signal_b_rr &amp; signal_b_r;
+assign    signal_outb = signal_b_rr;
+//-------------------------------------------------------
+//在clka下采集signal_b_rr，生成signal_a_rr用于反馈拉低signal_a
+always @(posedge clka or negedge rst_n)begin
+    if(rst_n == 1'b0)begin
+        signal_a_r &lt;= 'b0;
+        signal_a_rr &lt;= 'b0;
+    end
+    else begin
+        signal_a_rr &lt;= signal_a_r;
+        signal_a_r &lt;= signal_b_rr;
+    end
+end
+endmodule
+</code></pre>
+<center>
+ <img src="https://i.loli.net/2019/05/27/5cebb39c27a3271351.png" alt="rtl图" title="rtl图" width="800"> 
+</center>
           </div>
         </div>
 
         
           <div class="next-post">
-            <a class="purple-link" href="https://halftop.github.io/post/verilog99_11">
+            <a class="purple-link" href="https://halftop.github.io/post/amba-apb">
               <h3 class="post-title">
-                下一篇：通过做verilog99题的第11题学习竞争与冒险
+                下一篇：AMBA-APB总线协议学习
               </h3>
             </a>
           </div>

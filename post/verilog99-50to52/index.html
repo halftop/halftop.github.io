@@ -2,6 +2,42 @@
 <!DOCTYPE html>
 <html>
   <head>
+      <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+                <span class="btn-bg"></span>
+                <span class="btn-text">文章导航</span>
+                </p>
+        <div id="toc-article" class="toc-article">
+            <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+          <strong class="toc-title">文章目录</strong>
+                 <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%89%8D%E8%A8%80">前言</a>
+<ul>
+<li><a href="#50%E8%A7%A3%E9%87%8A%E4%B8%80%E4%B8%8B%E4%BA%9A%E7%A8%B3%E6%80%81">50.解释一下亚稳态。</a></li>
+<li><a href="#51-%E7%94%A8verilog%E5%AE%9E%E7%8E%B0%E5%BC%82%E6%AD%A5%E5%A4%8D%E4%BD%8D%E5%90%8C%E6%AD%A5%E9%87%8A%E6%94%BE%E7%94%B5%E8%B7%AF">51. 用verilog实现异步复位同步释放电路。</a></li>
+<li><a href="#52-%E7%94%A8verilog%E5%AE%9E%E7%8E%B0%E5%BC%82%E6%AD%A5%E5%A4%8D%E4%BD%8D%E5%90%8C%E6%AD%A5%E9%87%8A%E6%94%BE%E7%94%B5%E8%B7%AF%E6%94%AF%E6%8C%81%E6%B5%8B%E8%AF%95%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%A4%8D%E4%BD%8D%E4%BF%A1%E5%8F%B7%E5%88%87%E6%8D%A2">52. 用verilog实现异步复位同步释放电路，支持测试模式的复位信号切换。</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+               </div>
+         <script type="text/javascript">
+        function showToc(){
+          var toc_article = document.getElementById("toc-article");
+          var show_toc_btn = document.getElementById("show-toc-btn");
+          toc_article.setAttribute("style","display:block");
+          show_toc_btn.setAttribute("style","display:none");
+          };
+        function showBtn(){
+          var toc_article = document.getElementById("toc-article");
+          var show_toc_btn = document.getElementById("show-toc-btn");
+          toc_article.setAttribute("style","display:none");
+          show_toc_btn.setAttribute("style","display:block");
+          };
+         </script>
     
 <meta charset="utf-8" >
 
@@ -12,7 +48,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico?v=1558779499113">
+<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico?v=1558963498147">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://halftop.github.io/styles/main.css">
 
 
@@ -28,42 +65,6 @@
 
 
 
-	<p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
-          <span class="btn-bg"></span>
-          <span class="btn-text">文章导航</span>
-          </p>
-  <div id="toc-article" class="toc-article">
-      <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
-    <strong class="toc-title">文章目录</strong>
-           <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#%E5%89%8D%E8%A8%80">前言</a>
-<ul>
-<li><a href="#50%E8%A7%A3%E9%87%8A%E4%B8%80%E4%B8%8B%E4%BA%9A%E7%A8%B3%E6%80%81">50.解释一下亚稳态。</a></li>
-<li><a href="#51-%E7%94%A8verilog%E5%AE%9E%E7%8E%B0%E5%BC%82%E6%AD%A5%E5%A4%8D%E4%BD%8D%E5%90%8C%E6%AD%A5%E9%87%8A%E6%94%BE%E7%94%B5%E8%B7%AF">51. 用verilog实现异步复位同步释放电路。</a></li>
-<li><a href="#52-%E7%94%A8verilog%E5%AE%9E%E7%8E%B0%E5%BC%82%E6%AD%A5%E5%A4%8D%E4%BD%8D%E5%90%8C%E6%AD%A5%E9%87%8A%E6%94%BE%E7%94%B5%E8%B7%AF%E6%94%AF%E6%8C%81%E6%B5%8B%E8%AF%95%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%A4%8D%E4%BD%8D%E4%BF%A1%E5%8F%B7%E5%88%87%E6%8D%A2">52. 用verilog实现异步复位同步释放电路，支持测试模式的复位信号切换。</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-         </div>
-   <script type="text/javascript">
-  function showToc(){
-    var toc_article = document.getElementById("toc-article");
-    var show_toc_btn = document.getElementById("show-toc-btn");
-    toc_article.setAttribute("style","display:block");
-    show_toc_btn.setAttribute("style","display:none");
-    };
-  function showBtn(){
-    var toc_article = document.getElementById("toc-article");
-    var show_toc_btn = document.getElementById("show-toc-btn");
-    toc_article.setAttribute("style","display:none");
-    show_toc_btn.setAttribute("style","display:block");
-    };
-   </script>
   </head>
   <body>
     <div id="app" class="main">
@@ -71,7 +72,7 @@
   <div class="site-header">
     <div class="left">
       <a href="https://halftop.github.io">
-        <img class="avatar" src="https://halftop.github.io/images/avatar.png?v=1558779499113" alt="" width="32px" height="32px">
+        <img class="avatar" src="https://halftop.github.io/images/avatar.png?v=1558963498147" alt="" width="32px" height="32px">
       </a>
       <a href="https://halftop.github.io">
         <h1 class="site-title">1/2顶点</h1>
@@ -254,6 +255,10 @@ endmodule
   <div class="social-container">
     
       
+        <a href="https://github.com/halftop" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+      
     
       
     
@@ -266,7 +271,7 @@ endmodule
   </div>
   <center>
  <img src="https://i.loli.net/2019/05/11/5cd67babc54e9.gif" alt="fighting and confidence" title="fighting and confidence" width="300"> 
-</center>
+</center> | <a class="rss" href="https://halftop.github.io/atom.xml" target="_blank">RSS</a>
 </div>
 
 
@@ -285,7 +290,7 @@ var app = new Vue({
 </script>
 
 
-  
+
   
     <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
     <script>
@@ -296,7 +301,7 @@ var app = new Vue({
         repo: 'halftop.github.io',
         owner: 'halftop',
         admin: ['halftop'],
-        id: location.pathname,      // Ensure uniqueness and length less than 50
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
         distractionFreeMode: false  // Facebook-like distraction free mode
       })
 
