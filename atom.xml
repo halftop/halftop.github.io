@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://halftop.github.io</id>
     <title>1/2顶点</title>
-    <updated>2019-05-27T13:25:10.306Z</updated>
+    <updated>2019-06-03T15:00:25.295Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://halftop.github.io"/>
     <link rel="self" href="https://halftop.github.io/atom.xml"/>
@@ -10,6 +10,50 @@
     <logo>https://halftop.github.io/images/avatar.png</logo>
     <icon>https://halftop.github.io/favicon.ico</icon>
     <rights>All rights reserved 2019, 1/2顶点</rights>
+    <entry>
+        <title type="html"><![CDATA[Verilog99题-FIFO设计]]></title>
+        <id>https://halftop.github.io/post/verilog99_FIFO</id>
+        <link href="https://halftop.github.io/post/verilog99_FIFO">
+        </link>
+        <updated>2019-06-03T14:00:39.000Z</updated>
+        <summary type="html"><![CDATA[<h2 id="前言">前言</h2>
+<p><a href="https://mp.weixin.qq.com/s/prdZKHbKTFMH80eRnr7mLQ">不忘出芯veriloig99题</a>的58-61题是关于FIFO设计，包括同步FIFO，异步FIFO和FIFO最小深度计算等问题。</p>
+]]></summary>
+        <content type="html"><![CDATA[<h2 id="前言">前言</h2>
+<p><a href="https://mp.weixin.qq.com/s/prdZKHbKTFMH80eRnr7mLQ">不忘出芯veriloig99题</a>的58-61题是关于FIFO设计，包括同步FIFO，异步FIFO和FIFO最小深度计算等问题。</p>
+<!-- more --> 
+<h2 id="同步fifo设计">同步FIFO设计</h2>
+<p>因为同步 FIFO 的读写速率是相同的，所以 FIFO 的大小设置不必考虑读写速率差和跨时钟域等问题，要简单很多。</p>
+<blockquote>
+<p>在 FIFO 内部，一般使用 dual port RAM 存储数据。双端口 RAM 有两套独立的读写地址，读地址和写地址分别由读指针和写指针来产生：写指针指向下一个数据被写入的地址，读指针指向下一个被读出的数据的地址，通过判断读写指针的相对大小，就可以得到 FIFO 的状态（full / empty）。</p>
+</blockquote>
+<blockquote>
+<p>还有另外一种方法来产生 full / empty 信号：FIFO 内部维护一个计数器，每次写入一个数据 cnt++，每次读出一个数据 cnt--。这种方法产生 full / empty 很简单：当 cnt == 0，表示 FIFO empty；当 cnt == max，表示 FIFO full。虽然这种方法产生 full / empty 很简单，但是需要额外的计数器，而且计数器的位宽随着 FIFO 的深度增加，不仅占用的资源更多，而且会降低 FIFO 最终可以达到的速度。</p>
+</blockquote>
+<p>所以这里采用第一种方法实现。</p>
+<h3 id="思路">思路</h3>
+<p>调用34题的dual port SRAM来实现。</p>
+<p>深度为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mn>2</mn><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">2^n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.664392em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span></span></span></span></span></span></span>的FIFO，为读、写地址指针多添加一个额外的位。当写指针超过最后的FIFO地址时，写指针将使未使用的MSB（Most Significant Bit的缩写，指最高有效位）递增，同时将其余的位设置为零，如下图所示（FIFO已经回环并翻转指针的MSB位）。</p>
+<center>
+ <img src="https://i.loli.net/2019/06/03/5cf52d50cb32615601.png" alt="空满状态判别" title="空满状态判别" width="700"> 
+</center>
+<p>读指针的操作与此类似，如果两个指针的MSB不同，则意味着写指针已经发生了回环。如果两个指针的MSB相同，则意味着两个指针都回环了相同的次数。</p>
+<p>对于深度为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mn>2</mn><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">2^n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.664392em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span></span></span></span></span></span></span>的FIFO，使用n位指针，其中（n-1）bit是访问整个FIFO存储器缓冲区所需的地址位数，当两个指针（包括MSB）相等时，FIFO为空；当两个指针（MSB除外）相等时，FIFO就会满。</p>
+<center>
+ <img src="https://i.loli.net/2019/06/03/5cf53115e6ab143290.png" alt="FIFO的深度为8，需要用宽度为4的指针" title="FIFO的深度为8，我们需要用宽度为4的指针" width=""> 
+</center>
+<p>读写指针的关系就好比A,B两个田径运动员在一环形跑道上赛跑一样，当B运动员领先A并整整超前一圈时，A,B两人的地点相同，此种情况对应于读写指针指向了同一地址，但写指针超前整整一圈，FIFO被写满。和读空标志产生一样，写满标志也是读写指针相同时产生。但是如果地址的宽度和FIFO实际深度所需的宽度相等，某一时刻读写地址相同了，那FIFO是空还是满就难以判断了。所以读写指针需要增加一位来标记写地址是否超前读地址（在系统正确工作的前提下，读地址不可能超前于写地址），比如FIFO的深度为8，如上图所示需要用宽度为4的指针。</p>
+<h3 id="verilog描述testbench">Verilog描述&amp;testbench</h3>
+<p><a href="https://github.com/halftop/code_of_Verilog_HDL99/blob/master/sources_1/new/test58.v">verilog</a></p>
+<p><a href="https://github.com/halftop/code_of_Verilog_HDL99/blob/master/sim_1/new/tb58.v">testbench</a></p>
+<p><a href="https://github.com/halftop/code_of_Verilog_HDL99/tree/master/sources_1/new/test_58_refrence">verilog_refrence</a></p>
+<h3 id="参考链接">参考链接</h3>
+<p><a href="http://guqian110.github.io/pages/2015/10/02/fifo_design_notes.html">FIFO 设计笔记</a></p>
+<p><a href="http://www.sohu.com/a/114158723_458015">异步FIFO设计</a></p>
+<h2 id="异步fifo设计">异步FIFO设计</h2>
+<p>。。。。。。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Verilog99题-57题]]></title>
         <id>https://halftop.github.io/post/verilog99-57</id>
@@ -1388,203 +1432,6 @@ endmodule
 <p>警告信息</p>
 <p><code>Ignoring unknown option '-debug-all' passed to 'vcs' and continuing</code></p>
 <p>原因是将<code>-debug_all</code>写出了<code>-debug-all</code>。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Verilog没有葵花宝典——day8（计数器）]]></title>
-        <id>https://halftop.github.io/post/verilog-day8</id>
-        <link href="https://halftop.github.io/post/verilog-day8">
-        </link>
-        <updated>2019-05-06T07:27:23.000Z</updated>
-        <summary type="html"><![CDATA[<h2 id="题目">题目</h2>
-<blockquote>
-<ol>
-<li>用verilog实现一个4bit二进制计数器。
-a) 异步复位
-b) 同步复位
-input clk, rst_n;
-output [3:0] o_cnt;</li>
-<li>用verilog实现4bit约翰逊(Johnson)计数器。</li>
-<li>用verilog实现4bit环形计数器：复位有效时输出0001，复位释放后依次输出0010，0100，1000，0001，0010...</li>
-<li>比较一下以上三种计数器的特点。</li>
-<li>记录1,2,3题目使用的工具，操作步骤，以及出现的错误和提示信息。</li>
-</ol>
-</blockquote>
-]]></summary>
-        <content type="html"><![CDATA[<h2 id="题目">题目</h2>
-<blockquote>
-<ol>
-<li>用verilog实现一个4bit二进制计数器。
-a) 异步复位
-b) 同步复位
-input clk, rst_n;
-output [3:0] o_cnt;</li>
-<li>用verilog实现4bit约翰逊(Johnson)计数器。</li>
-<li>用verilog实现4bit环形计数器：复位有效时输出0001，复位释放后依次输出0010，0100，1000，0001，0010...</li>
-<li>比较一下以上三种计数器的特点。</li>
-<li>记录1,2,3题目使用的工具，操作步骤，以及出现的错误和提示信息。</li>
-</ol>
-</blockquote>
-<!-- more --> 
-<p><ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#%E9%A2%98%E7%9B%AE">题目</a>
-<ul>
-<li><a href="#%E7%AC%AC%E4%B8%80%E9%A2%98">第一题</a>
-<ul>
-<li><a href="#verilog%E6%8F%8F%E8%BF%B0">Verilog描述</a></li>
-<li><a href="#vcs%E4%BB%BF%E7%9C%9F%E7%BB%93%E6%9E%9C">vcs仿真结果</a></li>
-</ul>
-</li>
-<li><a href="#%E7%AC%AC%E4%BA%8C%E9%A2%98">第二题</a>
-<ul>
-<li><a href="#verilog%E6%8F%8F%E8%BF%B0-2">Verilog描述</a></li>
-<li><a href="#vcs%E4%BB%BF%E7%9C%9F">VCS仿真</a></li>
-</ul>
-</li>
-<li><a href="#%E7%AC%AC%E4%B8%89%E9%A2%98">第三题</a>
-<ul>
-<li><a href="#verilog%E6%8F%8F%E8%BF%B0-3">Verilog描述</a></li>
-<li><a href="#vcs%E4%BB%BF%E7%9C%9F-2">VCS仿真</a></li>
-</ul>
-</li>
-<li><a href="#%E7%AC%AC%E5%9B%9B%E9%A2%98">第四题</a></li>
-<li><a href="#%E7%AC%AC%E4%BA%94%E9%A2%98">第五题</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</p>
-<h3 id="第一题">第一题</h3>
-<p><strong>用verilog实现一个4bit二进制计数器。</strong></p>
-<h4 id="verilog描述">Verilog描述</h4>
-<pre><code class="language-verilog">module cnt2s(
-    input clk, rst_n,
-    output [3:0] o_cnt
-    );
-    reg [3:0] cnt;
-//异步复位
-/* always @ (posedge clk or negedge rst_n) begin
-    if ( !rst_n )
-        cnt &lt;= 4'b0000;
-    else if ( cnt == 4'b1111 )
-        cnt &lt;= 4'b0000;
-    else
-        cnt &lt;= cnt + 1'b1;
-end */
-//同步复位
-always @ (posedge clk) begin
-    if ( !rst_n )
-        cnt &lt;= 4'b0000;
-    else if ( cnt == 4'b1111 )
-        cnt &lt;= 4'b0000;
-    else
-        cnt &lt;= cnt + 1'b1;
-end
-
-assign o_cnt = cnt;
-
-endmodule
-</code></pre>
-<h4 id="vcs仿真结果">vcs仿真结果</h4>
-<ul>
-<li>同步复位</li>
-</ul>
-<center>
- <img src="https://i.loli.net/2019/05/06/5ccfee4f90f5a.png" alt="二进制计数器同步复位" title="二进制计数器同步复位" width=""> 
-</center>
-- 异步复位
-<center>
- <img src="https://i.loli.net/2019/05/06/5ccfefa529217.png" alt="二进制计数器异步复位" title="二进制计数器异步复位" width=""> 
-</center>
-<h3 id="第二题">第二题</h3>
-<p><strong>用verilog实现4bit约翰逊(Johnson)计数器。</strong></p>
-<h4 id="verilog描述-2">Verilog描述</h4>
-<pre><code class="language-verilog">module cnt_johnson(
-    input clk, rst_n,
-    output [3:0] o_cnt
-    );
-    reg [3:0] cnt;
-always @(posedge clk or negedge rst_n) begin
-	if (!rst_n) begin
-		cnt &lt;= 4'b0000;
-	end else begin
-		cnt &lt;= {~cnt[0],cnt[3:1]};
-	end
-end
-
-assign o_cnt = cnt;
-
-endmodule
-</code></pre>
-<h4 id="vcs仿真">VCS仿真</h4>
-<center>
- <img src="https://i.loli.net/2019/05/06/5ccfef4744096.png" alt="Johnson计数器" title="Johnson计数器" width=""> 
-</center>
-<h3 id="第三题">第三题</h3>
-<p><strong>用verilog实现4bit环形计数器</strong></p>
-<h4 id="verilog描述-3">Verilog描述</h4>
-<pre><code class="language-verilog">module cnt_ring(
-	input clk, rst_n,
-    output [3:0] o_cnt
-);
-reg [3:0] cnt;
-
-always @(posedge clk or negedge rst_n) begin
-	if (!rst_n) begin
-		cnt &lt;= 4'b0001;
-	end else begin
-		cnt &lt;= {cnt[0],cnt[3:1]};
-	end
-end
-
-assign o_cnt = cnt;
-endmodule
-</code></pre>
-<h4 id="vcs仿真-2">VCS仿真</h4>
-<center>
- <img src="https://i.loli.net/2019/05/06/5ccff040014cf.png" alt="4bit环形计数器" title="4bit环形计数器" width=""> 
-</center>
-#### testbench
-<p>三个计数器均用此tb：</p>
-<pre><code class="language-verilog">module tb_cnt4(    );
-reg clk,rst_n;
-wire [3:0]  o_cnt;
-
-initial fork
-  clk = 1'b0;
-  rst_n = 1'b0;
-  #20 rst_n = 1'b1;
-  #455 rst_n = 1'b0;
-  #475 rst_n = 1'b1;
-  #600 $finish;
-join
-
-always #10 clk = ~ clk;
-
-cnt**  cnt4(
-    .clk    (clk  ),
-    .rst_n  (rst_n),
-    .o_cnt  (o_cnt)
-    );
-endmodule
-</code></pre>
-<h3 id="第四题">第四题</h3>
-<p><strong>比较一下以上三种计数器的特点。</strong></p>
-<ul>
-<li>环形计数器：n比特的环形计数器会循环n次，每计数一次的汉明距离是2。一般来说，环形计数器中循环的数据是只有一个比特为1的数据，因此任一时刻只有一个触发器输出为高电位。</li>
-<li>约翰逊记数器：是修改过的环形计数器，最后一个触发器的输出反相后再接到第一个触发器。n比特的环形计数器会循环2n次，每计数一次的<a href="https://zh.wikipedia.org/wiki/%E6%B1%89%E6%98%8E%E8%B7%9D%E7%A6%BB">汉明距离</a>是1。电路译码是不会产生竞争冒险且译码电路简单。</li>
-<li>二进制计数器：n位二进制计数器(n为触发器的个数)有<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mn>2</mn><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">2^n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.664392em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span></span></span></span></span></span></span>个状态。</li>
-</ul>
-<p>参考链接：<a href="https://zh.wikipedia.org/wiki/%E8%AE%A1%E6%95%B0%E5%99%A8#%E7%BA%A6%E7%BF%B0%E9%80%8A%E8%AE%B0%E6%95%B0%E5%99%A8">维基百科</a></p>
-<p>另附一份更进一步解决前两种计数器自启动问题的<a href="https://wenku.baidu.com/view/0b116b23c1c708a1294a446e.html">文档</a></p>
-<h3 id="第五题">第五题</h3>
-<p>编辑器：VS Code，vim</p>
-<p>仿真工具：VCS</p>
-<pre><code class="language-shell">vcs ./tb.v ./cnt.v +v2k -debug_all -R -gui
-</code></pre>
 ]]></content>
     </entry>
 </feed>

@@ -1,0 +1,289 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+      <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+                <span class="btn-bg"></span>
+                <span class="btn-text">文章导航</span>
+                </p>
+        <div id="toc-article" class="toc-article">
+            <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+          <strong class="toc-title">文章目录</strong>
+                 <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%89%8D%E8%A8%80">前言</a></li>
+<li><a href="#%E5%90%8C%E6%AD%A5fifo%E8%AE%BE%E8%AE%A1">同步FIFO设计</a>
+<ul>
+<li><a href="#%E6%80%9D%E8%B7%AF">思路</a></li>
+<li><a href="#verilog%E6%8F%8F%E8%BF%B0testbench">Verilog描述&amp;testbench</a></li>
+<li><a href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5">参考链接</a></li>
+</ul>
+</li>
+<li><a href="#%E5%BC%82%E6%AD%A5fifo%E8%AE%BE%E8%AE%A1">异步FIFO设计</a></li>
+</ul>
+</li>
+</ul>
+
+               </div>
+         <script type="text/javascript">
+        function showToc(){
+          var toc_article = document.getElementById("toc-article");
+          var show_toc_btn = document.getElementById("show-toc-btn");
+          toc_article.setAttribute("style","display:block");
+          show_toc_btn.setAttribute("style","display:none");
+          };
+        function showBtn(){
+          var toc_article = document.getElementById("toc-article");
+          var show_toc_btn = document.getElementById("show-toc-btn");
+          toc_article.setAttribute("style","display:none");
+          show_toc_btn.setAttribute("style","display:block");
+          };
+         </script>
+    
+<meta charset="utf-8" >
+
+<title>Verilog99题-FIFO设计 | 1/2顶点</title>
+<meta name="description" content="    有输入有输出，才是正确的学习方式    ">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico?v=1559573996034">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://halftop.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://halftop.github.io">
+        <img class="avatar" src="https://halftop.github.io/images/avatar.png?v=1559573996034" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://halftop.github.io">
+        <h1 class="site-title">1/2顶点</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+            <div class="feature-container" style="background-image: url('https://i.loli.net/2019/06/03/5cf535d3d954861774.png')">
+            </div>
+          
+          <h2 class="post-title">Verilog99题-FIFO设计</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2019-06-03</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://halftop.github.io/tag/DztcUtg4_">
+                    Verilog99题
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://halftop.github.io/tag/f0tARmjal">
+                    IC
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://halftop.github.io/tag/ADa051R6R">
+                    Verilog HDL
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://halftop.github.io/tag/bwS6E4Jqc">
+                    学习笔记
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <h2 id="前言">前言</h2>
+<p><a href="https://mp.weixin.qq.com/s/prdZKHbKTFMH80eRnr7mLQ">不忘出芯veriloig99题</a>的58-61题是关于FIFO设计，包括同步FIFO，异步FIFO和FIFO最小深度计算等问题。</p>
+<!-- more --> 
+<h2 id="同步fifo设计">同步FIFO设计</h2>
+<p>因为同步 FIFO 的读写速率是相同的，所以 FIFO 的大小设置不必考虑读写速率差和跨时钟域等问题，要简单很多。</p>
+<blockquote>
+<p>在 FIFO 内部，一般使用 dual port RAM 存储数据。双端口 RAM 有两套独立的读写地址，读地址和写地址分别由读指针和写指针来产生：写指针指向下一个数据被写入的地址，读指针指向下一个被读出的数据的地址，通过判断读写指针的相对大小，就可以得到 FIFO 的状态（full / empty）。</p>
+</blockquote>
+<blockquote>
+<p>还有另外一种方法来产生 full / empty 信号：FIFO 内部维护一个计数器，每次写入一个数据 cnt++，每次读出一个数据 cnt--。这种方法产生 full / empty 很简单：当 cnt == 0，表示 FIFO empty；当 cnt == max，表示 FIFO full。虽然这种方法产生 full / empty 很简单，但是需要额外的计数器，而且计数器的位宽随着 FIFO 的深度增加，不仅占用的资源更多，而且会降低 FIFO 最终可以达到的速度。</p>
+</blockquote>
+<p>所以这里采用第一种方法实现。</p>
+<h3 id="思路">思路</h3>
+<p>调用34题的dual port SRAM来实现。</p>
+<p>深度为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mn>2</mn><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">2^n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.664392em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span></span></span></span></span></span></span>的FIFO，为读、写地址指针多添加一个额外的位。当写指针超过最后的FIFO地址时，写指针将使未使用的MSB（Most Significant Bit的缩写，指最高有效位）递增，同时将其余的位设置为零，如下图所示（FIFO已经回环并翻转指针的MSB位）。</p>
+<center>
+ <img src="https://i.loli.net/2019/06/03/5cf52d50cb32615601.png" alt="空满状态判别" title="空满状态判别" width="700"> 
+</center>
+<p>读指针的操作与此类似，如果两个指针的MSB不同，则意味着写指针已经发生了回环。如果两个指针的MSB相同，则意味着两个指针都回环了相同的次数。</p>
+<p>对于深度为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mn>2</mn><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">2^n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.664392em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span></span></span></span></span></span></span>的FIFO，使用n位指针，其中（n-1）bit是访问整个FIFO存储器缓冲区所需的地址位数，当两个指针（包括MSB）相等时，FIFO为空；当两个指针（MSB除外）相等时，FIFO就会满。</p>
+<center>
+ <img src="https://i.loli.net/2019/06/03/5cf53115e6ab143290.png" alt="FIFO的深度为8，需要用宽度为4的指针" title="FIFO的深度为8，我们需要用宽度为4的指针" width=""> 
+</center>
+<p>读写指针的关系就好比A,B两个田径运动员在一环形跑道上赛跑一样，当B运动员领先A并整整超前一圈时，A,B两人的地点相同，此种情况对应于读写指针指向了同一地址，但写指针超前整整一圈，FIFO被写满。和读空标志产生一样，写满标志也是读写指针相同时产生。但是如果地址的宽度和FIFO实际深度所需的宽度相等，某一时刻读写地址相同了，那FIFO是空还是满就难以判断了。所以读写指针需要增加一位来标记写地址是否超前读地址（在系统正确工作的前提下，读地址不可能超前于写地址），比如FIFO的深度为8，如上图所示需要用宽度为4的指针。</p>
+<h3 id="verilog描述testbench">Verilog描述&amp;testbench</h3>
+<p><a href="https://github.com/halftop/code_of_Verilog_HDL99/blob/master/sources_1/new/test58.v">verilog</a></p>
+<p><a href="https://github.com/halftop/code_of_Verilog_HDL99/blob/master/sim_1/new/tb58.v">testbench</a></p>
+<p><a href="https://github.com/halftop/code_of_Verilog_HDL99/tree/master/sources_1/new/test_58_refrence">verilog_refrence</a></p>
+<h3 id="参考链接">参考链接</h3>
+<p><a href="http://guqian110.github.io/pages/2015/10/02/fifo_design_notes.html">FIFO 设计笔记</a></p>
+<p><a href="http://www.sohu.com/a/114158723_458015">异步FIFO设计</a></p>
+<h2 id="异步fifo设计">异步FIFO设计</h2>
+<p>。。。。。。</p>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://halftop.github.io/post/verilog99-57">
+              <h3 class="post-title">
+                下一篇：Verilog99题-57题
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+        
+          <div id="gitalk-container"></div>
+        
+
+        
+      
+
+      <div class="site-footer">
+  <div class="slogan">    有输入有输出，才是正确的学习方式    </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/halftop" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  <center>
+ <img src="https://i.loli.net/2019/05/11/5cd67babc54e9.gif" alt="fighting and confidence" title="fighting and confidence" width="300"> 
+</center> | <a class="rss" href="https://halftop.github.io/atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '42b8247150af6c920554',
+        clientSecret: 'ea9863ece62308a1854e39455221fa1ace6f8cd6',
+        repo: 'halftop.github.io',
+        owner: 'halftop',
+        admin: ['halftop'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>
