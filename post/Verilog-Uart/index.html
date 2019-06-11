@@ -1,0 +1,824 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+      <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+                <span class="btn-bg"></span>
+                <span class="btn-text">文章导航</span>
+                </p>
+        <div id="toc-article" class="toc-article">
+            <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+          <strong class="toc-title">文章目录</strong>
+                 <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E6%A6%82%E8%BF%B0">概述</a></li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E5%8C%85%E7%9A%84%E6%9E%84%E6%88%90">数据包的构成</a>
+<ul>
+<li><a href="#%E8%B5%B7%E5%A7%8B%E4%BD%8Dstart-bit">起始位（start bit）</a></li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E5%B8%A7data-frame">数据帧（data frame）</a></li>
+<li><a href="#%E5%A5%87%E5%81%B6%E6%A0%A1%E9%AA%8C%E4%BD%8Dparity">奇偶校验位（parity）</a></li>
+<li><a href="#%E5%81%9C%E6%AD%A2%E4%BD%8Dstop-bits">停止位（stop bits）</a></li>
+</ul>
+</li>
+<li><a href="#%E6%B3%A2%E7%89%B9%E7%8E%87">波特率</a>
+<ul>
+<li><a href="#%E6%B3%A2%E7%89%B9%E7%8E%87%E5%92%8C%E6%AF%94%E7%89%B9%E7%8E%87">波特率和比特率</a></li>
+<li><a href="#%E5%B8%B8%E8%A7%81%E6%B3%A2%E7%89%B9%E7%8E%87">常见波特率</a></li>
+<li><a href="#%E6%97%B6%E9%92%9F%E4%B8%8E%E6%B3%A2%E7%89%B9%E7%8E%87%E7%9A%84%E8%AE%A1%E7%AE%97">时钟与波特率的计算</a></li>
+</ul>
+</li>
+<li><a href="#verilog%E6%A8%A1%E5%9D%97%E8%AF%A6%E8%A7%A3">Verilog模块详解</a>
+<ul>
+<li><a href="#tx_clk_genv">tx_clk_gen.v</a></li>
+<li><a href="#uart_frame_txv">uart_frame_tx.v</a></li>
+<li><a href="#uart_frame_rxv">uart_frame_rx.v</a></li>
+<li><a href="#rx_clk_genv">rx_clk_gen.v</a></li>
+</ul>
+</li>
+<li><a href="#%E6%80%BB%E7%BB%93">总结</a></li>
+</ul>
+</li>
+</ul>
+
+               </div>
+         <script type="text/javascript">
+        function showToc(){
+          var toc_article = document.getElementById("toc-article");
+          var show_toc_btn = document.getElementById("show-toc-btn");
+          toc_article.setAttribute("style","display:block");
+          show_toc_btn.setAttribute("style","display:none");
+          };
+        function showBtn(){
+          var toc_article = document.getElementById("toc-article");
+          var show_toc_btn = document.getElementById("show-toc-btn");
+          toc_article.setAttribute("style","display:none");
+          show_toc_btn.setAttribute("style","display:block");
+          };
+         </script>
+    
+<meta charset="utf-8" >
+
+<title>Uart的Verilog实现 | 1/2顶点</title>
+<meta name="description" content="    有输入有输出，才是正确的学习方式    ">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico?v=1560259657092">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://halftop.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://halftop.github.io">
+        <img class="avatar" src="https://halftop.github.io/images/avatar.png?v=1560259657092" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://halftop.github.io">
+        <h1 class="site-title">1/2顶点</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">Uart的Verilog实现</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2019-06-06</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://halftop.github.io/tag/xaWEXZu1_">
+                    接口协议
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://halftop.github.io/tag/ADa051R6R">
+                    Verilog HDL
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://halftop.github.io/tag/bwS6E4Jqc">
+                    学习笔记
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <h2 id="概述">概述</h2>
+<p>Uart是个缩写，全称是通用异步收发传输器（Universal Asynchronous Receiver/Transmitter）。单向传输只需要单线。异步传输的意思是没有同步时钟来同步发送端和接受端的数据，所以在数据之前添加起始位，之后添加结束位，以此来判断传输过程的开始和结束。当接收端检测到开始位，即开始以特定的频率来接收输入的bit位，这个特定的频率称为波特率。发送端和接收端要在大致相同的波特率下工作，才可以保证传输的正确性（最多相差10%）。</p>
+<h2 id="数据包的构成">数据包的构成</h2>
+<p>Uart协议的传输数据被整合成数据包，每个数据包包含1位起始位，5-9位的数据位（具体决定于需求等因素），1位可选的奇偶校验位和1-2位的停止位。如下图所示：</p>
+<center>
+ <img src="https://i.loli.net/2019/06/07/5cf9cb2f3c5cd16813.png" alt="Uart数据包的构成" title="Uart数据包的构成" width="400"> 
+</center>
+<h3 id="起始位start-bit">起始位（start bit）</h3>
+<p>数据传输线空闲的时候保持低电平，当开始传输时，拉低一个时钟周期，这就是起始位。当接受端检测到数据线由高到低的变化时便开始以约定的波特率来接收上述的数据包。</p>
+<h3 id="数据帧data-frame">数据帧（data frame）</h3>
+<p>这是实际需要传输的数据。如果使用奇偶校验功能的话，可以传输5-8位的数据；如果不使用奇偶校验功能，则可以传输9位。一般由最低位开始传输。</p>
+<h3 id="奇偶校验位parity">奇偶校验位（parity）</h3>
+<p>用于接收端判断接收到的数据的正误。当接受端接收到数据帧后，计算其中1的个数是奇数个还是偶数个。如果奇偶校验位是0(偶校验)，那么数据帧中1的个数应该是一个偶数。如果奇偶校验位是1(奇校验)，那么数据帧中1的个数应该是奇数。当奇偶校验位与数据匹配时，传输没有错误。但是如果奇偶校验位是0，但1的个数是奇数或者奇偶校验位是1，个数却是偶数，则数据传输过程中发生了变化。奇偶校验只有粗略判断正误的功能，没有改正的能力。</p>
+<h3 id="停止位stop-bits">停止位（stop bits）</h3>
+<p>高电平保持1-2个时钟周期表示1-2位停止位，即停止位为高电平。</p>
+<p>以上参考：<a href="http://www.circuitbasics.com/basics-uart-communication/">BASICS OF UART COMMUNICATION</a></p>
+<h2 id="波特率">波特率</h2>
+<h3 id="波特率和比特率">波特率和比特率</h3>
+<p>比特率：每秒钟传输的二进制位数（bit），表示有效数据的传输速率，单位是b/s 、bit/s、比特/秒，读作：比特每秒。</p>
+<p>波特率：波特率可以被理解为单位时间内传输符号的个数（传符号率），通过不同的调制方法可以在一个符号上负载多个比特信息。</p>
+<p>比特率和波特率在数值上有如下关系：</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>I</mi><mo>=</mo><mi>S</mi><mo>⋅</mo><msub><mi>log</mi><mo>⁡</mo><mn>2</mn></msub><mi>N</mi></mrow><annotation encoding="application/x-tex">I=S \cdot \log _{2} N
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.93858em;vertical-align:-0.24414em;"></span><span class="mop"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.20696799999999996em;"><span style="top:-2.4558600000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24414em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span></span></p>
+<p>其中***I*** 为传信率（比特率），<em><strong>S</strong></em> 为波特率，<em><strong>N</strong></em> 为每个符号负载的信息量，而<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>log</mi><mo>⁡</mo><mn>2</mn></msub><mi>N</mi></mrow><annotation encoding="application/x-tex">\log _{2} N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.93858em;vertical-align:-0.24414em;"></span><span class="mop"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.20696799999999996em;"><span style="top:-2.4558600000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24414em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span>以比特为单位。</p>
+<p>以RS232为例，假设目前“<strong>波特率</strong>”为 9600， 则此RS232的比特率计算为</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>I</mi><mo>=</mo><mi>S</mi><mo>⋅</mo><msub><mi>log</mi><mo>⁡</mo><mn>2</mn></msub><mi>N</mi><mo>=</mo><mn>9600</mn><mo>⋅</mo><msub><mi>log</mi><mo>⁡</mo><mn>2</mn></msub><mn>2</mn><mo>=</mo><mn>9600</mn><mi>b</mi><mi>i</mi><mi>t</mi><mi mathvariant="normal">/</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">I=S \cdot \log _{2} N=9600 \cdot \log _{2} 2=9600 b i t / s
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.93858em;vertical-align:-0.24414em;"></span><span class="mop"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.20696799999999996em;"><span style="top:-2.4558600000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24414em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">9</span><span class="mord">6</span><span class="mord">0</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.93858em;vertical-align:-0.24414em;"></span><span class="mop"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.20696799999999996em;"><span style="top:-2.4558600000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24414em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">9</span><span class="mord">6</span><span class="mord">0</span><span class="mord">0</span><span class="mord mathdefault">b</span><span class="mord mathdefault">i</span><span class="mord mathdefault">t</span><span class="mord">/</span><span class="mord mathdefault">s</span></span></span></span></span></p>
+<p>常有人把RS232之<em>N</em> 误以为是每个“<strong>符号</strong>”（symbol）所夹带的讯息量为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mn>2</mn><mn>8</mn></msup></mrow><annotation encoding="application/x-tex">2^8</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">8</span></span></span></span></span></span></span></span></span></span></span>，但实际上每一个“<strong>位元</strong>”（bit）即为一个“<strong>符号</strong>”（symbol）。</p>
+<p>计算机通信中，波特率与比特率虽在数值上相等，但是它们的意义并不相同。</p>
+<p>以上参考：<a href="https://zh.wikipedia.org/wiki/%E6%B3%A2%E7%89%B9%E7%8E%87">波特率</a></p>
+<h3 id="常见波特率">常见波特率</h3>
+<p>9600、19200 、38400 、57600 、115200、230400、460800、921600</p>
+<h3 id="时钟与波特率的计算">时钟与波特率的计算</h3>
+<p>FPGA 主频如果为50M，则时钟周期就是20ns。若数据发送速率为9600bps，则一位数据需要的时间为1000000000/9600=104167ns，则FPGA 传送一位需要翻转104167/20=5208个周期才可传送一位，所以程序中需计数5208才可满足9600bps。</p>
+<p>简单一点就是***时钟频率除以波特率***就是需要的计数。</p>
+<h2 id="verilog模块详解">Verilog模块详解</h2>
+<p><a href="https://github.com/halftop/verilog_uart">全部rtl和tb</a></p>
+<p><a href="https://www.cnblogs.com/xiaomeige/p/6390246.html">参考链接</a>，建议固定位宽和不需要奇偶校验，使用此博文中的简洁描述</p>
+<h3 id="tx_clk_genv">tx_clk_gen.v</h3>
+<p>发送波特率生成模块，在<code>tx_start</code>和<code>tx_done</code>两信号有效的间隙生成选择的波特率时钟信号。思路如上一节所述！</p>
+<p>支持的波特率：9600、19200 、38400 、57600 、115200、230400、460800、921600，可由参数配置。</p>
+<p>相应Verilog描述：</p>
+<pre><code class="language-verilog">`timescale 1ns / 1ps
+module tx_clk_gen
+#(
+	parameter	CLK_FREQUENCE	= 50_000_000,		//hz
+				BAUD_RATE		= 9600		 		//9600、19200 、38400 、57600 、115200、230400、460800、921600
+)
+(
+	input					clk			,	//system_clk
+	input					rst_n		,	//system_reset
+	input					tx_done		,	//once_tx_done
+	input					tx_start	,	//once_tx_start
+	output	reg				bps_clk		 	//baud_rate_clk
+);
+
+localparam	BPS_CNT	=	CLK_FREQUENCE/BAUD_RATE-1,
+			BPS_WD	=	log2(BPS_CNT);
+
+reg	[BPS_WD-1:0] count;
+reg c_state;
+reg n_state;
+//FSM-1			1'b0:IDLE	1'b1:send_data
+always @(posedge clk or negedge rst_n) begin
+	if (!rst_n)
+		c_state &lt;= 1'b0;
+	else
+		c_state &lt;= n_state;
+end
+//FSM-2
+always @(*) begin
+	case (c_state)
+		1'b0: n_state = tx_start ? 1'b1 : 1'b0;
+		1'b1: n_state = tx_done ? 1'b0 : 1'b1;
+		default: n_state = 1'b0;
+	endcase
+end
+//FSM-3 FSM's output(count_en) is equal to c_state
+
+//baud_rate_clk_counter
+always @(posedge clk or negedge rst_n) begin
+	if (!rst_n)
+		count &lt;= {BPS_WD{1'b0}};
+	else if (!c_state)
+		count &lt;= {BPS_WD{1'b0}};
+	else begin
+		if (count == BPS_CNT) 
+			count &lt;= {BPS_WD{1'b0}};
+		else
+			count &lt;= count + 1'b1;
+	end
+end
+//baud_rate_clk_output
+always @(posedge clk or negedge rst_n) begin
+	if (!rst_n)
+		bps_clk &lt;= 1'b0;
+	else if (count == 'd1)
+		bps_clk &lt;= 1'b1;
+	else
+		bps_clk &lt;= 1'b0;
+end
+//get_the_width_of_
+function integer log2(input integer v);
+  begin
+	log2=0;
+	while(v&gt;&gt;log2) 
+	  log2=log2+1;
+  end
+endfunction
+
+endmodule
+</code></pre>
+<h3 id="uart_frame_txv">uart_frame_tx.v</h3>
+<p>数据帧发送模块，支持通过参数设定波特率、奇偶检验位及数据位宽。采用状态机和移位寄存器实现。当有校验位时则发送检验位；若没有校验位则直接发送停止位（发送两次停止位），如下所示。</p>
+<pre><code class="language-verilog">`timescale 1ns / 1ps
+module uart_frame_tx
+#(
+	parameter	CLK_FREQUENCE	= 50_000_000,		//hz
+				BAUD_RATE		= 9600		,		//9600、19200 、38400 、57600 、115200、230400、460800、921600
+				PARITY			= &quot;NONE&quot;	,		//&quot;NONE&quot;,&quot;EVEN&quot;,&quot;ODD&quot;
+				FRAME_WD		= 8					//if PARITY=&quot;NONE&quot;,it can be 5~9;else 5~8
+)
+(
+	input						clk			,	//system_clk
+	input						rst_n		,	//system_reset
+	input						frame_en	,	//once_tx_start
+	input		[FRAME_WD-1:0]	data_frame	,	//data_to_tx
+	output	reg					tx_done		,	//once_tx_done
+	output	reg					uart_tx		 	//uart_tx_data
+);
+
+wire	bps_clk;
+
+tx_clk_gen
+#(
+	.CLK_FREQUENCE	(CLK_FREQUENCE),		//hz
+	.BAUD_RATE		(BAUD_RATE	)	 		//9600、19200 、38400 、57600 、115200、230400、460800、921600
+)
+tx_clk_gen_inst
+(
+	.clk			( clk		 ),		//system_clk
+	.rst_n			( rst_n		 ),		//system_reset
+	.tx_done		( tx_done	 ),		//once_tx_done
+	.tx_start		( frame_en	 ),		//once_tx_start
+	.bps_clk		( bps_clk	 ) 		//baud_rate_clk
+);
+
+localparam	IDLE		=	6'b00_0000	,
+			READY		=	6'b00_0001	,
+			START_BIT	=	6'b00_0010	,
+			SHIFT_PRO	=	6'b00_0100	,
+			PARITY_BIT	=	6'b00_1000	,
+			STOP_BIT	=	6'b01_0000	,
+			DONE		=	6'b10_0000	;
+
+wire	[1:0]	verify_mode;
+generate
+	if (PARITY == &quot;ODD&quot;)
+		assign verify_mode = 2'b01;
+	else if (PARITY == &quot;EVEN&quot;)
+		assign verify_mode = 2'b10;
+	else
+		assign verify_mode = 2'b00;
+endgenerate
+
+reg		[FRAME_WD-1:0]	data_reg	;
+reg		[log2(FRAME_WD-1)-1:0] cnt	;
+reg						parity_even	;
+reg 	[5:0]			cstate		;
+reg		[5:0]			nstate		;
+
+always @(posedge clk or negedge rst_n) begin
+	if (!rst_n)
+		cnt &lt;= 'd0;
+	else if (cstate == SHIFT_PRO &amp; bps_clk == 1'b1) 
+		if (cnt == FRAME_WD-1)
+			cnt &lt;= 'd0;
+		else
+			cnt &lt;= cnt + 1'b1;
+	else
+		cnt &lt;= cnt;
+end
+//FSM-1
+always @(posedge clk or negedge rst_n) begin
+	if (!rst_n)
+		cstate &lt;= IDLE;
+	else
+		cstate &lt;= nstate;
+end
+//FSM-2
+always @(*) begin
+	case (cstate)
+		IDLE		: nstate = frame_en ? READY : IDLE	;
+		READY		: nstate = (bps_clk == 1'b1) ? START_BIT : READY;
+		START_BIT	: nstate = (bps_clk == 1'b1) ? SHIFT_PRO : START_BIT;
+		SHIFT_PRO	: nstate = (cnt == FRAME_WD-1 &amp; bps_clk == 1'b1) ? PARITY_BIT : SHIFT_PRO;
+		PARITY_BIT	: nstate = (bps_clk == 1'b1) ? STOP_BIT : PARITY_BIT;
+		STOP_BIT	: nstate = (bps_clk == 1'b1) ? DONE : STOP_BIT;
+		DONE		: nstate = IDLE;
+		default		: nstate = IDLE;
+	endcase
+end
+//FSM-3
+always @(posedge clk or negedge rst_n) begin
+	if (!rst_n) begin
+		data_reg &lt;= 'd0;
+		uart_tx &lt;= 1'b1;
+		tx_done &lt;= 1'b0;
+		parity_even &lt;= 1'b0;
+	end else begin
+		case (nstate)
+			IDLE		: begin
+							data_reg &lt;= 'd0;
+							tx_done &lt;= 1'b0;
+							uart_tx &lt;= 1'b1;
+						end
+			READY		: begin
+							data_reg &lt;= 'd0;
+							tx_done &lt;= 1'b0;
+							uart_tx &lt;= 1'b1;
+						end
+			START_BIT	: begin
+							data_reg &lt;= data_frame;
+							parity_even &lt;= ^data_frame;		//生成偶校验位
+							uart_tx &lt;= 1'b0;
+							tx_done &lt;= 1'b0;
+						end
+			SHIFT_PRO	: begin
+							if(bps_clk == 1'b1) begin
+								data_reg &lt;= {1'b0,data_reg[FRAME_WD-1:1]};
+								uart_tx &lt;= data_reg[0];
+							end else begin
+								data_reg &lt;= data_reg;
+								uart_tx &lt;= uart_tx;
+							end
+							tx_done &lt;= 1'b0;
+						end
+			PARITY_BIT	: begin
+							data_reg &lt;= data_reg;
+							tx_done &lt;= 1'b0;
+							case (verify_mode)
+								2'b00: uart_tx &lt;= 1'b1;		//若无校验多发一位STOP_BIT
+								2'b01: uart_tx &lt;= ~parity_even;
+								2'b10: uart_tx &lt;= parity_even;
+								default: uart_tx &lt;= 1'b1;
+							endcase
+						end
+			STOP_BIT	: uart_tx &lt;= 1'b1;
+			DONE		: tx_done &lt;= 1'b1;
+			default		:  begin
+							data_reg &lt;= 'd0;
+							uart_tx &lt;= 1'b1;
+							tx_done &lt;= 1'b0;
+							parity_even &lt;= 1'b0;
+						end
+		endcase
+	end
+end
+
+function integer log2(input integer v);
+  begin
+	log2=0;
+	while(v&gt;&gt;log2) 
+	  log2=log2+1;
+  end
+endfunction
+
+endmodule
+</code></pre>
+<h3 id="uart_frame_rxv">uart_frame_rx.v</h3>
+<p>数据接收模块的主要描述如下：</p>
+<pre><code class="language-verilog">module uart_frame_rx
+#(
+	parameter	CLK_FREQUENCE	= 50_000_000,		//hz
+				BAUD_RATE		= 9600		,		//9600、19200 、38400 、57600 、115200、230400、460800、921600
+				PARITY			= &quot;NONE&quot;	,		//&quot;NONE&quot;,&quot;EVEN&quot;,&quot;ODD&quot;
+				FRAME_WD		= 8					//if PARITY=&quot;NONE&quot;,it can be 5~9;else 5~8
+)
+(
+	input						clk			,		//sys_clk
+	input						rst_n		,		
+	input						uart_rx		,		
+	output	reg	[FRAME_WD-1:0]	rx_frame	,		//frame_received,when rx_done = 1 it's valid
+	output	reg					rx_done		,		//once_rx_done
+	output	reg					frame_error	 		//when the PARITY is enable if frame_error = 1,the frame received is wrong
+);
+
+wire			sample_clk		;
+wire			frame_en		;		//once_rx_start
+reg				cnt_en			;		//sample_clk_cnt enable
+reg		[3:0]	sample_clk_cnt	;		
+reg		[log2(FRAME_WD+1)-1:0]		sample_bit_cnt	;
+wire			baud_rate_clk	;
+
+localparam	IDLE		=	5'b0_0000,
+			START_BIT	=	5'b0_0001,
+			DATA_FRAME	=	5'b0_0010,
+			PARITY_BIT	=	5'b0_0100,
+			STOP_BIT	=	5'b0_1000,
+			DONE		=	5'b1_0000;
+
+reg	[4:0]	cstate;
+reg [4:0]	nstate;
+//
+wire	[1:0]	verify_mode;
+generate
+	if (PARITY == &quot;ODD&quot;)
+		assign verify_mode = 2'b01;
+	else if (PARITY == &quot;EVEN&quot;)
+		assign verify_mode = 2'b10;
+	else
+		assign verify_mode = 2'b00;
+endgenerate
+//detect the start condition--the negedge of uart_rx
+reg		uart_rx0,uart_rx1,uart_rx2,uart_rx3;
+
+always @(posedge clk or negedge rst_n) begin
+	if (!rst_n) begin
+		uart_rx0 &lt;= 1'b0;
+		uart_rx1 &lt;= 1'b0;
+		uart_rx2 &lt;= 1'b0;
+		uart_rx3 &lt;= 1'b0;
+	end else begin
+		uart_rx0 &lt;= uart_rx ;
+		uart_rx1 &lt;= uart_rx0;
+		uart_rx2 &lt;= uart_rx1;
+		uart_rx3 &lt;= uart_rx2;
+	end
+end
+//negedge of uart_rx-----start_bit
+assign frame_en = uart_rx3 &amp; uart_rx2 &amp; ~uart_rx1 &amp; ~uart_rx0;
+
+always @(posedge clk or negedge rst_n) begin
+	if (!rst_n) 
+		cnt_en &lt;= 1'b0;
+	else if (frame_en) 
+		cnt_en &lt;= 1'b1;
+	else if (rx_done) 
+		cnt_en &lt;= 1'b0;
+	else
+		cnt_en &lt;= cnt_en;
+end
+
+assign baud_rate_clk = sample_clk &amp; sample_clk_cnt == 4'd8;
+
+always @(posedge clk or negedge rst_n) begin
+	if (!rst_n) 
+		sample_clk_cnt &lt;= 4'd0;
+	else if (cnt_en) begin
+		if (baud_rate_clk) 
+			sample_clk_cnt &lt;= 4'd0;
+		else if (sample_clk)
+			sample_clk_cnt &lt;= sample_clk_cnt + 1'b1;
+		else
+			sample_clk_cnt &lt;= sample_clk_cnt;
+	end else 
+		sample_clk_cnt &lt;= 4'd0;
+end
+//the start_bit is the first one (0),then the LSB of the data_frame is the second(1) ......
+always @(posedge clk or negedge rst_n) begin
+	if (!rst_n) 
+		sample_bit_cnt &lt;= 'd0;
+	else if (cstate == IDLE)
+		sample_bit_cnt &lt;= 'd0;
+	else if (baud_rate_clk)
+		sample_bit_cnt &lt;= sample_bit_cnt + 1'b1;
+	else
+		sample_bit_cnt &lt;= sample_bit_cnt;
+end
+//read the readme
+reg		[1:0]	sample_result	;
+always @(posedge clk or negedge rst_n) begin
+	if (!rst_n) 
+		sample_result &lt;= 1'b0;
+	else if (sample_clk) begin
+		case (sample_clk_cnt)
+			4'd0:sample_result &lt;= 2'd0;
+			4'd3,4'd4,4'd5: sample_result &lt;= sample_result + uart_rx;
+			default: sample_result &lt;= sample_result;
+		endcase
+	end
+end
+//FSM-1
+always @(posedge clk or negedge rst_n) begin
+	if (!rst_n) 
+		cstate &lt;= IDLE;
+	else 
+		cstate &lt;= nstate;
+end
+//FSM-2
+always @(*) begin
+	case (cstate)
+		IDLE		: nstate = frame_en ? START_BIT : IDLE ;
+		START_BIT	: nstate = (baud_rate_clk &amp; sample_result[1] == 1'b0) ? DATA_FRAME : START_BIT ;
+		DATA_FRAME	: begin
+						case (verify_mode[1]^verify_mode[0])
+							1'b1: nstate = (sample_bit_cnt == FRAME_WD &amp; baud_rate_clk) ? PARITY_BIT : DATA_FRAME ;		//parity is enable
+							1'b0: nstate = (sample_bit_cnt == FRAME_WD &amp; baud_rate_clk) ? STOP_BIT : DATA_FRAME ;		//parity is disable
+							default: nstate = (sample_bit_cnt == FRAME_WD &amp; baud_rate_clk) ? STOP_BIT : DATA_FRAME ;	//defasult is disable
+						endcase
+					end
+		PARITY_BIT	: nstate = baud_rate_clk ? STOP_BIT : PARITY_BIT ;
+		STOP_BIT	: nstate = (baud_rate_clk &amp; sample_result[1] == 1'b1) ? DONE : STOP_BIT ;
+		DONE		: nstate = IDLE;
+		default: nstate = IDLE;
+	endcase
+end
+//FSM-3
+always @(posedge clk or negedge rst_n) begin
+	if (!rst_n) begin
+		rx_frame	&lt;= 'd0;
+		rx_done		&lt;= 1'b0;
+		frame_error	&lt;= 1'b0;
+	end else begin
+		case (nstate)
+			IDLE		: begin
+							rx_frame	&lt;= 'd0;
+							rx_done		&lt;= 1'b0;
+							frame_error	&lt;= 1'b0;
+						end 
+			START_BIT	: begin
+							rx_frame	&lt;= 'd0;
+							rx_done		&lt;= 1'b0;
+							frame_error	&lt;= 1'b0;
+						end 
+			DATA_FRAME	: begin
+							if (sample_clk &amp; sample_clk_cnt == 4'd6) 
+								rx_frame &lt;= {sample_result[1],rx_frame[FRAME_WD-1:1]};
+							else
+								rx_frame	&lt;= rx_frame;
+							rx_done		&lt;= 1'b0;
+							frame_error	&lt;= 1'b0;
+						end 
+			PARITY_BIT	: begin
+							rx_frame	&lt;= rx_frame;
+							rx_done		&lt;= 1'b0;
+							if (sample_clk_cnt == 4'd8)
+							frame_error	&lt;= ^rx_frame ^ sample_result[1];
+							else
+							frame_error	&lt;= frame_error;
+						end 
+			STOP_BIT	: begin
+							rx_frame	&lt;= rx_frame;
+							rx_done		&lt;= 1'b0;
+							frame_error	&lt;= frame_error;
+						end 
+			DONE		: begin
+							frame_error	&lt;= frame_error;
+							rx_done		&lt;= 1'b1;
+							rx_frame	&lt;= rx_frame;
+						end 
+			default: begin
+							rx_frame	&lt;= rx_frame;
+							rx_done		&lt;= 1'b0;
+							frame_error	&lt;= frame_error;
+						end 
+		endcase
+	end
+end
+
+rx_clk_gen
+#(
+	.CLK_FREQUENCE	(CLK_FREQUENCE	),	//hz
+	.BAUD_RATE		(BAUD_RATE		)	//9600、19200 、38400 、57600 、115200、230400、460800、921600
+)
+rx_clk_gen_inst
+(
+	.clk			( clk		 )	,
+	.rst_n			( rst_n		 )	,
+	.rx_start		( frame_en	 )	,
+	.rx_done		( rx_done	 )	,
+	.sample_clk	 	( sample_clk )	
+);	
+
+function integer log2(input integer v);
+  begin
+	log2=0;
+	while(v&gt;&gt;log2) 
+	  log2=log2+1;
+  end
+endfunction
+endmodule
+</code></pre>
+<p>根据uart协议，数据传输线空闲时位高电平，数据传输以一位低电平的起始位开始，因此准确检测起始位是数据成功传输的关键。由于接受端和发送端是异步的，需要专门的边沿检测电路来捕捉下降沿。这里采用4个移位寄存器，连续采集4个时钟上升沿时的数据，通过对比前两个时刻和后两个时刻的数据线的状态来得到数据线准确的下降沿，获得准确的开始接收条件。</p>
+<p>在简单的串口接收中，我们通常选取一位数据的中间时刻进行采样，因为此时数据最稳定，但是在工业环境中，存在着各种干扰，在干扰存在的情况下，如果采用传统的中间时刻采样一次的方式，采样结果就有可能受到干扰而出错。为了滤除这种干扰，这里采用多次采样求概率的方式。如下图，将一位数据平均分成9个时间段，对位于中间的三个时间段进行采样。然后对三个采样结果进行统计判断，如果某种电平状态在三次采样结果中占到了两次及以上，则可以判定此电平状态即为正确的数据电平。例如4、5、6时刻采样结果分别为1、1、0，那么就取此位解码结果为1，否则，若三次采样结果为0、1、0，则解码结果就为0。即3次采样为a,b,c，则结果为<code>a&amp;b | b&amp;c |a&amp;c</code>，显而易见此结果是全加器的进位，<a href="https://halftop.github.io/post/verilog99_12to21/#%E9%A2%98%E7%9B%AE012">参考链接</a>。</p>
+<center>
+ <img src="https://i.loli.net/2019/06/11/5cffa2289f6cb31791.png" alt="数据采样示例" title="数据采样示例" width="600"> 
+</center>
+<h3 id="rx_clk_genv">rx_clk_gen.v</h3>
+<p>所以采样时钟应该为波特率时钟的9倍，Verilog描述如下：</p>
+<pre><code class="language-verilog">`timescale 1ns / 1ps
+
+module rx_clk_gen
+#(
+	parameter	CLK_FREQUENCE	= 50_000_000,	//hz
+				BAUD_RATE		= 9600		 	//9600、19200 、38400 、57600 、115200、230400、460800、921600
+)
+(
+	input					clk			,
+	input					rst_n		,
+	input					rx_start	,
+	input					rx_done		,
+	output	reg				sample_clk	 
+);
+
+localparam	SMP_CLK_CNT	=	CLK_FREQUENCE/BAUD_RATE/9 - 1,
+			CNT_WIDTH	=	log2(SMP_CLK_CNT)			 ;
+
+reg		[CNT_WIDTH-1:0]	clk_count	;
+reg		cstate;
+reg		nstate;
+//FSM-1	1'b0:IDLE 1'b1:RECEIVE
+always @(posedge clk or negedge rst_n) begin
+	if (!rst_n) begin
+		cstate &lt;= 1'b0;
+	end else begin
+		cstate &lt;= nstate;
+	end
+end
+//FSM-2
+always @(*) begin
+	case (cstate)
+		1'b0: nstate = rx_start ? 1'b1 : 1'b0;
+		1'b1: nstate = rx_done ? 1'b0 : 1'b1 ;
+		default: nstate = 1'b0;
+	endcase
+end
+//FSM-3 FSM's output(clk_count_en) is equal to cstate
+
+//sample_clk_counter
+always @(posedge clk or negedge rst_n) begin
+	if (!rst_n) 
+		clk_count &lt;= 'd0;
+	else if (!cstate) 
+		clk_count &lt;= 'd0;
+	else if (clk_count == SMP_CLK_CNT)
+		clk_count &lt;= 'd0;
+	else
+		clk_count &lt;= clk_count + 1'b1;
+end
+//generate sample_clk = 9xBAUD_RATE
+always @(posedge clk or negedge rst_n) begin
+	if (!rst_n) 
+		sample_clk &lt;= 1'b0;
+	else if (clk_count == 1'b1) 
+		sample_clk &lt;= 1'b1;
+	else 
+		sample_clk &lt;= 1'b0;
+end
+//get the width of sample_clk_counter
+function integer log2(input integer v);
+  begin
+	log2=0;
+	while(v&gt;&gt;log2) 
+	  log2=log2+1;
+  end
+endfunction
+
+endmodule
+</code></pre>
+<h2 id="总结">总结</h2>
+<p>顾及的功能太多，比如奇偶校验，位宽设定等，最终的描述不简洁。但是功能基本都实现了，把思路和代码沉淀在这里。Verilog和本文多处借鉴他人成果，都已给出参考链接，侵删。</p>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://halftop.github.io/post/verilog99_FIFO">
+              <h3 class="post-title">
+                下一篇：Verilog99题-FIFO设计
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+        
+          <div id="gitalk-container"></div>
+        
+
+        
+      
+
+      <div class="site-footer">
+  <div class="slogan">    有输入有输出，才是正确的学习方式    </div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/halftop" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  <center>
+ <img src="https://i.loli.net/2019/05/11/5cd67babc54e9.gif" alt="fighting and confidence" title="fighting and confidence" width="300"> 
+</center> | <a class="rss" href="https://halftop.github.io/atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '42b8247150af6c920554',
+        clientSecret: 'ea9863ece62308a1854e39455221fa1ace6f8cd6',
+        repo: 'halftop.github.io',
+        owner: 'halftop',
+        admin: ['halftop'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

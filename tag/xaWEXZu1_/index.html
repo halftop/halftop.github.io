@@ -2,33 +2,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-      <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
-                <span class="btn-bg"></span>
-                <span class="btn-text">文章导航</span>
-                </p>
-        <div id="toc-article" class="toc-article">
-            <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
-          <strong class="toc-title">文章目录</strong>
-                 
-               </div>
-         <script type="text/javascript">
-        function showToc(){
-          var toc_article = document.getElementById("toc-article");
-          var show_toc_btn = document.getElementById("show-toc-btn");
-          toc_article.setAttribute("style","display:block");
-          show_toc_btn.setAttribute("style","display:none");
-          };
-        function showBtn(){
-          var toc_article = document.getElementById("toc-article");
-          var show_toc_btn = document.getElementById("show-toc-btn");
-          toc_article.setAttribute("style","display:none");
-          show_toc_btn.setAttribute("style","display:block");
-          };
-         </script>
     
 <meta charset="utf-8" >
 
-<title>关于 | 1/2顶点</title>
+<title>接口协议 | 1/2顶点</title>
 <meta name="description" content="    有输入有输出，才是正确的学习方式    ">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -39,12 +16,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://halftop.github.io/styles/main.css">
 
-
-  
-    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
-  
-
-  
 
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -107,34 +78,62 @@
 
 
       <div class="content-container">
-        <div class="post-detail">
-          
-          <h2 class="post-title">关于</h2>
-          <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2019-01-25</span>
-            
-          </div>
-          <div class="post-content">
-            <p>先放上一句需要时刻提醒自己的话吧：<br>
-<strong>英雄的出处<br>
-是来自于内心的强大<br>
-来自于对梦想的执着追求<br>
-和你对所从事职业的坚持与踏实<br>
-以及面对浮躁、浮华的淡定和定律</strong></p>
 
-          </div>
+        <div class="current-tag-container">
+          <h2 class="title">
+            <i class="icon icon-pricetags-outline"></i> 接口协议
+          </h2> 
         </div>
 
         
+<section class="post-item">
+    <div class="content">
+      <a href="https://halftop.github.io/post/Verilog-Uart">
+        <h2 class="post-title">Uart的Verilog实现</h2>
+      </a>
+      <div class="post-abstract">
+        
       </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2019-06-06</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="https://halftop.github.io/tag/xaWEXZu1_">
+                接口协议
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://halftop.github.io/tag/ADa051R6R">
+                Verilog HDL
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://halftop.github.io/tag/bwS6E4Jqc">
+                学习笔记
+                
+              </a>
+            
+          </span>
+        
+      </div>
+    </div>
+    
+  </section>
 
-      
-        
-          <div id="gitalk-container"></div>
-        
 
-        
-      
+<div class="pagination-container">
+  
+  
+</div>
+
+
+      </div>
 
       <div class="site-footer">
   <div class="slogan">    有输入有输出，才是正确的学习方式    </div>
@@ -174,29 +173,6 @@ var app = new Vue({
 })
 
 </script>
-
-
-
-  
-    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-    <script>
-
-      var gitalk = new Gitalk({
-        clientID: '42b8247150af6c920554',
-        clientSecret: 'ea9863ece62308a1854e39455221fa1ace6f8cd6',
-        repo: 'halftop.github.io',
-        owner: 'halftop',
-        admin: ['halftop'],
-        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
-        distractionFreeMode: false  // Facebook-like distraction free mode
-      })
-
-      gitalk.render('gitalk-container')
-
-    </script>
-  
-
-  
 
 
 
