@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://halftop.github.io</id>
     <title>1/2顶点</title>
-    <updated>2019-06-11T13:28:22.816Z</updated>
+    <updated>2019-06-11T14:42:42.709Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://halftop.github.io"/>
     <link rel="self" href="https://halftop.github.io/atom.xml"/>
@@ -16,8 +16,12 @@
         <link href="https://halftop.github.io/post/Verilog-Uart">
         </link>
         <updated>2019-06-06T12:05:47.000Z</updated>
+        <summary type="html"><![CDATA[<h2 id="概述">概述</h2>
+<p>Uart是个缩写，全称是通用异步收发传输器（Universal Asynchronous Receiver/Transmitter）。单向传输只需要单线。异步传输的意思是没有同步时钟来同步发送端和接受端的数据，所以在数据之前添加起始位，之后添加结束位，以此来判断传输过程的开始和结束。当接收端检测到开始位，即开始以特定的频率来接收输入的bit位，这个特定的频率称为波特率。发送端和接收端要在大致相同的波特率下工作，才可以保证传输的正确性（最多相差10%）。</p>
+]]></summary>
         <content type="html"><![CDATA[<h2 id="概述">概述</h2>
 <p>Uart是个缩写，全称是通用异步收发传输器（Universal Asynchronous Receiver/Transmitter）。单向传输只需要单线。异步传输的意思是没有同步时钟来同步发送端和接受端的数据，所以在数据之前添加起始位，之后添加结束位，以此来判断传输过程的开始和结束。当接收端检测到开始位，即开始以特定的频率来接收输入的bit位，这个特定的频率称为波特率。发送端和接收端要在大致相同的波特率下工作，才可以保证传输的正确性（最多相差10%）。</p>
+<!-- more -->
 <h2 id="数据包的构成">数据包的构成</h2>
 <p>Uart协议的传输数据被整合成数据包，每个数据包包含1位起始位，5-9位的数据位（具体决定于需求等因素），1位可选的奇偶校验位和1-2位的停止位。如下图所示：</p>
 <center>

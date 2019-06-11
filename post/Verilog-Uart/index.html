@@ -66,7 +66,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico?v=1560259657092">
+<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico?v=1560264159026">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://halftop.github.io/styles/main.css">
 
@@ -90,7 +90,7 @@
   <div class="site-header">
     <div class="left">
       <a href="https://halftop.github.io">
-        <img class="avatar" src="https://halftop.github.io/images/avatar.png?v=1560259657092" alt="" width="32px" height="32px">
+        <img class="avatar" src="https://halftop.github.io/images/avatar.png?v=1560264159026" alt="" width="32px" height="32px">
       </a>
       <a href="https://halftop.github.io">
         <h1 class="site-title">1/2顶点</h1>
@@ -172,6 +172,7 @@
           <div class="post-content">
             <h2 id="概述">概述</h2>
 <p>Uart是个缩写，全称是通用异步收发传输器（Universal Asynchronous Receiver/Transmitter）。单向传输只需要单线。异步传输的意思是没有同步时钟来同步发送端和接受端的数据，所以在数据之前添加起始位，之后添加结束位，以此来判断传输过程的开始和结束。当接收端检测到开始位，即开始以特定的频率来接收输入的bit位，这个特定的频率称为波特率。发送端和接收端要在大致相同的波特率下工作，才可以保证传输的正确性（最多相差10%）。</p>
+<!-- more -->
 <h2 id="数据包的构成">数据包的构成</h2>
 <p>Uart协议的传输数据被整合成数据包，每个数据包包含1位起始位，5-9位的数据位（具体决定于需求等因素），1位可选的奇偶校验位和1-2位的停止位。如下图所示：</p>
 <center>
