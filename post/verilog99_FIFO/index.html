@@ -1,170 +1,142 @@
-
-<!DOCTYPE html>
 <html>
-  <head>
-      <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
-                <span class="btn-bg"></span>
-                <span class="btn-text">文章导航</span>
-                </p>
-        <div id="toc-article" class="toc-article">
-            <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
-          <strong class="toc-title">文章目录</strong>
-                 <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#%E5%89%8D%E8%A8%80">前言</a></li>
-<li><a href="#%E5%90%8C%E6%AD%A5fifo%E8%AE%BE%E8%AE%A1">同步FIFO设计</a>
-<ul>
-<li><a href="#%E6%80%9D%E8%B7%AF">思路</a></li>
-<li><a href="#verilog%E6%8F%8F%E8%BF%B0testbench">Verilog描述&amp;testbench</a></li>
-<li><a href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5">参考链接</a></li>
-</ul>
-</li>
-<li><a href="#%E5%BC%82%E6%AD%A5fifo%E8%AE%BE%E8%AE%A1">异步FIFO设计</a></li>
-</ul>
-</li>
-</ul>
 
-               </div>
-         <script type="text/javascript">
-        function showToc(){
-          var toc_article = document.getElementById("toc-article");
-          var show_toc_btn = document.getElementById("show-toc-btn");
-          toc_article.setAttribute("style","display:block");
-          show_toc_btn.setAttribute("style","display:none");
-          };
-        function showBtn(){
-          var toc_article = document.getElementById("toc-article");
-          var show_toc_btn = document.getElementById("show-toc-btn");
-          toc_article.setAttribute("style","display:none");
-          show_toc_btn.setAttribute("style","display:block");
-          };
-         </script>
-    
-<meta charset="utf-8" >
-
-<title>Verilog99题-FIFO设计 | 1/2顶点</title>
-<meta name="description" content="    有输入有输出，才是正确的学习方式    ">
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico?v=1560264159026">
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    Verilog99题-FIFO设计 | 1/2顶点
+</title>
+<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico?v=1561000243220">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://halftop.github.io/styles/main.css">
-
-
-  
-    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
-  
-
-  
-
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://halftop.github.io/media/js/jquery.sticky-sidebar.min.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
+        
+            
+                <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+                <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+                
 
-  </head>
-  <body>
-    <div id="app" class="main">
-      <div class="site-header-container">
-  <div class="site-header">
-    <div class="left">
-      <a href="https://halftop.github.io">
-        <img class="avatar" src="https://halftop.github.io/images/avatar.png?v=1560264159026" alt="" width="32px" height="32px">
-      </a>
-      <a href="https://halftop.github.io">
-        <h1 class="site-title">1/2顶点</h1>
-      </a>
+                    
+                            
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://halftop.github.io">
+                <img class="avatar" src="https://halftop.github.io/images/avatar.png?v=1561000243220" alt="">
+            </a>
+            <div class="site-title">
+                <h1>
+                    1/2顶点
+                </h1>
+            </div>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/post/about" class="menu">
+                                    关于
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
     </div>
-    <div class="right">
-      <transition name="fade">
-        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
-      </transition>
-    </div>
-  </div>
 </div>
 
-<transition name="fade">
-  <div class="menu-container" style="display: none;" v-show="menuVisible">
-    <div class="menu-list">
-      
-        
-          <a href="/" class="menu purple-link">
-            首页
-          </a>
-        
-      
-        
-          <a href="/archives" class="menu purple-link">
-            归档
-          </a>
-        
-      
-        
-          <a href="/tags" class="menu purple-link">
-            标签
-          </a>
-        
-      
-        
-          <a href="/post/about" class="menu purple-link">
-            关于
-          </a>
-        
-      
-    </div>
-  </div>
-</transition>
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
 
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
 
-      <div class="content-container">
-        <div class="post-detail">
-          
-            <div class="feature-container" style="background-image: url('https://i.loli.net/2019/06/03/5cf535d3d954861774.png')">
-            </div>
-          
-          <h2 class="post-title">Verilog99题-FIFO设计</h2>
-          <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2019-06-03</span>
-            
-              <span>
-                <i class="icon-pricetags-outline"></i>
-                
-                  <a href="https://halftop.github.io/tag/DztcUtg4_">
-                    Verilog99题
-                    
-                      ，
-                    
-                  </a>
-                
-                  <a href="https://halftop.github.io/tag/f0tARmjal">
-                    IC
-                    
-                      ，
-                    
-                  </a>
-                
-                  <a href="https://halftop.github.io/tag/ADa051R6R">
-                    Verilog HDL
-                    
-                      ，
-                    
-                  </a>
-                
-                  <a href="https://halftop.github.io/tag/bwS6E4Jqc">
-                    学习笔记
-                    
-                  </a>
-                
-              </span>
-            
-          </div>
-          <div class="post-content">
-            <h2 id="前言">前言</h2>
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-detail main-container">
+                <!-- left -->
+                <div id="content" class="main-container-left">
+                    <article class="post i-card">
+                        <h2 class="post-title">
+                            Verilog99题-FIFO设计
+                        </h2>
+                        <div class="post-info">
+                            <time class="post-time">2019-06-03</time>
+                            
+                                <a href="https://halftop.github.io/tag/DztcUtg4_" class="post-tag i-tag
+                            i-tag-other_4">
+                            #Verilog99题
+                        </a>
+                                
+                                <a href="https://halftop.github.io/tag/f0tARmjal" class="post-tag i-tag
+                            i-tag-success">
+                            #IC
+                        </a>
+                                
+                                <a href="https://halftop.github.io/tag/ADa051R6R" class="post-tag i-tag
+                            i-tag-">
+                            #Verilog HDL
+                        </a>
+                                
+                                <a href="https://halftop.github.io/tag/bwS6E4Jqc" class="post-tag i-tag
+                            i-tag-banana">
+                            #学习笔记
+                        </a>
+                                
+                        </div>
+                        
+                            <div class="post-feature-image" style="background-image: url('https://i.loli.net/2019/06/03/5cf535d3d954861774.png')"></div>
+                            
+                                <div class="post-content">
+                                    <h2 id="前言">前言</h2>
 <p><a href="https://mp.weixin.qq.com/s/prdZKHbKTFMH80eRnr7mLQ">不忘出芯veriloig99题</a>的58-61题是关于FIFO设计，包括同步FIFO，异步FIFO和FIFO最小深度计算等问题。</p>
 <!-- more --> 
 <h2 id="同步fifo设计">同步FIFO设计</h2>
@@ -198,92 +170,124 @@
 <h2 id="异步fifo设计">异步FIFO设计</h2>
 <p>。。。。。。</p>
 
-          </div>
+                                </div>
+                    </article>
+                    <!--  -->
+                    
+                        <div class="next-post">
+                            <div class="next">下一篇</div>
+                            <a href="https://halftop.github.io/post/verilog99-57">
+                                <h3 class="post-title">
+                                    Verilog99题-57题
+                                </h3>
+                            </a>
+                        </div>
+                        
+                            <div id="disqus_thread"></div>
+                            <div id="gitalk-container"></div>
+                </div>
+                <!-- middle -->
+                <div class="main-container-middle"></div>
+                <!-- right -->
+                <div id="sidebar" class="main-container-right">
+                    
+                        <!-- toc -->
+                        
+    <div class="toc-card i-card ">
+        <div class="toc-title i-card-title">目录</div>
+        <div class="toc-content">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%89%8D%E8%A8%80">前言</a></li>
+<li><a href="#%E5%90%8C%E6%AD%A5fifo%E8%AE%BE%E8%AE%A1">同步FIFO设计</a>
+<ul>
+<li><a href="#%E6%80%9D%E8%B7%AF">思路</a></li>
+<li><a href="#verilog%E6%8F%8F%E8%BF%B0testbench">Verilog描述&amp;testbench</a></li>
+<li><a href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5">参考链接</a></li>
+</ul>
+</li>
+<li><a href="#%E5%BC%82%E6%AD%A5fifo%E8%AE%BE%E8%AE%A1">异步FIFO设计</a></li>
+</ul>
+</li>
+</ul>
+
         </div>
+        <script>
+            function locateCatelogList() {
+                /*获取文章目录集合,可通过:header过滤器*/
+                var alis = $('.post-content :header');
+                /*获取侧边栏目录列表集合**/
+                var sidebar_alis = $('.markdownIt-TOC a');
+                /*获取滚动条到顶部的距离*/
+                var scroll_height = $(window).scrollTop();
+                for (var i = 0; i < alis.length; i++) {
+                    /*获取锚点集合中的元素分别到顶点的距离*/
+                    var a_height = $(alis[i]).offset().top;
+                    if (a_height < scroll_height) {
+                        /*高亮显示*/
+                        sidebar_alis.removeClass('on');
+                        $(sidebar_alis[i]).addClass('on');
+                    }
+                }
+            }
+            $(function() {
+                /*绑定滚动事件 */
+                $(window).bind('scroll', locateCatelogList);
+            });
+        </script>
+    </div>
+    
+                            
 
-        
-          <div class="next-post">
-            <a class="purple-link" href="https://halftop.github.io/post/verilog99-57">
-              <h3 class="post-title">
-                下一篇：Verilog99题-57题
-              </h3>
-            </a>
-          </div>
-          
-      </div>
+                </div>
 
-      
-        
-          <div id="gitalk-container"></div>
-        
 
-        
-      
 
-      <div class="site-footer">
-  <div class="slogan">    有输入有输出，才是正确的学习方式    </div>
-  <div class="social-container">
-    
-      
-        <a href="https://github.com/halftop" target="_blank">
-          <i class="fab fa-github"></i>
-        </a>
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-  </div>
+
+            </div>
+
+
+            <div class="site-footer">
   <center>
  <img src="https://i.loli.net/2019/05/11/5cd67babc54e9.gif" alt="fighting and confidence" title="fighting and confidence" width="300"> 
-</center> | <a class="rss" href="https://halftop.github.io/atom.xml" target="_blank">RSS</a>
+</center> | 
+  <a class="rss" href="https://halftop.github.io/atom.xml" target="_blank">RSS</a>
 </div>
 
-
-    </div>
-    <script type="application/javascript">
-
-hljs.initHighlightingOnLoad()
-
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
-
+<script>
+  hljs.initHighlightingOnLoad()
 </script>
 
 
-
-  
-    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    </div>
     <script>
-
-      var gitalk = new Gitalk({
-        clientID: '42b8247150af6c920554',
-        clientSecret: 'ea9863ece62308a1854e39455221fa1ace6f8cd6',
-        repo: 'halftop.github.io',
-        owner: 'halftop',
-        admin: ['halftop'],
-        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
-        distractionFreeMode: false  // Facebook-like distraction free mode
-      })
-
-      gitalk.render('gitalk-container')
-
+        $('#sidebar').stickySidebar({
+            topSpacing: 80,
+            // bottomSpacing: 60
+        });
     </script>
-  
+    
+        
+            <script>
+    window.onload = function() {
+        var gitalk = new Gitalk({
+            clientID: '42b8247150af6c920554',
+            clientSecret: 'ea9863ece62308a1854e39455221fa1ace6f8cd6',
+            repo: 'halftop.github.io',
+            owner: 'halftop',
+            admin: ['halftop'],
+            id: (location.pathname).substring(0, 49), // Ensure uniqueness and length less than 50
+            distractionFreeMode: false // Facebook-like distraction free mode
+        })
 
-  
+        gitalk.render('gitalk-container')
+    }
+</script>
+                
 
+                    
+                                
+</body>
 
-
-
-  </body>
 </html>

@@ -1,144 +1,151 @@
 <html>
-  <head>
-    
-<meta charset="utf-8" >
 
-<title>1/2顶点</title>
-<meta name="description" content="    有输入有输出，才是正确的学习方式    ">
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico?v=1560264159026">
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    1/2顶点
+</title>
+<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico?v=1561000243220">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://halftop.github.io/styles/main.css">
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://halftop.github.io/media/js/jquery.sticky-sidebar.min.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
+</head>
 
-  </head>
-  <body>
-    <div id="app" class="main">
-      <div class="site-header-container">
-  <div class="site-header">
-    <div class="left">
-      <a href="https://halftop.github.io">
-        <img class="avatar" src="https://halftop.github.io/images/avatar.png?v=1560264159026" alt="" width="32px" height="32px">
-      </a>
-      <a href="https://halftop.github.io">
-        <h1 class="site-title">1/2顶点</h1>
-      </a>
-    </div>
-    <div class="right">
-      <transition name="fade">
-        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
-      </transition>
-    </div>
-  </div>
-</div>
-
-<transition name="fade">
-  <div class="menu-container" style="display: none;" v-show="menuVisible">
-    <div class="menu-list">
-      
-        
-          <a href="/" class="menu purple-link">
-            首页
-          </a>
-        
-      
-        
-          <a href="/archives" class="menu purple-link">
-            归档
-          </a>
-        
-      
-        
-          <a href="/tags" class="menu purple-link">
-            标签
-          </a>
-        
-      
-        
-          <a href="/post/about" class="menu purple-link">
-            关于
-          </a>
-        
-      
-    </div>
-  </div>
-</transition>
-
-
-        <div class="content-container">
-          
-          <div class="tags-container">
-            
-              <a class="tag" href="https://halftop.github.io/tag/xaWEXZu1_">接口协议</a>
-            
-              <a class="tag" href="https://halftop.github.io/tag/ADa051R6R">Verilog HDL</a>
-            
-              <a class="tag" href="https://halftop.github.io/tag/bwS6E4Jqc">学习笔记</a>
-            
-              <a class="tag" href="https://halftop.github.io/tag/DztcUtg4_">Verilog99题</a>
-            
-              <a class="tag" href="https://halftop.github.io/tag/f0tARmjal">IC</a>
-            
-              <a class="tag" href="https://halftop.github.io/tag/9rG5j0Nww">FPGA</a>
-            
-              <a class="tag" href="https://halftop.github.io/tag/eBG9zXtcm">Verilog没有葵花宝典</a>
-            
-          </div>
-
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://halftop.github.io">
+                <img class="avatar" src="https://halftop.github.io/images/avatar.png?v=1561000243220" alt="">
+            </a>
+            <div class="site-title">
+                <h1>
+                    1/2顶点
+                </h1>
+            </div>
         </div>
-
-        <div class="site-footer">
-  <div class="slogan">    有输入有输出，才是正确的学习方式    </div>
-  <div class="social-container">
-    
-      
-        <a href="https://github.com/halftop" target="_blank">
-          <i class="fab fa-github"></i>
-        </a>
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-  </div>
-  <center>
- <img src="https://i.loli.net/2019/05/11/5cd67babc54e9.gif" alt="fighting and confidence" title="fighting and confidence" width="300"> 
-</center> | <a class="rss" href="https://halftop.github.io/atom.xml" target="_blank">RSS</a>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/post/about" class="menu">
+                                    关于
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
 </div>
 
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
 
-      </div>
-      <script type="application/javascript">
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
 
-hljs.initHighlightingOnLoad()
-
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
-
+        });
+    });
 </script>
 
+            <div class="tags-container main-container">
+                <div class="tags-group">
+                    
+                        <a class="tags-tag i-tag
+                            i-tag-error" href="https://halftop.github.io/tag/xaWEXZu1_">
+                            接口协议
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-other_2" href="https://halftop.github.io/tag/ADa051R6R">
+                            Verilog HDL
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-other_3" href="https://halftop.github.io/tag/bwS6E4Jqc">
+                            学习笔记
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-error" href="https://halftop.github.io/tag/DztcUtg4_">
+                            Verilog99题
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-success" href="https://halftop.github.io/tag/f0tARmjal">
+                            IC
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-" href="https://halftop.github.io/tag/9rG5j0Nww">
+                            FPGA
+                        </a>
+                        
+                        <a class="tags-tag i-tag
+                            i-tag-error" href="https://halftop.github.io/tag/eBG9zXtcm">
+                            Verilog没有葵花宝典
+                        </a>
+                        
+                </div>
+            </div>
 
+            <div class="site-footer">
+  <center>
+ <img src="https://i.loli.net/2019/05/11/5cd67babc54e9.gif" alt="fighting and confidence" title="fighting and confidence" width="300"> 
+</center> | 
+  <a class="rss" href="https://halftop.github.io/atom.xml" target="_blank">RSS</a>
+</div>
 
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
 
     </div>
-  </body>
+</body>
+
 </html>

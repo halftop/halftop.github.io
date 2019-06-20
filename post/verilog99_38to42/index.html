@@ -1,191 +1,135 @@
-
-<!DOCTYPE html>
 <html>
-  <head>
-      <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
-                <span class="btn-bg"></span>
-                <span class="btn-text">文章导航</span>
-                </p>
-        <div id="toc-article" class="toc-article">
-            <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
-          <strong class="toc-title">文章目录</strong>
-                 <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#%E5%89%8D%E8%A8%80">前言</a>
-<ul>
-<li><a href="#fir%E7%90%86%E8%AE%BA">FIR理论</a>
-<ul>
-<li><a href="#%E7%9B%B4%E6%8E%A5%E5%BD%A2%E5%BC%8F%E7%9A%84fir%E6%BB%A4%E6%B3%A2%E5%99%A8">直接形式的FIR滤波器</a></li>
-<li><a href="#fir%E6%BB%A4%E6%B3%A2%E5%99%A8%E7%9A%84%E8%BD%AC%E7%BD%AE%E7%BB%93%E6%9E%84">FIR滤波器的转置结构</a></li>
-<li><a href="#%E4%B8%A4%E7%A7%8D%E7%BB%93%E6%9E%84%E7%9A%84%E7%B2%97%E7%95%A5%E5%AF%B9%E6%AF%94">两种结构的粗略对比</a></li>
-<li><a href="#%E6%94%B9%E8%BF%9Bfir%E7%A1%AC%E4%BB%B6%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%96%B9%E6%B3%95">改进FIR硬件实现的方法</a></li>
-</ul>
-</li>
-<li><a href="#38%E7%94%A8verilog%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA3-tap%E4%BD%8E%E9%80%9Afir%E6%BB%A4%E6%B3%A2%E5%99%A8%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E4%B8%BA8bit%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0%E6%BB%A4%E6%B3%A2%E5%99%A8%E7%B3%BB%E6%95%B014-12-14">38.用verilog实现一个3-tap低通FIR滤波器，输入输出为8bit无符号数，滤波器系数<code>[1/4 1/2 1/4]</code></a>
-<ul>
-<li><a href="#verilog%E6%8F%8F%E8%BF%B0">verilog描述</a></li>
-</ul>
-</li>
-<li><a href="#%E7%BB%BC%E5%90%88%E7%BB%93%E6%9E%9C">综合结果</a></li>
-<li><a href="#39-%E7%94%A8verilog%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA3-tap%E4%BD%8E%E9%80%9Afir%E6%BB%A4%E6%B3%A2%E5%99%A8%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E4%B8%BA8bit%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0%E6%BB%A4%E6%B3%A2%E5%99%A8%E7%B3%BB%E6%95%B014-12-14%E6%94%AF%E6%8C%81bypass%E5%8A%9F%E8%83%BDfir_bypass%E4%B8%BA1%E6%97%B6%E8%BE%93%E5%87%BA%E5%8E%9F%E5%A7%8B%E6%95%B0%E6%8D%AE">39. 用verilog实现一个3-tap低通FIR滤波器，输入输出为8bit无符号数，滤波器系数<code>[1/4 1/2 1/4]</code>，支持bypass功能：fir_bypass为1时输出原始数据。</a>
-<ul>
-<li><a href="#verilog%E6%8F%8F%E8%BF%B0-2">verilog描述</a></li>
-</ul>
-</li>
-<li><a href="#40-%E7%94%A8verilog%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E4%BD%8E%E9%80%9Afir%E6%BB%A4%E6%B3%A2%E5%99%A8%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E4%B8%BA8bit%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0%E6%BB%A4%E6%B3%A2%E5%99%A8%E7%B3%BB%E6%95%B0%E6%A0%B9%E6%8D%AEmode%E9%80%89%E6%8B%A9">40. 用verilog实现一个低通FIR滤波器，输入输出为8bit无符号数，滤波器系数根据mode选择：</a>
-<ul>
-<li><a href="#%E7%AE%80%E8%A6%81%E5%88%86%E6%9E%90">简要分析</a></li>
-<li><a href="#verilog%E6%8F%8F%E8%BF%B0-3">verilog描述</a></li>
-</ul>
-</li>
-<li><a href="#41-%E7%94%A8verilog%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E5%8F%82%E6%95%B0%E5%8C%96%E7%9A%84fir%E6%BB%A4%E6%B3%A2%E5%99%A8">41. 用verilog实现一个参数化的FIR滤波器。</a>
-<ul>
-<li><a href="#verilog%E6%8F%8F%E8%BF%B0-4">verilog描述</a></li>
-<li><a href="#%E7%BB%BC%E5%90%88%E7%BB%93%E6%9E%9C-2">综合结果</a></li>
-</ul>
-</li>
-<li><a href="#42-%E7%94%A8verilog%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA3-tap%E4%BD%8E%E9%80%9Afir%E6%BB%A4%E6%B3%A2%E5%99%A8y%E9%80%9A%E8%B7%AF%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E4%B8%BA8bit%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0%E6%BB%A4%E6%B3%A2%E5%99%A8%E7%B3%BB%E6%95%B014-12-14-c%E9%80%9A%E8%B7%AFbypass%E8%BE%93%E5%87%BA">42. 用verilog实现一个3-tap低通FIR滤波器，Y通路输入输出为8bit无符号数，滤波器系数<code>[1/4 1/2 1/4]</code>。C通路bypass输出。</a>
-<ul>
-<li><a href="#verilog%E6%8F%8F%E8%BF%B0-5">verilog描述</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
 
-               </div>
-         <script type="text/javascript">
-        function showToc(){
-          var toc_article = document.getElementById("toc-article");
-          var show_toc_btn = document.getElementById("show-toc-btn");
-          toc_article.setAttribute("style","display:block");
-          show_toc_btn.setAttribute("style","display:none");
-          };
-        function showBtn(){
-          var toc_article = document.getElementById("toc-article");
-          var show_toc_btn = document.getElementById("show-toc-btn");
-          toc_article.setAttribute("style","display:none");
-          show_toc_btn.setAttribute("style","display:block");
-          };
-         </script>
-    
-<meta charset="utf-8" >
-
-<title>Verilog99题——38-42题（Fir滤波器） | 1/2顶点</title>
-<meta name="description" content="    有输入有输出，才是正确的学习方式    ">
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico?v=1560264159026">
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    Verilog99题——38-42题（Fir滤波器） | 1/2顶点
+</title>
+<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico?v=1561000243220">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://halftop.github.io/styles/main.css">
-
-
-  
-    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
-  
-
-  
-
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://halftop.github.io/media/js/jquery.sticky-sidebar.min.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
+        
+            
+                <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+                <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+                
 
-  </head>
-  <body>
-    <div id="app" class="main">
-      <div class="site-header-container">
-  <div class="site-header">
-    <div class="left">
-      <a href="https://halftop.github.io">
-        <img class="avatar" src="https://halftop.github.io/images/avatar.png?v=1560264159026" alt="" width="32px" height="32px">
-      </a>
-      <a href="https://halftop.github.io">
-        <h1 class="site-title">1/2顶点</h1>
-      </a>
+                    
+                            
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://halftop.github.io">
+                <img class="avatar" src="https://halftop.github.io/images/avatar.png?v=1561000243220" alt="">
+            </a>
+            <div class="site-title">
+                <h1>
+                    1/2顶点
+                </h1>
+            </div>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/post/about" class="menu">
+                                    关于
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
     </div>
-    <div class="right">
-      <transition name="fade">
-        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
-      </transition>
-    </div>
-  </div>
 </div>
 
-<transition name="fade">
-  <div class="menu-container" style="display: none;" v-show="menuVisible">
-    <div class="menu-list">
-      
-        
-          <a href="/" class="menu purple-link">
-            首页
-          </a>
-        
-      
-        
-          <a href="/archives" class="menu purple-link">
-            归档
-          </a>
-        
-      
-        
-          <a href="/tags" class="menu purple-link">
-            标签
-          </a>
-        
-      
-        
-          <a href="/post/about" class="menu purple-link">
-            关于
-          </a>
-        
-      
-    </div>
-  </div>
-</transition>
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
 
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
 
-      <div class="content-container">
-        <div class="post-detail">
-          
-          <h2 class="post-title">Verilog99题——38-42题（Fir滤波器）</h2>
-          <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2019-05-05</span>
-            
-              <span>
-                <i class="icon-pricetags-outline"></i>
-                
-                  <a href="https://halftop.github.io/tag/DztcUtg4_">
-                    Verilog99题
-                    
-                      ，
-                    
-                  </a>
-                
-                  <a href="https://halftop.github.io/tag/ADa051R6R">
-                    Verilog HDL
-                    
-                      ，
-                    
-                  </a>
-                
-                  <a href="https://halftop.github.io/tag/bwS6E4Jqc">
-                    学习笔记
-                    
-                  </a>
-                
-              </span>
-            
-          </div>
-          <div class="post-content">
-            <h2 id="前言">前言</h2>
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-detail main-container">
+                <!-- left -->
+                <div id="content" class="main-container-left">
+                    <article class="post i-card">
+                        <h2 class="post-title">
+                            Verilog99题——38-42题（Fir滤波器）
+                        </h2>
+                        <div class="post-info">
+                            <time class="post-time">2019-05-05</time>
+                            
+                                <a href="https://halftop.github.io/tag/DztcUtg4_" class="post-tag i-tag
+                            i-tag-">
+                            #Verilog99题
+                        </a>
+                                
+                                <a href="https://halftop.github.io/tag/ADa051R6R" class="post-tag i-tag
+                            i-tag-success">
+                            #Verilog HDL
+                        </a>
+                                
+                                <a href="https://halftop.github.io/tag/bwS6E4Jqc" class="post-tag i-tag
+                            i-tag-other_1">
+                            #学习笔记
+                        </a>
+                                
+                        </div>
+                        
+                                <div class="post-content">
+                                    <h2 id="前言">前言</h2>
 <p><a href="https://mp.weixin.qq.com/s/prdZKHbKTFMH80eRnr7mLQ">不忘出芯veriloig99题</a>的38-42题是Fir滤波器的Verilog实现</p>
  <!-- more --> 
 <p><ul class="markdownIt-TOC">
@@ -608,92 +552,155 @@ assign cout = cin;
 endmodule
 </code></pre>
 
-          </div>
+                                </div>
+                    </article>
+                    <!--  -->
+                    
+                        <div class="next-post">
+                            <div class="next">下一篇</div>
+                            <a href="https://halftop.github.io/post/verilog99_31to37">
+                                <h3 class="post-title">
+                                    Verilog99题——31-37题（存储相关）
+                                </h3>
+                            </a>
+                        </div>
+                        
+                            <div id="disqus_thread"></div>
+                            <div id="gitalk-container"></div>
+                </div>
+                <!-- middle -->
+                <div class="main-container-middle"></div>
+                <!-- right -->
+                <div id="sidebar" class="main-container-right">
+                    
+                        <!-- toc -->
+                        
+    <div class="toc-card i-card ">
+        <div class="toc-title i-card-title">目录</div>
+        <div class="toc-content">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%89%8D%E8%A8%80">前言</a>
+<ul>
+<li><a href="#fir%E7%90%86%E8%AE%BA">FIR理论</a>
+<ul>
+<li><a href="#%E7%9B%B4%E6%8E%A5%E5%BD%A2%E5%BC%8F%E7%9A%84fir%E6%BB%A4%E6%B3%A2%E5%99%A8">直接形式的FIR滤波器</a></li>
+<li><a href="#fir%E6%BB%A4%E6%B3%A2%E5%99%A8%E7%9A%84%E8%BD%AC%E7%BD%AE%E7%BB%93%E6%9E%84">FIR滤波器的转置结构</a></li>
+<li><a href="#%E4%B8%A4%E7%A7%8D%E7%BB%93%E6%9E%84%E7%9A%84%E7%B2%97%E7%95%A5%E5%AF%B9%E6%AF%94">两种结构的粗略对比</a></li>
+<li><a href="#%E6%94%B9%E8%BF%9Bfir%E7%A1%AC%E4%BB%B6%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%96%B9%E6%B3%95">改进FIR硬件实现的方法</a></li>
+</ul>
+</li>
+<li><a href="#38%E7%94%A8verilog%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA3-tap%E4%BD%8E%E9%80%9Afir%E6%BB%A4%E6%B3%A2%E5%99%A8%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E4%B8%BA8bit%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0%E6%BB%A4%E6%B3%A2%E5%99%A8%E7%B3%BB%E6%95%B014-12-14">38.用verilog实现一个3-tap低通FIR滤波器，输入输出为8bit无符号数，滤波器系数<code>[1/4 1/2 1/4]</code></a>
+<ul>
+<li><a href="#verilog%E6%8F%8F%E8%BF%B0">verilog描述</a></li>
+</ul>
+</li>
+<li><a href="#%E7%BB%BC%E5%90%88%E7%BB%93%E6%9E%9C">综合结果</a></li>
+<li><a href="#39-%E7%94%A8verilog%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA3-tap%E4%BD%8E%E9%80%9Afir%E6%BB%A4%E6%B3%A2%E5%99%A8%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E4%B8%BA8bit%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0%E6%BB%A4%E6%B3%A2%E5%99%A8%E7%B3%BB%E6%95%B014-12-14%E6%94%AF%E6%8C%81bypass%E5%8A%9F%E8%83%BDfir_bypass%E4%B8%BA1%E6%97%B6%E8%BE%93%E5%87%BA%E5%8E%9F%E5%A7%8B%E6%95%B0%E6%8D%AE">39. 用verilog实现一个3-tap低通FIR滤波器，输入输出为8bit无符号数，滤波器系数<code>[1/4 1/2 1/4]</code>，支持bypass功能：fir_bypass为1时输出原始数据。</a>
+<ul>
+<li><a href="#verilog%E6%8F%8F%E8%BF%B0-2">verilog描述</a></li>
+</ul>
+</li>
+<li><a href="#40-%E7%94%A8verilog%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E4%BD%8E%E9%80%9Afir%E6%BB%A4%E6%B3%A2%E5%99%A8%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E4%B8%BA8bit%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0%E6%BB%A4%E6%B3%A2%E5%99%A8%E7%B3%BB%E6%95%B0%E6%A0%B9%E6%8D%AEmode%E9%80%89%E6%8B%A9">40. 用verilog实现一个低通FIR滤波器，输入输出为8bit无符号数，滤波器系数根据mode选择：</a>
+<ul>
+<li><a href="#%E7%AE%80%E8%A6%81%E5%88%86%E6%9E%90">简要分析</a></li>
+<li><a href="#verilog%E6%8F%8F%E8%BF%B0-3">verilog描述</a></li>
+</ul>
+</li>
+<li><a href="#41-%E7%94%A8verilog%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E5%8F%82%E6%95%B0%E5%8C%96%E7%9A%84fir%E6%BB%A4%E6%B3%A2%E5%99%A8">41. 用verilog实现一个参数化的FIR滤波器。</a>
+<ul>
+<li><a href="#verilog%E6%8F%8F%E8%BF%B0-4">verilog描述</a></li>
+<li><a href="#%E7%BB%BC%E5%90%88%E7%BB%93%E6%9E%9C-2">综合结果</a></li>
+</ul>
+</li>
+<li><a href="#42-%E7%94%A8verilog%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA3-tap%E4%BD%8E%E9%80%9Afir%E6%BB%A4%E6%B3%A2%E5%99%A8y%E9%80%9A%E8%B7%AF%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E4%B8%BA8bit%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0%E6%BB%A4%E6%B3%A2%E5%99%A8%E7%B3%BB%E6%95%B014-12-14-c%E9%80%9A%E8%B7%AFbypass%E8%BE%93%E5%87%BA">42. 用verilog实现一个3-tap低通FIR滤波器，Y通路输入输出为8bit无符号数，滤波器系数<code>[1/4 1/2 1/4]</code>。C通路bypass输出。</a>
+<ul>
+<li><a href="#verilog%E6%8F%8F%E8%BF%B0-5">verilog描述</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
         </div>
+        <script>
+            function locateCatelogList() {
+                /*获取文章目录集合,可通过:header过滤器*/
+                var alis = $('.post-content :header');
+                /*获取侧边栏目录列表集合**/
+                var sidebar_alis = $('.markdownIt-TOC a');
+                /*获取滚动条到顶部的距离*/
+                var scroll_height = $(window).scrollTop();
+                for (var i = 0; i < alis.length; i++) {
+                    /*获取锚点集合中的元素分别到顶点的距离*/
+                    var a_height = $(alis[i]).offset().top;
+                    if (a_height < scroll_height) {
+                        /*高亮显示*/
+                        sidebar_alis.removeClass('on');
+                        $(sidebar_alis[i]).addClass('on');
+                    }
+                }
+            }
+            $(function() {
+                /*绑定滚动事件 */
+                $(window).bind('scroll', locateCatelogList);
+            });
+        </script>
+    </div>
+    
+                            
 
-        
-          <div class="next-post">
-            <a class="purple-link" href="https://halftop.github.io/post/verilog99_31to37">
-              <h3 class="post-title">
-                下一篇：Verilog99题——31-37题（存储相关）
-              </h3>
-            </a>
-          </div>
-          
-      </div>
+                </div>
 
-      
-        
-          <div id="gitalk-container"></div>
-        
 
-        
-      
 
-      <div class="site-footer">
-  <div class="slogan">    有输入有输出，才是正确的学习方式    </div>
-  <div class="social-container">
-    
-      
-        <a href="https://github.com/halftop" target="_blank">
-          <i class="fab fa-github"></i>
-        </a>
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-  </div>
+
+            </div>
+
+
+            <div class="site-footer">
   <center>
  <img src="https://i.loli.net/2019/05/11/5cd67babc54e9.gif" alt="fighting and confidence" title="fighting and confidence" width="300"> 
-</center> | <a class="rss" href="https://halftop.github.io/atom.xml" target="_blank">RSS</a>
+</center> | 
+  <a class="rss" href="https://halftop.github.io/atom.xml" target="_blank">RSS</a>
 </div>
 
-
-    </div>
-    <script type="application/javascript">
-
-hljs.initHighlightingOnLoad()
-
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
-
+<script>
+  hljs.initHighlightingOnLoad()
 </script>
 
 
-
-  
-    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    </div>
     <script>
-
-      var gitalk = new Gitalk({
-        clientID: '42b8247150af6c920554',
-        clientSecret: 'ea9863ece62308a1854e39455221fa1ace6f8cd6',
-        repo: 'halftop.github.io',
-        owner: 'halftop',
-        admin: ['halftop'],
-        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
-        distractionFreeMode: false  // Facebook-like distraction free mode
-      })
-
-      gitalk.render('gitalk-container')
-
+        $('#sidebar').stickySidebar({
+            topSpacing: 80,
+            // bottomSpacing: 60
+        });
     </script>
-  
+    
+        
+            <script>
+    window.onload = function() {
+        var gitalk = new Gitalk({
+            clientID: '42b8247150af6c920554',
+            clientSecret: 'ea9863ece62308a1854e39455221fa1ace6f8cd6',
+            repo: 'halftop.github.io',
+            owner: 'halftop',
+            admin: ['halftop'],
+            id: (location.pathname).substring(0, 49), // Ensure uniqueness and length less than 50
+            distractionFreeMode: false // Facebook-like distraction free mode
+        })
 
-  
+        gitalk.render('gitalk-container')
+    }
+</script>
+                
 
+                    
+                                
+</body>
 
-
-
-  </body>
 </html>

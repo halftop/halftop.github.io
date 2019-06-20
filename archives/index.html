@@ -1,455 +1,400 @@
 <html>
-  <head>
-    
-<meta charset="utf-8" >
 
-<title>1/2顶点</title>
-<meta name="description" content="    有输入有输出，才是正确的学习方式    ">
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico?v=1560264159026">
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    1/2顶点
+</title>
+<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico?v=1561000243220">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://halftop.github.io/styles/main.css">
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://halftop.github.io/media/js/jquery.sticky-sidebar.min.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
+</head>
 
-  </head>
-  <body>
-    <div id="app" class="main">
-      <div class="site-header-container">
-  <div class="site-header">
-    <div class="left">
-      <a href="https://halftop.github.io">
-        <img class="avatar" src="https://halftop.github.io/images/avatar.png?v=1560264159026" alt="" width="32px" height="32px">
-      </a>
-      <a href="https://halftop.github.io">
-        <h1 class="site-title">1/2顶点</h1>
-      </a>
-    </div>
-    <div class="right">
-      <transition name="fade">
-        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
-      </transition>
-    </div>
-  </div>
-</div>
-
-<transition name="fade">
-  <div class="menu-container" style="display: none;" v-show="menuVisible">
-    <div class="menu-list">
-      
-        
-          <a href="/" class="menu purple-link">
-            首页
-          </a>
-        
-      
-        
-          <a href="/archives" class="menu purple-link">
-            归档
-          </a>
-        
-      
-        
-          <a href="/tags" class="menu purple-link">
-            标签
-          </a>
-        
-      
-        
-          <a href="/post/about" class="menu purple-link">
-            关于
-          </a>
-        
-      
-    </div>
-  </div>
-</transition>
-
-
-        <div class="content-container">
-          
-          
-
-<div class="archives-container">
-  
-    <h2 class="year">2019</h2>
-    
-      
-        <article class="post">
-          <a href="https://halftop.github.io/post/Verilog-Uart">
-            <h2 class="post-title">
-              Uart的Verilog实现
-              <small>2019-06-06</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://halftop.github.io/post/verilog99_FIFO">
-            <h2 class="post-title">
-              Verilog99题-FIFO设计
-              <small>2019-06-03</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://halftop.github.io/post/verilog99-57">
-            <h2 class="post-title">
-              Verilog99题-57题
-              <small>2019-05-27</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://halftop.github.io/post/amba-apb">
-            <h2 class="post-title">
-              AMBA-APB总线协议学习
-              <small>2019-05-22</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://halftop.github.io/post/verilog99-50to52">
-            <h2 class="post-title">
-              Verilog99题-50-52题
-              <small>2019-05-20</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://halftop.github.io/post/verilog-day13">
-            <h2 class="post-title">
-              Verilog没有葵花宝典——day13（存储器）
-              <small>2019-05-16</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://halftop.github.io/post/verilog99-47to49">
-            <h2 class="post-title">
-              Verilog99题-47-49题（时钟相关）
-              <small>2019-05-14</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://halftop.github.io/post/verilog99-45to46">
-            <h2 class="post-title">
-              Verilog99题——45.46题（奇、偶分频）
-              <small>2019-05-10</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://halftop.github.io/post/verilog99_43to44">
-            <h2 class="post-title">
-              Verilog99题——43、44题（两道算法题）
-              <small>2019-05-10</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://halftop.github.io/post/verilog-day10">
-            <h2 class="post-title">
-              Verilog没有葵花宝典——day10（PWM）
-              <small>2019-05-08</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://halftop.github.io/post/verilog-day9">
-            <h2 class="post-title">
-              Verilog没有葵花宝典——day9（按键防抖）
-              <small>2019-05-07</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://halftop.github.io/post/verilog-day8">
-            <h2 class="post-title">
-              Verilog没有葵花宝典——day8（计数器）
-              <small>2019-05-06</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://halftop.github.io/post/verilog99_38to42">
-            <h2 class="post-title">
-              Verilog99题——38-42题（Fir滤波器）
-              <small>2019-05-05</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://halftop.github.io/post/verilog99_31to37">
-            <h2 class="post-title">
-              Verilog99题——31-37题（存储相关）
-              <small>2019-05-04</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://halftop.github.io/post/verilog-day7">
-            <h2 class="post-title">
-              Verilog没有葵花宝典——day7（串并转换）
-              <small>2019-05-02</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://halftop.github.io/post/verilog-day6">
-            <h2 class="post-title">
-              Verilog没有葵花宝典——day6（边沿检测）
-              <small>2019-04-29</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://halftop.github.io/post/verilog99_22to30">
-            <h2 class="post-title">
-              Verilog99题——22-30题（时序逻辑基础）
-              <small>2019-04-27</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://halftop.github.io/post/verilog-day5">
-            <h2 class="post-title">
-              Verilog没有葵花宝典——day5（时序逻辑）
-              <small>2019-04-26</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://halftop.github.io/post/verilog-day4">
-            <h2 class="post-title">
-              Verilog没有葵花宝典——day4（组合逻辑）
-              <small>2019-04-25</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://halftop.github.io/post/verilog-day3">
-            <h2 class="post-title">
-              Verilog没有葵花宝典——day3（标准单元库）
-              <small>2019-04-24</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://halftop.github.io/post/verilog-day2">
-            <h2 class="post-title">
-              Verilog没有葵花宝典——day2（门电路）
-              <small>2019-04-23</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://halftop.github.io/post/verilog-day1">
-            <h2 class="post-title">
-              Verilog没有葵花宝典——day1（进制与编码）
-              <small>2019-04-22</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://halftop.github.io/post/verilog99_12to21">
-            <h2 class="post-title">
-              Verilog99题——12-21题
-              <small>2019-04-02</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://halftop.github.io/post/verilog99_10">
-            <h2 class="post-title">
-              verilog99题——10题
-              <small>2019-03-13</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://halftop.github.io/post/verilog99_11">
-            <h2 class="post-title">
-              通过做verilog99题的第11题学习竞争与冒险
-              <small>2019-03-11</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://halftop.github.io/post/verilog99_8">
-            <h2 class="post-title">
-              verilog99题——8题
-              <small>2019-03-10</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://halftop.github.io/post/verilog99_5&amp;6&amp;7">
-            <h2 class="post-title">
-              verilog99题——5、6、7题
-              <small>2019-03-07</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://halftop.github.io/post/verilog99_3&amp;4">
-            <h2 class="post-title">
-              verilog99题——3、4题
-              <small>2019-03-06</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://halftop.github.io/post/Verilog99_1&amp;2">
-            <h2 class="post-title">
-              verilog99题——1、2题
-              <small>2019-03-05</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-  
-</div>
-
-
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://halftop.github.io">
+                <img class="avatar" src="https://halftop.github.io/images/avatar.png?v=1561000243220" alt="">
+            </a>
+            <div class="site-title">
+                <h1>
+                    1/2顶点
+                </h1>
+            </div>
         </div>
-
-        <div class="site-footer">
-  <div class="slogan">    有输入有输出，才是正确的学习方式    </div>
-  <div class="social-container">
-    
-      
-        <a href="https://github.com/halftop" target="_blank">
-          <i class="fab fa-github"></i>
-        </a>
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-  </div>
-  <center>
- <img src="https://i.loli.net/2019/05/11/5cd67babc54e9.gif" alt="fighting and confidence" title="fighting and confidence" width="300"> 
-</center> | <a class="rss" href="https://halftop.github.io/atom.xml" target="_blank">RSS</a>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/post/about" class="menu">
+                                    关于
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
 </div>
 
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
 
-      </div>
-      <script type="application/javascript">
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
 
-hljs.initHighlightingOnLoad()
-
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
-
+        });
+    });
 </script>
 
+            
 
+    <div class="archives-container main-container">
+        <ul class="timeline">
+            
+                <li>
+                    <h3 class="year">
+                        2019
+                    </h3>
+                    <ul class="year-wrapper">
+                        
+                            
+                                <li>
+                                    <span class="date">2019-06-16</span>
+                                    <a class="title" href="https://halftop.github.io/post/Verilog_SPI">
+                                        <span>SPI协议及其Verilog实现</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2019-06-06</span>
+                                    <a class="title" href="https://halftop.github.io/post/Verilog-Uart">
+                                        <span>Uart的Verilog实现</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2019-06-03</span>
+                                    <a class="title" href="https://halftop.github.io/post/verilog99_FIFO">
+                                        <span>Verilog99题-FIFO设计</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2019-05-27</span>
+                                    <a class="title" href="https://halftop.github.io/post/verilog99-57">
+                                        <span>Verilog99题-57题</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2019-05-22</span>
+                                    <a class="title" href="https://halftop.github.io/post/amba-apb">
+                                        <span>AMBA-APB总线协议学习</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2019-05-20</span>
+                                    <a class="title" href="https://halftop.github.io/post/verilog99-50to52">
+                                        <span>Verilog99题-50-52题</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2019-05-16</span>
+                                    <a class="title" href="https://halftop.github.io/post/verilog-day13">
+                                        <span>Verilog没有葵花宝典——day13（存储器）</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2019-05-14</span>
+                                    <a class="title" href="https://halftop.github.io/post/verilog99-47to49">
+                                        <span>Verilog99题-47-49题（时钟相关）</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2019-05-10</span>
+                                    <a class="title" href="https://halftop.github.io/post/verilog99-45to46">
+                                        <span>Verilog99题——45.46题（奇、偶分频）</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2019-05-10</span>
+                                    <a class="title" href="https://halftop.github.io/post/verilog99_43to44">
+                                        <span>Verilog99题——43、44题（两道算法题）</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2019-05-08</span>
+                                    <a class="title" href="https://halftop.github.io/post/verilog-day10">
+                                        <span>Verilog没有葵花宝典——day10（PWM）</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2019-05-07</span>
+                                    <a class="title" href="https://halftop.github.io/post/verilog-day9">
+                                        <span>Verilog没有葵花宝典——day9（按键防抖）</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2019-05-06</span>
+                                    <a class="title" href="https://halftop.github.io/post/verilog-day8">
+                                        <span>Verilog没有葵花宝典——day8（计数器）</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2019-05-05</span>
+                                    <a class="title" href="https://halftop.github.io/post/verilog99_38to42">
+                                        <span>Verilog99题——38-42题（Fir滤波器）</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2019-05-04</span>
+                                    <a class="title" href="https://halftop.github.io/post/verilog99_31to37">
+                                        <span>Verilog99题——31-37题（存储相关）</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2019-05-02</span>
+                                    <a class="title" href="https://halftop.github.io/post/verilog-day7">
+                                        <span>Verilog没有葵花宝典——day7（串并转换）</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2019-04-29</span>
+                                    <a class="title" href="https://halftop.github.io/post/verilog-day6">
+                                        <span>Verilog没有葵花宝典——day6（边沿检测）</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2019-04-27</span>
+                                    <a class="title" href="https://halftop.github.io/post/verilog99_22to30">
+                                        <span>Verilog99题——22-30题（时序逻辑基础）</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2019-04-26</span>
+                                    <a class="title" href="https://halftop.github.io/post/verilog-day5">
+                                        <span>Verilog没有葵花宝典——day5（时序逻辑）</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2019-04-25</span>
+                                    <a class="title" href="https://halftop.github.io/post/verilog-day4">
+                                        <span>Verilog没有葵花宝典——day4（组合逻辑）</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2019-04-24</span>
+                                    <a class="title" href="https://halftop.github.io/post/verilog-day3">
+                                        <span>Verilog没有葵花宝典——day3（标准单元库）</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2019-04-23</span>
+                                    <a class="title" href="https://halftop.github.io/post/verilog-day2">
+                                        <span>Verilog没有葵花宝典——day2（门电路）</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2019-04-22</span>
+                                    <a class="title" href="https://halftop.github.io/post/verilog-day1">
+                                        <span>Verilog没有葵花宝典——day1（进制与编码）</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2019-04-02</span>
+                                    <a class="title" href="https://halftop.github.io/post/verilog99_12to21">
+                                        <span>Verilog99题——12-21题</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2019-03-13</span>
+                                    <a class="title" href="https://halftop.github.io/post/verilog99_10">
+                                        <span>verilog99题——10题</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2019-03-11</span>
+                                    <a class="title" href="https://halftop.github.io/post/verilog99_11">
+                                        <span>通过做verilog99题的第11题学习竞争与冒险</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2019-03-10</span>
+                                    <a class="title" href="https://halftop.github.io/post/verilog99_8">
+                                        <span>verilog99题——8题</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2019-03-07</span>
+                                    <a class="title" href="https://halftop.github.io/post/verilog99_5&amp;6&amp;7">
+                                        <span>verilog99题——5、6、7题</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2019-03-06</span>
+                                    <a class="title" href="https://halftop.github.io/post/verilog99_3&amp;4">
+                                        <span>verilog99题——3、4题</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                            
+                                <li>
+                                    <span class="date">2019-03-05</span>
+                                    <a class="title" href="https://halftop.github.io/post/Verilog99_1&amp;2">
+                                        <span>verilog99题——1、2题</span>
+                                    </a>
+                                </li>
+                                
+                                    
+                    </ul>
 
+                </li>
+                
+        </ul>
+    </div>
+
+                
+
+                    <div class="site-footer">
+  <center>
+ <img src="https://i.loli.net/2019/05/11/5cd67babc54e9.gif" alt="fighting and confidence" title="fighting and confidence" width="300"> 
+</center> | 
+  <a class="rss" href="https://halftop.github.io/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
 
     </div>
-  </body>
+</body>
+
 </html>

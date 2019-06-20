@@ -5,7 +5,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
-    verilog99题——10题 | 1/2顶点
+    SPI协议及其Verilog实现 | 1/2顶点
 </title>
 <link rel="shortcut icon" href="https://halftop.github.io/favicon.ico?v=1561000243220">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
@@ -106,18 +106,18 @@
                 <div id="content" class="main-container-left">
                     <article class="post i-card">
                         <h2 class="post-title">
-                            verilog99题——10题
+                            SPI协议及其Verilog实现
                         </h2>
                         <div class="post-info">
-                            <time class="post-time">2019-03-13</time>
+                            <time class="post-time">2019-06-16</time>
                             
-                                <a href="https://halftop.github.io/tag/DztcUtg4_" class="post-tag i-tag
-                            i-tag-warning">
-                            #Verilog99题
+                                <a href="https://halftop.github.io/tag/xaWEXZu1_" class="post-tag i-tag
+                            i-tag-error">
+                            #接口协议
                         </a>
                                 
                                 <a href="https://halftop.github.io/tag/ADa051R6R" class="post-tag i-tag
-                            i-tag-info">
+                            i-tag-">
                             #Verilog HDL
                         </a>
                                 
@@ -128,21 +128,51 @@
                                 
                         </div>
                         
-                            <div class="post-feature-image" style="background-image: url('https://i.loli.net/2019/05/03/5ccba276b5a36.jpg')"></div>
+                            <div class="post-feature-image" style="background-image: url('https://i.loli.net/2019/06/16/5d06357720f8c50405.png')"></div>
                             
                                 <div class="post-content">
-                                    <h2 id="题目">题目</h2>
-<p><strong>010.说明代码中w1和 w2对应电路的具体区别:</strong></p>
-<pre><code>wire [2:0] val; 
-wire w1 = val &gt; 0; 
-wire w2 = val &gt;= 0;
-</code></pre>
- <!-- more --> 
-<p>最后使用二进制补码。答案和过程如下图</p>
- <center>
-		<img src="https://i.loli.net/2019/04/25/5cc1ce8bde04f.jpg" alt="image" title="第十题答案">
-	</center>
-<p>给出标准答案：<a href="https://mp.weixin.qq.com/s/Gs9T0qOR3qydvRzeaNt1Dg">原作者给出的答案</a></p>
+                                    <h2 id="简介">简介</h2>
+<p>SPI(Serial Peripheral Interface)是一个串行的同步传输协议，不同于Uart和IIC，没有起始位和结束位而是以时钟沿来同步和传输；不同于采用数据包的形式，数据可以连续不中断地传输。是一种一对多的传输协议。4线SPI是全双工的接口，而3线SPI是半双工接口，本篇采用更通用的4线SPI来介绍。</p>
+<h3 id="接口">接口</h3>
+<p>SPI总线有4根逻辑信号线：</p>
+<ul>
+<li>
+<p><strong>SLCLK</strong>:串行时钟（由主机产生）</p>
+</li>
+<li>
+<p><strong>SS/CS(Slave Select/Chip Select)</strong>:片选信号（由主机产生），通常是一个低电平有效信号</p>
+</li>
+<li>
+<p><strong>MOSI (Master Output<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>→</mo></mrow><annotation encoding="application/x-tex">\to</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">→</span></span></span></span>Slave Input)</strong>:主机向从机的数据传输线</p>
+</li>
+<li>
+<p><strong>MISO (Master Input<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>←</mo></mrow><annotation encoding="application/x-tex">\leftarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">←</span></span></span></span>Slave Output)</strong>:从机向主机的数据传输线</p>
+</li>
+</ul>
+<h3 id="数据传输">数据传输</h3>
+<p>要开始SPI通信，主机必须发送时钟信号，并通过使能CS信号选择从机。片选通常是低电平有效信号。因此，主机必须在该信号上发送逻辑0以选择从机。SPI是全双工接口，主机和从机可以分别通过MOSI和MISO线路同时发送数据。在SPI通信期间，数据的发送（串行移出到MOSI/SDO总线上）和接收（采样或读入总线(MISO/SDI)上的数据）同时进行。串行时钟沿同步数据的移位和采样。SPI接口允许灵活选择时钟的上升沿或下降沿来采样和/或移位数据。</p>
+<h3 id="时钟极性和相位选择">时钟极性和相位选择</h3>
+<p>主机除了要设置时钟频率，还要设置与数据传输相关的时钟极性和相位。大多数厂商都将这两个设置选项命名为<code>CPOL</code>和<code>CPHA</code>。</p>
+<ul>
+<li><code>CPOL</code>决定串行时钟极性。
+<ul>
+<li><code>CPOL=0</code>时钟在空闲时处于低电平，时钟的前沿是上升沿、后沿是下降沿。</li>
+<li><code>CPOL=1</code>时钟在空闲时处于高电平，时钟的前沿是下降沿、后沿是上升沿。</li>
+</ul>
+</li>
+<li><code>CPHA</code>
+<ul>
+<li><code>CPHA=0</code>时，发出数据的一边（ the &quot;out&quot; side）在前一时钟周期的后沿改变数据，同时接收数据的一方（ the &quot;in&quot; side ）在当前时钟周期的前沿捕获数据。<strong>注意</strong>：在第一个时钟周期，第一位数据必须在前沿到来之前出现在<code>MOSI</code>传输线上。</li>
+<li><code>CPHA=1</code>时，发出数据的一边（ the &quot;out&quot; side）在当前时钟周期的前沿改变数据，同时接收数据的一方（ the &quot;out&quot; side）在同一时钟周期的后沿捕获数据。**注意：**在最后一个时钟周期，从机要在片选失效之前保持<code>MISO</code>线上的数据。</li>
+</ul>
+</li>
+</ul>
+<p>归纳起来如下图：</p>
+<center>
+ <img src="https://i.loli.net/2019/06/16/5d064c76df71274228.png" alt="通过CPOL和CPHA选择SPI模式" title="通过CPOL和CPHA选择SPI模式" width=""> 
+</center>
+<p>以上内容参考：<a href="https://en.wikipedia.org/wiki/Serial_Peripheral_Interface#Interface">Serial Peripheral Interface</a>、<a href="https://mp.weixin.qq.com/s/7HSgQOTpefBn4EryOYZ1Lg">一文读懂 4 线 SPI</a></p>
+<p>如需了解更多信息，请点击上方链接。</p>
 
                                 </div>
                     </article>
@@ -150,9 +180,9 @@ wire w2 = val &gt;= 0;
                     
                         <div class="next-post">
                             <div class="next">下一篇</div>
-                            <a href="https://halftop.github.io/post/verilog99_11">
+                            <a href="https://halftop.github.io/post/Verilog-Uart">
                                 <h3 class="post-title">
-                                    通过做verilog99题的第11题学习竞争与冒险
+                                    Uart的Verilog实现
                                 </h3>
                             </a>
                         </div>
@@ -173,7 +203,13 @@ wire w2 = val &gt;= 0;
             <ul class="markdownIt-TOC">
 <li>
 <ul>
-<li><a href="#%E9%A2%98%E7%9B%AE">题目</a></li>
+<li><a href="#%E7%AE%80%E4%BB%8B">简介</a>
+<ul>
+<li><a href="#%E6%8E%A5%E5%8F%A3">接口</a></li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93">数据传输</a></li>
+<li><a href="#%E6%97%B6%E9%92%9F%E6%9E%81%E6%80%A7%E5%92%8C%E7%9B%B8%E4%BD%8D%E9%80%89%E6%8B%A9">时钟极性和相位选择</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
