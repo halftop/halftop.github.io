@@ -7,7 +7,7 @@
 <title>
     SPI协议及其Verilog实现 | 1/2顶点
 </title>
-<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico?v=1561000243220">
+<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico?v=1561363853244">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -35,7 +35,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://halftop.github.io">
-                <img class="avatar" src="https://halftop.github.io/images/avatar.png?v=1561000243220" alt="">
+                <img class="avatar" src="https://halftop.github.io/images/avatar.png?v=1561363853244" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -112,17 +112,17 @@
                             <time class="post-time">2019-06-16</time>
                             
                                 <a href="https://halftop.github.io/tag/xaWEXZu1_" class="post-tag i-tag
-                            i-tag-error">
+                            i-tag-warning">
                             #接口协议
                         </a>
                                 
                                 <a href="https://halftop.github.io/tag/ADa051R6R" class="post-tag i-tag
-                            i-tag-">
+                            i-tag-other_4">
                             #Verilog HDL
                         </a>
                                 
                                 <a href="https://halftop.github.io/tag/bwS6E4Jqc" class="post-tag i-tag
-                            i-tag-info">
+                            i-tag-other_2">
                             #学习笔记
                         </a>
                                 
@@ -133,6 +133,7 @@
                                 <div class="post-content">
                                     <h2 id="简介">简介</h2>
 <p>SPI(Serial Peripheral Interface)是一个串行的同步传输协议，不同于Uart和IIC，没有起始位和结束位而是以时钟沿来同步和传输；不同于采用数据包的形式，数据可以连续不中断地传输。是一种一对多的传输协议。4线SPI是全双工的接口，而3线SPI是半双工接口，本篇采用更通用的4线SPI来介绍。</p>
+<!-- more -->
 <h3 id="接口">接口</h3>
 <p>SPI总线有4根逻辑信号线：</p>
 <ul>
@@ -173,6 +174,9 @@
 </center>
 <p>以上内容参考：<a href="https://en.wikipedia.org/wiki/Serial_Peripheral_Interface#Interface">Serial Peripheral Interface</a>、<a href="https://mp.weixin.qq.com/s/7HSgQOTpefBn4EryOYZ1Lg">一文读懂 4 线 SPI</a></p>
 <p>如需了解更多信息，请点击上方链接。</p>
+<h2 id="verilogtb">Verilog&amp;tb</h2>
+<p><a href="https://github.com/halftop/Interface-Protocol-in-Verilog/tree/master/general_SPI/rtl">verilog</a></p>
+<p><a href="https://github.com/halftop/Interface-Protocol-in-Verilog/tree/master/general_SPI/tb">tb</a></p>
 
                                 </div>
                     </article>
@@ -210,6 +214,7 @@
 <li><a href="#%E6%97%B6%E9%92%9F%E6%9E%81%E6%80%A7%E5%92%8C%E7%9B%B8%E4%BD%8D%E9%80%89%E6%8B%A9">时钟极性和相位选择</a></li>
 </ul>
 </li>
+<li><a href="#verilogtb">Verilog&amp;tb</a></li>
 </ul>
 </li>
 </ul>
