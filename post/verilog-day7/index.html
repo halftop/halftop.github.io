@@ -7,7 +7,7 @@
 <title>
     Verilog没有葵花宝典——day7（串并转换） | 1/2顶点
 </title>
-<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico?v=1561363853244">
+<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico?v=1563354732707">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -35,7 +35,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://halftop.github.io">
-                <img class="avatar" src="https://halftop.github.io/images/avatar.png?v=1561363853244" alt="">
+                <img class="avatar" src="https://halftop.github.io/images/avatar.png?v=1563354732707" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -117,7 +117,7 @@
                         </a>
                                 
                                 <a href="https://halftop.github.io/tag/9rG5j0Nww" class="post-tag i-tag
-                            i-tag-primary">
+                            i-tag-error">
                             #FPGA
                         </a>
                                 
@@ -127,7 +127,7 @@
                         </a>
                                 
                                 <a href="https://halftop.github.io/tag/bwS6E4Jqc" class="post-tag i-tag
-                            i-tag-other_1">
+                            i-tag-primary">
                             #学习笔记
                         </a>
                                 
@@ -148,11 +148,11 @@
 <ol start="2">
 <li>用verilog实现串并变换。</li>
 </ol>
-<p>mode 0 ：串行输入data_in[0]，并行输出data_out[3:0]
-mode 1 ：并行输入data_in[3:0]，串行输出data_out[0]
-mode 2 ：并行输入data_in[3:0]，并行输出data_out[3:0]，延迟1个时钟周期
+<p>mode 0 ：串行输入data_in[0]，并行输出data_out[3:0]<br>
+mode 1 ：并行输入data_in[3:0]，串行输出data_out[0]<br>
+mode 2 ：并行输入data_in[3:0]，并行输出data_out[3:0]，延迟1个时钟周期<br>
 mode 3 ：并行输入data_in[3:0]，并行反序输出data_out[3:0]，延迟1个时钟周期并且交换bit</p>
-<p>附加要求【选做】
+<p>附加要求【选做】<br>
 将输入输出的位宽做成参数化</p>
 <ol start="3">
 <li>记录一下第2题中用到的工具，包括工具版本，操作步骤或命令选项，遇到的错误，提示信息等。比较一下，与昨天的记录有何相同，有何不同。</li>

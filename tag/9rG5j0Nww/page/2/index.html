@@ -5,7 +5,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
-    关于 | 1/2顶点
+    FPGA | 1/2顶点
 </title>
 <link rel="shortcut icon" href="https://halftop.github.io/favicon.ico?v=1563354732707">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
@@ -19,14 +19,6 @@
 <script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
-        
-            
-                <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-                <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-                
-
-                    
-                            
 </head>
 
 <body>
@@ -101,40 +93,81 @@
     });
 </script>
 
-            <div id="main-content" class="post-detail main-container">
-                <!-- left -->
+            <div id="main-content" class="post-container main-container">
                 <div id="content" class="main-container-left">
-                    <article class="post i-card">
-                        <h2 class="post-title">
-                            关于
-                        </h2>
-                        <div class="post-info">
-                            <time class="post-time">2019-01-25</time>
-                            
-                        </div>
+                    
+    <div class="i-card">
+        <b>标签：#
+        FPGA</b>
+    </div>
+    
+        
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://halftop.github.io/post/verilog99_11">
+                        通过做verilog99题的第11题学习竞争与冒险
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-03-11</time>
+                    
+                        <a href="https://halftop.github.io/tag/DztcUtg4_" class="post-tag i-tag
+                            i-tag-primary">
+            #Verilog99题
+        </a>
                         
-                                <div class="post-content">
-                                    <p>先放上一句需要时刻提醒自己的话吧：<br>
-<strong>英雄的出处<br>
-是来自于内心的强大<br>
-来自于对梦想的执着追求<br>
-和你对所从事职业的坚持与踏实<br>
-以及面对浮躁、浮华的淡定和定律</strong></p>
-
-                                </div>
-                    </article>
-                    <!--  -->
-                    
-                            <div id="disqus_thread"></div>
-                            <div id="gitalk-container"></div>
+                        <a href="https://halftop.github.io/tag/9rG5j0Nww" class="post-tag i-tag
+                            i-tag-banana">
+            #FPGA
+        </a>
+                        
+                        <a href="https://halftop.github.io/tag/ADa051R6R" class="post-tag i-tag
+                            i-tag-success">
+            #Verilog HDL
+        </a>
+                        
+                        <a href="https://halftop.github.io/tag/bwS6E4Jqc" class="post-tag i-tag
+                            i-tag-primary">
+            #学习笔记
+        </a>
+                        
                 </div>
-                <!-- middle -->
-                <div class="main-container-middle"></div>
-                <!-- right -->
-                <div id="sidebar" class="main-container-right">
+                <div class="post-article">
                     
-                                <!-- id-card -->
+                        <a href="https://halftop.github.io/post/verilog99_11" class="post-feature-image" style="background-image:url(https://i.loli.net/2019/05/03/5ccba2ee64781.jpg) ">
+                        </a>
+                        
+                            <div class="post-content">
                                 
+                                    <div class="post-content-abstract">
+                                        <h2 id="题目">题目</h2>
+<p><strong>011.什么是竞争和冒险？</strong></p>
+<p>注：以下都是知识的搬运和总结，参考文献在最后。</p>
+
+                                    </div>
+                                    
+                                            <a class="btn btn-text" href="https://halftop.github.io/post/verilog99_11">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+                <!-- 翻页 -->
+                
+    <div class="pagination-container">
+        
+            <a href="https://halftop.github.io/tag/9rG5j0Nww/" class="page-btn btn">上一页</a>
+            
+                
+    </div>
+    
+                </div>
+                <!--  -->
+                <div class="main-container-middle"></div>
+                <!--  -->
+                <div id="sidebar" class="main-container-right">
+
+                    <!-- 个人信息 -->
+                    
     <div class="id_card i-card">
         <div class="id_card-avatar" style="background-image: url(https://halftop.github.io/images/avatar.png?v=1563354732707)">
         </div>
@@ -161,14 +194,13 @@
         </div>
     </div>
     
-                                    
+
+                        <!-- 公告栏 -->
+                        
 
                 </div>
-
-
-
-
             </div>
+
 
 
             <div class="site-footer">
@@ -182,7 +214,6 @@
   hljs.initHighlightingOnLoad()
 </script>
 
-
     </div>
     <script>
         $('#sidebar').stickySidebar({
@@ -190,27 +221,6 @@
             // bottomSpacing: 60
         });
     </script>
-    
-        
-            <script>
-    window.onload = function() {
-        var gitalk = new Gitalk({
-            clientID: '42b8247150af6c920554',
-            clientSecret: 'ea9863ece62308a1854e39455221fa1ace6f8cd6',
-            repo: 'halftop.github.io',
-            owner: 'halftop',
-            admin: ['halftop'],
-            id: (location.pathname).substring(0, 49), // Ensure uniqueness and length less than 50
-            distractionFreeMode: false // Facebook-like distraction free mode
-        })
-
-        gitalk.render('gitalk-container')
-    }
-</script>
-                
-
-                    
-                                
 </body>
 
 </html>

@@ -7,7 +7,7 @@
 <title>
     Verilog99题-47-49题（时钟相关） | 1/2顶点
 </title>
-<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico?v=1561363853244">
+<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico?v=1563354732707">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -35,7 +35,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://halftop.github.io">
-                <img class="avatar" src="https://halftop.github.io/images/avatar.png?v=1561363853244" alt="">
+                <img class="avatar" src="https://halftop.github.io/images/avatar.png?v=1563354732707" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -112,17 +112,17 @@
                             <time class="post-time">2019-05-14</time>
                             
                                 <a href="https://halftop.github.io/tag/DztcUtg4_" class="post-tag i-tag
-                            i-tag-other_1">
+                            i-tag-error">
                             #Verilog99题
                         </a>
                                 
                                 <a href="https://halftop.github.io/tag/ADa051R6R" class="post-tag i-tag
-                            i-tag-other_1">
+                            i-tag-success">
                             #Verilog HDL
                         </a>
                                 
                                 <a href="https://halftop.github.io/tag/bwS6E4Jqc" class="post-tag i-tag
-                            i-tag-success">
+                            i-tag-other_3">
                             #学习笔记
                         </a>
                                 
@@ -152,7 +152,15 @@
 </ul>
 </p>
 <h3 id="47-画出clock-gating-cell的原理图">47. 画出clock gating cell的原理图。</h3>
+<p>单纯从功能上来说，门控时钟只需要一个与门或者或门就可以实现。例如，</p>
+<p><code>assign clk_out = en &amp; clk;</code>或<code>assign clk_out = ~en | clk;</code></p>
+<p>但是这里en信号就可以随时变化，一旦其变化的时机不合适就会产生毛刺。例如下图(基于与门)中未画出的clk_out，每次en使能有效时，输出时钟的首尾都会产生毛刺。</p>
+<center>
+ <img src="https://i.loli.net/2019/07/16/5d2dcccc4345274147.png" alt="glitch" title="glitch" width=""> 
+</center>
+<p>为了避免这种情况发生，需要处理控制信号的不合时机的变化。见以下两种Integrated Clock Gating Cell(ICG)：</p>
 <h4 id="基于latch和与门">基于latch和与门</h4>
+<p>由以上分析，若采用与门搭建门控时钟，比较关键的是：在时钟高电平期间，en控制信号要稳定，否则就会有毛刺。所以基于与门设计的话，则要采用控制端为低电平有效的latch。en控制信号经过latch之后在时钟的高电平期间总是稳定的，便避免了毛刺的产生。</p>
 <center>
  <img src="https://i.loli.net/2019/05/14/5cda80576019768349.png" alt="ICG_AND" title="ICG_AND" width=""> 
 </center>
@@ -160,6 +168,7 @@
  <img src="https://i.loli.net/2019/05/14/5cda83e3d3c2768584.png" alt="AND_ICG_tim" title="AND_ICG_tim" width=""> 
 </center>
 <h4 id="基于latch和或门">基于latch和或门</h4>
+<p>若基于或门搭建的话，首先使能信号得取反（时钟信号与低电平相或才能出来时钟）。若直接相或，使能在时钟低电平期间变化就会产生毛刺。所以要采用控制端为高电平有效的latch来处理使能信号，这样en控制信号经过latch之后在时钟的低电平期间总是稳定的，便避免了毛刺的产生。</p>
 <center>
  <img src="https://i.loli.net/2019/05/14/5cda80ab9f0fa61819.png" alt="ICG_OR" title="ICG_OR" width=""> 
 </center>

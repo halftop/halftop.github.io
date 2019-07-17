@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://halftop.github.io</id>
     <title>1/2顶点</title>
-    <updated>2019-06-24T08:10:59.481Z</updated>
+    <updated>2019-07-17T09:12:24.307Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://halftop.github.io"/>
     <link rel="self" href="https://halftop.github.io/atom.xml"/>
@@ -10,6 +10,39 @@
     <logo>https://halftop.github.io/images/avatar.png</logo>
     <icon>https://halftop.github.io/favicon.ico</icon>
     <rights>All rights reserved 2019, 1/2顶点</rights>
+    <entry>
+        <title type="html"><![CDATA[数字电路时序初步及最小时钟周期计算]]></title>
+        <id>https://halftop.github.io/post/STA_junior</id>
+        <link href="https://halftop.github.io/post/STA_junior">
+        </link>
+        <updated>2019-07-12T08:27:11.000Z</updated>
+        <summary type="html"><![CDATA[<h2 id="几个时间概念">几个时间概念</h2>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>T</mi><mrow><mi>c</mi><mi>l</mi><mi>k</mi></mrow></msub></mrow><annotation encoding="application/x-tex">T_{clk}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>:时钟周期。两个时钟上升沿之间的时间。</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>T</mi><mrow><mi>c</mi><mi>o</mi></mrow></msub></mrow><annotation encoding="application/x-tex">T_{co}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">o</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> / <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>T</mi><mrow><mi>c</mi><mi>t</mi><mi>o</mi><mi>q</mi></mrow></msub></mrow><annotation encoding="application/x-tex">T_{ctoq}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.28055599999999997em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault mtight">o</span><span class="mord mathdefault mtight" style="margin-right:0.03588em;">q</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span>:寄存器更新延迟。clock output delay，时钟触发到数据输出的最大延迟时间。</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>T</mi><mrow><mi>g</mi><mi>a</mi><mi>t</mi><mi>e</mi></mrow></msub></mrow><annotation encoding="application/x-tex">T_{gate}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.28055599999999997em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span> / <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>T</mi><mrow><mi>d</mi><mi>a</mi><mi>t</mi><mi>a</mi></mrow></msub></mrow><annotation encoding="application/x-tex">T_{data}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault mtight">a</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>:逻辑门的延迟。一般包括传播延迟。</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>T</mi><mrow><mi>s</mi><mi>e</mi><mi>t</mi><mi>u</mi><mi>p</mi></mrow></msub></mrow><annotation encoding="application/x-tex">T_{setup}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.28055599999999997em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault mtight">u</span><span class="mord mathdefault mtight">p</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span>:触发器的建立时间。</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>T</mi><mrow><mi>h</mi><mi>o</mi><mi>l</mi><mi>d</mi></mrow></msub></mrow><annotation encoding="application/x-tex">T_{hold}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span class="mord mathdefault mtight">o</span><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight">d</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>:触发器的保持时间。</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>T</mi><mrow><mi>s</mi><mi>k</mi><mi>e</mi><mi>w</mi></mrow></msub></mrow><annotation encoding="application/x-tex">T_{skew}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight" style="margin-right:0.02691em;">w</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>:时钟偏移。同一时钟到达不同的触发器的时钟引脚经历的路径可能存在差异，造成他们的时钟上升沿不是同时出现的，这种偏差称为时钟偏移。通过使用时钟树综合工具可以有效地减少时钟偏移，但是不能消除时钟偏移。</p>
+]]></summary>
+        <content type="html"><![CDATA[<h2 id="几个时间概念">几个时间概念</h2>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>T</mi><mrow><mi>c</mi><mi>l</mi><mi>k</mi></mrow></msub></mrow><annotation encoding="application/x-tex">T_{clk}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>:时钟周期。两个时钟上升沿之间的时间。</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>T</mi><mrow><mi>c</mi><mi>o</mi></mrow></msub></mrow><annotation encoding="application/x-tex">T_{co}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">o</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> / <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>T</mi><mrow><mi>c</mi><mi>t</mi><mi>o</mi><mi>q</mi></mrow></msub></mrow><annotation encoding="application/x-tex">T_{ctoq}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.28055599999999997em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault mtight">o</span><span class="mord mathdefault mtight" style="margin-right:0.03588em;">q</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span>:寄存器更新延迟。clock output delay，时钟触发到数据输出的最大延迟时间。</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>T</mi><mrow><mi>g</mi><mi>a</mi><mi>t</mi><mi>e</mi></mrow></msub></mrow><annotation encoding="application/x-tex">T_{gate}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.28055599999999997em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span> / <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>T</mi><mrow><mi>d</mi><mi>a</mi><mi>t</mi><mi>a</mi></mrow></msub></mrow><annotation encoding="application/x-tex">T_{data}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault mtight">a</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>:逻辑门的延迟。一般包括传播延迟。</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>T</mi><mrow><mi>s</mi><mi>e</mi><mi>t</mi><mi>u</mi><mi>p</mi></mrow></msub></mrow><annotation encoding="application/x-tex">T_{setup}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.28055599999999997em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault mtight">u</span><span class="mord mathdefault mtight">p</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span>:触发器的建立时间。</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>T</mi><mrow><mi>h</mi><mi>o</mi><mi>l</mi><mi>d</mi></mrow></msub></mrow><annotation encoding="application/x-tex">T_{hold}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span class="mord mathdefault mtight">o</span><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight">d</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>:触发器的保持时间。</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>T</mi><mrow><mi>s</mi><mi>k</mi><mi>e</mi><mi>w</mi></mrow></msub></mrow><annotation encoding="application/x-tex">T_{skew}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight" style="margin-right:0.02691em;">w</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>:时钟偏移。同一时钟到达不同的触发器的时钟引脚经历的路径可能存在差异，造成他们的时钟上升沿不是同时出现的，这种偏差称为时钟偏移。通过使用时钟树综合工具可以有效地减少时钟偏移，但是不能消除时钟偏移。</p>
+<!-- more --> 
+<h2 id="最小时钟周期计算">最小时钟周期计算</h2>
+<center>
+ <img src="https://i.loli.net/2019/07/16/5d2ddbd82792a69889.png" alt="示意图" title="示意图" width=""> 
+</center>
+<center>
+ <img src="https://i.loli.net/2019/07/17/5d2ee3b15b96224880.png" alt="时序图" title="时序图" width=""> 
+</center>
+<p>显然有：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mo>≧</mo><msub><mi>t</mi><mrow><mi>c</mi><mi>o</mi></mrow></msub><mo>+</mo><msub><mi>t</mi><mrow><mi>g</mi><mi>a</mi><mi>t</mi><mi>e</mi></mrow></msub><mo>+</mo><msub><mi>t</mi><mrow><mi>s</mi><mi>e</mi><mi>t</mi><mi>u</mi><mi>p</mi></mrow></msub><mo>−</mo><msub><mi>t</mi><mrow><mi>s</mi><mi>k</mi><mi>e</mi><mi>w</mi></mrow></msub></mrow><annotation encoding="application/x-tex">T \geqq t_{co} + t_{gate} + t_{setup} - t_{skew}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.01166em;vertical-align:-0.25583em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel amsrm">≧</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.76508em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">o</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.9011879999999999em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.28055599999999997em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.9011879999999999em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.28055599999999997em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault mtight">u</span><span class="mord mathdefault mtight">p</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.76508em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight" style="margin-right:0.02691em;">w</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></p>
+<p>所以最小时钟周期有<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>T</mi><mrow><mi>m</mi><mi>i</mi><mi>n</mi></mrow></msub><mo>=</mo><msub><mi>t</mi><mrow><mi>c</mi><mi>o</mi></mrow></msub><mo>+</mo><msub><mi>t</mi><mrow><mi>g</mi><mi>a</mi><mi>t</mi><mi>e</mi></mrow></msub><mo>+</mo><msub><mi>t</mi><mrow><mi>s</mi><mi>e</mi><mi>t</mi><mi>u</mi><mi>p</mi></mrow></msub><mo>−</mo><msub><mi>t</mi><mrow><mi>s</mi><mi>k</mi><mi>e</mi><mi>w</mi></mrow></msub></mrow><annotation encoding="application/x-tex">T_{min} = t_{co} + t_{gate} + t_{setup} - t_{skew}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">m</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.76508em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">o</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.9011879999999999em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.28055599999999997em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.9011879999999999em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.28055599999999997em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault mtight">u</span><span class="mord mathdefault mtight">p</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.76508em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight" style="margin-right:0.02691em;">w</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[SPI协议及其Verilog实现]]></title>
         <id>https://halftop.github.io/post/Verilog_SPI</id>
@@ -1278,7 +1311,15 @@ endmodule
 </ul>
 </p>
 <h3 id="47-画出clock-gating-cell的原理图">47. 画出clock gating cell的原理图。</h3>
+<p>单纯从功能上来说，门控时钟只需要一个与门或者或门就可以实现。例如，</p>
+<p><code>assign clk_out = en &amp; clk;</code>或<code>assign clk_out = ~en | clk;</code></p>
+<p>但是这里en信号就可以随时变化，一旦其变化的时机不合适就会产生毛刺。例如下图(基于与门)中未画出的clk_out，每次en使能有效时，输出时钟的首尾都会产生毛刺。</p>
+<center>
+ <img src="https://i.loli.net/2019/07/16/5d2dcccc4345274147.png" alt="glitch" title="glitch" width=""> 
+</center>
+<p>为了避免这种情况发生，需要处理控制信号的不合时机的变化。见以下两种Integrated Clock Gating Cell(ICG)：</p>
 <h4 id="基于latch和与门">基于latch和与门</h4>
+<p>由以上分析，若采用与门搭建门控时钟，比较关键的是：在时钟高电平期间，en控制信号要稳定，否则就会有毛刺。所以基于与门设计的话，则要采用控制端为低电平有效的latch。en控制信号经过latch之后在时钟的高电平期间总是稳定的，便避免了毛刺的产生。</p>
 <center>
  <img src="https://i.loli.net/2019/05/14/5cda80576019768349.png" alt="ICG_AND" title="ICG_AND" width=""> 
 </center>
@@ -1286,6 +1327,7 @@ endmodule
  <img src="https://i.loli.net/2019/05/14/5cda83e3d3c2768584.png" alt="AND_ICG_tim" title="AND_ICG_tim" width=""> 
 </center>
 <h4 id="基于latch和或门">基于latch和或门</h4>
+<p>若基于或门搭建的话，首先使能信号得取反（时钟信号与低电平相或才能出来时钟）。若直接相或，使能在时钟低电平期间变化就会产生毛刺。所以要采用控制端为高电平有效的latch来处理使能信号，这样en控制信号经过latch之后在时钟的低电平期间总是稳定的，便避免了毛刺的产生。</p>
 <center>
  <img src="https://i.loli.net/2019/05/14/5cda80ab9f0fa61819.png" alt="ICG_OR" title="ICG_OR" width=""> 
 </center>
@@ -1521,158 +1563,6 @@ endmodule
 <p>七分频：</p>
 <center>
  <img src="https://i.loli.net/2019/05/10/5cd58b4047f97.png" alt="七分频仿真结果" title="七分频仿真结果" width="800"> 
-</center>]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Verilog99题——43、44题（两道算法题）]]></title>
-        <id>https://halftop.github.io/post/verilog99_43to44</id>
-        <link href="https://halftop.github.io/post/verilog99_43to44">
-        </link>
-        <updated>2019-05-10T07:56:46.000Z</updated>
-        <summary type="html"><![CDATA[<h2 id="题目">题目</h2>
-<blockquote>
-<ol start="43">
-<li>用verilog实现 <code>y(n) = x(n) + x(n-1) + x(n-2) + x(n-3) + x(n-4)+ x(n-5)+ x(n-6)+ x(n-7)</code> 输入x是8bit无符号数。</li>
-<li>用verilog实现 <code>y(n) = 0.75*x(n) + 0.25*y(n-1)</code> x, y是8bit无符号数。</li>
-</ol>
-</blockquote>
-]]></summary>
-        <content type="html"><![CDATA[<h2 id="题目">题目</h2>
-<blockquote>
-<ol start="43">
-<li>用verilog实现 <code>y(n) = x(n) + x(n-1) + x(n-2) + x(n-3) + x(n-4)+ x(n-5)+ x(n-6)+ x(n-7)</code> 输入x是8bit无符号数。</li>
-<li>用verilog实现 <code>y(n) = 0.75*x(n) + 0.25*y(n-1)</code> x, y是8bit无符号数。</li>
-</ol>
-</blockquote>
-<!-- more -->
-<p><ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#%E9%A2%98%E7%9B%AE">题目</a>
-<ul>
-<li><a href="#43">43</a>
-<ul>
-<li><a href="#verilog%E6%8F%8F%E8%BF%B0">verilog描述</a></li>
-<li><a href="#%E4%BB%BF%E7%9C%9F%E5%9B%BE">仿真图</a></li>
-<li><a href="#verilog%E6%8F%8F%E8%BF%B0-2">verilog描述</a></li>
-<li><a href="#%E7%BB%BC%E5%90%88%E5%87%BA%E7%9A%84%E7%94%B5%E8%B7%AF%E5%9B%BE">综合出的电路图</a></li>
-<li><a href="#%E4%BB%BF%E7%9C%9F%E7%BB%93%E6%9E%9C">仿真结果</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</p>
-<h3 id="43">43</h3>
-<p>用移位寄存器实现时延，这里参数化了位宽和个数，注意组合逻辑中阻塞赋值的用法。</p>
-<h4 id="verilog描述">verilog描述</h4>
-<pre><code class="language-verilog">// --------------------------------------------------------------------
-// &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; COPYRIGHT NOTICE &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;
-// --------------------------------------------------------------------
-// Author: halftop
-// Github: https://github.com/halftop
-// Email: yu.zh@live.com
-// Description: y(n) = x(n) + x(n-1) + x(n-2) + x(n-3) + x(n-4)+ x(n-5)+ x(n-6)+ x(n-7)+···
-// Dependencies: 
-// LastEditors: halftop
-// Since: 2019-05-09 10:30:00
-// LastEditTime: 2019-05-09 15:58:20
-// ********************************************************************
-// Module Function:
-`timescale 1ns / 1ps
-
-module test43
-#(
-    parameter WIDTH	= 8 ,
-                DEPTH = 8   ,
-                YWD = WIDTH+clogb2(DEPTH)
-)
-(
-    input					clk			,
-    input					rst_n		,
-    input       [WIDTH-1:0] i_data      ,
-    output  reg [YWD-1:0]   o_y 
-);
-
-reg     [WIDTH-1:0]     data_r      [DEPTH-1:0];
-
-integer i;
-always @(posedge clk or negedge rst_n) begin
-    if (!rst_n) begin
-        for ( i=0 ;i&lt;DEPTH ;i=i+1 ) begin
-            data_r[i] &lt;= 'd0;
-        end
-    end else begin
-        data_r[0] &lt;= i_data;
-        for ( i=1 ;i&lt;DEPTH ;i=i+1 ) begin
-            data_r[i] &lt;= data_r[i-1];
-        end
-    end
-end
-
-reg     [YWD-1:0] sum_comb;
-always @(*) begin
-    sum_comb = 'd0;
-    for ( i=0 ;i&lt;DEPTH ; i=i+1) begin
-        sum_comb = sum_comb + data_r[i];
-    end
-end
-
-always @(posedge clk or negedge rst_n) begin
-    if (!rst_n) begin
-        o_y &lt;= 'd0;
-    end else begin
-        o_y &lt;= sum_comb;
-    end
-end
-
-function integer clogb2 (input integer depth);
-    begin
-        for(clogb2=0; depth&gt;1; clogb2=clogb2+1)
-        depth = depth &gt;&gt; 1;
-    end
-endfunction
-endmodule
-</code></pre>
-<h4 id="仿真图">仿真图</h4>
-<center>
- <img src="https://i.loli.net/2019/05/10/5cd537bba7194.png" alt="仿真图" title="仿真图" width=""> 
-</center>
-### 44
-<p>注意其中非阻塞式赋值起到的关键作用。</p>
-<h4 id="verilog描述-2">verilog描述</h4>
-<pre><code class="language-verilog">module test44(
-    input					clk			,
-    input					rst_n		,
-    input       [7:0]       i_data      ,
-    output      [7:0]       o_y         
-);
-// y(n) = 0.75x(n) + 0.25y(n-1) 
-//0.75*4 = 3，0.25*4 = 1
-
-reg [9:0] dout;
-
-always @(posedge clk or negedge rst_n) begin
-    if (!rst_n) begin
-        dout &lt;= 'd0;
-    end else begin
-        dout &lt;= 3*i_data + dout;
-    end
-end
-
-assign o_y = dout&gt;&gt;2;
-
-endmodule
-</code></pre>
-<h4 id="综合出的电路图">综合出的电路图</h4>
-<center>
- <img src="https://i.loli.net/2019/05/10/5cd5832ecfddd.png" alt="44综合出的电路图" title="44综合出的电路图" width="800"> 
-</center>
-<h4 id="仿真结果">仿真结果</h4>
-<center>
- <img src="https://i.loli.net/2019/05/10/5cd583f21bc1f.png" alt="44仿真结果" title="44仿真结果" width="800"> 
 </center>]]></content>
     </entry>
 </feed>

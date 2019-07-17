@@ -7,7 +7,7 @@
 <title>
     学习笔记 | 1/2顶点
 </title>
-<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico?v=1561363853244">
+<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico?v=1563354732707">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -27,7 +27,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://halftop.github.io">
-                <img class="avatar" src="https://halftop.github.io/images/avatar.png?v=1561363853244" alt="">
+                <img class="avatar" src="https://halftop.github.io/images/avatar.png?v=1563354732707" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -104,6 +104,51 @@
         
             <article class="post i-card">
                 <h2 class="post-title">
+                    <a href="https://halftop.github.io/post/STA_junior">
+                        数字电路时序初步及最小时钟周期计算
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-07-12</time>
+                    
+                        <a href="https://halftop.github.io/tag/f0tARmjal" class="post-tag i-tag
+                            i-tag-success">
+            #IC
+        </a>
+                        
+                        <a href="https://halftop.github.io/tag/9rG5j0Nww" class="post-tag i-tag
+                            i-tag-other_1">
+            #FPGA
+        </a>
+                        
+                        <a href="https://halftop.github.io/tag/bwS6E4Jqc" class="post-tag i-tag
+                            i-tag-error">
+            #学习笔记
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                    <div class="post-content-abstract">
+                                        <h2 id="几个时间概念">几个时间概念</h2>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>T</mi><mrow><mi>c</mi><mi>l</mi><mi>k</mi></mrow></msub></mrow><annotation encoding="application/x-tex">T_{clk}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>:时钟周期。两个时钟上升沿之间的时间。</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>T</mi><mrow><mi>c</mi><mi>o</mi></mrow></msub></mrow><annotation encoding="application/x-tex">T_{co}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">o</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> / <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>T</mi><mrow><mi>c</mi><mi>t</mi><mi>o</mi><mi>q</mi></mrow></msub></mrow><annotation encoding="application/x-tex">T_{ctoq}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.28055599999999997em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault mtight">o</span><span class="mord mathdefault mtight" style="margin-right:0.03588em;">q</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span>:寄存器更新延迟。clock output delay，时钟触发到数据输出的最大延迟时间。</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>T</mi><mrow><mi>g</mi><mi>a</mi><mi>t</mi><mi>e</mi></mrow></msub></mrow><annotation encoding="application/x-tex">T_{gate}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.28055599999999997em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span> / <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>T</mi><mrow><mi>d</mi><mi>a</mi><mi>t</mi><mi>a</mi></mrow></msub></mrow><annotation encoding="application/x-tex">T_{data}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault mtight">a</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>:逻辑门的延迟。一般包括传播延迟。</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>T</mi><mrow><mi>s</mi><mi>e</mi><mi>t</mi><mi>u</mi><mi>p</mi></mrow></msub></mrow><annotation encoding="application/x-tex">T_{setup}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.28055599999999997em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault mtight">u</span><span class="mord mathdefault mtight">p</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span>:触发器的建立时间。</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>T</mi><mrow><mi>h</mi><mi>o</mi><mi>l</mi><mi>d</mi></mrow></msub></mrow><annotation encoding="application/x-tex">T_{hold}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">h</span><span class="mord mathdefault mtight">o</span><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight">d</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>:触发器的保持时间。</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>T</mi><mrow><mi>s</mi><mi>k</mi><mi>e</mi><mi>w</mi></mrow></msub></mrow><annotation encoding="application/x-tex">T_{skew}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight" style="margin-right:0.02691em;">w</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>:时钟偏移。同一时钟到达不同的触发器的时钟引脚经历的路径可能存在差异，造成他们的时钟上升沿不是同时出现的，这种偏差称为时钟偏移。通过使用时钟树综合工具可以有效地减少时钟偏移，但是不能消除时钟偏移。</p>
+
+                                    </div>
+                                    
+                                            <a class="btn btn-text" href="https://halftop.github.io/post/STA_junior">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
                     <a href="https://halftop.github.io/post/Verilog_SPI">
                         SPI协议及其Verilog实现
                     </a>
@@ -112,17 +157,17 @@
                     <time class="post-time">2019-06-16</time>
                     
                         <a href="https://halftop.github.io/tag/xaWEXZu1_" class="post-tag i-tag
-                            i-tag-other_4">
+                            i-tag-">
             #接口协议
         </a>
                         
                         <a href="https://halftop.github.io/tag/ADa051R6R" class="post-tag i-tag
-                            i-tag-info">
+                            i-tag-banana">
             #Verilog HDL
         </a>
                         
                         <a href="https://halftop.github.io/tag/bwS6E4Jqc" class="post-tag i-tag
-                            i-tag-error">
+                            i-tag-primary">
             #学习笔记
         </a>
                         
@@ -155,7 +200,7 @@
                     <time class="post-time">2019-06-06</time>
                     
                         <a href="https://halftop.github.io/tag/xaWEXZu1_" class="post-tag i-tag
-                            i-tag-error">
+                            i-tag-">
             #接口协议
         </a>
                         
@@ -165,7 +210,7 @@
         </a>
                         
                         <a href="https://halftop.github.io/tag/bwS6E4Jqc" class="post-tag i-tag
-                            i-tag-">
+                            i-tag-other_3">
             #学习笔记
         </a>
                         
@@ -195,22 +240,22 @@
                     <time class="post-time">2019-06-03</time>
                     
                         <a href="https://halftop.github.io/tag/DztcUtg4_" class="post-tag i-tag
-                            i-tag-other_1">
+                            i-tag-error">
             #Verilog99题
         </a>
                         
                         <a href="https://halftop.github.io/tag/f0tARmjal" class="post-tag i-tag
-                            i-tag-banana">
+                            i-tag-primary">
             #IC
         </a>
                         
                         <a href="https://halftop.github.io/tag/ADa051R6R" class="post-tag i-tag
-                            i-tag-success">
+                            i-tag-other_4">
             #Verilog HDL
         </a>
                         
                         <a href="https://halftop.github.io/tag/bwS6E4Jqc" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-primary">
             #学习笔记
         </a>
                         
@@ -243,17 +288,17 @@
                     <time class="post-time">2019-05-27</time>
                     
                         <a href="https://halftop.github.io/tag/DztcUtg4_" class="post-tag i-tag
-                            i-tag-success">
+                            i-tag-error">
             #Verilog99题
         </a>
                         
                         <a href="https://halftop.github.io/tag/ADa051R6R" class="post-tag i-tag
-                            i-tag-other_3">
+                            i-tag-other_2">
             #Verilog HDL
         </a>
                         
                         <a href="https://halftop.github.io/tag/bwS6E4Jqc" class="post-tag i-tag
-                            i-tag-primary">
+                            i-tag-error">
             #学习笔记
         </a>
                         
@@ -288,17 +333,17 @@
                     <time class="post-time">2019-05-22</time>
                     
                         <a href="https://halftop.github.io/tag/xaWEXZu1_" class="post-tag i-tag
-                            i-tag-other_1">
+                            i-tag-other_2">
             #接口协议
         </a>
                         
                         <a href="https://halftop.github.io/tag/f0tARmjal" class="post-tag i-tag
-                            i-tag-other_1">
+                            i-tag-error">
             #IC
         </a>
                         
                         <a href="https://halftop.github.io/tag/bwS6E4Jqc" class="post-tag i-tag
-                            i-tag-error">
+                            i-tag-info">
             #学习笔记
         </a>
                         
@@ -333,22 +378,22 @@
                     <time class="post-time">2019-05-20</time>
                     
                         <a href="https://halftop.github.io/tag/DztcUtg4_" class="post-tag i-tag
-                            i-tag-">
+                            i-tag-other_1">
             #Verilog99题
         </a>
                         
                         <a href="https://halftop.github.io/tag/9rG5j0Nww" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-other_1">
             #FPGA
         </a>
                         
                         <a href="https://halftop.github.io/tag/ADa051R6R" class="post-tag i-tag
-                            i-tag-primary">
+                            i-tag-other_4">
             #Verilog HDL
         </a>
                         
                         <a href="https://halftop.github.io/tag/bwS6E4Jqc" class="post-tag i-tag
-                            i-tag-other_4">
+                            i-tag-warning">
             #学习笔记
         </a>
                         
@@ -381,17 +426,17 @@
                     <time class="post-time">2019-05-16</time>
                     
                         <a href="https://halftop.github.io/tag/eBG9zXtcm" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-other_3">
             #Verilog没有葵花宝典
         </a>
                         
                         <a href="https://halftop.github.io/tag/ADa051R6R" class="post-tag i-tag
-                            i-tag-error">
+                            i-tag-other_3">
             #Verilog HDL
         </a>
                         
                         <a href="https://halftop.github.io/tag/bwS6E4Jqc" class="post-tag i-tag
-                            i-tag-success">
+                            i-tag-primary">
             #学习笔记
         </a>
                         
@@ -428,17 +473,17 @@
                     <time class="post-time">2019-05-14</time>
                     
                         <a href="https://halftop.github.io/tag/DztcUtg4_" class="post-tag i-tag
-                            i-tag-other_2">
+                            i-tag-other_3">
             #Verilog99题
         </a>
                         
                         <a href="https://halftop.github.io/tag/ADa051R6R" class="post-tag i-tag
-                            i-tag-">
+                            i-tag-info">
             #Verilog HDL
         </a>
                         
                         <a href="https://halftop.github.io/tag/bwS6E4Jqc" class="post-tag i-tag
-                            i-tag-other_3">
+                            i-tag-other_2">
             #学习笔记
         </a>
                         
@@ -468,17 +513,17 @@
                     <time class="post-time">2019-05-10</time>
                     
                         <a href="https://halftop.github.io/tag/DztcUtg4_" class="post-tag i-tag
-                            i-tag-primary">
+                            i-tag-banana">
             #Verilog99题
         </a>
                         
                         <a href="https://halftop.github.io/tag/ADa051R6R" class="post-tag i-tag
-                            i-tag-other_3">
+                            i-tag-info">
             #Verilog HDL
         </a>
                         
                         <a href="https://halftop.github.io/tag/bwS6E4Jqc" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-other_4">
             #学习笔记
         </a>
                         
@@ -506,54 +551,6 @@
                 </div>
             </article>
             
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://halftop.github.io/post/verilog99_43to44">
-                        Verilog99题——43、44题（两道算法题）
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2019-05-10</time>
-                    
-                        <a href="https://halftop.github.io/tag/DztcUtg4_" class="post-tag i-tag
-                            i-tag-info">
-            #Verilog99题
-        </a>
-                        
-                        <a href="https://halftop.github.io/tag/ADa051R6R" class="post-tag i-tag
-                            i-tag-other_2">
-            #Verilog HDL
-        </a>
-                        
-                        <a href="https://halftop.github.io/tag/bwS6E4Jqc" class="post-tag i-tag
-                            i-tag-other_3">
-            #学习笔记
-        </a>
-                        
-                </div>
-                <div class="post-article">
-                    
-                        <a href="https://halftop.github.io/post/verilog99_43to44" class="post-feature-image" style="background-image:url(https://i.loli.net/2019/05/11/5cd67e00867e4.jpg) ">
-                        </a>
-                        
-                            <div class="post-content">
-                                
-                                    <div class="post-content-abstract">
-                                        <h2 id="题目">题目</h2>
-<blockquote>
-<ol start="43">
-<li>用verilog实现 <code>y(n) = x(n) + x(n-1) + x(n-2) + x(n-3) + x(n-4)+ x(n-5)+ x(n-6)+ x(n-7)</code> 输入x是8bit无符号数。</li>
-<li>用verilog实现 <code>y(n) = 0.75*x(n) + 0.25*y(n-1)</code> x, y是8bit无符号数。</li>
-</ol>
-</blockquote>
-
-                                    </div>
-                                    
-                                            <a class="btn btn-text" href="https://halftop.github.io/post/verilog99_43to44">Read More ~</a>
-                            </div>
-                </div>
-            </article>
-            
                 <!-- 翻页 -->
                 
     <div class="pagination-container">
@@ -572,7 +569,7 @@
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://halftop.github.io/images/avatar.png?v=1561363853244)">
+        <div class="id_card-avatar" style="background-image: url(https://halftop.github.io/images/avatar.png?v=1563354732707)">
         </div>
         <h1 class="id_card-title">
             1/2顶点
