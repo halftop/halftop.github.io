@@ -1,147 +1,110 @@
-<html>
 
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-    <meta charset="utf-8" />
-<meta name="description" content="" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>
-    Verilog没有葵花宝典——day10（PWM） | 1/2顶点
-</title>
-<link rel="shortcut icon" href="https://halftop.github.io/favicon.ico?v=1563354732707">
-<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
-<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+ <meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Verilog没有葵花宝典——day10（PWM） | 1/2顶点</title>	
+</style>
 <link rel="stylesheet" href="https://halftop.github.io/styles/main.css">
-<!-- js -->
 <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://halftop.github.io/media/js/jquery.sticky-sidebar.min.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<script type='text/javascript' src='https://halftop.github.io/media/scripts/script.js'></script>
 
+<style type="text/css">
+header {
+    text-align: center;
+    padding: 120px 0px 40px 0px;
+    background: #515865 center no-repeat;
+    font-size: 16px;
+    color: #fff;
+    background-size: cover;
+    background-image:url(
+			https://i.loli.net/2019/07/20/5d32db1c0698f40809.jpg
+			);
+}
+		</style>
 
-        
-            
-                <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-                <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-                
-
-                    
-                            
+ 	
 </head>
+<body class="post-template-default single single-post postid-70 single-format-standard">
+    <div id="wrapper">
+        
+			
+		<header id="header ddq" class="site-header" 
+		
+		>
+			<div class="site-branding">
+									<h1 class="site-title"><a href="https://halftop.github.io" rel="home">1/2顶点</a></h1>
+										
+					<h2 class="site-description">    有输入有输出，才是正确的学习方式    </h2>
+										
+							</div>
+			<nav id="nav-wrapper">
+				<div class="container">
+					<div class="nav-toggle">
+						<div class="bars">
+							<div class="bar"></div>
+							<div class="bar"></div>
+							<div class="bar"></div>
+						</div>
+					</div><!-- /nav-toggle -->
+					<div class="clear"></div>
+					<ul id="" class="vtmenu">
+		 
+     			
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-12">
+	 
+	<a  href="/"> 首页</a></li>
+	
+    
+     			
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-12">
+	 
+	<a  href="/archives"> 归档</a></li>
+	
+    
+     			
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-12">
+	 
+	<a  href="/tags"> 标签</a></li>
+	
+    
+     			
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-12">
+	 
+	<a  href="/post/about"> 关于</a></li>
+	
+    
 
-<body>
-    <div class="main">
-        <div class="header">
-    <div class="nav">
-        <div class="logo">
-            <a href="https://halftop.github.io">
-                <img class="avatar" src="https://halftop.github.io/images/avatar.png?v=1563354732707" alt="">
-            </a>
-            <div class="site-title">
-                <h1>
-                    1/2顶点
-                </h1>
-            </div>
-        </div>
-        <span class="menu-btn fa fa-align-justify"></span>
-        <div class="menu-container">
-            <ul>
-                
-                    
-                            <li>
-                                <a href="/" class="menu">
-                                    首页
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/archives" class="menu">
-                                    归档
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/tags" class="menu">
-                                    标签
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/post/about" class="menu">
-                                    关于
-                                </a>
-                            </li>
-                            
-                                
-            </ul>
-        </div>
-    </div>
-</div>
+</ul>
+</li>		
+		
+</ul>				</div>
+			</nav><!-- #navigation -->
+        </header><!-- #masthead -->
 
-<script>
-    $(document).ready(function() {
-        $(".menu-btn").click(function() {
-            $(".menu-container").slideToggle();
-        });
-        $(window).resize(function() {
+		<div id="content" class="container">
+			<div class="row">
+	<div class="col-md-8 site-main">
+				
+<article id="post-70" class="post-70 post type-post status-publish format-standard hentry category-5 tag-10 tag-9 tag-11">
 
-            if (window.matchMedia('(min-width: 960px)').matches) {
-                $(".menu-container").css('display', 'block')
-            } else {
-                $(".menu-container").css('display', 'none')
-            }
-
-        });
-    });
-</script>
-
-            <div id="main-content" class="post-detail main-container">
-                <!-- left -->
-                <div id="content" class="main-container-left">
-                    <article class="post i-card">
-                        <h2 class="post-title">
-                            Verilog没有葵花宝典——day10（PWM）
-                        </h2>
-                        <div class="post-info">
-                            <time class="post-time">2019-05-08</time>
-                            
-                                <a href="https://halftop.github.io/tag/eBG9zXtcm" class="post-tag i-tag
-                            i-tag-other_3">
-                            #Verilog没有葵花宝典
-                        </a>
-                                
-                                <a href="https://halftop.github.io/tag/f0tARmjal" class="post-tag i-tag
-                            i-tag-other_2">
-                            #IC
-                        </a>
-                                
-                                <a href="https://halftop.github.io/tag/9rG5j0Nww" class="post-tag i-tag
-                            i-tag-other_3">
-                            #FPGA
-                        </a>
-                                
-                                <a href="https://halftop.github.io/tag/ADa051R6R" class="post-tag i-tag
-                            i-tag-other_2">
-                            #Verilog HDL
-                        </a>
-                                
-                                <a href="https://halftop.github.io/tag/bwS6E4Jqc" class="post-tag i-tag
-                            i-tag-info">
-                            #学习笔记
-                        </a>
-                                
-                        </div>
-                        
-                            <div class="post-feature-image" style="background-image: url('https://i.loli.net/2019/05/09/5cd38c0ec7b89.jpg')"></div>
-                            
-                                <div class="post-content">
-                                    <h2 id="题目">题目</h2>
+	
+	                      
+		<div class="entry-content">
+			<h1 class="entry-title">Verilog没有葵花宝典——day10（PWM）</h1>
+<div class="entry-meta">
+	
+	           <a href="https://halftop.github.io/post/verilog-day10">
+							 <i class="fa fa-paint-brush"> 
+							</i> 2019-05-08</a> 
+			
+</span>
+													 
+		</div>
+                  
+			<div class="entry-summary">
+				<p><h2 id="题目">题目</h2>
 <blockquote>
 <p>用verilog实现PWM控制呼吸灯。呼吸周期2秒：1秒逐渐变亮，1秒逐渐变暗。系统时钟24MHz，pwm周期1ms，精度1us。</p>
 </blockquote>
@@ -316,124 +279,182 @@ endmodule
 <h3 id="仿真图">仿真图</h3>
 <center>
  <img src="https://i.loli.net/2019/05/08/5cd29e8d9fa40.png" alt="pwm呼吸灯仿真" title="pwm呼吸灯仿真" width="800"> 
-</center>
-                                </div>
-                    </article>
-                    <!--  -->
-                    
-                        <div class="next-post">
-                            <div class="next">下一篇</div>
-                            <a href="https://halftop.github.io/post/verilog-day9">
-                                <h3 class="post-title">
-                                    Verilog没有葵花宝典——day9（按键防抖）
-                                </h3>
-                            </a>
-                        </div>
-                        
-                            <div id="disqus_thread"></div>
-                            <div id="gitalk-container"></div>
-                </div>
-                <!-- middle -->
-                <div class="main-container-middle"></div>
-                <!-- right -->
-                <div id="sidebar" class="main-container-right">
-                    
-                        <!-- toc -->
-                        
-    <div class="toc-card i-card ">
-        <div class="toc-title i-card-title">目录</div>
-        <div class="toc-content">
-            <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#%E9%A2%98%E7%9B%AE">题目</a>
-<ul>
-<li><a href="#%E6%80%9D%E8%B7%AF">思路</a></li>
-<li><a href="#verilog%E6%8F%8F%E8%BF%B0">Verilog描述</a></li>
-<li><a href="#testbench">testbench</a></li>
-<li><a href="#%E4%BB%BF%E7%9C%9F%E5%9B%BE">仿真图</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+</center></p>
+							</div>
+	<div class="vt-post-tags">
+ 
+				<a href="https://halftop.github.io/tag/eBG9zXtcm" rel="tag">Verilog没有葵花宝典</a>	
+				 
+				<a href="https://halftop.github.io/tag/f0tARmjal" rel="tag">IC</a>	
+				 
+				<a href="https://halftop.github.io/tag/9rG5j0Nww" rel="tag">FPGA</a>	
+				 
+				<a href="https://halftop.github.io/tag/ADa051R6R" rel="tag">Verilog HDL</a>	
+				 
+				<a href="https://halftop.github.io/tag/bwS6E4Jqc" rel="tag">学习笔记</a>	
+				 
+					</div>						
+<nav class="navigation3 post-navigation3" role="navigation">
+		
+		<div class="nav-links3">
+      
+		<div class="nav-previous3"><a href="https://halftop.github.io/post/verilog99_43to44" rel="prev"> Verilog99题——43、44题（两道算法题）</a></div>
+		 
+		 
+		<div class="nav-next3"><a href="https://halftop.github.io/post/verilog-day9" rel="next"> Verilog没有葵花宝典——day9（按键防抖）</a></div>
+		
+		</div>
+	</nav>
+		</div>
+		
+ 
+		
+</article>
 
-        </div>
-        <script>
-            function locateCatelogList() {
-                /*获取文章目录集合,可通过:header过滤器*/
-                var alis = $('.post-content :header');
-                /*获取侧边栏目录列表集合**/
-                var sidebar_alis = $('.markdownIt-TOC a');
-                /*获取滚动条到顶部的距离*/
-                var scroll_height = $(window).scrollTop();
-                for (var i = 0; i < alis.length; i++) {
-                    /*获取锚点集合中的元素分别到顶点的距离*/
-                    var a_height = $(alis[i]).offset().top;
-                    if (a_height < scroll_height) {
-                        /*高亮显示*/
-                        sidebar_alis.removeClass('on');
-                        $(sidebar_alis[i]).addClass('on');
-                    }
-                }
-            }
-            $(function() {
-                /*绑定滚动事件 */
-                $(window).bind('scroll', locateCatelogList);
-            });
-        </script>
-    </div>
-    
-                            
+<div id="marlin_lite_about_widget-2" class="widget marlin_lite_about_widget">
+			<h4 class="widget-title">评论</h4>	
 
-                </div>
+			 
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 
-
-
-
-            </div>
-
-
-            <div class="site-footer">
-  <center>
- <img src="https://i.loli.net/2019/05/11/5cd67babc54e9.gif" alt="fighting and confidence" title="fighting and confidence" width="300"> 
-</center> | 
-  <a class="rss" href="https://halftop.github.io/atom.xml" target="_blank">RSS</a>
-</div>
+<div id="gitalk-container"></div>
 
 <script>
-  hljs.initHighlightingOnLoad()
+
+  var gitalk = new Gitalk({
+    clientID: '42b8247150af6c920554',
+    clientSecret: 'ea9863ece62308a1854e39455221fa1ace6f8cd6',
+    repo: 'halftop.github.io',
+    owner: 'halftop',
+    admin: ['halftop'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
 </script>
 
-
-    </div>
-    <script>
-        $('#sidebar').stickySidebar({
-            topSpacing: 80,
-            // bottomSpacing: 60
-        });
-    </script>
-    
+          
+          
         
-            <script>
-    window.onload = function() {
-        var gitalk = new Gitalk({
-            clientID: '42b8247150af6c920554',
-            clientSecret: 'ea9863ece62308a1854e39455221fa1ace6f8cd6',
-            repo: 'halftop.github.io',
-            owner: 'halftop',
-            admin: ['halftop'],
-            id: (location.pathname).substring(0, 49), // Ensure uniqueness and length less than 50
-            distractionFreeMode: false // Facebook-like distraction free mode
-        })
+   
+  
+ 
 
-        gitalk.render('gitalk-container')
-    }
-</script>
+		</div>
+
+			</div>
+			
+
+
+<div class="col l3 hide-on-med-and-down">
+	
+        <div class="toc-widget">
+			
+            <div class="toc-title"></div>
+			
+            <div id="toc-content">
+			
+			
+			</div>
+        </div>
+    </div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.5.0/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '.entry-summary',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('.entry-summary').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+    });
+</script>										 
+
+ 
+       
+
+
+			</div>
+		</div>
+
+		
+		 	<footer id="colophon" class="site-footer">
+
+			<div class="container">
+	
+				<div class="copyright"><center>
+ <img src="https://i.loli.net/2019/05/11/5cd67babc54e9.gif" alt="fighting and confidence" title="fighting and confidence" width="300"> 
+</center><br>Theme:   <a href="https://github.com/alterfang/gridea-theme-pan/tree/master" target="_blank" title="Pan"><span>Pan</span></a>. Powered by <a href="https://gridea.dev/" target="_blank" title="Gridea"><span>Gridea</span></a></div>		
+			</div><!-- .container -->
+		
+		</footer><!-- #colophon -->
+
+</div>
+
+<script src="https://cdn.bootcss.com/fitvids/1.2.0/jquery.fitvids.min.js"></script>
+<script type='text/javascript' src='https://halftop.github.io/media/scripts/marlin-scripts.js'></script>
+
+		<script data-no-instant>
+    (function ($) {
+        $.extend({
+            adamsOverload: function () {
+                $('.navigation:eq(0)').remove();
+                $("").attr("rel" , "external");
+                $("a[rel='external'],a[rel='external nofollow']").attr("target","_blank");
+                $("a.vi").attr("rel" , "");
+                $.viewImage({
+                    'target'  : 'img',
+                    'exclude' : '.vsmile-icons img,.gallery img',
+                    'delay'   : 300
+                });
+                $.lately({
+                    'target' : '.commentmetadata a,.infos time,.post-list time'
+                });
+                prettyPrint();
                 
+                $('ul.links li a').each(function(){
+                    if($(this).parent().find('.bg').length==0){
+                        $(this).parent().append('<!---<div class="bg" style="background-image:url(https://c3.glgoo.top/s2/favicons?domain='+$(this).attr("href")+')"></div>--->')
+                    }
+                });
+            }
+        });
+    })(jQuery);
+    jQuery.adamsOverload();
+</script>
 
-                    
-                                
 </body>
-
 </html>
