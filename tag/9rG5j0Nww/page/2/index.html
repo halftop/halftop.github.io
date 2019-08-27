@@ -2,36 +2,64 @@
 <html lang="zh-CN">
 <head>
  <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<meta HTTP-EQUIV="expires" CONTENT="0"> 
 <title>FPGA | 1/2顶点</title>	
-</style>
+
 <link rel="stylesheet" href="https://halftop.github.io/styles/main.css">
+<script type="text/javascript">
+function getCSS()
+{
+        datetoday = new Date();
+        timenow=datetoday.getTime();
+        datetoday.setTime(timenow);
+        thehour = datetoday.getHours();
+
+        if (thehour<20)
+
+            display = "https://halftop.github.io/media/css/night.css";
+
+       else if (thehour>8)
+
+            display = "https://halftop.github.io/media/css/night.css";   
+
+        else if (thehour>20)
+           
+            display = "https://halftop.github.io/media/css/day.css";
+
+        else if (thehour<8)
+
+            display = "https://halftop.github.io/media/css/day.css";
+      
+
+var css = '<';
+        css+='link rel="stylesheet" href='+display+' \/';
+        css+='>';
+        document.write(css);
+}
+</script>
+<link href="https://fonts.googleapis.com/css?family=Dancing+Script|Noto+Sans+SC:300|Montserrat&display=swap" rel="stylesheet">
+<link href="https://at.alicdn.com/t/font_1306644_jwtuc2zzbrd.css" rel="stylesheet" />
 <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <script type='text/javascript' src='https://halftop.github.io/media/scripts/script.js'></script>
+<link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet" />
+  <script src="https://cdn.bootcss.com/wow/1.1.2/wow.min.js"></script>
+  <script src="https://cdn.bootcss.com/highlight.js/9.15.8/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script>wow=new WOW({boxClass:'wow',animateClass:'animated',offset:0,mobile:true,live:true});wow.init();</script>
 
-<style type="text/css">
-header {
-    text-align: center;
-    padding: 120px 0px 40px 0px;
-    background: #515865 center no-repeat;
-    font-size: 16px;
-    color: #fff;
-    background-size: cover;
-    background-image:url(
-			https://i.loli.net/2019/07/20/5d32db1c0698f40809.jpg
-			);
-}
-		</style>
+<script type="text/javascript">
+window.onload=getCSS();
+</script>
+
 
 </head>
 <body class="home blog">
     <div id="wrapper">
         
-		<header id="header headerimg" class="site-header" style="background-image:url(
-			
-			https://i.loli.net/2019/07/20/5d32db1c0698f40809.jpg
-			
-			)">
+		<header id="header" class="site-header" >
 			<div class="site-branding">
 									<h1 class="site-title"><a href="https://halftop.github.io" rel="home">1/2顶点</a></h1>
 										
@@ -46,30 +74,30 @@ header {
 							<div class="bar"></div>
 							<div class="bar"></div>
 						</div>
-					</div><!-- /nav-toggle -->
+					</div>
 					<div class="clear"></div>
-					<ul id="" class="vtmenu">
+					<ul class="dove">
 		 
      			
-<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-12">
+<li>
 	 
 	<a  href="/"> 首页</a></li>
 	
     
      			
-<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-12">
+<li>
 	 
 	<a  href="/archives"> 归档</a></li>
 	
     
      			
-<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-12">
+<li>
 	 
 	<a  href="/tags"> 标签</a></li>
 	
     
      			
-<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-12">
+<li>
 	 
 	<a  href="/post/about"> 关于</a></li>
 	
@@ -79,14 +107,45 @@ header {
 </li>		
 		
 </ul>				</div>
-			</nav><!-- #navigation -->
-        </header><!-- #masthead -->
+			</nav>
+
+<div class="jingge">
+
+			
+<a  href="https://halftop.github.io/atom.xml" target="_blank" ><i class="iconfont icon-rss"></i></a>
+ 
+    
+
+    
+			
+<a  href="https://github.com/halftop" target="_blank" ><i class="iconfont icon-github"></i></a>
+ 
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        </header>
 
 		<div id="content" class="container">
 			<div class="row">
 	<div class="col-md-8 site-main">
 		
-		<div class="archive-box">
+		<div class="wow slideInLeft archive-box">
 			  <header class="page-header">
 				  
 				<h1 class="page-title">FPGA</h1> 
@@ -95,32 +154,31 @@ header {
 			</div>	
  		
  						
-<article class="post post-index  post-318 type-post status-publish format-standard hentry category-uncategorized tag-40 tag-39">
+<article class="wow zoomIn post post-index  post-318 type-post status-publish format-standard hentry category-uncategorized tag-40 tag-39">
 	
 	 
 	   
 	<div class="entry-content">
 		<h1 class="entry-title"><a href="https://halftop.github.io/post/verilog99_11" rel="bookmark">通过做verilog99题的第11题学习竞争与冒险</a></h1>
 		<div class="entry-meta">
-						<a href="https://halftop.github.io/post/verilog99_11">
-							 <i class="fa fa-paint-brush"> 
-							</i> 2019-03-11</a>  
+		<i class="iconfont icon-rili"> <time class="lately-a" datetime="2019-03-11 11:51:41" itemprop="datePublished" pubdate="">2019-03-11</time></i>
+	 
 			
 		</div>
 
-		<div class="entry-summary">
-			<p><h2 id="题目">题目</h2>
+		<div class="entry-summary jia">
+			<h2 id="题目">题目</h2>
 <p><strong>011.什么是竞争和冒险？</strong></p>
 <p>注：以下都是知识的搬运和总结，参考文献在最后。</p>
-</p>
+
 			<p class="readmore">
 				<a href="https://halftop.github.io/post/verilog99_11" class="link-more">Read more</a>
 			</p>
-		</div><!-- .entry-summary -->
+		</div>
 		
-	</div><!-- entry-content -->
+	</div>
 	
-</article><!-- #post-## -->			
+</article>
 		
  
 
@@ -128,12 +186,11 @@ header {
 
 
 							
-	</div><!-- site-main -->
+	</div>
             
 
 
-			</div><!-- #end row-->
-													   
+			</div> 
 			<nav class="navigation pagination" role="navigation">
 	
 			
@@ -173,7 +230,7 @@ jQuery(document).ready(function($) {
 });
 </script>
 													   
-		</div><!-- #end container-->
+		</div>
 
 		
 	 	<footer id="colophon" class="site-footer">
@@ -182,15 +239,83 @@ jQuery(document).ready(function($) {
 	
 				<div class="copyright"><center>
  <img src="https://i.loli.net/2019/05/11/5cd67babc54e9.gif" alt="fighting and confidence" title="fighting and confidence" width="300"> 
-</center><br>Theme:   <a href="https://github.com/alterfang/gridea-theme-pan/tree/master" target="_blank" title="Pan"><span>Pan</span></a>. Powered by <a href="https://gridea.dev/" target="_blank" title="Gridea"><span>Gridea</span></a></div>		
-			</div><!-- .container -->
+</center><br>Theme:   <a href="https://github.com/alterfang/gridea-theme-pan" target="_blank" title="Pan"><span>Pan</span></a>. Powered by <a href="https://gridea.dev/" target="_blank" title="Gridea"><span>Gridea</span></a></div>		
+			</div>
 		
-		</footer><!-- #colophon -->
+		</footer>
 
-</div><!-- #end wrapper-->
+</div>
 
 <script src="https://cdn.bootcss.com/fitvids/1.2.0/jquery.fitvids.min.js"></script>
 <script type='text/javascript' src='https://halftop.github.io/media/scripts/marlin-scripts.js'></script>
+ <script src="//tokinx.github.io/lately/lately.min.js"></script>
+  <script>jQuery(document).ready(function(){$.lately({'target':'.lately-a,.lately-b,.lately-c'})});</script>
+  <style type="text/css">a.back_to_top {
+    text-decoration: none;
+    position: fixed;
+    bottom: 40px;
+    right: 30px;
+    background: #f0f0f0;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    line-height: 36px;
+    font-size: 18px;
+    text-align: center;
+    transition-duration: .5s;
+    transition-propety: background-color;
+    display: none;
+}
+
+a.back_to_top span {
+    color: #888;
+}
+
+a.back_to_top:hover {
+    cursor: pointer;
+    background: #dfdfdf;
+}
+
+a.back_to_top:hover span {
+    color: #555;
+}
+
+@media print, screen and (max-width: 580px) {
+    .back_to_top {
+        display: none !important;
+    }
+}
+
+
+
+</style><a id="back_to_top" href="#" class="back_to_top"><span><i class="iconfont icon-xiangshang"></i></span>
+</a>
+
+
+<script>$(document).ready((function(_this) {
+  return function() {
+    var bt;
+    bt = $('#back_to_top');
+    if ($(document).width() > 480) {
+      $(window).scroll(function() {
+        var st;
+        st = $(window).scrollTop();
+        if (st > 30) {
+          return bt.css('display', 'block');
+        } else {
+          return bt.css('display', 'none');
+        }
+      });
+      return bt.click(function() {
+        $('body,html').animate({
+          scrollTop: 0
+        }, 800);
+        return false;
+      });
+    }
+  };
+})(this));
+</script>
 
 		
 </body>

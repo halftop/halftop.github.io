@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://halftop.github.io</id>
     <title>1/2顶点</title>
-    <updated>2019-07-20T09:14:44.756Z</updated>
+    <updated>2019-08-27T08:45:26.209Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://halftop.github.io"/>
     <link rel="self" href="https://halftop.github.io/atom.xml"/>
@@ -719,7 +719,7 @@ endmodule
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Verilog99题-57题]]></title>
+        <title type="html"><![CDATA[Verilog99题-57题（单脉冲信号的跨时钟域传输）]]></title>
         <id>https://halftop.github.io/post/verilog99-57</id>
         <link href="https://halftop.github.io/post/verilog99-57">
         </link>
@@ -838,9 +838,9 @@ endmodule
 <center>
  <img src="https://i.loli.net/2019/05/27/5cebb39c27a3271351.png" alt="rtl图" title="rtl图" width="800"> 
 </center>
-<p>补充一张采用与门、或门、非门、异或门、触发器实现的跨时钟域单bit信号传输的电路图，联发科2020年提前批招聘笔试就要求画出这张图。</p>
+<p>补充一张采用与门、或门、非门、异或门、触发器实现的跨时钟域单bit信号传输的电路图，某发科2020年提前批招聘笔试就要求画出这张图。</p>
 <center>
- <img src="https://i.loli.net/2019/07/20/5d32d2ca826de68889.png" alt="联发科2020年提前批招聘笔试答案之一" title="联发科2020年提前批招聘笔试答案之一" width=""> 
+ <img src="https://i.loli.net/2019/07/20/5d32d2ca826de68889.png" alt="某发科2020年提前批招聘笔试答案之一" title="某发科2020年提前批招聘笔试答案之一" width=""> 
 </center>
 <p>图中的“处理控制信号时长的逻辑”与本文中的“脉冲展宽”是同一概念。</p>
 <p>本图转载自<a href="https://www.cnblogs.com/IClearner/p/6485389.html">这篇博客</a>。</p>

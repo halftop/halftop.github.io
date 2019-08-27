@@ -3,26 +3,58 @@
 <html lang="zh-CN">
 <head>
  <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<meta HTTP-EQUIV="expires" CONTENT="0"> 
 <title>verilog99题——10题 | 1/2顶点</title>	
-</style>
+
 <link rel="stylesheet" href="https://halftop.github.io/styles/main.css">
+<script type="text/javascript">
+function getCSS()
+{
+        datetoday = new Date();
+        timenow=datetoday.getTime();
+        datetoday.setTime(timenow);
+        thehour = datetoday.getHours();
+
+        if (thehour<20)
+
+            display = "https://halftop.github.io/media/css/night.css";
+
+       else if (thehour>8)
+
+            display = "https://halftop.github.io/media/css/night.css";   
+
+        else if (thehour>20)
+           
+            display = "https://halftop.github.io/media/css/day.css";
+
+        else if (thehour<8)
+
+            display = "https://halftop.github.io/media/css/day.css";
+      
+
+var css = '<';
+        css+='link rel="stylesheet" href='+display+' \/';
+        css+='>';
+        document.write(css);
+}
+</script>
+<link href="https://fonts.googleapis.com/css?family=Dancing+Script|Noto+Sans+SC:300|Montserrat&display=swap" rel="stylesheet">
+<link href="https://at.alicdn.com/t/font_1306644_jwtuc2zzbrd.css" rel="stylesheet" />
 <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <script type='text/javascript' src='https://halftop.github.io/media/scripts/script.js'></script>
+<link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet" />
+  <script src="https://cdn.bootcss.com/wow/1.1.2/wow.min.js"></script>
+  <script src="https://cdn.bootcss.com/highlight.js/9.15.8/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script>wow=new WOW({boxClass:'wow',animateClass:'animated',offset:0,mobile:true,live:true});wow.init();</script>
 
-<style type="text/css">
-header {
-    text-align: center;
-    padding: 120px 0px 40px 0px;
-    background: #515865 center no-repeat;
-    font-size: 16px;
-    color: #fff;
-    background-size: cover;
-    background-image:url(
-			https://i.loli.net/2019/07/20/5d32db1c0698f40809.jpg
-			);
-}
-		</style>
+<script type="text/javascript">
+window.onload=getCSS();
+</script>
+
 
  	
 </head>
@@ -30,7 +62,7 @@ header {
     <div id="wrapper">
         
 			
-		<header id="header ddq" class="site-header" 
+		<header id="header" class="site-header" 
 		
 		>
 			<div class="site-branding">
@@ -47,30 +79,30 @@ header {
 							<div class="bar"></div>
 							<div class="bar"></div>
 						</div>
-					</div><!-- /nav-toggle -->
+					</div>
 					<div class="clear"></div>
-					<ul id="" class="vtmenu">
+					<ul id="" class="dove">
 		 
      			
-<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-12">
+<li>
 	 
 	<a  href="/"> 首页</a></li>
 	
     
      			
-<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-12">
+<li>
 	 
 	<a  href="/archives"> 归档</a></li>
 	
     
      			
-<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-12">
+<li>
 	 
 	<a  href="/tags"> 标签</a></li>
 	
     
      			
-<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-12">
+<li>
 	 
 	<a  href="/post/about"> 关于</a></li>
 	
@@ -80,8 +112,38 @@ header {
 </li>		
 		
 </ul>				</div>
-			</nav><!-- #navigation -->
-        </header><!-- #masthead -->
+			</nav>
+						<div class="jingge">
+
+			
+<a  href="https://halftop.github.io/atom.xml" target="_blank" ><i class="iconfont icon-rss"></i></a>
+ 
+    
+
+    
+			
+<a  href="https://github.com/halftop" target="_blank" ><i class="iconfont icon-github"></i></a>
+ 
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        </header>
 
 		<div id="content" class="container">
 			<div class="row">
@@ -92,19 +154,18 @@ header {
 	
 	                      
 		<div class="entry-content">
-			<h1 class="entry-title">verilog99题——10题</h1>
+			<h1 class="wow swing entry-title">verilog99题——10题</h1>
 <div class="entry-meta">
-	
-	           <a href="https://halftop.github.io/post/verilog99_10">
-							 <i class="fa fa-paint-brush"> 
-							</i> 2019-03-13</a> 
+<div class="wow bounce">
+	<i class="iconfont icon-rili"> <time class="lately-a" datetime="2019-03-13 11:25:24" itemprop="datePublished" pubdate="">2019-03-13</time></i>
+	          </div>
 			
 </span>
 													 
 		</div>
                   
-			<div class="entry-summary">
-				<p><h2 id="题目">题目</h2>
+			<div class="wow slideInLeft entry-summary song">
+				<h2 id="题目">题目</h2>
 <p><strong>010.说明代码中w1和 w2对应电路的具体区别:</strong></p>
 <pre><code>wire [2:0] val; 
 wire w1 = val &gt; 0; 
@@ -116,9 +177,9 @@ wire w2 = val &gt;= 0;
 		<img src="https://i.loli.net/2019/04/25/5cc1ce8bde04f.jpg" alt="image" title="第十题答案">
 	</center>
 <p>给出标准答案：<a href="https://mp.weixin.qq.com/s/Gs9T0qOR3qydvRzeaNt1Dg">原作者给出的答案</a></p>
-</p>
+
 							</div>
-	<div class="vt-post-tags">
+	<div class="wow bounceInDown vt-post-tags">
  
 				<a href="https://halftop.github.io/tag/DztcUtg4_" rel="tag">Verilog99题</a>	
 				 
@@ -131,23 +192,28 @@ wire w2 = val &gt;= 0;
 		
 		<div class="nav-links3">
       
-		<div class="nav-previous3"><a href="https://halftop.github.io/post/verilog99_12to21" rel="prev"> Verilog99题——12-21题</a></div>
+		<div class="wow bounceInLeft nav-previous3"><a href="https://halftop.github.io/post/verilog99_12to21" rel="prev"> Verilog99题——12-21题</a></div>
 		 
 		 
-		<div class="nav-next3"><a href="https://halftop.github.io/post/verilog99_11" rel="next"> 通过做verilog99题的第11题学习竞争与冒险</a></div>
+		<div class="wow bounceInRight nav-next3"><a href="https://halftop.github.io/post/verilog99_11" rel="next"> 通过做verilog99题的第11题学习竞争与冒险</a></div>
 		
 		</div>
 	</nav>
+	<div class="wow rollIn author-info" style="visibility: visible; animation-name: rollIn;">
+	<div class="author-avatar pull-left"><img src="https://halftop.github.io/images/avatar.png" ></div>
+ 
+	<div class="author-description"><div class="author-title"><div class="author-link" rel="author">halftop</div></div>
+
+
 		</div>
 		
  
 		
 </article>
 
-<div id="marlin_lite_about_widget-2" class="widget marlin_lite_about_widget">
-			<h4 class="widget-title">评论</h4>	
-
-			 
+<div id="marlin_lite_about_widget-2" class="wow bounceInUp widget marlin_lite_about_widget" data-wow-delay="0.1s">
+		
+        
           
             <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
 <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
@@ -173,6 +239,26 @@ wire w2 = val &gt;= 0;
           
           
         
+		<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://halftop.github.io/media/scripts/Valine.min.js'></script>
+
+<div class="comment"></div>
+<script>
+        new Valine({
+            // AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
+            av: AV, 
+            el: '.comment',
+            lang: 'zh-cn',
+            
+            
+      emoticon_list: ["吐.png","喷血.png","狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","中指.png","尴尬.png","瞅你.png","想一想.png","中枪.png","得意.png","肿包.png","扇耳光.png","亲亲.png","惊喜.png","脸红.png","无所谓.png","便便.png","愤怒.png","蜡烛.png","献黄瓜.png","内伤.png","投降.png","观察.png","看不见.png","击掌.png","抠鼻.png","邪恶.png","看热闹.png","口水.png","抽烟.png","锁眉.png","装大款.png","吐舌.png","无奈.png","长草.png","赞一个.png","呲牙.png","无语.png","阴暗.png","不出所料.png","咽气.png","期待.png","高兴.png","吐血倒地.png","哭泣.png","欢呼.png","黑线.png","喜极而泣.png","喷水.png","深思.png","鼓掌.png","暗地观察.png"],
+     	
+      	
+          
+        });
+    </script> 
+
+
    
   
  
@@ -183,7 +269,7 @@ wire w2 = val &gt;= 0;
 			
 
 
-<div class="col l3 hide-on-med-and-down">
+<div class="tocc col l3 hide-on-med-and-down">
 	
         <div class="toc-widget">
 			
@@ -250,15 +336,83 @@ wire w2 = val &gt;= 0;
 	
 				<div class="copyright"><center>
  <img src="https://i.loli.net/2019/05/11/5cd67babc54e9.gif" alt="fighting and confidence" title="fighting and confidence" width="300"> 
-</center><br>Theme:   <a href="https://github.com/alterfang/gridea-theme-pan/tree/master" target="_blank" title="Pan"><span>Pan</span></a>. Powered by <a href="https://gridea.dev/" target="_blank" title="Gridea"><span>Gridea</span></a></div>		
-			</div><!-- .container -->
+</center><br>Theme:   <a href="https://github.com/alterfang/gridea-theme-pan" target="_blank" title="Pan"><span>Pan</span></a>. Powered by <a href="https://gridea.dev/" target="_blank" title="Gridea"><span>Gridea</span></a></div>		
+			</div>
 		
-		</footer><!-- #colophon -->
+		</footer>
 
 </div>
 
 <script src="https://cdn.bootcss.com/fitvids/1.2.0/jquery.fitvids.min.js"></script>
 <script type='text/javascript' src='https://halftop.github.io/media/scripts/marlin-scripts.js'></script>
+ <script src="//tokinx.github.io/lately/lately.min.js"></script>
+  <script>jQuery(document).ready(function(){$.lately({'target':'.lately-a,.lately-b,.lately-c'})});</script>
+  <style type="text/css">a.back_to_top {
+    text-decoration: none;
+    position: fixed;
+    bottom: 40px;
+    right: 30px;
+    background: #f0f0f0;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    line-height: 36px;
+    font-size: 18px;
+    text-align: center;
+    transition-duration: .5s;
+    transition-propety: background-color;
+    display: none;
+}
+
+a.back_to_top span {
+    color: #888;
+}
+
+a.back_to_top:hover {
+    cursor: pointer;
+    background: #dfdfdf;
+}
+
+a.back_to_top:hover span {
+    color: #555;
+}
+
+@media print, screen and (max-width: 580px) {
+    .back_to_top {
+        display: none !important;
+    }
+}
+
+
+
+</style><a id="back_to_top" href="#" class="back_to_top"><span><i class="iconfont icon-xiangshang"></i></span>
+</a>
+
+
+<script>$(document).ready((function(_this) {
+  return function() {
+    var bt;
+    bt = $('#back_to_top');
+    if ($(document).width() > 480) {
+      $(window).scroll(function() {
+        var st;
+        st = $(window).scrollTop();
+        if (st > 30) {
+          return bt.css('display', 'block');
+        } else {
+          return bt.css('display', 'none');
+        }
+      });
+      return bt.click(function() {
+        $('body,html').animate({
+          scrollTop: 0
+        }, 800);
+        return false;
+      });
+    }
+  };
+})(this));
+</script>
 
 		<script data-no-instant>
     (function ($) {
