@@ -17,19 +17,19 @@ function getCSS()
         datetoday.setTime(timenow);
         thehour = datetoday.getHours();
 
-        if (thehour<20)
+        if (thehour<8)
 
             display = "https://halftop.github.io/media/css/night.css";
 
-       else if (thehour>8)
+       else if (thehour>20)
 
             display = "https://halftop.github.io/media/css/night.css";   
 
-        else if (thehour>20)
+        else if (thehour>8)
            
             display = "https://halftop.github.io/media/css/day.css";
 
-        else if (thehour<8)
+        else if (thehour<20)
 
             display = "https://halftop.github.io/media/css/day.css";
       
@@ -174,7 +174,7 @@ window.onload=getCSS();
  <img src="https://i.loli.net/2019/06/07/5cf9cb2f3c5cd16813.png" alt="Uart数据包的构成" title="Uart数据包的构成" width="400"> 
 </center>
 <h3 id="起始位start-bit">起始位（start bit）</h3>
-<p>数据传输线空闲的时候保持低电平，当开始传输时，拉低一个时钟周期，这就是起始位。当接受端检测到数据线由高到低的变化时便开始以约定的波特率来接收上述的数据包。</p>
+<p>数据传输线空闲的时候保持高电平，当开始传输时，拉低一个时钟周期，这就是起始位。当接受端检测到数据线由高到低的变化时便开始以约定的波特率来接收上述的数据包。</p>
 <h3 id="数据帧data-frame">数据帧（data frame）</h3>
 <p>这是实际需要传输的数据。如果使用奇偶校验功能的话，可以传输5-8位的数据；如果不使用奇偶校验功能，则可以传输9位。一般由最低位开始传输。</p>
 <h3 id="奇偶校验位parity">奇偶校验位（parity）</h3>
