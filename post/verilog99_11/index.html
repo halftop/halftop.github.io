@@ -221,8 +221,8 @@ window.onload=getCSS();
     <img src="https://i.loli.net/2019/04/25/5cc1ce26ba1cd.jpg" alt="无险象的波形图" title="无险象的波形图">
 </figure>
     下图是由与非门构成的组合逻辑电路，该电路的输出逻辑表达式是：F=AB+A'C
-<p><img src="https://i.loli.net/2019/04/25/5cc1c98feadad.jpg" alt="与非门构成的组合逻辑电路"></p>
-<p><img src="https://i.loli.net/2019/04/25/5cc1c990770b8.jpg" alt="产生险象的组合逻辑电路波形图"></p>
+<figure data-type="image" tabindex="1"><img src="https://i.loli.net/2019/04/25/5cc1c98feadad.jpg" alt="与非门构成的组合逻辑电路"></figure>
+<figure data-type="image" tabindex="2"><img src="https://i.loli.net/2019/04/25/5cc1c990770b8.jpg" alt="产生险象的组合逻辑电路波形图"></figure>
 <p>当B=C=1时，F应该恒等于1，这是在理想条件下得出得结论。实际上，门电路都存在延迟时间，假设每个门电路的延迟时间都为t。</p>
 <p>当A由低电平变为高电平，经过门延迟t后，反相器G1的输出d由高电平变为低电平，同时与非门G2的输出e也由高电平变为低电平，在G1的输出d为低电平之前，d仍然维持高电平不变，因此G3的输出g不变；再经过门延迟t后，与非门G3的输出g由低变为高电平。由于之前e已经为低电平，以输出F恒定为高电平不变。没有出现尖脉冲，即没有出现险象，所以该竞争是逻辑竞争、非临界竞争。</p>
 <p>而A由高电平变为低电平时，经过门延迟t后，反相器G1的输出d由低电平变为高电平，同时与非门G2的输出e也由低电平变为高电平；再经过门延t后，与非门G3的输出g才由高电平变为低电平。由图可以看出，在t的持续时间内，与非门Ga的输入都为高电平，再经过t后，输出持续时间为t低电平尖脉冲，也就是说，这次竞争产生了险象，是逻辑临界竞争。</p>
@@ -288,6 +288,8 @@ window.onload=getCSS();
 	<div class="author-description"><div class="author-title"><div class="author-link" rel="author">halftop</div></div>
 
 
+	<p class="author-bio">即将入行的IC设计工程师</p></div></div>
+	
 		</div>
 		
  
