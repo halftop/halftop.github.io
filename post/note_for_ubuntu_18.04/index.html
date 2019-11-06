@@ -6,7 +6,7 @@
 <meta HTTP-EQUIV="pragma" CONTENT="no-cache"> 
 <meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
 <meta HTTP-EQUIV="expires" CONTENT="0"> 
-<title>verilog99题——8题 | 1/2顶点</title>	
+<title>Kde Ubuntu 18.04安装笔记 | 1/2顶点</title>	
 
 <link rel="stylesheet" href="https://halftop.github.io/styles/main.css">
 <script type="text/javascript">
@@ -146,10 +146,10 @@ window.onload=getCSS();
 	
 	                      
 		<div class="entry-content">
-			<h1 class="wow swing entry-title">verilog99题——8题</h1>
+			<h1 class="wow swing entry-title">Kde Ubuntu 18.04安装笔记</h1>
 <div class="entry-meta">
 <div class="wow bounce">
-	<i class="iconfont icon-rili"> <time class="lately-a" datetime="2019-03-10 18:05:36" itemprop="datePublished" pubdate="">2019-03-10</time></i>
+	<i class="iconfont icon-rili"> <time class="lately-a" datetime="2019-10-30 22:33:33" itemprop="datePublished" pubdate="">2019-10-30</time></i>
 	          </div>
 			
 </span>
@@ -157,33 +157,158 @@ window.onload=getCSS();
 		</div>
                   
 			<div class="wow slideInLeft entry-summary song">
-				<h2 id="题目">题目</h2>
-<p><strong>008.只用2输入mux，实现与，或，非，异或。2输入mux定义为</strong></p>
-<blockquote>
-<p>o = s ? a : b;</p>
-</blockquote>
-<!-- more --> 
-<center>
-    <img src="https://i.loli.net/2019/04/25/5cc1cd5f3df27.jpg" alt="答案" title="答案" width="600">
-</center>
+				<h2 id="安装设置">安装设置</h2>
+<ul>
+<li>语言选择英语，避免<code>/home</code>出现中文文件夹。</li>
+<li>选择最小安装；勾选为图形或无线硬件，以及其它媒体格式安装第三方软件。</li>
+<li>双系统安装，无需设置<code>/boot</code>分区，只许把选择把引导安装在<code>Windows Boot Manager</code>即<code>EFI</code>分区即可。</li>
+<li>其它选项按字面意思常规处理即可。</li>
+</ul>
+<h2 id="更换软件源">更换软件源</h2>
+<p><code>/etc/apt/sources.list</code></p>
+<ul>
+<li>
+<p>ipv4 - <a href="https://linux.xidian.edu.cn/git/xdlinux/mirror-help/src/master/ubuntu.md">Xidian University</a></p>
+<pre><code>deb http://linux.xidian.edu.cn/mirrors/ubuntu/ bionic main restricted universe multiverse
+#deb-src http://linux.xidian.edu.cn/mirrors/ubuntu/ bionic main restricted universe multiverse
+
+deb http://linux.xidian.edu.cn/mirrors/ubuntu/ bionic-security main restricted universe multiverse
+#deb-src http://linux.xidian.edu.cn/mirrors/ubuntu/ bionic-security main restricted universe multiverse
+
+deb http://linux.xidian.edu.cn/mirrors/ubuntu/ bionic-updates main restricted universe multiverse
+#deb-src http://linux.xidian.edu.cn/mirrors/ubuntu/ bionic-updates main restricted universe multiverse
+
+#deb http://linux.xidian.edu.cn/mirrors/ubuntu/ bionic-backports main restricted universe multiverse
+#deb-src http://linux.xidian.edu.cn/mirrors/ubuntu/ bionic-backports main restricted universe multiverse
+
+#deb http://linux.xidian.edu.cn/mirrors/ubuntu/ bionic-proposed main restricted universe multiverse
+#deb-src http://linux.xidian.edu.cn/mirrors/ubuntu/ bionic-proposed main restricted universe multiverse
+</code></pre>
+</li>
+<li>
+<p>ipv6 - <a href="https://mirrors.ustc.edu.cn/repogen/">USTC</a></p>
+<pre><code>deb https://ipv6.mirrors.ustc.edu.cn/ubuntu/ bionic main restricted universe multiverse
+deb-src https://ipv6.mirrors.ustc.edu.cn/ubuntu/ bionic main restricted universe multiverse
+
+deb https://ipv6.mirrors.ustc.edu.cn/ubuntu/ bionic-security main restricted universe multiverse
+deb-src https://ipv6.mirrors.ustc.edu.cn/ubuntu/ bionic-security main restricted universe multiverse
+
+deb https://ipv6.mirrors.ustc.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse
+deb-src https://ipv6.mirrors.ustc.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse
+
+deb https://ipv6.mirrors.ustc.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse
+deb-src https://ipv6.mirrors.ustc.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse
+
+## Not recommended
+# deb https://ipv6.mirrors.ustc.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse
+# deb-src https://ipv6.mirrors.ustc.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse
+</code></pre>
+</li>
+<li>
+<p>ipv6 - <a href="https://mirrors6.tuna.tsinghua.edu.cn">tsinghua</a></p>
+<pre><code>  # 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释
+  deb https://mirrors6.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse
+  # deb-src https://mirrors6.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse
+  deb https://mirrors6.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse
+  # deb-src https://mirrors6.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse
+  deb https://mirrors6.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse
+  # deb-src https://mirrors6.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse
+  deb https://mirrors6.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse
+  # deb-src https://mirrors6.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse
+
+  # 预发布软件源，不建议启用
+  # deb https://mirrors6.tuna.tsinghua.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse
+  # deb-src https://mirrors6.tuna.tsinghua.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse
+</code></pre>
+</li>
+</ul>
+<h2 id="网络连接pppoe">网络连接（pppoe）</h2>
+<p>主要是为了解决<code>Network Manager</code>中没有<code>PPPOE/DSL</code>选项而不能拨号的问题。</p>
+<p>使用<code>Network Manager</code>工具中<a href="https://developer.gnome.org/NetworkManager/stable/nmtui.html">nmtui</a> 工具。直接在终端中运行：</p>
+<pre><code class="language-shell">nmtui
+</code></pre>
+<h2 id="安装无线网卡驱动">安装无线网卡驱动</h2>
+<p>适用于博通BCM43xx无线网卡。</p>
+<pre><code class="language-shell">sudo apt install bcmwl-kenrnel-source
+</code></pre>
+<h2 id="安装搜狗拼音输入法">安装搜狗拼音输入法</h2>
+<p><a href="http://rangerzhou.top/2018/10/30/Ubuntu18.04_installation/">参考</a></p>
+<pre><code class="language-shell"># 卸载ibus
+sudo apt remove ibus
+# 清除ibus配置
+sudo apt purge ibus
+# 卸载顶部面板任务栏上的键盘指示
+sudo  apt remove indicator-keyboard
+# 安装fcitx输入法框架
+sudo apt install fcitx-table-wbpy fcitx-config-gtk
+# 切换为 Fcitx输入法
+im-config -n fcitx
+# im-config 配置需要重启系统才能生效
+sudo shutdown -r now
+# 下载安装包：https://pinyin.sogou.com/linux/?r=pinyin
+# 安装搜狗输入法
+sudo dpkg -i ~/Downloads/sogoupinyin_2.2.0.0108_amd64.deb
+# 修复损坏缺少的包
+sudo apt-get install -f
+# 打开 Fcitx 输入法配置
+fcitx-config-gtk3
+# 点击 + 添加搜狗输入法，并把搜狗移动到顶端
+</code></pre>
+<h2 id="安装xrdp服务">安装xrdp服务</h2>
+<p>这真是个大坑！要特别注意安装包的顺序问题。</p>
+<ol>
+<li>
+<p>安装软件包。</p>
+<pre><code class="language-bash">#先安装这个
+sudo apt-get install tightvncserver
+#再安装这个
+sudo apt-get install xrdp、
+#再重启一下xrdp服务
+sudo /etc/init.d/xrdp restart
+</code></pre>
+</li>
+<li>
+<p>根据桌面环境进行设置。</p>
+<p>根据具体的桌面环境，还需进行相应的操作。推荐从<a href="https://www.hiroom2.com/ubuntu/ubuntu-18-04-en/">这个网站</a>的<code>Remote desktop server</code>一项中根据自己的桌面环境进行选择。</p>
+</li>
+<li>
+<p>xrdp无法成功开启的解决办法。</p>
+<p>查看<code>/var/log/xrdp-sesman.log</code>文档：</p>
+<pre><code class="language-bash">sudo nano /var/log/xrdp-sesman.log
+</code></pre>
+<p>如果文档中有类似<code>X server for display 10 startup timeout</code>和<code>another Xserver is already active on display 10</code>类似的日志，很大可能是安装包顺序的问题，解决办法就是卸了重新按顺序安装。</p>
+<pre><code class="language-bash">apt-get purge tightvnc xrdp
+</code></pre>
+<p>然后按照第一步的顺序安装。也可只卸载重装xrdp包（反正我是这么解决的）。</p>
+<p>这是我遇到的唯一问题！</p>
+</li>
+</ol>
+<h2 id="安装petalinuxxilinx">安装Petalinux(Xilinx)</h2>
+<p><strong>注意</strong>：不能使用root权限来安装。</p>
+<ol>
+<li>
+<p>报错<code>awk: read error (Bad address)</code>,参考<a href="https://blog.lazy-evaluation.net/posts/linux/petalinux-v2019.1-ubuntu-18.04.html">这篇</a>,只许安装<code>gawk</code>:</p>
+<pre><code>sudo apt install gawk
+</code></pre>
+</li>
+<li>
+<p>报错<code>tar: .: Cannot change mode to rwxr-xr-x: Operation not permitted</code>这种类似错误，参考<a href="https://forums.xilinx.com/t5/Embedded-Linux/Petalinux-2017-2-installation-failure/td-p/799769">这里</a>，需要修改文件的拥有用户：</p>
+<pre><code class="language-shell">#例如安装在/opt/Xilinx/Petalinux/2018.3,&lt;owner&gt;为非root用户名，可使用echo $USER查看
+sudo chown -R &lt;owner&gt;:&lt;owner&gt; /opt/Xilinx/Petalinux/2018.3
+</code></pre>
+</li>
+</ol>
+
 							</div>
 	<div class="wow bounceInDown vt-post-tags">
  
-				<a href="https://halftop.github.io/tag/DztcUtg4_" rel="tag">Verilog99题</a>	
-				 
-				<a href="https://halftop.github.io/tag/ADa051R6R" rel="tag">Verilog HDL</a>	
-				 
-				<a href="https://halftop.github.io/tag/bwS6E4Jqc" rel="tag">学习笔记</a>	
-				 
 					</div>						
 <nav class="navigation3 post-navigation3" role="navigation">
 		
 		<div class="nav-links3">
       
-		<div class="wow bounceInLeft nav-previous3"><a href="https://halftop.github.io/post/verilog99_11" rel="prev"> 通过做verilog99题的第11题学习竞争与冒险</a></div>
 		 
-		 
-		<div class="wow bounceInRight nav-next3"><a href="https://halftop.github.io/post/verilog99_5&amp;6&amp;7" rel="next"> verilog99题——5、6、7题</a></div>
+		<div class="wow bounceInRight nav-next3"><a href="https://halftop.github.io/post/STA_junior" rel="next"> 数字电路时序初步及最小时钟周期计算</a></div>
 		
 		</div>
 	</nav>
