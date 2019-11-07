@@ -328,7 +328,7 @@ article .entry-title > a, .slide-content .entry-title > a {
 .bmdb-title {
   color: #bcbcbc;
 }
-.view-img{background:#333;background:rgba(0, 0, 0, 0.9);}
+.view-img{background:#333 !important;background:rgba(0, 0, 0, 0.9) !important;}
 .vt-post-tags a {
   color: #bcbcbc;
 }
@@ -367,4 +367,13 @@ blockquote cite {
   text-align: right;
   color: #888888;
   font-size: 0.9em;
+}
+
+.song tr:nth-child(even) {
+  background-color: #292A2D;
+}
+
+ul.links li a {
+  background-color: #333333;
+  border: 1px solid #999999;
 }

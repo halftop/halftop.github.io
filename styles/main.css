@@ -1362,7 +1362,7 @@ fieldset[disabled] .navbar-default .btn-link:hover {
 }
 .toc-list {
   margin: 0;
-  padding-left: 10px;
+  padding-left: 20px;
 }
 a.toc-link {
   color: currentColor;
